@@ -112,8 +112,9 @@ test('restart persists records and does not falsely complete unfinished work', a
 });
 
 test('browser assets, Three.js imports and CSP are served locally', async () => {
-  const paths = ['/', '/app.js', '/styles.css',
+  const paths = ['/', '/app.js', '/styles.css', '/favicon.svg',
     '/vendor/three/build/three.module.js',
+    '/vendor/three/build/three.core.js',
     '/vendor/three/examples/jsm/controls/OrbitControls.js',
     '/vendor/three/examples/jsm/loaders/GLTFLoader.js',
     '/vendor/three/examples/jsm/utils/BufferGeometryUtils.js'];

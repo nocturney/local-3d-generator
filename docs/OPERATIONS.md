@@ -8,7 +8,7 @@ MacMiniOffice.local: Darwin arm64, 16 GiB unified memory, Node 24.21.0, npm 11.1
 1. Open PowerShell on Chris.
 2. Set-Location 'D:\Velvet\Projects\local-3d-generator'
 3. npm ci --ignore-scripts --no-audit --no-fund (first setup)
-4. npm test
+4. npm test (Node API/security and preflight tests); npm run qa:browser (requires locally installed Google Chrome; creates runtime/qa screenshots in a temporary localhost server)
 5. npm start
 6. Open http://127.0.0.1:4177 locally.
 7. Press Ctrl+C to stop. No auto-start installed.

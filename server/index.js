@@ -246,7 +246,9 @@ export async function createApp(options = {}) {
     ['/', [path.join(ROOT, 'public', 'index.html'), 'text/html; charset=utf-8']],
     ['/app.js', [path.join(ROOT, 'public', 'app.js'), 'text/javascript; charset=utf-8']],
     ['/styles.css', [path.join(ROOT, 'public', 'styles.css'), 'text/css; charset=utf-8']],
+    ['/favicon.svg', [path.join(ROOT, 'public', 'favicon.svg'), 'image/svg+xml']],
     ['/vendor/three/build/three.module.js', [path.join(ROOT, 'node_modules', 'three', 'build', 'three.module.js'), 'text/javascript; charset=utf-8']],
+    ['/vendor/three/build/three.core.js', [path.join(ROOT, 'node_modules', 'three', 'build', 'three.core.js'), 'text/javascript; charset=utf-8']],
     ['/vendor/three/examples/jsm/controls/OrbitControls.js', [path.join(ROOT, 'node_modules', 'three', 'examples', 'jsm', 'controls', 'OrbitControls.js'), 'text/javascript; charset=utf-8']],
     ['/vendor/three/examples/jsm/loaders/GLTFLoader.js', [path.join(ROOT, 'node_modules', 'three', 'examples', 'jsm', 'loaders', 'GLTFLoader.js'), 'text/javascript; charset=utf-8']],
     ['/vendor/three/examples/jsm/utils/BufferGeometryUtils.js', [path.join(ROOT, 'node_modules', 'three', 'examples', 'jsm', 'utils', 'BufferGeometryUtils.js'), 'text/javascript; charset=utf-8']]

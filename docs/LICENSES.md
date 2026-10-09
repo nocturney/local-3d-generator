@@ -10,6 +10,8 @@ Readme confirms the app is an interface around Hyper3D Rodin API, not a local in
 Three.js: https://github.com/mrdoob/three.js
 Dependency version pinned: 0.180.0, MIT License; preserve copyright/license on redistribution. Installed using npm scripts disabled. Keep package-lock.json and provenance in repo. Original GLB geometry generator and app code are independently authored for this project.
 
+Playwright-core browser QA dependency: https://github.com/microsoft/playwright, Apache License 2.0; dev/test-only, Chrome browser installed separately. Preserve applicable third-party notices.
+
 ## Future candidate: TripoSR
 Canonical source: https://github.com/VAST-AI-Research/TripoSR
 Original project states MIT for code and pretrained models. Nonetheless validate the exact repo ref, model-weight download source, model card, redistribution rights and package dependencies as part of G2. Candidate in registry only, not downloaded, installed or benchmark-proven here.

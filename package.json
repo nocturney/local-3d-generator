@@ -8,8 +8,18 @@
     "start": "node server/index.js",
     "dev": "node server/index.js",
     "test": "node --test tests/*.test.js",
-    "fixture": "node server/fixture.js"
+    "fixture": "node server/fixture.js",
+    "qa:browser": "node tests/browser-qa.mjs",
+    "test:all": "npm test && npm run qa:browser",
+    "preflight:g2": "node scripts/g2-preflight.mjs --out runtime/qa/g2-preflight.json"
   },
-  "engines": { "node": ">=20.0.0" },
-  "dependencies": { "three": "0.180.0" }
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "playwright-core": "1.64.0"
+  }
 }

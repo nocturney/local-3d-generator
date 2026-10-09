@@ -1,0 +1,53 @@
+{
+  "schema": "local3d.browser-qa.v1",
+  "at": "2026-10-09T20:15:38.260Z",
+  "platform": "win32",
+  "port": 20885,
+  "phases": [
+    {
+      "name": "Desktop initial UI, Hebrew RTL, local health, empty state",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:32.828Z"
+    },
+    {
+      "name": "Text fixture job, GLB viewport, DRAFT report, no AI",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:34.309Z"
+    },
+    {
+      "name": "OrbitControls visible pixel change and camera reset",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:35.467Z"
+    },
+    {
+      "name": "Cancellation prevents GLB output and resets preview",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:35.561Z"
+    },
+    {
+      "name": "Image upload, source asset, history navigation, completed preview",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:37.416Z"
+    },
+    {
+      "name": "390px mobile responsive layout and completed GLB",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:38.259Z"
+    },
+    {
+      "name": "No JavaScript errors, CSP complaints, or external URL requests",
+      "result": "PASS",
+      "at": "2026-10-09T20:15:38.260Z"
+    }
+  ],
+  "browserVersion": "154.0.8037.98",
+  "messages": [],
+  "externalRequests": [],
+  "screenshots": [
+    "01-empty-desktop.png",
+    "02-completed-desktop.png",
+    "03-rotated-and-reset.png",
+    "04-image-job.png",
+    "05-mobile.png"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "local3d.triposr.source-lock.v1",
+  "checkedAt": "2026-10-09",
+  "source": {
+    "repository": "https://github.com/VAST-AI-Research/TripoSR",
+    "commit": "107cefdc244c39106fa830359024f6a2f1c78871",
+    "license": "MIT",
+    "input": "single-image",
+    "format": "glb",
+    "cli": "run.py"
+  },
+  "weights": {
+    "repository": "https://huggingface.co/stabilityai/TripoSR",
+    "revision": "5b521936b01fbe1890f6f9baed0254ab6351c04a",
+    "file": "model.ckpt",
+    "bytes": 1677246742,
+    "sha256": "429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee",
+    "license": "MIT"
+  },
+  "config": {
+    "file": "config.yaml",
+    "revision": "5b521936b01fbe1890f6f9baed0254ab6351c04a"
+  },
+  "upstreamVramMiB": 6144,
+  "limitations": [
+    "Requires compatible isolated PyTorch CUDA stack, not present in default Python",
+    "Unpinned git+torchmcubes dependency in upstream requirements",
+    "GPU currently shared with unrelated workloads",
+    "No downloaded source/weights or runtime installation authorized by handoff"
+  ],
+  "nextGate": "QUALIFICATION_ONLY"
+}
