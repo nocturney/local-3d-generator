@@ -43,5 +43,6 @@ Runtime data is gitignored and persists across normal app restarts.
 - docs/LICENSES.md - G0 rights and research.
 - docs/GATES.md - acceptance, fixtures and future benchmark.
 - docs/OPERATIONS.md - environment, backup and rollback.
+- docs/ENGINE_CANDIDATES.md - researched local engine options and licensing/hardware gates.
 
 Independent from nocturney/velvetos-core. Its Issue #613 remains P2/PARKED and must not be activated by this project.
