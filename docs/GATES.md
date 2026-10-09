@@ -8,7 +8,7 @@
 - PASS: existing AI3D engineering Issue #613 is P2/PARKED, not this project's scheduler.
 
 ## G1 - Fixture-only interface
-Evidence (2026-10-09, Windows Chris): npm test - 9/9 PASS; node tests/browser-qa.mjs - 7/7 PASS in real Chrome 154.0.8037.98 (WebGL via SwiftShader headless). See docs/evidence/g1/report.json and demo-only screenshots.
+Evidence (2026-10-09): Windows Chris: 12/12 Node tests + 7/7 browser phases PASS in real Chrome 154.0.8037.98. MacMiniOffice.local: 12/12 Node tests + 7/7 browser phases PASS in real Microsoft Edge 154.0.4258.53 on macOS arm64. See docs/evidence/g1/report.json, macos-report.json and Windows screenshots.
 Golden fixture: fixtures/demo-sculpture.glb, generated deterministically with server/fixture.js.
 - A: image upload -> persisted job -> GLB asset -> DRAFT QA report: PASS API and real Chrome browser. Screenshot and byte-for-byte source download verified.
 - B: invalid image, missing prompt, disabled provider, job cancel, missing output: PASS automated. Model timeout (real engine) NOT APPLICABLE to G1.
@@ -16,7 +16,7 @@ Golden fixture: fixtures/demo-sculpture.glb, generated deterministically with se
 - D: remote URL rejected, Host/Origin blocked, unknown job/asset inaccessible: PASS automated. External independent security review pending.
 - E: same input through two real engines: NOT STARTED; no second engine installed.
 - Persistence: atomic job.json plus restart-interruption recovery tested PASS.
-- Browser UI: Desktop 1440px and mobile 390px screenshots inspected; OrbitControls drag caused real changed viewport pixels; camera reset exercised; Chrome console/page errors 0, external requests 0. PASS on Windows/Chrome (Mac runtime and Edge not yet separately qualified). A missing Three.js core import and favicon were found and fixed by the real browser test.
+- Browser UI: 1440px desktop and 390px mobile screenshots inspected on Windows Chrome and macOS Edge; OrbitControls changed viewport pixels, reset exercised; no browser JS errors or external requests on either host. PASS for the two tested browser/OS combinations. Mac Chrome headless had a host-specific path-service crash, but Mac Edge passed. A missing Three.js core import and favicon were found/fixed by live browser QA.
 
 ## G2 - First real local inference (BLOCKED; read-only screening done)
 TripoSR source and checkpoint metadata pinned in docs/TRIPOSR_SOURCE_LOCK.json; no sources/weights installed or local hashes verified. Windows read-only preflight at runtime/qa/g2-preflight.json found 4080 SUPER 16GB, ~11.4GB free but ~39% utilization, default Python 3.11 without torch, and nvcc 13.2. Nonconflicting GPU capacity not proven. Upstream includes unpinned torchmcubes source compilation. See docs/G2_PREFLIGHT.md. A real isolated venv + verified weights, qualified license/dependencies, explicit model installation/GPU approval, image-to-3D inference, cancellation and failure cleanup remain NOT STARTED. No claim of text-to-3D. Benchmark before registry status changes.

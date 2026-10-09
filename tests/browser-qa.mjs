@@ -11,9 +11,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'runtime', 'qa', new Date().toISOString().replace(/[:.]/g,'-'));
 await fs.mkdir(output, { recursive: true });
 const temp = await fs.mkdtemp(path.join(os.tmpdir(), 'local3d-browser-'));
-const executablePath = process.platform === 'win32' ?
+const executablePath = process.env.LOCAL3D_QA_BROWSER || (process.platform === 'win32' ?
   'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' :
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+  process.platform === 'darwin' ? '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge' : '/usr/bin/chromium');
 let app = null, browser = null, page = null;
 const messages = [], requests = [], phases = [];
 const pushPhase = (name, result = 'PASS') => phases.push({ name, result, at: new Date().toISOString() });
@@ -127,7 +127,7 @@ try {
   process.exitCode=1;
 } finally {
   const evidence={schema:'local3d.browser-qa.v1',at:new Date().toISOString(),platform:process.platform,port,phases,
-    browserVersion:browser?.version()||null, messages, externalRequests:requests,
+    browserVersion:browser?.version()||null, browserExecutable:executablePath, messages, externalRequests:requests,
     screenshots:(await fs.readdir(output).catch(()=>[])).filter(x=>x.endsWith('.png'))};
   await fs.writeFile(path.join(output,'report.json'), JSON.stringify(evidence,null,2)+'\n');
   if(browser) await browser.close().catch(()=>{});

@@ -2,7 +2,7 @@
 
 ## Machine inventory (read-only, 2026-10-09)
 Windows Chris: Microsoft Windows NT 10.0.26300, Node 24.19.0, npm 11.17.0, Git 2.55.0, Python 3.11.9; nvidia-smi reports NVIDIA RTX 4080 SUPER / 16376 MiB. G1 does not use GPU.
-MacMiniOffice.local: Darwin arm64, 16 GiB unified memory, Node 24.21.0, npm 11.19.0. Mac startup/build NOT YET TESTED; do not equate unified memory with discrete VRAM.
+MacMiniOffice.local: Darwin arm64, 16 GiB unified memory, Node 24.21.0, npm 11.19.0. Clean macOS G1 test copy passed 12 Node tests and 7 browser QA phases using Microsoft Edge 154 headless. Chromium Chrome headless failed to launch in the remote session, but Edge worked. Do not equate unified memory with discrete VRAM or infer G2 inference compatibility.
 
 ## Start (Windows)
 1. Open PowerShell on Chris.
@@ -16,7 +16,7 @@ MacMiniOffice.local: Darwin arm64, 16 GiB unified memory, Node 24.21.0, npm 11.1
 If port 4177 is in use, set L3D_PORT to a free local port between 1024 and 65535. Binding always remains 127.0.0.1.
 
 ## Start (macOS - procedure only, not validated)
-Copy or git-clone the independent repository to a separate directory. Install Node 20+; run npm ci --ignore-scripts, npm test and npm start; open local loopback URL. Do not copy live Windows runtime records by default. The pinned npm dependency is cross-platform JavaScript.
+Copy or git-clone the independent repository to a separate directory. Install Node 20+; run npm ci --ignore-scripts, npm test, npm run qa:browser (uses installed Microsoft Edge on macOS), and npm start; open local loopback URL. Verified on temporary Mac test copy; 12/12 Node + 7/7 Edge browser PASS. Do not copy live Windows runtime records by default. No real model was installed or executed.
 
 ## Runtime data
 runtime/data/jobs contains immutable original images, job manifests and output fixtures. runtime/data/audit/events.jsonl contains events. User prompts/source images may contain confidential information: keep backups private and apply host filesystem permissions.

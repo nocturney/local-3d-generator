@@ -13,7 +13,7 @@ Node.js 20+ and npm required. Installation contacts npm once for Three.js; norma
     npm run qa:browser
     npm start
 
-Open http://127.0.0.1:4177 in a browser on the same machine. No GPU, model download, admin access, cloud account or API key required.
+Open http://127.0.0.1:4177 in a browser on the same machine. QA script requires Chrome on Windows or Edge on macOS (or LOCAL3D_QA_BROWSER to explicitly choose another executable). No GPU, model download, admin access, cloud account or API key required.
 
 Windows working directory: D:\Velvet\Projects\local-3d-generator
 
@@ -25,7 +25,7 @@ Windows working directory: D:\Velvet\Projects\local-3d-generator
 - Local provider registry: fixture-demo enabled; TripoSR CANDIDATE G2 and Hunyuan RESEARCH G3 disabled.
 - SHA-256 manifest, source file access and truthful DRAFT QA report.
 - Loopback/Origin checks, allowlisted routes, UUID job separation, signature/size upload limits.
-- 9 Node automated tests + 7 real-Chrome browser QA phases (desktop, mobile, source, camera, cancellation), no inference process or printer integration.
+- 12 Node automated tests + 7 browser QA phases on Windows Chrome and macOS Edge (desktop, mobile, source, camera, cancellation); no inference or printer integration.
 
 ## Deliberately NOT implemented
 
