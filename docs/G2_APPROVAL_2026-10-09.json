@@ -1,0 +1,40 @@
+{
+  "schema": "local3d.g2.approval.v1",
+  "decisionDate": "2026-10-09",
+  "source": "explicit user confirmation in Local 3D Generator handoff conversation",
+  "scope": "Isolated TripoSR source/weights/dependency installation and limited local GPU experiment after Office no-conflict verification",
+  "authorized": {
+    "downloadOpenSourceModel": true,
+    "isolatedPythonInstallation": true,
+    "boundedOneTimeGpuPilot": true,
+    "manualCpuArtifactPostprocess": true
+  },
+  "conditionalGuards": {
+    "noLoadedOfficeOllamaModel": true,
+    "freeGpuMemoryMinimumMiB": 10000,
+    "gpuUtilizationMaximumPercent": 65,
+    "workerGpuMemoryIncreaseMaximumMiB": 8500,
+    "workerFreeGpuMemoryMinimumMiB": 2500,
+    "workerTimeoutSeconds": 240,
+    "runOnlyOnLocallyAuthorizedInput": true
+  },
+  "notAuthorized": [
+    "unbounded recurring inference",
+    "cloud inference or paid API fallbacks",
+    "unattended GPU job queues",
+    "direct printer or G-code commands",
+    "modifying Office 2.0 P0, VelvetOS or Fabrication Router",
+    "global Python/CUDA installation or system reboot"
+  ],
+  "pilotOutcomes": [
+    {
+      "pilot": "tripo-20261009T205831222-b90af4a0",
+      "result": "worker produced real DRAFT GLB; original guard bookkeeping failure corrected later; visually suboptimal due alpha handling and orientation"
+    },
+    {
+      "pilot": "tripo-20261009T210159110-e62b9a20",
+      "result": "successful user-authorized bounded GPU pilot with DRAFT real GLB and CPU Y-up derivative; no print release"
+    }
+  ],
+  "note": "This document records a limited past approval; it does not grant standing authorization for general-use model inference."
+}

@@ -1,0 +1,44 @@
+import * as THREE from 'three';
+import { OrbitControls } from '/vendor/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from '/vendor/three/examples/jsm/loaders/GLTFLoader.js';
+const host = document.getElementById('stage');
+const canvas = document.createElement('canvas');
+host.prepend(canvas);
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.setPixelRatio(1);
+renderer.setSize(1200, 770, false);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, 1200 / 770, .01, 1000);
+scene.add(new THREE.HemisphereLight(0xe6fffb, 0x354657, 2.8));
+const key = new THREE.DirectionalLight(0xffffff, 3.5);
+key.position.set(3, 6, 5); scene.add(key);
+const fill = new THREE.DirectionalLight(0x79d8cb, 1.5);
+fill.position.set(-5, 3, -2); scene.add(fill);
+const controls = new OrbitControls(camera, canvas);
+controls.enablePan = false;
+controls.addEventListener('change', () => renderer.render(scene, camera));
+new GLTFLoader().load('/model.glb', gltf => {
+  const obj = gltf.scene;
+  // Raw TripoSR is Z-up; the derived upright GLB has already been transformed.
+  const isUpright = new URLSearchParams(location.search).has('upright');
+  if (!isUpright) obj.rotation.x = -Math.PI / 2;
+  obj.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(obj);
+  const center = box.getCenter(new THREE.Vector3());
+  obj.position.sub(center);
+  const dims = box.getSize(new THREE.Vector3());
+  const max = Math.max(dims.x, dims.y, dims.z);
+  obj.scale.multiplyScalar(3.0 / max);
+  scene.add(obj);
+  camera.position.set(4, 2.65, 6);
+  controls.target.set(0, 0, 0);
+  controls.update();
+  const grid = new THREE.GridHelper(9, 20, 0x285e66, 0x193944);
+  grid.position.y = -1.95; scene.add(grid);
+  renderer.render(scene, camera);
+  window.__pilotReady = true;
+}, undefined, error => {
+  console.error(error);
+  window.__pilotError = String(error);
+});

@@ -1,0 +1,16 @@
+# Candidate constraints for Python 3.11 + CUDA 12.1 PyTorch runtime.
+# Install torch==2.5.1+cu121 from official PyTorch wheel index separately.
+# No upstream unpinned torchmcubes: local adapter uses CPU scikit-image marching cubes.
+numpy==1.26.4
+Pillow==10.1.0
+einops==0.7.0
+omegaconf==2.3.0
+transformers==4.35.0
+trimesh==4.0.5
+huggingface-hub==0.17.3
+imageio==2.34.1
+scikit-image==0.22.0
+scipy==1.13.1
+tokenizers==0.14.1
+# No rembg/onnxruntime: pilot explicitly disables background removal and refuses its use.
+# No xatlas/moderngl/gradio: no texture baking, video render or Gradio UI in pilot.

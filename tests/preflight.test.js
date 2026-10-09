@@ -21,8 +21,8 @@ test('shared GPU cannot be silently authorized', () => {
 test('even an apparently free GPU is not approval to install or execute a provider', async () => {
   const report=await collectPreflight(false);
   assert.equal(report.mode,'READ_ONLY_NO_INFERENCE');
-  assert.equal(report.approval,'NOT_GRANTED');
-  assert.equal(report.readiness,'BLOCKED');
-  assert.ok(report.blockers.includes('OWNER_INSTALL_AND_GPU_ALLOCATION_APPROVAL_REQUIRED'));
+  assert.equal(report.approval,'LIMITED_PILOT_APPROVED_NOT_STANDING');
+  assert.equal(report.readiness,'BLOCKED_FOR_UNATTENDED_INFERENCE');
+  assert.ok(report.blockers.includes('UNATTENDED_INFERENCE_NOT_AUTHORIZED'));
   assert.equal(report.sourceLock.weightsBytes,1677246742);
 });

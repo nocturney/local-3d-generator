@@ -1,0 +1,22 @@
+{
+  "schema": "local3d.g2.glb-validation.v1",
+  "validatedAt": "2026-10-09T21:04:19.377Z",
+  "pilot": "tripo-20261009T210159110-e62b9a20",
+  "sourceCommit": "107cefdc244c39106fa830359024f6a2f1c78871",
+  "modelSha256": "03e0e70d1bfffaae36bda09b56bf65f33f8c60a132d6a9caf7fca8f87621b7be",
+  "coordinateSystem": "Y_UP",
+  "modelBytes": 400652,
+  "meshes": 1,
+  "vertices": 9986,
+  "faces": 19972,
+  "bounds": [
+    0.6134517192840576,
+    1.0671842694282532,
+    0.5713032484054565
+  ],
+  "realInference": true,
+  "printQualified": false,
+  "browserView": "PASS",
+  "consoleErrors": [],
+  "externalRequests": []
+}

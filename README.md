@@ -2,7 +2,7 @@
 
 Independent local-first workbench, clean-room implementation under HANDOFF 12 (2026-10-09).
 
-**Gate G1 / FIXTURE DEMO ONLY.** This is NOT AI image-to-3D or text-to-3D inference. Uploaded images and text are stored but NOT used to generate geometry. The bundled GLB fixture is deterministic. Every job is labeled DEMO and DRAFT / NOT PRINT QUALIFIED.
+**Web app G1 remains FIXTURE DEMO ONLY.** Browser-uploaded images/text still do NOT drive inference. Separately, **G2 isolated command-line TripoSR real image-to-3D pilots succeeded** on Windows with a single licensed sample. The GPU adapter is NOT enabled in the Web UI or job API. All outputs are DRAFT / NOT PRINT QUALIFIED.
 
 ## Quick start
 
@@ -29,7 +29,7 @@ Windows working directory: D:\Velvet\Projects\local-3d-generator
 
 ## Deliberately NOT implemented
 
-No real model inference, STL/3MF manufacturing qualification, cloud fallback, printing, Office runtime integration, autonomous worker, paid services or automatic engine installation. Read-only TripoSR preflight is available with `npm run preflight:g2` and remains BLOCKED from inference until separately approved.
+No Web/API real model inference, arbitrary customer-image inference, general GPU job queue, STL/3MF manufacturing qualification, cloud fallback, printing, Office runtime integration, paid services, or automatic engine installation. An isolated manually-authorized TripoSR GPU pilot succeeded; `npm run preflight:g2` is read-only and unattended inference remains BLOCKED.
 
 ## Local data
 
@@ -45,7 +45,9 @@ Runtime data is gitignored and persists across normal app restarts.
 - docs/GATES.md - acceptance, fixtures and future benchmark.
 - docs/OPERATIONS.md - environment, backup and rollback.
 - docs/ENGINE_CANDIDATES.md - researched local engine options and licensing/hardware gates.
-- docs/G2_PREFLIGHT.md and TRIPOSR_SOURCE_LOCK.json - pinned upstream evidence, no model installed.
+- docs/G2_PREFLIGHT.md and TRIPOSR_SOURCE_LOCK.json - pinned source/weight/config evidence (locally verified).
+- docs/G2_RESULTS.md and G2_APPROVAL_2026-10-09.json - bounded real GPU pilot evidence and explicit scope.
+- docs/evidence/g2 - Y-up real GLB, input photo, screenshot and SHA-256 validation report.
 - docs/evidence/g1 - local Chrome screenshot and browser acceptance report (demo fixture only).
 
 Independent from nocturney/velvetos-core. Its Issue #613 remains P2/PARKED and must not be activated by this project.

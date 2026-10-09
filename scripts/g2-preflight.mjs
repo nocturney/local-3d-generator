@@ -75,21 +75,27 @@ export async function collectPreflight(verifyWeights=false) {
     sourceLock.weights.bytes,sourceLock.weights.sha256,verifyWeights);
   const source=await getSource();
   const nvcc=infoVersion('nvcc',['--version']);
+  const approvalPath=path.join(ROOT,'docs','G2_APPROVAL_2026-10-09.json');
+  const limitedApproval=await fs.readFile(approvalPath,'utf8').then(raw=>{
+    const a=JSON.parse(raw);
+    return a.schema==='local3d.g2.approval.v1' && a.authorized?.boundedOneTimeGpuPilot===true;
+  }).catch(()=>false);
   const blockers=[];
   if (source.state!=='PINNED_CLEAN') blockers.push('SOURCE_NOT_VERIFIED');
   if (weights.state!=='VERIFIED') blockers.push('WEIGHTS_NOT_VERIFIED');
   if(!python.torch) blockers.push('ISOLATED_TORCH_NOT_PRESENT');
-  if(gpuAssessment.state!=='HEADROOM_POSSIBLE') blockers.push('GPU_CAPACITY_NOT_PROVEN');
-  blockers.push('OWNER_INSTALL_AND_GPU_ALLOCATION_APPROVAL_REQUIRED');
+  if(gpuAssessment.state!=='HEADROOM_POSSIBLE') blockers.push('LIVE_GPU_CONFLICT_REVIEW_REQUIRED');
+  if(!limitedApproval) blockers.push('OWNER_INSTALL_AND_GPU_ALLOCATION_APPROVAL_REQUIRED');
+  blockers.push('UNATTENDED_INFERENCE_NOT_AUTHORIZED');
   const report={
     schema:'local3d.g2.preflight.v1',checkedAt:new Date().toISOString(),
-    engine:'TripoSR',mode:'READ_ONLY_NO_INFERENCE',approval:'NOT_GRANTED',
+    engine:'TripoSR',mode:'READ_ONLY_NO_INFERENCE',approval:limitedApproval?'LIMITED_PILOT_APPROVED_NOT_STANDING':'NOT_GRANTED',
     sourceLock:{repository:sourceLock.source.repository,commit:sourceLock.source.commit,
       weightsRevision:sourceLock.weights.revision,weightsSha256:sourceLock.weights.sha256,weightsBytes:sourceLock.weights.bytes},
     system:{platform:process.platform,arch:process.arch,node:process.version,python,cudaCompilerInstalled:nvcc!==null,
       cudaCompilerVersion:nvcc?nvcc.split(/\r?\n/).slice(-2):null},
-    source,weights,gpu,gpuAssessment,readiness:'BLOCKED',blockers,
-    note:'This does not install weights, import torch, allocate CUDA, contact model APIs, or authorize inference.'
+    source,weights,gpu,gpuAssessment,readiness:'BLOCKED_FOR_UNATTENDED_INFERENCE',blockers,
+    note:'Past limited pilot approval is not standing authorization. This report does not allocate CUDA, contact model APIs, start a worker or authorize general-use inference.'
   };
   return report;
 }

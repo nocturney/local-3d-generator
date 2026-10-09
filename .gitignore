@@ -7,3 +7,6 @@ runtime/
 *.log
 *.tmp
 coverage/
+__pycache__/
+*.py[cod]
+.pytest_cache/

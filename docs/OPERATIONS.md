@@ -42,3 +42,23 @@ Loopback single-user development only; no internet service, printer, scheduler, 
 - GLB download works but canvas blank: browser may lack WebGL; verify WebGL enabled and inspect browser Console. Download and local reports remain functional.
 - Interrupted job after restart: deliberate truth-in-status behavior; re-submit as a new job.
 - HTTP 403: request Host/Origin must be local; never remove safeguards to allow network exposure.
+
+## Isolated G2 TripoSR GPU pilot (one-time authorization was granted 2026-10-09)
+
+G1 browser/app always remains fixture-only. The user approved an isolated source/weights/venv install and bounded pilots after Office GPU no-conflict checks. That past limited approval does not authorize starting an unattended worker or arbitrary new inference jobs.
+
+- Source checkout: runtime/engines/triposr/src (detached pinned commit, clean).
+- Model and DINO config: runtime/engines/triposr/weights (local checksum verified).
+- Python venv: runtime/engines/triposr/venv; ONLY this environment has torch 2.5.1+cu121. Global Python and CUDA toolkit not changed.
+- Dependency manifests: engines/triposr/requirements-win-py311.txt and requirements-resolved-win-py311.txt.
+- GPU staging scripts: scripts/download-triposr-windows.ps1 and scripts/pilot-triposr-windows.ps1.
+- Local worker: engines/triposr/worker.py, with offline hard barriers; accepts only upstream MIT chair example for first pilot, not arbitrary customer input.
+- CPU correction: engines/triposr/reorient.py (Z-up -> Y-up); standalone 3D validation: scripts/verify-triposr-pilot.mjs --upright.
+- Approved pilot output and guard logs: runtime/pilots and runtime/pilot-logs. Do NOT delete customer or developer files as part of cleanup; preserve provenance.
+- Portable, small sample: docs/evidence/g2/chair-yup.glb, source-chair.png, chair-preview.png, QA and browser validation JSON. It is a real image-derived reconstruction but only DRAFT; no printer instructions.
+
+Read-only status: npm run preflight:g2. It remains BLOCKED_FOR_UNATTENDED_INFERENCE, even after limited pilot approval. The real GPU pilot launch is never invoked by npm start, npm test or the API; future operator must reverify explicit scope and available GPU resources, not blindly replay a script.
+
+To reproduce checks without a new model run: run npm test, and use the isolated Python executable for Python unittest discovery in engines/triposr (trusted local environment; no CUDA inference). Browser-only revalidation of an EXISTING pilot: node scripts/verify-triposr-pilot.mjs tripo-20261009T210159110-e62b9a20 --upright on Windows with installed Chrome. This reads an already generated GLB and requires no GPU model execution.
+
+No auto-start, global package install, firewall/UAC change, Office modification, restart, cloud provider or printer attachment was performed.

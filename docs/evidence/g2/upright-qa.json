@@ -1,0 +1,22 @@
+{
+  "schema": "local3d.g2.yup-derivative.v1",
+  "simulation": false,
+  "sourcePilotedModel": "model.glb",
+  "sourceSha256": "95e22144610ec0851117b4a1f9bd64509e4376321c63b868df6fd2a8766e4846",
+  "outputFile": "model-upright.glb",
+  "outputSha256": "03e0e70d1bfffaae36bda09b56bf65f33f8c60a132d6a9caf7fca8f87621b7be",
+  "bytes": 400652,
+  "coordinateSystem": "Y_UP",
+  "transform": "rotate X -90 degrees from TripoSR Z_UP output",
+  "vertices": 9986,
+  "faces": 19972,
+  "bounds": [
+    0.6134517192840576,
+    1.0671842694282532,
+    0.5713032484054565
+  ],
+  "watertight": true,
+  "status": "DRAFT",
+  "printQualified": false,
+  "note": "Pure CPU post-processing of verified local real-inference GLB. No new model inference."
+}

@@ -3,7 +3,7 @@
 ## G0 - Source and rights screening
 - PASS: inspected ctate source reference: app is Rodin SaaS UI, no standalone inference.
 - PASS: do not copy source without a verified explicit license; clean-room app chosen.
-- PASS: Three.js pinned, local-only fixture; no weights downloaded.
+- PASS at G0: Three.js pinned, local-only fixture; G2 weights downloaded and verified later under explicit user approval.
 - REVIEW LATER: exact commit, all indirect dependency licenses, TripoSR weight card, Hunyuan jurisdiction and distribution.
 - PASS: existing AI3D engineering Issue #613 is P2/PARKED, not this project's scheduler.
 
@@ -18,8 +18,8 @@ Golden fixture: fixtures/demo-sculpture.glb, generated deterministically with se
 - Persistence: atomic job.json plus restart-interruption recovery tested PASS.
 - Browser UI: 1440px desktop and 390px mobile screenshots inspected on Windows Chrome and macOS Edge; OrbitControls changed viewport pixels, reset exercised; no browser JS errors or external requests on either host. PASS for the two tested browser/OS combinations. Mac Chrome headless had a host-specific path-service crash, but Mac Edge passed. A missing Three.js core import and favicon were found/fixed by live browser QA.
 
-## G2 - First real local inference (BLOCKED; read-only screening done)
-TripoSR source and checkpoint metadata pinned in docs/TRIPOSR_SOURCE_LOCK.json; no sources/weights installed or local hashes verified. Windows read-only preflight at runtime/qa/g2-preflight.json found 4080 SUPER 16GB, ~11.4GB free but ~39% utilization, default Python 3.11 without torch, and nvcc 13.2. Nonconflicting GPU capacity not proven. Upstream includes unpinned torchmcubes source compilation. See docs/G2_PREFLIGHT.md. A real isolated venv + verified weights, qualified license/dependencies, explicit model installation/GPU approval, image-to-3D inference, cancellation and failure cleanup remain NOT STARTED. No claim of text-to-3D. Benchmark before registry status changes.
+## G2 - First real local inference (BOUNDED PILOT PASS; service adapter not enabled)
+Explicit user approval was received for isolated installation and bounded GPU pilots only. Windows source/weights/DINO config pinned and SHA256 verified, isolated Python3.11 with torch 2.5.1+cu121. Two genuine TripoSR image-to-3D pilots executed with Office Ollama idle and hard 240s/VRAM caps; second produced recognizable chair in 14.15s, peak 2058 MiB torch reserved, 9986 vertices and 19972 faces. Pure CPU Y-up derivative validated in real Three.js/Chrome with 0 JS errors and 0 external requests. No print approval. The G1 app/API still DOES NOT dispatch real inference; cancellation/process-tree protection for arbitrary user images, broader benchmarking and unattended job scheduling are unimplemented and not authorized. Full evidence at docs/G2_RESULTS.md and docs/evidence/g2.
 
 ## G3 - Multiple provider candidates (NOT APPROVED)
 Hunyuan Shape, SPAR3D / TripoSG, alternatives: gate on licensing, reproducible installs, VRAM and non-conflicting scheduling. No P0 CPU/GPU resource impact without separate verified allocation.

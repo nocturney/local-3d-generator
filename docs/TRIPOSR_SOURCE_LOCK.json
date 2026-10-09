@@ -19,14 +19,24 @@
   },
   "config": {
     "file": "config.yaml",
-    "revision": "5b521936b01fbe1890f6f9baed0254ab6351c04a"
+    "revision": "5b521936b01fbe1890f6f9baed0254ab6351c04a",
+    "sha256": "74ca708ce086bf68e97709ea6b3d91f14717921c04691e84043f0eb8fcc68e62"
+  },
+  "dinoConfig": {
+    "repository": "https://huggingface.co/facebook/dino-vitb16",
+    "revision": "f205d5d8e640a89a2b8ef0369670dfc37cc07fc2",
+    "file": "config.json",
+    "localName": "dino-vitb16-config.json",
+    "sha256": "b87c0270b97db085fd82cf114a761fd0f62ae7914fbd407c752a2260646b689c",
+    "license": "Apache-2.0"
   },
   "upstreamVramMiB": 6144,
   "limitations": [
-    "Requires compatible isolated PyTorch CUDA stack, not present in default Python",
-    "Unpinned git+torchmcubes dependency in upstream requirements",
-    "GPU currently shared with unrelated workloads",
-    "No downloaded source/weights or runtime installation authorized by handoff"
+    "Isolated Python 3.11 + PyTorch 2.5.1 cu121 verified on Windows only",
+    "Upstream unpinned torchmcubes replaced by explicitly audited CPU scikit-image marching-cubes adapter",
+    "GPU remains shared: every real inference requires independent live Office no-conflict gate",
+    "Source, checkpoint, config and DINO config locally SHA256 verified; first two user-approved bounded pilots succeeded",
+    "Full general-purpose app/provider activation and printing are NOT authorized by the limited pilot approval"
   ],
-  "nextGate": "QUALIFICATION_ONLY"
+  "nextGate": "INTEGRATE_BOUNDED_PROVIDER_WITH_SEPARATE_GATES"
 }
