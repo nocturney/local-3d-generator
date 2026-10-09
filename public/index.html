@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>LOCAL3D — Model Workbench</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js"}}</script>
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brandmark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><div class="brand-title" dir="ltr">LOCAL<span>3D</span></div><div class="brand-sub">MODEL WORKBENCH</div></div>
+      </div>
+      <div class="header-center">
+        <span class="breadcrumb">WORKSPACE</span><span class="slash">/</span><strong>New Generation</strong>
+      </div>
+      <div class="top-flags">
+        <span class="connection"><i></i> LOCALHOST</span>
+        <span class="head-divider"></span>
+        <span class="badge demo">G1 · DEMO MODE</span>
+      </div>
+    </header>
+    <div class="notice">
+      <span class="notice-icon">i</span>
+      <div><strong>סביבת פיתוח מקומית · הדמיה בלבד</strong> — הקובץ שיופק הוא GLB לדוגמה ואינו נוצר מהתמונה או מהתיאור. אין חיבור לענן, מנוע AI או מדפסת.</div>
+      <span class="notice-version" dir="ltr">v0.1.0 / G1</span>
+    </div>
+    <main class="workspace">
+      <aside class="control-pane">
+        <div class="pane-heading"><div><span class="eyebrow">01 / INPUT</span><h2>יצירת משימה</h2></div><span class="heading-icon">✦</span></div>
+        <div class="control-block">
+          <label class="field-title">מקור המודל</label>
+          <div class="mode-switch" role="group" aria-label="סוג קלט">
+            <button id="imageMode" type="button" class="mode active"><span>▧</span> תמונה למודל</button>
+            <button id="textMode" type="button" class="mode"><span>≡</span> טקסט למודל</button>
+          </div>
+        </div>
+        <div class="control-block" id="imageControls">
+          <label class="field-title" for="imageInput">תמונת מקור <span class="optional">PNG / JPG / WEBP</span></label>
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="בחירת תמונה">
+            <div class="drop-icon">▧</div>
+            <div id="dropText"><strong>גרור תמונה לכאן</strong><span>או לחץ לבחירה מהמחשב</span></div>
+            <img id="inputPreview" alt="תמונת המקור שנבחרה" hidden>
+            <span class="file-note" id="fileNote">עד 8MB · הקובץ נשאר מקומי</span>
+          </div>
+          <input id="imageInput" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
+          <button class="link-button" id="clearImage" type="button" hidden>הסר תמונה</button>
+        </div>
+        <div class="control-block">
+          <label class="field-title" for="prompt">תיאור והערות <span class="optional" id="promptRequirement">אופציונלי</span></label>
+          <textarea id="prompt" rows="4" maxlength="1200" placeholder="לדוגמה: דגם מיניאטורי של גוף תאורה עם בסיס מעוגל..."></textarea>
+          <div class="hint">ב־G1 הטקסט נשמר למשימה בלבד ואינו משפיע על הגאומטריה.</div>
+        </div>
+        <div class="control-block">
+          <label class="field-title">מנוע יצירה</label>
+          <div class="provider active-provider">
+            <div class="provider-icon">F</div><div class="provider-info"><strong>Fixture Lab</strong><span>CPU · ללא GPU · בדיקת ממשק</span></div>
+            <span class="provider-status">זמין</span>
+          </div>
+          <div class="provider unavailable"><div class="provider-icon candidate">T</div><div class="provider-info"><strong>TripoSR Local</strong><span>ממתין לשלב G2</span></div><span class="provider-lock">נעול</span></div>
+          <div class="provider unavailable"><div class="provider-icon candidate">H</div><div class="provider-info"><strong>Hunyuan Shape</strong><span>מחקר רישוי / G3</span></div><span class="provider-lock">נעול</span></div>
+        </div>
+        <div class="action-area">
+          <button class="primary-action" id="startJob" type="button"><span class="action-icon">✦</span><span>צור משימת DEMO</span><span class="action-arrow">↖</span></button>
+          <button class="secondary-action" id="cancelJob" type="button" disabled>ביטול המשימה הפעילה</button>
+          <p class="action-caption" id="formError" role="alert" aria-live="polite"></p>
+        </div>
+      </aside>
+      <section class="viewer-pane">
+        <div class="viewer-heading">
+          <div><span class="eyebrow">02 / VIEWPORT</span><h2>תצוגת מודל <span dir="ltr">3D</span></h2></div>
+          <div class="viewport-controls"><button id="resetCamera" type="button" title="איפוס זווית הצפייה" aria-label="אפס מצלמה">⟲</button><span class="small-badge">GLB VIEWER</span></div>
+        </div>
+        <div class="viewport" id="viewport">
+          <div class="viewport-top"><span><b class="status-dot"></b><span id="viewerStatus">READY / NO MODEL</span></span><span class="viewport-coords" dir="ltr">X · Y · Z</span></div>
+          <div id="canvasHost" class="canvas-host"></div>
+          <div id="emptyState" class="empty-state"><div class="wire-symbol"><div class="wire-orbit orbit-a"></div><div class="wire-orbit orbit-b"></div><div class="wire-core"></div></div><strong>המודל הבא שלך מתחיל כאן</strong><span>העלה תמונה והפעל משימת הדגמה כדי לראות תצוגת GLB אינטראקטיבית.</span></div>
+          <div class="viewport-bottom"><span class="axis-legend"><i class="axis-x"></i> X <i class="axis-y"></i> Y <i class="axis-z"></i> Z</span><span>גרירה לסיבוב · גלגלת להגדלה</span></div>
+          <div class="watermark" id="demoWatermark" hidden>DEMO FIXTURE · NOT AI GENERATED</div>
+        </div>
+        <div class="result-strip">
+          <div class="metric"><span>STATUS</span><strong id="metricStatus">אין משימה</strong></div>
+          <div class="metric"><span>PROGRESS</span><strong id="metricProgress" dir="ltr">—</strong></div>
+          <div class="metric"><span>PROVIDER</span><strong id="metricProvider" dir="ltr">Fixture Lab</strong></div>
+          <div class="metric"><span>OUTPUT</span><strong id="metricOutput" dir="ltr">—</strong></div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-title"><div><span class="eyebrow">03 / JOB DETAILS</span><h3>פרטי משימה ואימות</h3></div><span id="selectedJobId" class="job-identity" dir="ltr">NO JOB SELECTED</span></div>
+          <div class="progress-track"><div id="progressFill"></div></div>
+          <div class="detail-message" id="detailMessage">לא נוצרה משימה עדיין.</div>
+          <div class="detail-actions">
+            <a id="downloadModel" class="download-button" href="#" download="model.glb" aria-disabled="true">↓ הורד GLB</a>
+            <a id="downloadReport" class="plain-button" href="#" download="qa-report.json" aria-disabled="true">דוח גאומטריה</a>
+            <a id="viewSource" class="plain-button" href="#" target="_blank" rel="noopener" aria-disabled="true">הצג תמונת מקור</a>
+            <button id="copyManifest" class="plain-button" type="button" disabled>העתק Manifest</button>
+          </div>
+          <div class="qa-line"><span class="qa-status">DRAFT</span> תוצרים המופקים בשלב זה אינם מאושרים לייצור או להדפסה.</div>
+        </div>
+      </section>
+      <aside class="activity-pane">
+        <div class="pane-heading"><div><span class="eyebrow">04 / ACTIVITY</span><h2>היסטוריית משימות</h2></div><button class="refresh" id="refresh" type="button" title="רענן" aria-label="רענן משימות">↻</button></div>
+        <div class="history-toolbar"><span>משימות מקומיות</span><strong id="jobCount" dir="ltr">0 JOBS</strong></div>
+        <div id="history" class="history"></div>
+        <div class="system-box">
+          <div class="system-box-title"><span class="system-led"></span> SYSTEM HEALTH <span id="healthStatus">CHECKING</span></div>
+          <div class="system-row"><span>חיבור שרת</span><strong id="hostStatus">LOCAL</strong></div>
+          <div class="system-row"><span>מנוע AI פעיל</span><strong>NONE</strong></div>
+          <div class="system-row"><span>צריכת ענן</span><strong>0</strong></div>
+          <div class="system-row"><span>ניהול מדפסות</span><strong>DISABLED</strong></div>
+        </div>
+      </aside>
+    </main>
+    <footer><span dir="ltr">LOCAL3D / G1 DEVELOPMENT BUILD</span><span>כל העיבוד והאחסון מתבצעים במחשב המקומי · אין שליטה בציוד</span><span dir="ltr">© 2026</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

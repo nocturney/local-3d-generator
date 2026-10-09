@@ -1,0 +1,15 @@
+{
+  "name": "local-3d-generator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Clean-room, local-first 3D generation workbench (G1 fixture-only)",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "node --test tests/*.test.js",
+    "fixture": "node server/fixture.js"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": { "three": "0.180.0" }
+}
