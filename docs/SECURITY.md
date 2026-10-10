@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.18: independent exact-AABB spatial coverage still does not authorize printing
+
+A new bounded CPU sorted-X sweep independently enumerates 3D AABB overlaps with strict exact binary-float-derived endpoint comparisons and conservative outward numeric prefilters; it is not dependent upon earlier KDTree geometry culling. Every real-orb exact no-index AABB candidate matches the G3.17 KDTree numeric pair ID set (in private runtime memory only), and zero missing exact no-index pairs on four licensed old sources. This strengthens **decoded-coordinate spatial broadphase completeness**, not validation of the entire independent triangle narrowphase engine, original ideal unquantized CAD, real physical mm scale, wall thickness, supportability, slicer mechanics or material strength.
+
+Resource limits: 100k vertices, 75k faces, max 30M sorted-X candidates, max 750k exact AABBs, max 300k no-index exact candidates, 105s per source CPU, abs finite GLB coordinates <=1e9. Fail-closed if budget, time, provenance, source rights, SHA, exact membership or immutable evidence differs. Public JSON only preexisting source model/image SHA, flags and aggregate counts, no private UUID, photo binary, indexed triangle IDs or absolute machine paths.
+
+Do NOT assume user-untrusted GLB/image parser or machine OS isolation is safe; no OS firewall/egress restrictions or pinned Python CVE remediation were applied. Security Issue #4 stays OPEN, geometry/print Issue #3 stays OPEN, all outputs DRAFT with globalSelfIntersectionFreeCertified=false and printQualified=false. No model weights, neural inference, GPU, cloud, Office, 4178, printer or operating system security changes.
+
 ## G3.17: exact selected no-index face contacts are not a formal global or print clearance
 
 Every zero-index 3D-AABB-overlap candidate from a bounded independent numerical bounding-box-sphere selection receives rational IEEE754-decoded triangle contact classification (including coplanar and boundary) in CPU; ALL real historical orb 43,107 no-index candidates classify EXACT_DISJOINT. Source hashes and G3.14/15/16 prior count lineage/rights were verified. This is NOT a proof that arbitrary floating-based spatial broadphase can never miss candidates at all magnitude/precision extremes, nor is decoded GLB geometry unquantized ideal CAD. The test adds NO physical mm/wall/support/material/slicer/fabrication certainty, and cannot set printQualified=true.

@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.18 — independent exact-axis AABB candidate completeness corroboration (CPU)
+
+- PASS: bounded sorted-X interval sweep independent of G3.17 SciPy KDTree, followed by Y/Z OUTWARD-rounded prefilters and exact Fraction rational 3D AABB endpoint comparisons. Counts strict zero-tolerance pairs (necessary for all geometric triangle contact in finite decoded GLB XYZ), and exact fixed-margin pairs. 0/1/2 indexed partition agrees with G3.14; EXACT no-index PAIR ID membership (privately only) agrees with G3.17 numeric KDTree set, not merely counts. Any exact no-index candidate missing from numeric set is INDETERMINATE.
+- PASS: prior genuine real orb 294,495 exact 3D AABB pairs incl 43,107 no-index; winding-only derivative identical, original GT 7,866/216, licensed chair 151,180/28,593; zero exact no-index missed. All prior source/license/SHA and immutable private/public proof verified without new neural inference.
+- OPEN: no independent second triangle-triangle contact kernel/cross-validation yet, no unquantized original CAD coordinate recovery, physical mm calibration, wall thickness, material/slicer/printer QA, OS sandbox and Python advisory resolution. Issue #3 and #4 OPEN; globalSelfIntersectionFreeCertified=false, printQualified=false, every output DRAFT.
+- [Method and finite precision caveat](G3_18_EXACT_AABB_SWEEP_AUDIT_CPU_2026-10-10.md), [four-source sanitized exact AABB evidence](evidence/g3/orb-01-g318-exact-axis-sweep-proof.json).
+
 ## G3.17 — exact NO-index triangle contacts for every conservative numerical AABB candidate (CPU)
 
 - PASS: independent bounding-BOX-sphere cKDTree broadphase + exact 3D AABB axis checks with declared numerical tolerance enumerates candidate unordered face pairs; 0/1/2 original-index partitions exactly match pinned G3.14. Every candidate with 0 shared indexed vertices receives exact digital IEEE-754 rational triangle/plane section and interval or coplanar polygon clipping, including point/line/positive area vs disjoint. This is exact *narrowphase on each enumerated numerical AABB candidate*, NOT a universal mathematical guarantee about floating broadphase under all possible geometry.

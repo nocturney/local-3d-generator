@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.18 — 2026-10-10 — G3.18 independent exact-axis spatial candidate-completeness audit
+
+- Independent sorted-X sweep computes every conservative finite 3D AABB candidate for already decoded GLB IEEE754 triangle coordinates, using outward-rounded numeric prefilter and final exact Fraction rational 3-axis interval comparisons with/without fixed margin. Does NOT use the previous SciPy KDTree for its own spatial enumeration.
+- Exact no-index AABB candidate pair SET membership crosschecked against the G3.17 numerical KDTree pair SET, not merely totals. Four source models reproduce G3.14/17 SHA-pinned counts, strict AABB totals and exact tolerated no-index membership: real orb 294,495 AABB pairs (60,528 edge, 190,860 vertex-only, 43,107 no-index), identical winding copy, project GT 7,866/216 and licensed chair 151,180/28,593; zero missing exact no-index candidates.
+- Added adversarial independent brute-force Fraction small-mesh AABB references, positive intersection and tol-only controls, simulated dropped KDTree pair that MUST fail closed, resource limits, original SHA rights/provenance and privacy checks. Four private immutable CPU reports and sanitized public proof. Full model inference, physical wall/millimeter size, slicer/printer and OS untrusted parser security STILL NOT CLEARED; GitHub Issues #3/#4 OPEN, printQualified=false.
+
 ## v0.2.17 — 2026-10-10 — G3.17 exact no-index triangle contact on all bounded AABB candidates
 
 - CPU-only independent numerical bounding-BOX sphere broadphase enumerates the entire conservative AABB-overlap candidate set and independently partitions index adjacency 0/1/2, cross-verified vs G3.14. Every ZERO-index candidate is then EXACTLY classified by rational signed plane/triangle sections and interval overlap, or exact coplanar convex clipping, distinguishing disjoint, point, line and positive-area overlap.

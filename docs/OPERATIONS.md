@@ -1,5 +1,19 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.18: independent exact AABB axis sweep crosschecks full numeric KDTree candidate selection (CPU)
+
+The bounded CPU module engines/quality/exact_aabb_sweep_audit.py sorts face AABBs by their decoded IEEE754 minimum X coordinate, conservatively prefilters Y/Z with outward IEEE754 rounding, then performs all 6 interval comparisons using Fraction exact rationals, both strict and under the declared 1e-9 diagonal-relative GLB-unit margin. No cKDTree is used by the independent pass. Compare full 0/1/2 shared-index candidate counts to G3.14 and complete no-index pair SET membership against G3.17 KDTree. Any missed exact no-index candidate is INDETERMINATE. Four previous licensed SHA/asset sources had zero missed candidates. This proves candidate-coverage only for finite decoded coordinates within bounded resource limits, NOT physical mm/print clearance.
+
+Local CPU adversarial tests:
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g318_exact_aabb_sweep.py
+
+Four previous licensed sources, operator-only PRIVATE preexisting completed orb job UUID; read-only SHA replay:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-18-exact-aabb-replay.py --job-id <PREVIOUSLY_COMPLETED_PRIVATE_ORB_JOB_UUID>
+
+Initial SHA-locked per-model and sanitized public immutable proof already prepared. Subsequent reads use no --prepare-private/--write-public flags; private pair IDs are never published. [Method](G3_18_EXACT_AABB_SWEEP_AUDIT_CPU_2026-10-10.md), [G3.18 aggregated public report](evidence/g3/orb-01-g318-exact-axis-sweep-proof.json). Do not use GPU, inference, cloud, printers, Office or unrelated service 4178.
+
 ## G3.17: all NUMERICAL AABB selected NO-index pairs, EXACT rational contact narrowphase (CPU only)
 
 The bounded G3.17 CPU module engines/quality/exact_nonindexed_contact.py independently reproduces the G3.14 numerical AABB candidate census and splits 0/1/2 original indexed vertex overlap classes. For 0-index candidates only, exact Fraction geometry classifies true decoded IEEE-754 triangle-plane intersection: disjoint, point-only, positive-length noncoplanar/coplanar boundary line, positive-area coplanar overlap. Previous real 01-orb-alpha TripoSR 43,107 noindex candidates, unchanged winding 43,107, original GT 216 and licensed MIT chair 28,593 all exactly DISJOINT within numerically selected AABB candidates. AABB selection remains numerical and not a universal formally exact all-triangle broadphase, and real physical millimeter/wall/print suitability remains unknown.
