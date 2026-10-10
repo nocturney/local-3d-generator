@@ -28,11 +28,13 @@ Response 201: a Job Manifest. Fields: schema, id (UUID), providerId, mode, promp
 - POST /v1/jobs/:uuid/cancel — G1 marks cancelled immediately; G2 marks cancelling and signals the process tree to stop. Status changes to cancelled only after worker exits and GPU permit is released; do not claim process stopped while cancelling
 - GET /v1/jobs/:uuid/assets/:artifactId
 - GET /v1/health for gpuBusy status
+- POST /v1/jobs/:uuid/review — **CPU-only G3 geometry report**, completed manual TripoSR job only; no input paths/URLs, no GPU/model launch, one reviewer per job (409 G3_REVIEW_BUSY on parallel request). Validates existing GLB against manifest SHA before executing the pinned local Python scanner and checks returned JSON SHA/status; idempotent after a completed review. G1 demo, incomplete jobs and disabled G2 sessions return 422 G3_REVIEW_UNAVAILABLE.
 
 Allowlisted assets:
 - source-image — verified original uploaded local photo
 - preview-glb — G1 deterministic fixture OR G2 SHA-verified local real Y-up GLB, MIME model/gltf-binary
-- qa-report — JSON DRAFT geometry provenance, never print approved
+- qa-report — JSON DRAFT inference/source provenance, never print approved
+- geometry-qa — G3 *optional on completed real TripoSR jobs*, independent JSON CPU topology/signed-volume report; never print approved. Source model must pass SHA and length verification. No material-unit/print qualification is implied.
 
 No arbitrary asset path, URL, filename or command is accepted. Source filename is display-only and never used as a local path. Every asset has MIME, length, SHA256 and label in manifest. No model/API token or filesystem path is returned to the browser.
 

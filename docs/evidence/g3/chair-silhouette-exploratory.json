@@ -1,0 +1,32 @@
+{
+  "approvedForPrinter": false,
+  "bestProjectedView": {
+    "camera": "yaw-180_elevation-5",
+    "projectionFeatures": {
+      "connectedRegions2D": 1,
+      "foregroundFraction": 0.18023,
+      "holes2D": 3
+    },
+    "silhouetteIoU": 0.82448,
+    "viewAxis": [
+      -5.0,
+      0.43578,
+      0.0
+    ]
+  },
+  "evaluation": "pose_search",
+  "fixtureId": "09-upstream-chair",
+  "fixtureLicense": "UPSTREAM_TRIPOSR_MIT_SAMPLE",
+  "imageSha256": "2503c12a74419d91a4c6c9f1affc48fee6e2b8b9091956ca6211e91ada57b5bf",
+  "maskSha256": "9ee280921f5f836ebd6f37f7e29f26d8a1919532a5535d89404f36f912aec48a",
+  "metricInterpretation": "EXPLORATORY_UPPER_BOUND: fit yaw/elevation after viewing source mask. No known camera calibration, true geometry ground truth or dimensional fidelity",
+  "modelSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+  "printQualified": false,
+  "referenceMaskFeatures": {
+    "connectedRegions2D": 1,
+    "foregroundFraction": 0.162652,
+    "holes2D": 2
+  },
+  "schema": "local3d.g3.silhouette-diagnostic.v1",
+  "testedViews": 24
+}

@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { randomUUID, createHash } from 'node:crypto';
 import { ensureFixture } from './fixture.js';
 import { createTripoSRAdapter } from './triposr-adapter.js';
+import { createGeometryReviewer } from './geometry-review.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -90,6 +91,7 @@ export async function createApp(options = {}) {
   // Default remains DEMO, including npm start. A REAL manual-only session
   // requires explicit operator opt-in before process launch, and per-job consent.
   const realAdapter = options.triposrAdapter || (process.platform === 'win32' && process.env.L3D_ENABLE_TRIPOSR === '1' ? createTripoSRAdapter() : null);
+  const geometryReviewer = realAdapter ? (options.geometryReviewer || createGeometryReviewer()) : null;
   const jobsDir = path.join(dataDir, 'jobs');
   const logsDir = path.join(dataDir, 'audit');
   await fs.mkdir(jobsDir, { recursive: true });
@@ -97,6 +99,7 @@ export async function createApp(options = {}) {
   await ensureFixture(fixtureFile);
   const jobs = new Map();
   const pending = [];
+  const reviews = new Map(); // one CPU-only review per completed G2 job
   let activeId = null, activeTimer = null, saving = Promise.resolve(), closing = false;
   let realRun = null; // real GPU permit, never queued or restarted unattended
   const jobFile = id => path.join(jobsDir, id, 'job.json');
@@ -320,6 +323,51 @@ export async function createApp(options = {}) {
     return publicJob(job);
   }
 
+  async function reviewGeometry(job) {
+    if (!geometryReviewer || job.providerId !== 'triposr-local' || job.simulation ||
+        job.status !== 'completed' || closing) {
+      fail('G3_REVIEW_UNAVAILABLE', 422, 'Only completed manual G2 model jobs can be reviewed');
+    }
+    if (job.assets.some(asset => asset.id === 'geometry-qa')) return publicJob(job);
+    if (reviews.has(job.id)) fail('G3_REVIEW_BUSY', 409, 'Geometry review for this job already underway');
+    const work = (async () => {
+      const asset = job.assets.find(x => x.id === 'preview-glb');
+      if (!asset || asset.mime !== 'model/gltf-binary') {
+        fail('G3_UNVERIFIED_MODEL', 422, 'Job has no verified model artifact');
+      }
+      const modelFile = path.join(jobFolder(job.id), 'output.glb');
+      const outputFile = path.join(jobFolder(job.id), 'geometry-qa.json');
+      const stat = await fs.lstat(modelFile).catch(() => null);
+      if (!stat || !stat.isFile() || stat.isSymbolicLink() ||
+          stat.size !== asset.bytes || stat.size > 64 * 1024 * 1024) {
+        fail('G3_UNVERIFIED_MODEL', 422, 'GLB does not match the job manifest');
+      }
+      const bytes = await fs.readFile(modelFile);
+      if (sha(bytes) !== asset.sha256) {
+        fail('G3_UNVERIFIED_MODEL', 422, 'GLB hash does not match the job manifest');
+      }
+      await audit('geometry_review_started', job.id);
+      const { raw, report } = await geometryReviewer({ modelFile, outputFile });
+      if (!Buffer.isBuffer(raw) || raw.length > 128 * 1024 ||
+          report?.schema !== 'local3d.g3.geometry-qa.v1' ||
+          report.modelSha256 !== asset.sha256 || report.printQualified !== false ||
+          report.approvedForPrinter !== false || report.fabricationAction !== 'NONE') {
+        fail('G3_BAD_REPORT', 422, 'CPU report integrity validation failed');
+      }
+      const disk = await fs.readFile(outputFile);
+      if (sha(raw) !== sha(disk)) fail('G3_BAD_REPORT', 422, 'CPU report file mismatch');
+      // Only now expose an allowlisted, verifiable report asset.
+      job.assets.push(recordAsset('geometry-qa', 'report', 'application/json', raw, 'G3 topology review — not print qualified'));
+      job.updatedAt = now();
+      await persist(job);
+      await audit('geometry_review_completed', job.id, { reportSha256: sha(raw) });
+      return publicJob(job);
+    })();
+    reviews.set(job.id, work);
+    try { return await work; }
+    finally { reviews.delete(job.id); }
+  }
+
   async function serveFile(res, file, contentType, method = 'GET', cache = false) {
     const stat = await fs.stat(file).catch(() => null);
     if (!stat || !stat.isFile()) fail('NOT_FOUND', 404, 'Asset not found');
@@ -378,16 +426,20 @@ export async function createApp(options = {}) {
         return reply(res, 200, { schema: 'local3d.jobs.v1', jobs: all.map(publicJob) });
       }
       if (req.method === 'POST' && pathname === '/v1/jobs') return reply(res, 201, await createJob(await readBody(req)));
-      const match = pathname.match(/^\/v1\/jobs\/([^/]+)(?:\/(cancel|assets\/([^/]+)))?$/);
+      const match = pathname.match(/^\/v1\/jobs\/([^/]+)(?:\/(cancel|review|assets\/([^/]+)))?$/);
       if (match) {
         const id = match[1]; if (!isUuid(id)) fail('INVALID_JOB_ID', 404, 'Job not found');
         const job = jobs.get(id); if (!job) fail('NOT_FOUND', 404, 'Job not found');
         if (req.method === 'GET' && !match[2]) return reply(res, 200, publicJob(job));
         if (req.method === 'POST' && match[2] === 'cancel') return reply(res, 200, await cancelJob(job));
+        if (req.method === 'POST' && match[2] === 'review') return reply(res, 200, await reviewGeometry(job));
         if (['GET', 'HEAD'].includes(req.method) && match[3]) {
           const asset = job.assets.find(x => x.id === match[3]);
           if (!asset) fail('NOT_FOUND', 404, 'Asset not found');
-          const leaf = asset.id === 'preview-glb' ? 'output.glb' : asset.id === 'qa-report' ? 'qa-report.json' : asset.id === 'source-image' && job.source ? 'input' + sniffMimeExt(job.source.mime) : null;
+          const leaf = asset.id === 'preview-glb' ? 'output.glb' :
+            asset.id === 'qa-report' ? 'qa-report.json' :
+            asset.id === 'geometry-qa' ? 'geometry-qa.json' :
+            asset.id === 'source-image' && job.source ? 'input' + sniffMimeExt(job.source.mime) : null;
           if (!leaf) fail('NOT_FOUND', 404, 'Asset not found');
           return await serveFile(res, path.join(jobFolder(id), leaf), asset.mime, req.method);
         }
@@ -411,6 +463,9 @@ export async function createApp(options = {}) {
       if (realRun.promise) await realRun.promise.catch(() => {});
     }
     if (activeTimer) clearTimeout(activeTimer);
+    // Do not close the job persistence layer while a bounded CPU reviewer
+    // is still writing its report or manifest.
+    if (reviews.size) await Promise.allSettled([...reviews.values()]);
     for (const job of jobs.values()) {
       if (job.status === 'running' || job.status === 'queued' || job.status === 'cancelling') {
         job.status = 'interrupted'; job.stage = 'interrupted'; job.progress = 0;

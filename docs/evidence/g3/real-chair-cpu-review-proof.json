@@ -1,0 +1,16 @@
+{
+  "schema": "local3d.g3.cpu-review-browser-proof.v1",
+  "existingRealModelSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+  "newGpuInference": false,
+  "cpuOnly": true,
+  "temporaryServer": true,
+  "source": "previously verified G2 real chair GLB",
+  "success": true,
+  "geometrySha256": "7419a9bbdd6f2d353a75fe6e9393c608d64844a5bca05e5f7dbd6f99db2581d9",
+  "modelSignedVolume": -0.0613843,
+  "watertight": true,
+  "positiveVolume": false,
+  "workerCalls": 0,
+  "browserErrors": [],
+  "externalRequests": []
+}

@@ -1,0 +1,259 @@
+{
+  "dataset": "G3_ORIGINAL_SYNTHETIC_PLUS_ONE_LICENSED_UPSTREAM",
+  "evaluationLimitations": [
+    "The synthetic images are not a representative natural-photo distribution",
+    "Reference CAD geometries use arbitrary synthetic units, not millimeters",
+    "A source-mask silhouette score is camera-alignment sensitive",
+    "Real chair has no ground-truth mesh and is a separate licensed upstream input",
+    "No image or output here is itself print-qualified"
+  ],
+  "fixtureCount": 9,
+  "fixtures": [
+    {
+      "background": "RGBA transparent",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "simple_convex",
+      "files": {
+        "groundTruth": "01-orb-alpha/ground-truth.glb",
+        "image": "01-orb-alpha/input.png",
+        "mask": "01-orb-alpha/foreground-mask.png"
+      },
+      "foregroundFraction": 0.38704,
+      "groundTruthSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+      "id": "01-orb-alpha",
+      "imageSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "512be3cf3ac42ee64e60b526aa9aa9179b098d214e9512d64bb66c26ac966537",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGB light-gray",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "same_geometry_opaque_background",
+      "files": {
+        "groundTruth": "02-orb-opaque/ground-truth.glb",
+        "image": "02-orb-opaque/input.png",
+        "mask": "02-orb-opaque/foreground-mask.png"
+      },
+      "foregroundFraction": 0.38704,
+      "groundTruthSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+      "id": "02-orb-opaque",
+      "imageSha256": "8b93d8364b3859a80b241f0fff3c2851e81e0d39857de61067313a36e606382e",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "512be3cf3ac42ee64e60b526aa9aa9179b098d214e9512d64bb66c26ac966537",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGBA transparent",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "hollow_cavity",
+      "files": {
+        "groundTruth": "03-hollow-vase/ground-truth.glb",
+        "image": "03-hollow-vase/input.png",
+        "mask": "03-hollow-vase/foreground-mask.png"
+      },
+      "foregroundFraction": 0.2886,
+      "groundTruthSha256": "61283e5461a3d3c826d506a103c46db79b220a909a0fe77b9c7624cb5b367d30",
+      "id": "03-hollow-vase",
+      "imageSha256": "07ce048e345ac5bd0732af1eb2120027e989538da9b6640b81fd1f6bd39f86ee",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "13ecddf0abfdb77863b20c9e1416c34fb27b4473ba574ec547986748837d519b",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGBA transparent",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "through_hole",
+      "files": {
+        "groundTruth": "04-torus-hole/ground-truth.glb",
+        "image": "04-torus-hole/input.png",
+        "mask": "04-torus-hole/foreground-mask.png"
+      },
+      "foregroundFraction": 0.20089,
+      "groundTruthSha256": "9ba5e742eabd1dd103741997d205a1bdd59a913c5329d074fc9dfcd9e99104ac",
+      "id": "04-torus-hole",
+      "imageSha256": "a50f5fa8bdf8e124814196ca31b785c4658df765da53e17f5aea8d23497dad8d",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "12a6ba5ac239457913f4804f3e4f883b26800ed245cc190b11d825e4817aaff7",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGBA transparent",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "separated_objects",
+      "files": {
+        "groundTruth": "05-disconnected-pair/ground-truth.glb",
+        "image": "05-disconnected-pair/input.png",
+        "mask": "05-disconnected-pair/foreground-mask.png"
+      },
+      "foregroundFraction": 0.16699,
+      "groundTruthSha256": "4c09ff04ffbc1d06790c121a29e303ec7d9b0f29072caec94f45f480cbb2b17a",
+      "id": "05-disconnected-pair",
+      "imageSha256": "50803a62449b0a0a5b646ab4516018b7cc6a52860eee3273a184aedf1893e885",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "b667e9a0a2c9451f1959f9632acb5e7b981470a5116185d58042f2e65a1f3985",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGBA transparent",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "thin_parts_and_open_silhouette",
+      "files": {
+        "groundTruth": "06-thin-chair/ground-truth.glb",
+        "image": "06-thin-chair/input.png",
+        "mask": "06-thin-chair/foreground-mask.png"
+      },
+      "foregroundFraction": 0.17147,
+      "groundTruthSha256": "61123d068dfa6de6717a0e3ca5a7311ebbd7fa7045287e9640c9921dd6b24a8c",
+      "id": "06-thin-chair",
+      "imageSha256": "bba81747e772317941ec7141ba3ca50edd45cf77f4370ce32d3756fb798eed47",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "28a6a8d2faf1b9d34f5ae4e4d689377bbf400f76c1de962cc61b4f7e31c5f775",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGB light-gray",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "toothed_outline",
+      "files": {
+        "groundTruth": "07-gear-opaque/ground-truth.glb",
+        "image": "07-gear-opaque/input.png",
+        "mask": "07-gear-opaque/foreground-mask.png"
+      },
+      "foregroundFraction": 0.2107,
+      "groundTruthSha256": "96fca61b4caedab5cf2298fdf0c7fb2f59d6e3f2f1ca1b262c5b41e9e07fd8ba",
+      "id": "07-gear-opaque",
+      "imageSha256": "7b320f7e979ca0b175c33eb0675f98a8379173c90a07a3420a8dd2ce882339d2",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "78e28e061835874f0dfdc5182681ad9d29055bed855ad9a95563d9dd92e07596",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGB light-gray",
+      "cameraAxis": [
+        4.0,
+        2.8,
+        5.0
+      ],
+      "category": "overhang_and_gaps",
+      "files": {
+        "groundTruth": "08-arch-opaque/ground-truth.glb",
+        "image": "08-arch-opaque/input.png",
+        "mask": "08-arch-opaque/foreground-mask.png"
+      },
+      "foregroundFraction": 0.17813,
+      "groundTruthSha256": "594c1cee43f5ad7bdba676e980af11b35b391a97d1e6772bd1c3119b5fb1bfc8",
+      "id": "08-arch-opaque",
+      "imageSha256": "1a0fd282474e58009a1630df1692a4197e7aa1b17800fd767940534483e982e4",
+      "imageSize": [
+        512,
+        512
+      ],
+      "maskSha256": "2b8d11c82a4537db90189915debfc505260f5584fdee5bb0189aa853ce76766b",
+      "physicalDimensions": "UNKNOWN_SYNTHETIC_COORDINATES",
+      "sourceKind": "software-rendered original 3D scene, not model output",
+      "sourceOfTruth": "scripts/g3_make_fixtures.py",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL"
+    },
+    {
+      "background": "RGBA transparent",
+      "category": "real_upstream_input_baseline",
+      "files": {
+        "existingRealOutput": "docs/evidence/g2-app/real-app-output.glb",
+        "groundTruth": null,
+        "image": "docs/evidence/g2/source-chair.png",
+        "mask": "benchmarks/g3/fixtures/09-upstream-chair/foreground-mask.png"
+      },
+      "groundTruthSha256": null,
+      "id": "09-upstream-chair",
+      "imageSha256": "2503c12a74419d91a4c6c9f1affc48fee6e2b8b9091956ca6211e91ada57b5bf",
+      "imageSize": [
+        512,
+        512
+      ],
+      "licenseEvidence": "docs/TRIPOSR_SOURCE_LOCK.json and docs/evidence/g2/README.md",
+      "maskSha256": "9ee280921f5f836ebd6f37f7e29f26d8a1919532a5535d89404f36f912aec48a",
+      "note": "Existing real GLB, one actual model run, not generated by this fixture builder",
+      "physicalDimensions": "UNKNOWN_UNCALIBRATED",
+      "sourceKind": "TripoSR pinned example photo, not procedurally generated",
+      "sourceRights": "UPSTREAM_TRIPOSR_MIT_SAMPLE"
+    }
+  ],
+  "hasRealInference": false,
+  "photoRights": {
+    "originals": "Eight generated by project code; no third-party photos/models",
+    "upstream": "TripoSR example photo distributed under upstream MIT source"
+  },
+  "requiresGpu": false,
+  "schema": "local3d.g3.fixture-catalog.v1"
+}

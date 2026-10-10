@@ -3,7 +3,7 @@ import { OrbitControls } from '/vendor/three/examples/jsm/controls/OrbitControls
 import { GLTFLoader } from '/vendor/three/examples/jsm/loaders/GLTFLoader.js';
 
 const el = id => document.getElementById(id);
-const state = { mode: 'image', provider: 'fixture-demo', providers: [], image: null, imageUrl: null, jobs: [], selected: null, currentModel: null, lastModelUrl: null, viewer: null };
+const state = { mode: 'image', provider: 'fixture-demo', providers: [], image: null, imageUrl: null, jobs: [], selected: null, currentModel: null, lastModelUrl: null, viewer: null, geometryCache: new Map(), geometryPending: new Set() };
 const stageNames = {
   queued: 'ממתין בתור', demo_intake: 'הדמיה: קליטת קלט',
   demo_processing: 'הדמיה: עיבוד', demo_packaging: 'הדמיה: הכנת GLB',
@@ -144,6 +144,37 @@ function renderSelected() {
   for (const id of ['downloadModel','downloadReport']) {
     const anchor = el(id); anchor.setAttribute('aria-disabled', ready ? 'false' : 'true');
     anchor.href = ready ? '/v1/jobs/' + encodeURIComponent(job.id) + '/assets/' + (id === 'downloadModel' ? 'preview-glb' : 'qa-report') : '#';
+  }
+  const hasGeometry = !!(job && job.assets.some(a => a.id === 'geometry-qa'));
+  const realComplete = !!(ready && job.simulation === false && job.providerId === 'triposr-local');
+  const scanner = el('reviewGeometry');
+  scanner.hidden = !realComplete;
+  scanner.disabled = !realComplete || hasGeometry;
+  scanner.textContent = hasGeometry ? 'סריקת רשת הושלמה' : 'סריקת רשת (CPU)';
+  const geomLink = el('downloadGeometry');
+  geomLink.hidden = !hasGeometry;
+  geomLink.setAttribute('aria-disabled', hasGeometry ? 'false' : 'true');
+  geomLink.href = hasGeometry ? '/v1/jobs/' + encodeURIComponent(job.id) + '/assets/geometry-qa' : '#';
+  const summary = el('geometrySummary');
+  summary.hidden = !hasGeometry;
+  if (hasGeometry && state.geometryCache.has(job.id)) {
+    const g = state.geometryCache.get(job.id);
+    summary.textContent = 'בדיקת CPU: ' + (g.topology?.everyObjectWatertight ? 'רשת סגורה' : 'קצוות פתוחים') +
+      ' · נפח חיובי: ' + (g.topology?.everyObjectPositiveVolume ? 'כן' : 'לא') +
+      ' · רכיבים: ' + (g.topology?.componentCount ?? 'לא ידוע') +
+      ' · קנה מידה, עובי דופן וחוזק לא אומתו · אינו מאושר להדפסה.';
+  } else if (hasGeometry) {
+    summary.textContent = 'טוען דוח גאומטריה…';
+    if (!state.geometryPending.has(job.id)) {
+      state.geometryPending.add(job.id);
+      void api('/v1/jobs/' + encodeURIComponent(job.id) + '/assets/geometry-qa')
+        .then(report => state.geometryCache.set(job.id, report))
+        .catch(() => state.geometryCache.set(job.id, {topology:{}, loadingFailed:true}))
+        .finally(() => {
+          state.geometryPending.delete(job.id);
+          if (state.selected === job.id) renderSelected();
+        });
+    }
   }
   const source = el('viewSource');
   const hasSource = !!(job && job.assets.some(a => a.id === 'source-image'));
@@ -301,6 +332,20 @@ el('dropzone').addEventListener('drop', e => { e.preventDefault(); el('dropzone'
 el('clearImage').addEventListener('click', clearImage);
 el('startJob').addEventListener('click', startJob);
 el('cancelJob').addEventListener('click', cancelJob);
+el('reviewGeometry').addEventListener('click', async () => {
+  const job = selectedJob(), button = el('reviewGeometry');
+  if (!job || job.simulation || job.status !== 'completed') return;
+  button.disabled = true;
+  button.textContent = 'מנתח רשת…';
+  try {
+    await api('/v1/jobs/' + encodeURIComponent(job.id) + '/review', 'POST');
+    toast('בדיקת הגאומטריה הושלמה ב־CPU. הדוח אינו אישור הדפסה.');
+    await refresh();
+  } catch (e) {
+    toast('סריקת הגאומטריה נכשלה: ' + (e.code || e.message));
+    await refresh();
+  }
+});
 el('refresh').addEventListener('click', refresh);
 el('resetCamera').addEventListener('click', () => state.viewer?.reset());
 el('copyManifest').addEventListener('click', async () => {

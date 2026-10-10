@@ -1,0 +1,265 @@
+{
+  "controlCount": 8,
+  "minimumIoU": 0.935812,
+  "notAiInference": true,
+  "printQualified": false,
+  "reports": [
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.368435,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.970212,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "01-orb-alpha",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+      "maskSha256": "512be3cf3ac42ee64e60b526aa9aa9179b098d214e9512d64bb66c26ac966537",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.379747,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.368435,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.970212,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "02-orb-opaque",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "8b93d8364b3859a80b241f0fff3c2851e81e0d39857de61067313a36e606382e",
+      "maskSha256": "512be3cf3ac42ee64e60b526aa9aa9179b098d214e9512d64bb66c26ac966537",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.379747,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.284261,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.985784,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "03-hollow-vase",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "07ce048e345ac5bd0732af1eb2120027e989538da9b6640b81fd1f6bd39f86ee",
+      "maskSha256": "13ecddf0abfdb77863b20c9e1416c34fb27b4473ba574ec547986748837d519b",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "61283e5461a3d3c826d506a103c46db79b220a909a0fe77b9c7624cb5b367d30",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.287923,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.193224,
+          "holes2D": 1
+        },
+        "silhouetteIoU": 0.975361,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "04-torus-hole",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "a50f5fa8bdf8e124814196ca31b785c4658df765da53e17f5aea8d23497dad8d",
+      "maskSha256": "12a6ba5ac239457913f4804f3e4f883b26800ed245cc190b11d825e4817aaff7",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "9ba5e742eabd1dd103741997d205a1bdd59a913c5329d074fc9dfcd9e99104ac",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.196072,
+        "holes2D": 1
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 2,
+          "foregroundFraction": 0.162381,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.970444,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "05-disconnected-pair",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "50803a62449b0a0a5b646ab4516018b7cc6a52860eee3273a184aedf1893e885",
+      "maskSha256": "b667e9a0a2c9451f1959f9632acb5e7b981470a5116185d58042f2e65a1f3985",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "4c09ff04ffbc1d06790c121a29e303ec7d9b0f29072caec94f45f480cbb2b17a",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 2,
+        "foregroundFraction": 0.164958,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.172824,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.935812,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "06-thin-chair",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "bba81747e772317941ec7141ba3ca50edd45cf77f4370ce32d3756fb798eed47",
+      "maskSha256": "28a6a8d2faf1b9d34f5ae4e4d689377bbf400f76c1de962cc61b4f7e31c5f775",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "61123d068dfa6de6717a0e3ca5a7311ebbd7fa7045287e9640c9921dd6b24a8c",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.173231,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.204346,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.967775,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "07-gear-opaque",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "7b320f7e979ca0b175c33eb0675f98a8379173c90a07a3420a8dd2ce882339d2",
+      "maskSha256": "78e28e061835874f0dfdc5182681ad9d29055bed855ad9a95563d9dd92e07596",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "96fca61b4caedab5cf2298fdf0c7fb2f59d6e3f2f1ca1b262c5b41e9e07fd8ba",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.208116,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    },
+    {
+      "approvedForPrinter": false,
+      "bestProjectedView": {
+        "camera": "source-camera",
+        "projectionFeatures": {
+          "connectedRegions2D": 1,
+          "foregroundFraction": 0.176405,
+          "holes2D": 0
+        },
+        "silhouetteIoU": 0.958545,
+        "viewAxis": [
+          4.0,
+          2.8,
+          5.0
+        ]
+      },
+      "evaluation": "exact_reference_camera",
+      "fixtureId": "08-arch-opaque",
+      "fixtureLicense": "PROJECT_ORIGINAL_PROCEDURAL",
+      "imageSha256": "1a0fd282474e58009a1630df1692a4197e7aa1b17800fd767940534483e982e4",
+      "maskSha256": "2b8d11c82a4537db90189915debfc505260f5584fdee5bb0189aa853ce76766b",
+      "metricInterpretation": "POSITIVE_CONTROL_ONLY: known original geometry and exact source camera",
+      "modelSha256": "594c1cee43f5ad7bdba676e980af11b35b391a97d1e6772bd1c3119b5fb1bfc8",
+      "printQualified": false,
+      "referenceMaskFeatures": {
+        "connectedRegions2D": 1,
+        "foregroundFraction": 0.178602,
+        "holes2D": 0
+      },
+      "schema": "local3d.g3.silhouette-diagnostic.v1",
+      "testedViews": 1
+    }
+  ],
+  "schema": "local3d.g3.silhouette-positive-controls.v1"
+}

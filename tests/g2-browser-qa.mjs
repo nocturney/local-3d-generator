@@ -90,6 +90,20 @@ try {
   await page.screenshot({path:path.join(out,'G2-MOCK-MANUAL-UI.png'),fullPage:true});
   phase('Confirmed mock job travels through real-provider UI and DRAFT manifest, preview is explicitly synthetic test');
 
+  await page.locator('#reviewGeometry').click();
+  await page.locator('#downloadGeometry:visible').waitFor({timeout:20000});
+  await page.waitForFunction(()=>document.querySelector('#geometrySummary')?.textContent.includes('נפח חיובי'),null,{timeout:10000});
+  const geomHref=await page.locator('#downloadGeometry').getAttribute('href');
+  const geometry=await (await page.request.get(base+geomHref)).json();
+  assert.equal(geometry.classification,'DRAFT_REQUIRES_HUMAN_REVIEW');
+  assert.equal(geometry.printQualified,false);
+  assert.equal(geometry.topology.everyObjectWatertight,true);
+  assert.equal(geometry.topology.everyObjectPositiveVolume,false);
+  assert.match(await page.locator('#geometrySummary').textContent(),/נפח חיובי: לא/);
+  assert.equal(invoked,1,'Geometry review must not invoke AI again');
+  await page.screenshot({path:path.join(out,'G3-CPU-REVIEW-MOCK-WORKFLOW.png'),fullPage:true});
+  phase('G3 CPU-only topology review and negative volume shown in browser without AI inference');
+
   await page.locator('#providerFixture').click();
   assert.equal(await page.locator('#gpuConsentWrap').isHidden(),true);
   await page.locator('#textMode').click();

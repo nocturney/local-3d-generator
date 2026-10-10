@@ -48,3 +48,4 @@ footer{height:45px;display:flex;align-items:center;justify-content:space-between
 .gpu-consent label{font-size:12px;font-weight:700;line-height:1.7;display:flex;align-items:flex-start;gap:9px;color:#f3dea4;cursor:pointer}
 .gpu-consent input{accent-color:#78e6d1;width:16px;height:16px;flex:none;margin-top:3px}
 .gpu-consent p{margin-top:7px;color:#bcb8a7;font-size:10px;line-height:1.65}
+.geometry-summary{margin-top:11px;padding:11px 12px;border:1px solid #76673d;background:#25291f;color:#e0d5ae;border-radius:7px;line-height:1.7;font-size:11px}

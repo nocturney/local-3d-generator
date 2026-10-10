@@ -1,0 +1,28 @@
+{
+  "approvedForPrinter": false,
+  "derivedFilename": "chair-positive-winding.glb",
+  "derivedPositiveVolume": true,
+  "derivedSha256": "48ee912229ad73fcbda1a6b455dbcc39d396bdf2c752ccabc90a29097b09b6ec",
+  "derivedSignedVolumeArbitraryUnitsCubed": 0.0613843,
+  "derivedWatertight": true,
+  "fabricationAction": "NONE",
+  "note": "Derivative is NOT automatic model repair or a manufacturing qualification. Original is unchanged.",
+  "preservedAabbExtents": [
+    0.6134517,
+    1.0671842,
+    0.5713033
+  ],
+  "printQualified": false,
+  "schema": "local3d.g3.orientation-derivative.v1",
+  "selfIntersections": "NOT_TESTED",
+  "sourceFilename": "real-app-output.glb",
+  "sourcePositiveVolume": false,
+  "sourceSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+  "sourceSignedVolumeArbitraryUnitsCubed": -0.0613843,
+  "sourceWasWatertight": true,
+  "transformation": "INVERT_TRIANGLE_WINDING_ON_CLOSED_NEGATIVE_VOLUME_MESH",
+  "triangles": 19972,
+  "vertices": 9986,
+  "wallThickness": "NOT_TESTED",
+  "worldUnits": "UNKNOWN_UNCALIBRATED"
+}

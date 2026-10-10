@@ -49,12 +49,12 @@ function fakeAdapter({ wait = 120, error = null } = {}) {
   };
 }
 
-async function fixtureEnv(adapter) {
+async function fixtureEnv(adapter, geometryReviewer) {
   const dir=await fs.mkdtemp(path.join(os.tmpdir(),'local3d-g2-api-'));
   const app=await createApp({
     dataDir:path.join(dir,'data'),
     fixtureFile:path.join(dir,'fixture.glb'),
-    stepMs:25,triposrAdapter:adapter
+    stepMs:25,triposrAdapter:adapter,geometryReviewer
   });
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
   const base='http://127.0.0.1:'+app.server.address().port;
@@ -196,4 +196,88 @@ test('shutdown aborts a running G2 job before service closes',async()=>{
     assert.equal(second.jobs.get(made.body.id).status,raw.status);
     await second.close();
   }finally{await fs.rm(env.dir,{recursive:true,force:true})}
+});
+
+function fakeReviewer({wait=0,invalid=false}={}){
+  const track={calls:0};
+  return {
+    track,
+    async review({modelFile,outputFile}){
+      track.calls++;
+      if(wait) await sleep(wait);
+      const bytes=await fs.readFile(modelFile);
+      const report={
+        schema:'local3d.g3.geometry-qa.v1',
+        modelSha256:hash(bytes),
+        classification:'DRAFT_REQUIRES_HUMAN_REVIEW',
+        topology:{everyObjectWatertight:true,everyObjectPositiveVolume:false,componentCount:1},
+        notEvaluated:{realWorldScaleAndUnits:'UNKNOWN_UNCALIBRATED',wallThickness:'NOT_TESTED'},
+        printQualified:invalid?true:false,approvedForPrinter:false,fabricationAction:'NONE'
+      };
+      const raw=Buffer.from(JSON.stringify(report,null,2)+'\n');
+      await fs.writeFile(outputFile,raw,{flag:'wx'});
+      return {raw,report};
+    }
+  };
+}
+
+test('G3 CPU geometry review is manual, only for completed real model, persisted as DRAFT asset',async()=>{
+  const mock=fakeReviewer(),adapter=fakeAdapter({wait:80}),env=await fixtureEnv(adapter,mock.review);
+  try{
+    const created=await env.request('/v1/jobs','POST',payload());
+    const id=created.body.id;
+    const premature=await env.request('/v1/jobs/'+id+'/review','POST');
+    assert.equal(premature.status,422);
+    assert.equal(premature.body.error.code,'G3_REVIEW_UNAVAILABLE');
+    await waitStatus(env.request,id,'completed');
+    const r=await env.request('/v1/jobs/'+id+'/review','POST');
+    assert.equal(r.status,200);
+    assert.equal(mock.track.calls,1);
+    assert.equal(r.body.status,'completed');
+    assert.ok(r.body.assets.some(x=>x.id==='geometry-qa'));
+    const asset=await env.request('/v1/jobs/'+id+'/assets/geometry-qa');
+    assert.equal(asset.status,200);
+    assert.equal(asset.body.classification,'DRAFT_REQUIRES_HUMAN_REVIEW');
+    assert.equal(asset.body.printQualified,false);
+    assert.equal(asset.body.topology.everyObjectPositiveVolume,false);
+    const repeat=await env.request('/v1/jobs/'+id+'/review','POST');
+    assert.equal(repeat.status,200);
+    assert.equal(mock.track.calls,1,'report must be idempotent');
+    assert.equal(adapter.trace.started,1,'CPU review must not start new GPU workers');
+  }finally{await env.close()}
+});
+
+test('G3 simultaneous review requests share one permit (not two scanners)',async()=>{
+  const mock=fakeReviewer({wait:180}),env=await fixtureEnv(fakeAdapter({wait:30}),mock.review);
+  try{
+    const created=await env.request('/v1/jobs','POST',payload());
+    const id=created.body.id;
+    await waitStatus(env.request,id,'completed');
+    const both=await Promise.all([
+      env.request('/v1/jobs/'+id+'/review','POST'),
+      env.request('/v1/jobs/'+id+'/review','POST')
+    ]);
+    assert.deepEqual(both.map(x=>x.status).sort((a,b)=>a-b),[200,409]);
+    assert.equal(mock.track.calls,1);
+    assert.equal(both.find(x=>x.status===409).body.error.code,'G3_REVIEW_BUSY');
+  }finally{await env.close()}
+});
+
+test('G3 refuses tampered GLB or falsely print-qualified review',async()=>{
+  const mock=fakeReviewer({invalid:true}),env=await fixtureEnv(fakeAdapter({wait:40}),mock.review);
+  try{
+    const created=await env.request('/v1/jobs','POST',payload());
+    const id=created.body.id;
+    await waitStatus(env.request,id,'completed');
+    const modelPath=path.join(env.dir,'data','jobs',id,'output.glb');
+    const original=await fs.readFile(modelPath);
+    await fs.writeFile(modelPath,Buffer.from('tampered'));
+    const bad=await env.request('/v1/jobs/'+id+'/review','POST');
+    assert.equal(bad.status,422);assert.equal(bad.body.error.code,'G3_UNVERIFIED_MODEL');
+    assert.equal(mock.track.calls,0);
+    await fs.writeFile(modelPath,original);
+    const unsafe=await env.request('/v1/jobs/'+id+'/review','POST');
+    assert.equal(unsafe.status,422);assert.equal(unsafe.body.error.code,'G3_BAD_REPORT');
+    assert.equal((await env.request('/v1/jobs/'+id+'/assets/geometry-qa')).status,404);
+  }finally{await env.close()}
 });

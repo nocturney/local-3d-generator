@@ -103,10 +103,13 @@
           <div class="detail-message" id="detailMessage">לא נוצרה משימה עדיין.</div>
           <div class="detail-actions">
             <a id="downloadModel" class="download-button" href="#" download="model.glb" aria-disabled="true">↓ הורד GLB</a>
-            <a id="downloadReport" class="plain-button" href="#" download="qa-report.json" aria-disabled="true">דוח גאומטריה</a>
+            <a id="downloadReport" class="plain-button" href="#" download="qa-report.json" aria-disabled="true">דוח משימה</a>
+            <button id="reviewGeometry" class="plain-button" type="button" disabled hidden>סריקת רשת (CPU)</button>
+            <a id="downloadGeometry" class="plain-button" href="#" download="geometry-qa.json" aria-disabled="true" hidden>דוח רשת מפורט</a>
             <a id="viewSource" class="plain-button" href="#" target="_blank" rel="noopener" aria-disabled="true">הצג תמונת מקור</a>
             <button id="copyManifest" class="plain-button" type="button" disabled>העתק Manifest</button>
           </div>
+          <div id="geometrySummary" class="geometry-summary" hidden></div>
           <div class="qa-line"><span class="qa-status">DRAFT</span> תוצרים המופקים בשלב זה אינם מאושרים לייצור או להדפסה.</div>
         </div>
       </section>

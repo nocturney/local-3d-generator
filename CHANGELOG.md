@@ -1,5 +1,14 @@
 # Release notes
 
+## v0.2.1 — 2026-10-10 — G3 CPU quality preview (NOT full model benchmark)
+
+- Added a complete 9-reference source catalog with immutable SHA provenance: eight project-original procedural 3D/product-image/mask triples plus one upstream MIT chair photo. No new GPU inference or third-party model installations.
+- Added offline CPU Trimesh GLB scanner (topology, edge incidence, winding, signed volume and bounded geometry) and exploratory 2D silhouette IoU with calibrated positive controls. NOT print qualified, no physical unit/wall-thickness claim.
+- Connected a manual CPU-only geometry-review button and /v1/jobs/:uuid/review endpoint to completed real-model jobs; validated SHA before/after review, one review at a time, rejected compromised models and falsely print-qualified reports.
+- Identified the real previous TripoSR chair's negative signed volume despite watertight mesh. Added an optional strictly guarded, *non-destructive* positive-winding GLB derivative and source/output SHA report; still DRAFT.
+- Completed browser proof using existing real GLB, actual CPU reviewer and ZERO new GPU inference; 0 browser errors or external requests. Added regression tests and separate engine rights/VRAM screening.
+- G3 issue remains OPEN: no new fixture inference for the eight originals, no second engine installed/benchmarked, no production/printing release.
+
 ## v0.2.0 — 2026-10-10 — Manual local TripoSR image-to-3D
 
 - Added a **real, on-device TripoSR image-to-3D adapter** behind an explicit Windows-only manual session. It is disabled by default; G1 remains a deterministic, no-GPU demonstration.

@@ -37,7 +37,15 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Tests: 26 Node API/geometry/G2 security tests on Windows, 5 isolated Python tests, 7 G1 browser phases, 5 G2 mock-provider browser phases and one actual G2 end-to-end smoke. No GPU model is run by npm test/test:all.
+- Tests as of G3 preview: **33 Node** API/geometry/security tests on Windows, **15 Python** tests (5 G2 + 10 G3), 7 G1 browser phases, 6 G2/G3 mock-provider browser phases, one prior real G2 GPU end-to-end smoke and one actual G3 CPU-only review of the existing GLB. No GPU model is run by npm test/test:all.
+
+## G3 preview — CPU geometry quality checks (no new GPU inference)
+
+A new manual **סריקת רשת (CPU)** button on completed TripoSR jobs runs independent topology inspection in the local isolated Python environment. It checks GLB source SHA, connected components, open/nonmanifold edges, signed volume, winding and face quality; exposes a separate downloadable **geometry-qa.json** asset, with explicit unknown real-world units and wall thickness. It NEVER print-qualifies a model.
+
+A reproducible **9-fixture benchmark source catalog** is available under [benchmarks/g3](benchmarks/g3/README.md): 8 project-original synthetic image/mask/source-3D triples plus the already-licensed upstream chair photo and mask. NO NEW synthetic image has yet been through actual AI inference. Exact-source-camera positive controls validate the silhouette scorer, not the AI. The previous real chair's signed volume was found to be **negative despite watertightness**. A separate CPU-only optional winding derivative preserves the original and still remains DRAFT.
+
+Read [G3 progress](docs/G3_PROGRESS_2026-10-10.md), [real-world geometry evidence](docs/evidence/g3/README.md) and [research-only engine screening](docs/G3_PROVIDER_SCREENING.md). **Issue #3 remains open** for licensed-image GPU benchmarking, actual provider comparisons, physical print geometry qualification and hardening.
 
 ## Not implemented / not claimed
 

@@ -1,0 +1,86 @@
+{
+  "approvedForPrinter": false,
+  "classification": "DRAFT_REQUIRES_HUMAN_REVIEW",
+  "fabricationAction": "NONE",
+  "geometryObjectCount": 1,
+  "globalBoundsArbitraryUnits": {
+    "extents": [
+      0.6134517,
+      1.0671842,
+      0.5713033
+    ],
+    "max": [
+      0.2917398,
+      0.5681518,
+      0.27815
+    ],
+    "min": [
+      -0.3217119,
+      -0.4990324,
+      -0.2931533
+    ]
+  },
+  "method": "Unmodified indexed GLB faces; Trimesh CPU topology and object bounds. No physical-unit inference, vertex welding or repair.",
+  "model": "real-app-output.glb",
+  "modelBytes": 400452,
+  "modelSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+  "notEvaluated": {
+    "interComponentInterference": "NOT_TESTED",
+    "meshRepair": "NOT_PERFORMED",
+    "printerCompatibility": "NOT_TESTED",
+    "realWorldScaleAndUnits": "UNKNOWN_UNCALIBRATED",
+    "selfIntersections": "NOT_TESTED",
+    "structuralStrength": "NOT_TESTED",
+    "supportability": "NOT_TESTED",
+    "wallThickness": "NOT_TESTED"
+  },
+  "parts": [
+    {
+      "boundaryEdges": 0,
+      "componentTriangles": [
+        19972
+      ],
+      "connectedComponents": 1,
+      "duplicateFaceIndexTriples": 0,
+      "extentsArbitraryUnits": [
+        0.6134517,
+        1.0671843,
+        0.5713032
+      ],
+      "maxArbitraryUnits": [
+        0.2917398,
+        0.5681518,
+        0.27815
+      ],
+      "minArbitraryUnits": [
+        -0.3217119,
+        -0.4990324,
+        -0.2931533
+      ],
+      "nonManifoldEdges": 0,
+      "positiveVolume": false,
+      "repeatedVertexIndexFaces": 0,
+      "signedVolumeArbitraryUnitsCubed": -0.0613843,
+      "surfaceAreaArbitraryUnitsSquared": 1.4597632,
+      "triangles": 19972,
+      "vertices": 9986,
+      "watertightIndexTopology": true,
+      "windingConsistent": true,
+      "zeroAreaFacesScaleRelative": 0
+    }
+  ],
+  "printQualified": false,
+  "schema": "local3d.g3.geometry-qa.v1",
+  "topology": {
+    "boundaryEdges": 0,
+    "componentCount": 1,
+    "duplicateFaceTriples": 0,
+    "everyObjectPositiveVolume": false,
+    "everyObjectWatertight": true,
+    "everyObjectWindingConsistent": true,
+    "nonManifoldEdges": 0,
+    "zeroAreaFaces": 0
+  },
+  "totalTriangles": 19972,
+  "totalVertices": 9986
+}

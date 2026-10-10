@@ -21,6 +21,14 @@ Golden fixture: fixtures/demo-sculpture.glb, generated deterministically with se
 ## G2 - First real local inference (BOUNDED PILOT + MANUAL APP ADAPTER PASS)
 Explicit user authorization covered isolated model installation and limited GPU runs. Source/weights/DINO config pinned and SHA256 verified, isolated Python3.11+torch 2.5.1 cu121. Two original standalone TripoSR pilots succeeded (improved 14.15s, 2058 MiB torch reserved). Subsequently a secure opt-in local app adapter was integrated: G1 default remains fixture-only, G2 only in manually launched Windows localhost session; per-image GPU consent, single synchronous permit, GPU/Office checks, timeout/VRAM caps, process-tree cleanup, cancellation, persistence, SHA/QA validation and Y-up GLB output. Real local end-to-end UI+API smoke passed in 25.51s, 400452 bytes, peak 2058 MiB torch reserved, model loaded in real Chrome; no printer or cloud. Tests 26/26 Node, 5/5 isolated Python, 7/7 G1 browser, 5/5 G2 mock browser; five process tests use actual zero-GPU child processes. See docs/G2_APP_INTEGRATION.md and docs/evidence/g2-app. **Limit:** only one real licensed image has been assessed; no multi-image quality baseline or print certification. No unattended schedule, general text-to-3D or Office integration.
 
+## G3 - Licensed source catalog + CPU geometry review (PARTIAL PASS)
+
+- PASS: nine SHA-locked source references: eight project-original synthetic image/mask/ground-truth GLB triples, plus one pre-existing TripoSR MIT chair image/mask with NO ground-truth 3D. Exact-camera source/GT silhouette positive controls >0.935 IoU. This is NOT model benchmarking.
+- PASS: independent CPU GLB topology scanner and optional browser manual review for completed real G2 jobs. Existing real chair is watertight, but signed volume **negative**, caught by new positive-volume guard. Missing scale, thickness, self-intersection and strength checks remain explicit.
+- PASS: optional CPU-only winding derivative produces distinct SHA, positive volume, same geometry extents; original unchanged; all printability flags remain false. Real Chrome viewed the previous GLB and its G3 CPU report without new GPU inference.
+- RESEARCH ONLY: SF3D, SPAR3D, InstantMesh, Hunyuan Shape, OpenLRM licensing/VRAM comparison in docs/G3_PROVIDER_SCREENING.md. No new candidate weights installed, no commercial licensing assumed.
+- OPEN: run new images through the real G2 model with *per-job authorization*, true multi-image output analysis and comparison to another independently licensed engine. Production print and multi-user hardening remain blocked.
+
 ## G3 - Multiple provider candidates (NOT APPROVED)
 Hunyuan Shape, SPAR3D / TripoSG, alternatives: gate on licensing, reproducible installs, VRAM and non-conflicting scheduling. No P0 CPU/GPU resource impact without separate verified allocation.
 

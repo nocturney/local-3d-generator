@@ -37,6 +37,12 @@ G2: explicitly started Windows manual local session → browser per-job GPU cons
 - Browser G1 and opt-in G2 mock tests have 0 page errors and no remote URL requests.
 - Single real G2 local GPU image → verified GLB and DRAFT report → real Chrome 3D preview on Windows; manual server and worker exited after acceptance.
 
+## G3 CPU geometry reviewer boundary
+
+An explicitly requested POST /v1/jobs/:uuid/review is allowed ONLY on completed real TripoSR GLB with manifest-matching bytes/SHA, under the already opt-in Windows session. It executes a fixed, installed Python script via execFile (no shell or client path) with a bounded 35-second timeout and 64MiB GLB size cap, and validates the output schema/sha/qualification. A second review for the same job returns 409 instead of spawning a duplicate process. No new PyTorch/CUDA import, printer, remote fetch, or GPU lease is part of G3 scanning. A new geometry-qa asset appears only after independent provenance checks and a persisted manifest update. The browser shows signed-volume/closed-shell results but keeps printQualified=false.
+
+G3 is NOT OS-level untrusted-input sandboxing. The native Trimesh parser still processes GLB bytes in a Python subprocess under the current OS user; arbitrary third-party/multi-user GLB uploads are not supported. Physical self-intersections and wall thickness remain unmeasured. This is a single-user localhost engineering system, not a trusted multi-tenant geometry service.
+
 ## Known limits and required hardening before productization
 
 - Single trusted user: there is no per-OS-user authentication, CSRF token or HTTP origin proof for command-line requests; any malicious local process with access to localhost may forge confirmation. Do not expose beyond localhost or run with untrusted local tenants.
