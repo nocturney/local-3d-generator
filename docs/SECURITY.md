@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.12: geometric vertex proximity evidence is NOT collision/print authority
+
+G3.12's bounded CPU cKDTree screening of SHA-pinned existing GLBs compares different-index vertex positions at <=1e-7 of model AABB diagonal. Even a zero result does not rule out face-to-face contacts away from vertices, coplanar edge-overlaps, microscopic collisions, multi-mesh-object interactions or sub-tolerance numerical conditions. UV/material seams can legitimately have duplicate positions; candidates are review signals, not automatic defects. Physical model scale, mm wall thickness, manufacturing capability, printer/slicer/material qualification remain UNKNOWN/BLOCKED.
+
+Denial-of-service bounds: max 100k vertices, 75k faces, 32 local neighbors, 200k pairs and 35s wall time. Incomplete scans fail INDETERMINATE and cannot publish completed-case evidence. Real GLB input must pass bounded topology/sha/source checks; G3.12 is NOT OS-enforced native-parser isolation or arbitrary third-party/untrusted GLB authorization. Private local job UUID, vertex examples and source blobs are excluded from the immutable public SHA evidence.
+
+No CUDA/AI inference, new Python packages, Office services, physical printers, firewall/Defender rules, private images or OS policy were changed. Supply-chain advisories (Issue #4), robust geometric self-intersection and production manufacturing gates (Issue #3) remain open; all outputs DRAFT, approvedForPrinter=false.
+
 ## G3.11: zero shared-edge coplanar findings are NOT fabrication authority
 
 CPU-only screening over previously generated real orb and licensed sources now considers shared-indexed-edge, same-side, near-coplanar third-vertex positions. A positive indicator is a **possible** overlapping planar region, not certified penetration. The numerical plane-distance tolerance is relative to unknown arbitrary AABB coordinates and can miss exact/very small/degenerate physical issues. Intentional sharp folded geometry is not automatically a defect. It does NOT make the older G3.8 nonshared pair SAT, G3.9 normal angles or G3.10 vertex-only rays a robust exact global collision library.

@@ -1,5 +1,19 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.12: different-index spatial vertex proximity (existing-model CPU only)
+
+All four pre-existing SHA-verified GLBs were already scanned with a bounded cKDTree census, comparing exact/near XYZ for different vertex IDs. A distance <=1e-7 × arbitrary-unit bounding diagonal is a *numerical screen*, NOT a mm tolerance. The real orb's 20,178 vertices and its G3.7 copy produced zero candidate pairs at this threshold; even zero cannot certify face-interior intersections or print readiness. Closed touching-shell positive controls and resource-cap fail-closed tests passed. No GPU inference, printer, data upload or Office code change.
+
+From Chris project root, read-only replay of existing four private immutable reports, with only the earlier genuinely completed real job identifier (never add that ID to a Git report):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-12-verify-spatial-replay.py --job-id <PREVIOUS_COMPLETED_PRIVATE_JOB_UUID>
+
+Historical immutable private report initialization (ALREADY DONE for these SHAs) uses an explicit --prepare-private option; it refuses changed prior reports. Only rerun if a reviewed new local evidence source requires it. To verify public sanitized evidence:
+
+    npm run proof:g3:orb:spatial -- --job-id <PREVIOUS_COMPLETED_PRIVATE_JOB_UUID>
+
+See [full scope](G3_12_SPATIAL_INDEX_PROXIMITY_CPU_2026-10-10.md) and [SHA report](evidence/g3/orb-01-g312-spatial-index-proximity.json). G1 and the explicit-consent G2 ports/services remain unchanged. No model execution or physical manufacturing certification.
+
 ## G3.11: CPU-only indexed shared-edge potential coplanar overlap (no new model)
 
 The existing completed `01-orb-alpha` actual TripoSR job's original output and its G3.7 copy-only orientation derivative now also have a conservative shared-edge coplanar same-side overlap screen. On real orb + derivative, each screened 60,528 indexed face-pairs sharing a full edge; 0 candidate coplanar overlap/near-antiparallel/high-backturn findings. This does NOT establish full self-intersection absence, physical scale, wall thickness or permission to print.

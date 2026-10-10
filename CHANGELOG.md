@@ -1,5 +1,12 @@
 # Release notes
 
+## v0.2.12 — 2026-10-10 — G3.12 CPU-only different-index spatial proximity and touching-shell candidates
+
+- Added bounded CPU SciPy cKDTree diagnostic for exact-coordinate and near-coordinate matches among DIFFERENT vertex indices, including whether each vertex belongs to the same indexed connected component or separate shells. Explicit numerical tolerance 1e-7 × model AABB diagonal (arbitrary GLB units); no mm interpretation.
+- Fail closed on >32 neighbors, >200k spatial pairs, invalid geometry or resource exhaustion. Legitimate duplicated seam vertices are candidate signals, not automatic defects; missing vertex coincidences cannot exclude triangle-interior contacts.
+- Recomputed FOUR existing SHA-pinned licensed GLBs including previously authorized real orb (20,178 vertices/40,352 triangles): each complete with zero different-index exact or near vertex pairs; copy-only winding equivalence preserved. No new model inference, no mesh edit/weld/repair, no GPU, printer, cloud or Office.
+- Added 12 adversarial Python controls (touching disjoint closed shells, same-component coincidences, tolerance thresholds, dense/invalid fail-closed cases), three Node proof/privacy assertions, immutable private CPU replay and sanitized public SHA-linked evidence. G3 and security gates remain OPEN; all models DRAFT and NOT PRINT QUALIFIED.
+
 ## v0.2.11 — 2026-10-10 — G3.11 CPU-only shared-edge coplanar backfold risk
 
 - Added a new CPU-only geometric predicate on **every shared indexed edge**, beyond G3.9's normal-angle histogram: detect **possible coplanar SAME-SIDE interior overlaps** between triangles sharing the full edge, requiring a near-coplanar third point and >=175° antiparallel face normals. Separately count same-side >=150° backturns and numerically borderline coplanar cases. Explicitly not robust global collision or manufacturing certification.

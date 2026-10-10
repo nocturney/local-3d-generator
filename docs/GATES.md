@@ -1,5 +1,13 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.12 — different-index spatial position and disconnected-shell proximity (CPU DIAGNOSTIC)
+
+- PASS: on four EXISTING SHA-verified GLBs (20,178-vertex real TripoSR orb, exact-winding copy, 642-vertex procedural GT, 9,986-vertex historical chair), independently enumerated different indexed vertex IDs at distance <=1e-7 of each model's AABB diagonal. **0 exact or near pairs** in each; one indexed component each. No new model run or CUDA permission used.
+- PASS: 12 adversarial Python tests flag different-index coincident/near XYZ, contact at touching separate closed box shells, prevent same-index overcount, and fail closed for dense clusters and malformed input. Three Node tests enforce previous source SHA, privacy and DRAFT/no-printer flags. Immutable reports and [G3.12 evidence](evidence/g3/orb-01-g312-spatial-index-proximity.json) verified.
+- LIMITATION: this is a per-vertex spatial screen, **not** a triangle-interior/surface-surface intersection detector, physical mm threshold, automatic vertex welding/repair or proof that disconnected shells never meet; coplanar/near-zero precise geometric contacts remain unresolved.
+- BLOCKED: exact robust whole-mesh collision predicates, calibrated CAD dimensions, local wall thickness, material/slicer/printer checks, remaining seven per-image GPU authorizations and production sandbox/advisory triage. Issue #3 and #4 remain OPEN. No output PRINT QUALIFIED.
+- [Method](G3_12_SPATIAL_INDEX_PROXIMITY_CPU_2026-10-10.md). Nothing touches Office 2.0, printer or existing GPU inference.
+
 ## G3.11 — shared-edge same-side planar fold screening (DIAGNOSTIC ONLY)
 
 - PASS: CPU screen over all **60,528** actual indexed two-face edge pairs in the prior real 01-orb-alpha TripoSR model and G3.7 exact-surface orientation copy, with **0 possible coplanar same-side beyond-edge overlap candidates**, 0 near-antiparallel >=175°, 0 suspicious same-side >=150° backturns and 0 borderline cases. Source procedural GT: 1,920 edge pairs; historical MIT chair: 29,958, also zero under these numerical predicates.
