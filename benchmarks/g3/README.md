@@ -15,6 +15,10 @@ To reproducibly validate original sources on Windows:
 
 The generator refuses to overwrite any existing changed fixture. A repeat run was verified byte-for-byte, identical manifest SHA256 763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a. This is a stable source set, not model outputs.
 
+## Public scorecard generated from recorded outputs, not AI simulation
+
+The SHA-verified, read-only coverage ledger is stored at docs/evidence/g3/benchmark-coverage.json. It deliberately counts only the previous TripoSR MIT chair real E2E output (**1 of 9**) and records eight NO-AI-YET references. It distinguishes original synthetic GT from AI reconstructions and marks post-hoc silhouette views exploratory, not calibrated accuracy. The CLI is npm run benchmark:g3; optionally scan private local G2 jobs with --jobs-dir runtime/data-g2-manual/jobs to produce a **gitignored** private report. No model runs or original source media are uploaded externally.
+
 ## Current evaluation state
 
 - Eight original source/GT pairs have an **exact-camera, positive-control silhouette** verification (not AI inference). Minimum projected-mask IoU: 0.935812 after consistent bounding-box normalization. See docs/evidence/g3/silhouette-positive-controls.json.

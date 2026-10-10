@@ -1,5 +1,14 @@
 # Release notes
 
+## v0.2.2 — 2026-10-10 — G3.2 resource safety & honest benchmark coverage
+
+- Introduced a cross-process LOCAL3D GPU filesystem lease shared across manual G2 server processes; concurrency rejected with 409 before allocating a GPU worker, release on completion/cancel/shutdown, stale locks never auto-recovered.
+- Added read-only nine-source benchmark coverage: previous actual G2 chair output 1/9, eight unrun sources explicitly PENDING; strict source/GLB/QA/weight SHA checking and privacy-preserving optional local job scan. No new inference was executed.
+- Added read-only G3 benchmark status to the Hebrew sidebar, backed by GET /v1/benchmarks/g3 fixed public evidence. This does not start GPU jobs or falsely rank engines.
+- Added safe, metadata-only local job-storage audit (counts/bytes/age, no deletion or client data) and read-only GPU-lock inspection.
+- Added Windows multi-process lease tests, two-live-API-instance contention, provenance-tamper tests and browser assertions. No Office, printer or OS firewall changes.
+- **Still blocked:** multi-image real benchmark, second provider install/qualification, physical manufacturing checks, commercial multi-user hardening or unattended AI.
+
 ## v0.2.1 — 2026-10-10 — G3 CPU quality preview (NOT full model benchmark)
 
 - Added a complete 9-reference source catalog with immutable SHA provenance: eight project-original procedural 3D/product-image/mask triples plus one upstream MIT chair photo. No new GPU inference or third-party model installations.

@@ -46,7 +46,8 @@ const fakeAdapter={
 function phase(label){report.phases.push({label,status:'PASS'});}
 try {
   app=await createApp({dataDir:path.join(temp,'data'),fixtureFile:path.join(temp,'fixture.glb'),
-    stepMs:30,triposrAdapter:fakeAdapter});
+    stepMs:30,triposrAdapter:fakeAdapter,
+    gpuLeaseRoot:path.join(temp,'gpu-coordination')});
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
   const base='http://127.0.0.1:'+app.server.address().port;
   const executablePath=process.platform==='win32' ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
@@ -58,6 +59,7 @@ try {
   page.on('console',m=>{if(m.type()==='error')report.browserErrors.push(m.text())});
   page.on('request',r=>{if(!r.url().startsWith(base+'/') && !r.url().startsWith('blob:') && !r.url().startsWith('data:'))report.remoteRequests.push(r.url())});
   await page.goto(base,{waitUntil:'networkidle'});
+  await page.waitForFunction(()=>document.querySelector('#benchmarkProgress')?.textContent?.includes('1 / 9'),null,{timeout:8000});
   await page.locator('#healthStatus').getByText('READY').waitFor({timeout:12000});
   await page.locator('#providerTripo:not([disabled])').waitFor();
   assert.equal(await page.locator('#sessionBadge').textContent(),'G2 · MANUAL ONLY');

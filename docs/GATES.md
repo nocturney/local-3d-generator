@@ -29,6 +29,13 @@ Explicit user authorization covered isolated model installation and limited GPU 
 - RESEARCH ONLY: SF3D, SPAR3D, InstantMesh, Hunyuan Shape, OpenLRM licensing/VRAM comparison in docs/G3_PROVIDER_SCREENING.md. No new candidate weights installed, no commercial licensing assumed.
 - OPEN: run new images through the real G2 model with *per-job authorization*, true multi-image output analysis and comparison to another independently licensed engine. Production print and multi-user hardening remain blocked.
 
+## G3.2 — management/benchmark coverage (PARTIAL PASS)
+
+- PASS: one real pre-existing G2 model, eight untouched synthetic reference inputs; reproducible SHA-evidence ledger with explicit "pending" statuses and **no fabricated nine-model results**. Fixed read-only /v1/benchmarks/g3 response in UI.
+- PASS: cross-process filesystem GPU lease with multi-process and two-HTTP-app contention tests; second local request rejected without job or GPU. Stale lock is fail-closed, inspected manually.
+- PASS: aggregate storage audit, no user photo/prompt/ID disclosure, no deletion/quota claims.
+- OPEN: real multi-image G2 runs require separate per-image GPU consent; second independently licensed engine not installed; OS-level egress sandbox, user isolation, formal retention quotas and print qualification not implemented.
+
 ## G3 - Multiple provider candidates (NOT APPROVED)
 Hunyuan Shape, SPAR3D / TripoSG, alternatives: gate on licensing, reproducible installs, VRAM and non-conflicting scheduling. No P0 CPU/GPU resource impact without separate verified allocation.
 

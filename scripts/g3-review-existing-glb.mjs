@@ -45,7 +45,8 @@ try{
   await fs.writeFile(path.join(jobDir,'job.json'),JSON.stringify(manifest,null,2));
   app=await createApp({
     dataDir:path.join(temp,'data'),
-    triposrAdapter:{run(){workerCalls++;throw new Error('FORBIDDEN: no GPU inference in this test');}}
+    triposrAdapter:{run(){workerCalls++;throw new Error('FORBIDDEN: no GPU inference in this test');}},
+    gpuLeaseRoot:path.join(temp,'gpu-coordination')
   });
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
   const base='http://127.0.0.1:'+app.server.address().port;

@@ -54,7 +54,8 @@ async function fixtureEnv(adapter, geometryReviewer) {
   const app=await createApp({
     dataDir:path.join(dir,'data'),
     fixtureFile:path.join(dir,'fixture.glb'),
-    stepMs:25,triposrAdapter:adapter,geometryReviewer
+    stepMs:25,triposrAdapter:adapter,geometryReviewer,
+    gpuLeaseRoot:path.join(dir,'gpu-coordination')
   });
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
   const base='http://127.0.0.1:'+app.server.address().port;

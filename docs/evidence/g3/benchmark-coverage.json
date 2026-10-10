@@ -1,0 +1,146 @@
+{
+  "schema": "local3d.g3.benchmark-coverage.v1",
+  "source": "SHA_LOCKED_NINE_REFERENCE_FIXTURES",
+  "modelInferenceExecuted": false,
+  "originalSyntheticSources": 8,
+  "upstreamLicensedSourceCount": 1,
+  "fixtureCount": 9,
+  "fixturesWithRecordedOutput": 1,
+  "fixturesWithPreviouslyObservedE2ERun": 1,
+  "fixturesAwaitingRecordedOutput": 8,
+  "excludedUnverifiedLocalJobs": 0,
+  "providersRepresented": [
+    "triposr-local"
+  ],
+  "reportingCaveats": [
+    "Existing G2 chair is a single previous licensed true-local run, NOT a multi-image benchmark",
+    "Original synthetic ground-truth GLBs are the SOURCE scenes, never AI-generated predictions",
+    "Searched-view silhouette IoU is a post-hoc exploratory metric, not known-camera accuracy",
+    "PyTorch peak reserved VRAM is NOT total GPU utilization or an exclusive GPU reservation",
+    "SHA-linked local job records are not independent hardware-execution attestations",
+    "No known physical unit, wall-thickness, structural-strength or printing qualification",
+    "No external engine was installed or benchmarked in this coverage report"
+  ],
+  "printQualified": false,
+  "fixtureResults": [
+    {
+      "fixtureId": "01-orb-alpha",
+      "category": "simple_convex",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "02-orb-opaque",
+      "category": "same_geometry_opaque_background",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "8b93d8364b3859a80b241f0fff3c2851e81e0d39857de61067313a36e606382e",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "03-hollow-vase",
+      "category": "hollow_cavity",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "07ce048e345ac5bd0732af1eb2120027e989538da9b6640b81fd1f6bd39f86ee",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "04-torus-hole",
+      "category": "through_hole",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "a50f5fa8bdf8e124814196ca31b785c4658df765da53e17f5aea8d23497dad8d",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "05-disconnected-pair",
+      "category": "separated_objects",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "50803a62449b0a0a5b646ab4516018b7cc6a52860eee3273a184aedf1893e885",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "06-thin-chair",
+      "category": "thin_parts_and_open_silhouette",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "bba81747e772317941ec7141ba3ca50edd45cf77f4370ce32d3756fb798eed47",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "07-gear-opaque",
+      "category": "toothed_outline",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "7b320f7e979ca0b175c33eb0675f98a8379173c90a07a3420a8dd2ce882339d2",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "08-arch-opaque",
+      "category": "overhang_and_gaps",
+      "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+      "sourceSha256": "1a0fd282474e58009a1630df1692a4197e7aa1b17800fd767940534483e982e4",
+      "sourceReference3d": "ORIGINAL_SYNTHETIC_SCENE_NOT_MODEL_PREDICTION",
+      "runs": [],
+      "coverage": "AWAITING_EXPLICIT_MANUAL_GPU_RUN"
+    },
+    {
+      "fixtureId": "09-upstream-chair",
+      "category": "real_upstream_input_baseline",
+      "sourceRights": "UPSTREAM_TRIPOSR_MIT_SAMPLE",
+      "sourceSha256": "2503c12a74419d91a4c6c9f1affc48fee6e2b8b9091956ca6211e91ada57b5bf",
+      "sourceReference3d": "NOT_AVAILABLE",
+      "runs": [
+        {
+          "providerId": "triposr-local",
+          "providerPinnedSourceCommit": "107cefdc244c39106fa830359024f6a2f1c78871",
+          "weightsRevision": "5b521936b01fbe1890f6f9baed0254ab6351c04a",
+          "weightsSha256": "429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee",
+          "sourceSha256": "2503c12a74419d91a4c6c9f1affc48fee6e2b8b9091956ca6211e91ada57b5bf",
+          "modelSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+          "modelBytes": 400452,
+          "elapsedSeconds": 25.51,
+          "peakCudaReservedMiB": 2058,
+          "gpuName": "NVIDIA GeForce RTX 4080 SUPER",
+          "vertices": 9986,
+          "triangles": 19972,
+          "geometryUnits": "UNKNOWN_UNCALIBRATED",
+          "printQualified": false,
+          "evidenceLane": "G2_PREVIOUS_REAL_LOCAL_API_CHROME_PROOF",
+          "geometry": {
+            "audit": "INDEPENDENT_OFFLINE_CPU_TOPOLOGY",
+            "objectCount": 1,
+            "connectedComponents": 1,
+            "boundaryEdges": 0,
+            "nonManifoldEdges": 0,
+            "watertight": true,
+            "positiveVolume": false,
+            "wallThickness": "NOT_TESTED",
+            "realWorldScale": "UNKNOWN_UNCALIBRATED",
+            "selfIntersections": "NOT_TESTED",
+            "printQualified": false
+          },
+          "silhouette": {
+            "status": "POST_HOC_BEST_OF_24_VIEWS_EXPLORATORY_ONLY",
+            "bestIoU": 0.82448,
+            "testedViews": 24,
+            "calibratedCamera": false,
+            "independentGroundTruth3d": false
+          }
+        }
+      ],
+      "coverage": "PREVIOUSLY_OBSERVED_REAL_E2E_OUTPUT"
+    }
+  ]
+}

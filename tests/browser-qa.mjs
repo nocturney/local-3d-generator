@@ -37,6 +37,8 @@ try {
   const result = await page.goto(base, { waitUntil:'networkidle' });
   assert.equal(result.status(),200);
   await page.locator('#healthStatus').getByText('READY').waitFor({timeout:6000});
+  await page.waitForFunction(()=>document.querySelector('#benchmarkProgress')?.textContent?.includes('1 / 9'),null,{timeout:8000});
+  assert.equal(await page.locator('#benchmarkProgress').getAttribute('dir'),'ltr','Benchmark fractions must not be reordered by Hebrew RTL');
   await page.locator('#emptyState').waitFor();
   assert.equal(await page.locator('.history-item').count(),0);
   assert.equal(await page.locator('#metricStatus').textContent(),'אין משימה');

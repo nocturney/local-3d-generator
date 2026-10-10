@@ -37,6 +37,16 @@ Close the terminal with Ctrl+C to stop; automatic restart and OS boot start are 
 - Original isolated standalone pilot remains at runtime/pilots and runtime/pilot-logs; do not overwrite it.
 - Source and weights never committed. Do not copy proprietary images, downloaded model checkpoint or executable venv into GitHub.
 
+## G3.2 read-only management and cross-process GPU lease
+
+- npm run audit:g3:gpu-lock — read-only shared lease diagnostic. If locked, investigate existing LOCAL3D/Python workers and Office/NVIDIA GPU usage. **No automated lock deletion or stale lock reclamation**.
+- npm run benchmark:g3 — SHA-checks licensed nine-input catalog and previous G2 real chair provenance. Public coverage snapshot stays 1 prior observed real sample / 8 unrun; refuses silent overwrite of different evidence.
+- node scripts/g3-collect-benchmark.mjs --jobs-dir runtime/data-g2-manual/jobs — optional PRIVATE matching of local complete job records; writes an append-only fingerprinted private snapshot under gitignored runtime/qa/g3; does not expose client names/prompts/IDs. Local SHA-provenance is not independent proof of GPU execution.
+- npm run audit:g3:storage — read-only metadata storage summary (job counts, sizes, status/age); sanitized report under gitignored runtime/qa/g3. Never deletes source images, trims history or enforces a quota.
+- G1 normal launch unaffected; all G2 manual servers use the SAME project-wide GPU lock regardless of port/data folder. Concurrent G2 manual requests return 409 instead of queuing. The lock is not a replacement for live Office/GPU no-conflict checks.
+
+More: docs/G3_2_SAFETY_BENCHMARK_2026-10-10.md.
+
 ## G3 optional CPU mesh review — NO GPU activity
 
 On a **completed** manual TripoSR job in http://127.0.0.1:4179, press "סריקת רשת (CPU)". This runs the fixed offline Python Trimesh scanner on the existing output.glb and adds a geometry-qa.json report to the job manifest. "סריקת רשת הושלמה" means the scan completed, **not** that the model is safe to print. No G1 demo job can request this action.

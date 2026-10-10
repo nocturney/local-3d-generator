@@ -49,3 +49,16 @@ footer{height:45px;display:flex;align-items:center;justify-content:space-between
 .gpu-consent input{accent-color:#78e6d1;width:16px;height:16px;flex:none;margin-top:3px}
 .gpu-consent p{margin-top:7px;color:#bcb8a7;font-size:10px;line-height:1.65}
 .geometry-summary{margin-top:11px;padding:11px 12px;border:1px solid #76673d;background:#25291f;color:#e0d5ae;border-radius:7px;line-height:1.7;font-size:11px}
+
+/* G3.2 read-only benchmark progress; never offers an inference trigger. */
+.benchmark-box{border:1px solid #364b57;background:#12232d;border-radius:9px;margin-top:16px;padding:12px;font-size:11px;color:#b5c8d0}
+.benchmark-head{display:flex;justify-content:space-between;align-items:center;gap:6px;color:#adced1}
+.benchmark-head strong{font-size:10px;letter-spacing:.5px}
+.benchmark-head span{font-size:10px;color:#bdeadd}
+.benchmark-track{height:7px;margin:11px 0 10px;background:#32404c;border-radius:10px;overflow:hidden}
+.benchmark-track div{height:100%;width:0;background:#75d1b5;border-radius:10px;transition:width .2s}
+.benchmark-box p{margin:7px 0 9px;line-height:1.65;color:#c2d4d6}
+.benchmark-box summary{cursor:pointer;font-weight:650;color:#b7e2db}
+.benchmark-box details ul{padding-inline-start:16px;margin:8px 0;line-height:1.75}
+.benchmark-box details li{margin-bottom:5px}
+.benchmark-disclaimer{margin-top:10px;padding-top:9px;border-top:1px solid #354b55;color:#92a9af;font-size:10px;line-height:1.6}

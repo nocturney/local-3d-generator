@@ -37,6 +37,14 @@ G2: explicitly started Windows manual local session → browser per-job GPU cons
 - Browser G1 and opt-in G2 mock tests have 0 page errors and no remote URL requests.
 - Single real G2 local GPU image → verified GLB and DRAFT report → real Chrome 3D preview on Windows; manual server and worker exited after acceptance.
 
+## G3.2 resource and privacy hardening
+
+G2 now uses an additional atomic fixed project-wide runtime/gpu-coordination/triposr-gpu.lock **across distinct LOCAL3D Node servers**. Per-process atomic reservation remains. A second server receives 409 without creating a GPU job. Owner-specific release occurs after runner process exit, and an unclear/crashed lock is NEVER auto-stolen: a dead parent may leave a child worker alive. Read-only GPU lease diagnostic: npm run audit:g3:gpu-lock. This is cooperative LOCAL3D-only locking, NOT Windows GPU isolation or an Office scheduler.
+
+The nine-fixture public benchmark report is a fixed SHA-verified licensed snapshot, read-only via GET /v1/benchmarks/g3. It contains no prompts/job IDs/client paths. Optional private local-job scans validate fixed artifact hashes and never export filenames, prompts, paths or job UUIDs; they are still NOT cryptographic hardware attestations; new local snapshots use SHA-suffixed filenames to avoid overwriting earlier audit evidence. Any unknown data is excluded.
+
+Storage auditing (npm run audit:g3:storage) reads only aggregate metadata and writes its sanitized report into gitignored runtime/qa. It does NOT enforce quotas, delete private media or create backups. OS file permissions, process isolation, retention consent/policy, SBOM/CVE audit and sandboxing remain open.
+
 ## G3 CPU geometry reviewer boundary
 
 An explicitly requested POST /v1/jobs/:uuid/review is allowed ONLY on completed real TripoSR GLB with manifest-matching bytes/SHA, under the already opt-in Windows session. It executes a fixed, installed Python script via execFile (no shell or client path) with a bounded 35-second timeout and 64MiB GLB size cap, and validates the output schema/sha/qualification. A second review for the same job returns 409 instead of spawning a duplicate process. No new PyTorch/CUDA import, printer, remote fetch, or GPU lease is part of G3 scanning. A new geometry-qa asset appears only after independent provenance checks and a persisted manifest update. The browser shows signed-volume/closed-shell results but keeps printQualified=false.

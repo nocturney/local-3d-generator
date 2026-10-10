@@ -7,10 +7,12 @@ import { randomUUID, createHash } from 'node:crypto';
 import { ensureFixture } from './fixture.js';
 import { createTripoSRAdapter } from './triposr-adapter.js';
 import { createGeometryReviewer } from './geometry-review.js';
+import { createGpuLease, LeaseUnavailable } from './gpu-lease.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
 const DEFAULT_FIXTURE = path.join(ROOT, 'fixtures', 'demo-sculpture.glb');
+const G3_PUBLIC_COVERAGE = path.join(ROOT, 'docs', 'evidence', 'g3', 'benchmark-coverage.json');
 const MAX_BODY_BYTES = 12 * 1024 * 1024;
 const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 const MAX_QUEUE = 30;
@@ -92,6 +94,7 @@ export async function createApp(options = {}) {
   // requires explicit operator opt-in before process launch, and per-job consent.
   const realAdapter = options.triposrAdapter || (process.platform === 'win32' && process.env.L3D_ENABLE_TRIPOSR === '1' ? createTripoSRAdapter() : null);
   const geometryReviewer = realAdapter ? (options.geometryReviewer || createGeometryReviewer()) : null;
+  const gpuLease = realAdapter ? (options.gpuLease || createGpuLease({root: options.gpuLeaseRoot})) : null;
   const jobsDir = path.join(dataDir, 'jobs');
   const logsDir = path.join(dataDir, 'audit');
   await fs.mkdir(jobsDir, { recursive: true });
@@ -186,6 +189,11 @@ export async function createApp(options = {}) {
       job.error = cancelled ? null : { code: error.code || 'G2_WORKER_FAILED', message: 'Real local inference did not complete; no output approved' };
       await persist(job); await audit(cancelled ? 'real_cancelled' : 'real_failed', job.id, { code: error.code || 'G2_WORKER_FAILED' });
     } finally {
+      const token = realRun?.jobId === job.id ? realRun : null;
+      if (token?.lease) {
+        try { await token.lease.release(); }
+        catch (error) { console.error('G2 shared GPU lease release requires operator attention:', error.code || 'LEASE_ERROR'); }
+      }
       if (realRun?.jobId === job.id) realRun = null;
     }
   }
@@ -278,7 +286,14 @@ export async function createApp(options = {}) {
     const id = randomUUID();
     // Reserve GPU lease BEFORE the first asynchronous disk operation.
     // Otherwise concurrent POST requests could both pass the busy check.
-    if (isReal) realRun = { jobId: id, controller: new AbortController(), promise: null };
+    let token = null;
+    if (isReal) {
+      let finishInitialization;
+      const initialized = new Promise(resolve => { finishInitialization = resolve; });
+      token = { jobId: id, controller: new AbortController(), promise: null,
+        lease: null, initialized, finishInitialization };
+      realRun = token;
+    }
     const j = {
       schema: 'local3d.job.v1', id, providerId: payload.providerId, mode: payload.mode, prompt,
       simulation: !isReal, seed: isReal ? null : 12026, status: 'queued', stage: 'queued', progress: 0,
@@ -288,6 +303,22 @@ export async function createApp(options = {}) {
     };
     // No user-provided path or URL is used to construct a disk location.
     try {
+      if (isReal) {
+        let permit;
+        try {
+          permit = await gpuLease.acquire({jobId:id});
+        } catch (error) {
+          if (error instanceof LeaseUnavailable) {
+            fail(error.code, error.code === 'G2_SHARED_GPU_BUSY' ? 409 : 503, error.message);
+          }
+          throw error;
+        }
+        if (closing || token.controller.signal.aborted || realRun !== token) {
+          await permit.release();
+          fail('G2_SHUTDOWN', 503, 'Manual session stopped before GPU lease was ready');
+        }
+        token.lease = permit;
+      }
       await fs.mkdir(jobFolder(id), { recursive: true });
       if (image) {
         await fs.writeFile(path.join(jobFolder(id), 'input' + imageInfo.ext), image, { flag: 'wx' });
@@ -299,9 +330,17 @@ export async function createApp(options = {}) {
       else { pending.push(id); queueNext(); }
       return publicJob(j);
     } catch (error) {
-      if (isReal && realRun?.jobId === id && !realRun.promise) realRun = null;
+      if (isReal && realRun === token && !token.promise) {
+        realRun = null;
+        if (token.lease) {
+          try { await token.lease.release(); }
+          catch (releaseError) { console.error('G2 lease requires operator attention:', releaseError.code || 'LEASE_ERROR'); }
+        }
+      }
       if (!j.assets.some(a => a.id === 'source-image')) jobs.delete(id);
       throw error;
+    } finally {
+      if (token) token.finishInitialization();
     }
   }
   async function cancelJob(job) {
@@ -413,6 +452,16 @@ export async function createApp(options = {}) {
         inference: Boolean(realAdapter), status: realAdapter ? 'G2_MANUAL_OPT_IN' : 'G1_DEMO', jobs: jobs.size,
         gpuBusy: Boolean(realRun), autoGpuQueue: false, printing: false
       });
+      if (req.method === 'GET' && pathname === '/v1/benchmarks/g3') {
+        const report = JSON.parse(await fs.readFile(G3_PUBLIC_COVERAGE, 'utf8'));
+        if (report.schema !== 'local3d.g3.benchmark-coverage.v1' ||
+            report.fixtureCount !== 9 || report.modelInferenceExecuted !== false ||
+            report.printQualified !== false ||
+            !Array.isArray(report.fixtureResults) || report.fixtureResults.length !== 9) {
+          fail('G3_BENCHMARK_UNVERIFIED', 503, 'Stored quality coverage is unavailable');
+        }
+        return reply(res, 200, report);
+      }
       if (req.method === 'GET' && pathname === '/v1/providers') return reply(res, 200, {
         schema: 'local3d.providers.v1',
         providers: PROVIDERS.map(p => p.id === 'triposr-local' ? {
@@ -458,9 +507,12 @@ export async function createApp(options = {}) {
   const close = async () => {
     closing = true;
     if (realRun) {
-      realRun.controller.abort();
+      const token = realRun;
+      token.controller.abort();
+      // Wait for even a not-yet-persisted GPU reservation before shutdown.
+      await token.initialized;
       // Adapter must kill its process tree before the HTTP server closes.
-      if (realRun.promise) await realRun.promise.catch(() => {});
+      if (token.promise) await token.promise.catch(() => {});
     }
     if (activeTimer) clearTimeout(activeTimer);
     // Do not close the job persistence layer while a bounded CPU reviewer

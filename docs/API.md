@@ -2,6 +2,10 @@
 
 Bind: **127.0.0.1 only**; default G1 4177, explicit G2 Windows manual session 4179. No CORS, no printer, remote URLs, paid providers or unattended GPU scheduling. JSON request and response formats are authoritative.
 
+## Read-only G3 source-quality coverage
+
+GET /v1/benchmarks/g3 returns schema local3d.g3.benchmark-coverage.v1 from the fixed licensed, publicly committed benchmark-coverage.json. It is a **stored snapshot** of nine reference sources: one previously observed true-local TripoSR E2E result, eight cases with no recorded model. It is not a live provider status, does not scan private user files and cannot trigger inference. Distinguishes original synthetic source 3D from generated model outputs, and hash-matched local records from independent GPU execution proof. All manufacturing flags remain false.
+
 ## Providers
 
 GET /v1/providers returns identity, version, inputTypes, outputTypes, hardwareNeeds, licenseLane, simulation, status and canStart/canCancel:
@@ -45,6 +49,8 @@ G1 stages: demo_intake, demo_processing, demo_packaging, fixture_ready (simulate
 G2 stages: g2_gpu_guard, g2_verify_sources, g2_preprocess_image, g2_loading_model, g2_infer_image, g2_extract_mesh, g2_export_glb, g2_ready_draft; stage percentages are coarse progress milestones, NOT token or network telemetry.
 
 ## Safety and errors
+
+Cross-process manual GPU contention returns 409 G2_SHARED_GPU_BUSY. An unverified filesystem lease root or suspicious stale lock blocks new G2 work; do not try to auto-recover. Lease inspection is read-only (npm run audit:g3:gpu-lock) and is not an HTTP write endpoint.
 
 Typical errors: {error:{code,message}}. Codes include BAD_JSON, BAD_IMAGE, PROMPT_REQUIRED, PROVIDER_UNAVAILABLE, G2_CONFIRM_REQUIRED, G2_IMAGE_ONLY, G2_BUSY, ALREADY_FINISHED, HOST_DENIED, ORIGIN_DENIED, INVALID_JOB_ID, NOT_FOUND, CAPACITY. Engine failures are reflected in persisted job status/error (codes such as G2_GPU_BUSY, G2_OFFICE_BUSY, G2_GPU_LIMIT, G2_TIMEOUT, G2_WORKER_FAILED) without exposing sensitive stdout/stderr or local paths.
 

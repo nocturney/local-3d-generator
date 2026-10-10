@@ -240,7 +240,7 @@ async function loadProviders() {
     el('triposrState').textContent = real?.canStart ? 'ידני · זמין' : 'כבוי';
     el('realProviderHealth').textContent = real?.canStart ? 'G2 · באישור בלבד' : 'כבוי (G1)';
     el('sessionBadge').textContent = real?.canStart ? 'G2 · MANUAL ONLY' : 'G1 · DEMO MODE';
-    el('noticeVersion').textContent = real?.canStart ? 'v0.2.0 / G2' : 'v0.2.0 / G1';
+    el('noticeVersion').textContent = real?.canStart ? 'v0.2.2 / G2' : 'v0.2.2 / G1';
     el('footerBuild').textContent = real?.canStart ? 'LOCAL3D / G2 MANUAL BUILD' : 'LOCAL3D / G1 DEVELOPMENT BUILD';
     if (real?.canStart) {
       el('noticeText').textContent = 'G2 בהרשאה ידנית: TripoSR משתמש ב־GPU רק אחרי בחירה ואישור לכל משימה. אין תור AI אוטונומי. המודלים הם DRAFT ואינם מאושרים להדפסה.';
@@ -353,7 +353,49 @@ el('copyManifest').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(JSON.stringify(job,null,2)); toast('Manifest הועתק ללוח.'); }
   catch { toast('לא ניתן לגשת ללוח ההעתקה בדפדפן.'); }
 });
+async function loadBenchmark() {
+  try {
+    const report = await api('/v1/benchmarks/g3');
+    if (report.schema !== 'local3d.g3.benchmark-coverage.v1' ||
+        report.fixtureCount !== 9 || !Array.isArray(report.fixtureResults)) {
+      throw new Error('Unsupported benchmark coverage report');
+    }
+    const count = report.fixturesWithPreviouslyObservedE2ERun;
+    el('benchmarkProgress').textContent = count + ' / ' + report.fixtureCount;
+    el('benchmarkFill').style.width = (100 * count / report.fixtureCount).toFixed(2) + '%';
+    el('benchmarkSummary').textContent = count + ' הרצת AI קודמת שנצפתה · ' +
+      report.fixturesAwaitingRecordedOutput + ' מקרי בדיקה ללא תוצר · נתונים שמורים בלבד';
+    const names = {
+      '01-orb-alpha':'כדור · רקע שקוף',
+      '02-orb-opaque':'כדור · רקע אטום',
+      '03-hollow-vase':'אגרטל חלול',
+      '04-torus-hole':'טבעת עם חור',
+      '05-disconnected-pair':'שני עצמים מופרדים',
+      '06-thin-chair':'כיסא בעל חלקים דקים',
+      '07-gear-opaque':'גלגל שיניים',
+      '08-arch-opaque':'קשת עם חלל',
+      '09-upstream-chair':'כיסא מקור · TripoSR'
+    };
+    const ul = el('benchmarkCases');
+    ul.replaceChildren();
+    for (const item of report.fixtureResults) {
+      const li = document.createElement('li');
+      const label = names[item.fixtureId] || item.fixtureId;
+      const state = item.coverage === 'PREVIOUSLY_OBSERVED_REAL_E2E_OUTPUT'
+        ? 'תוצר AI קודם, DRAFT'
+        : item.coverage === 'HASHED_LOCAL_JOB_NO_INDEPENDENT_GPU_ATTESTATION'
+          ? 'רשומת מודל מקומית · לא אומתה חיצונית'
+          : 'ממתין לעיבוד AI';
+      li.textContent = label + ' — ' + state;
+      ul.append(li);
+    }
+  } catch {
+    el('benchmarkProgress').textContent = 'לא זמין';
+    el('benchmarkSummary').textContent = 'אין כרגע דוח ביצועים מאומת. לא תופעל עבודת AI.';
+  }
+}
 initViewer();
 await loadProviders();
+await loadBenchmark();
 await refresh();
 setInterval(refresh, 1000);

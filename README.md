@@ -39,6 +39,14 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
 - Tests as of G3 preview: **33 Node** API/geometry/security tests on Windows, **15 Python** tests (5 G2 + 10 G3), 7 G1 browser phases, 6 G2/G3 mock-provider browser phases, one prior real G2 GPU end-to-end smoke and one actual G3 CPU-only review of the existing GLB. No GPU model is run by npm test/test:all.
 
+## G3.2 — benchmark coverage and shared GPU protection (v0.2.2)
+
+Local-first safety now includes an atomic GPU lease across multiple manually started LOCAL3D Node servers, in addition to the original in-process/Office/NVIDIA guards. If another G2 server owns the lease, a new GPU request is rejected (409) without scheduling the job. After a crash, locks are **not automatically cleared**. Inspect with npm run audit:g3:gpu-lock; do not bypass it without checking for worker processes.
+
+A read-only, SHA-verified [nine-source benchmark coverage snapshot](docs/evidence/g3/benchmark-coverage.json) reports **1 previously observed real G2 chair result and 8 unrun images**, not nine AI successes. In the UI, the new G3 QUALITY BENCHMARK panel shows these historical results, never a GPU trigger. npm run benchmark:g3 reproduces the public snapshot; an optional --jobs-dir flag writes only to gitignored private runtime. npm run audit:g3:storage reports existing job storage size/age without deleting anything.
+
+See [G3.2 security + operations](docs/G3_2_SAFETY_BENCHMARK_2026-10-10.md). Still no print certification, multi-user OS sandbox, second provider installation or automatic benchmark run.
+
 ## G3 preview — CPU geometry quality checks (no new GPU inference)
 
 A new manual **סריקת רשת (CPU)** button on completed TripoSR jobs runs independent topology inspection in the local isolated Python environment. It checks GLB source SHA, connected components, open/nonmanifold edges, signed volume, winding and face quality; exposes a separate downloadable **geometry-qa.json** asset, with explicit unknown real-world units and wall thickness. It NEVER print-qualifies a model.

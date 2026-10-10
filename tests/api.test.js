@@ -38,6 +38,18 @@ test('health stays local, only fixture provider can run', async () => {
   assert.equal(providers.value.providers.filter(x => x.canStart).length, 1);
   assert.equal(providers.value.providers.find(x => x.id === 'triposr-local').status, 'STAGED_DISABLED');
 });
+test('G3 benchmark coverage is public read-only fixture metadata, never runs GPU', async () => {
+  const report = await req('/v1/benchmarks/g3');
+  assert.equal(report.status,200);
+  assert.equal(report.value.schema,'local3d.g3.benchmark-coverage.v1');
+  assert.equal(report.value.fixtureCount,9);
+  assert.equal(report.value.fixturesWithPreviouslyObservedE2ERun,1);
+  assert.equal(report.value.fixturesAwaitingRecordedOutput,8);
+  assert.equal(report.value.modelInferenceExecuted,false);
+  assert.equal(report.value.printQualified,false);
+  assert.equal((await req('/v1/jobs')).value.jobs.length,0);
+});
+
 test('valid image -> queued/running -> GLB + non-printable QA report', async () => {
   const created = await req('/v1/jobs', 'POST', {
     providerId:'fixture-demo', mode:'image', prompt:'ornamental sculpture',
