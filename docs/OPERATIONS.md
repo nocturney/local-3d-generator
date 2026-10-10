@@ -1,5 +1,16 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.24: immutable public security REVIEW queue — no new OSV/network/GPU/install
+
+Builds source-SHA-stable manual review ordering from prior G3.22 static app-path evidence and full G3.23 public 104-entry/64-alias-group metadata. These are workflow queues, NOT vulnerability severities or fixed package acceptance: Pillow direct byte decoder groups reviewed first (16), pinned Transformers DINO ViT loader groups (29), Torch checkpoint/native tensor runtime groups (19). Three representative official GHSA severity/patch-version examples only; all individual codepath reachability remains UNKNOWN.
+
+CPU-only deterministic offline replay and tests:
+
+    node scripts/g3-24-assemble-security-review-queue.mjs
+    node --test tests/g324-security-review-queue.test.js
+
+First immutable sanitized proof created with --write-public, subsequent no-flag replay refuses byte SHA changes. [Method](G3_24_STATIC_SECURITY_REVIEW_PRIORITY_QUEUE_2026-10-10.md), [public QA proof](evidence/g3/g3-24-security-review-queue.json). A future isolated dependency shadow needs separate authorization; current G2 venv/Pillow 10.1.0/Transformers 4.35.0/Torch CUDA 2.5.1 pins unchanged. No automated GPU, Office, cloud, printer or OS security changes. Issue #4 and #3 OPEN.
+
 ## G3.23: full public OSV ID/alias census — explicit public query, offline replay
 
 G3.23 performed a one-time HTTPS POST to public OSV.dev for ONLY preverified public package/version pairs Pillow 10.1.0, transformers 4.35.0, torch 2.5.1. Saved strict sanitized public ID/alias/fixed-range metadata under gitignored runtime/qa/g3/osv-full-g323; no client/model media or secrets sent. G3.5 historical old 104 matches had only 36 actual IDs saved; current full response has 104 IDs and all old 36 appear. Strict alias-linking groups 104 returned records into 64 groups (NOT confirmed distinct flaws). No remediation/fix or actual exploitability claim.

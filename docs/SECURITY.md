@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.24: review queue priority does not imply advisory exploitability or mitigated runtime
+
+G3.24 cross-links 104 current public OSV records (64 alias groups) to prior SHA-verified G3.22 source calls: 16 Pillow direct-image-decoder related groups get highest REVIEW PRIORITY; 29 Transformers DINO ViT config and 19 Torch weights-only/local native tensor groups are next. This is an application workflow ordering, NOT severity, actual exploitability, 64 distinct bugs, remediation, or untrusted user input authorization. All 104 per-advisory trigger conditions remain UNKNOWN until individually verified.
+
+Only three representative official GHSA samples have explicit published CVSS/fix versions, and the named exploit API was NOT directly called in prior narrow audited source; no assertion about transitive internals. In particular, CVSS critical Pillow ImageMath.eval finding is not proof that the project's Image.open parse API exposes THAT specific trigger; real Pillow image parser still receives input bytes and other native decoder bugs are unreviewed.
+
+G2 live packages and DINO/TripoSR CUDA stack unchanged. A documented FUTURE shadow compatibility prereq is not an authorization to install packages, run model inference or alter OS security, firewall/egress or Office. Issue #4 and #3 OPEN, printQualified=false. [Method](G3_24_STATIC_SECURITY_REVIEW_PRIORITY_QUEUE_2026-10-10.md) / [public source SHA queue](evidence/g3/g3-24-security-review-queue.json).
+
 ## G3.23: full public OSV identity is not remediation
 
 G3.23 explicitly retrieved PUBLIC PyPI/version-only full advisory ID+alias lists: original old G3.5 report had only 36/104 saved IDs; fresh 2026-10-10 query returned full 104 current records (Pillow 32, transformers 50, torch 22), matching all 36 prior samples. Conservative alias-link grouping yields **64 related cross-reference groups**, NOT 64 distinct physical exploits or unique vulnerabilities. Public affected-range fixed-event metadata does NOT establish the currently locked/GPU-compatible installed packages are fixed, nor does absence of a fixed event prove absence of a fix.

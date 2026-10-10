@@ -1,0 +1,1282 @@
+{
+  "schema": "local3d.g3.24.security-review-queue-not-remediation.v1",
+  "previousFullG323EvidenceSha256": "e2246f5d2c00aec62232afe3054d132f0f5f815b8cd10ff3d78b554c02d250ca",
+  "previousStaticG322EvidenceSha256": "b44a35942fe5f425f3d5d981f52f5618c068a92d3dad71a130794fab7268e1ca",
+  "sourceSnapshotDatetime": "2026-10-10T17:02:01.923Z",
+  "fullPublicRecordsAccountedFor": 104,
+  "publicAliasGroupsAccountedFor": 64,
+  "priorityIsTriageOrderNotSeverityOrConfirmedExploit": true,
+  "groupTierCounts": {
+    "REVIEW_FIRST_REAL_IMAGE_DECODER": 16,
+    "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER": 29,
+    "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME": 19
+  },
+  "queue": [
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-3f63-hfp8-52jq",
+        "PYSEC-2026-457"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-3f63-hfp8-52jq",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-44wm-f244-xhp3",
+        "PYSEC-2026-1793"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-44wm-f244-xhp3",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-45hq-cxwh-f6vc",
+        "PYSEC-2026-2255"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-45hq-cxwh-f6vc",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-4x4j-2g7c-83w6",
+        "PYSEC-2026-2257"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-4x4j-2g7c-83w6",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-5x94-69rx-g8h2",
+        "PYSEC-2026-2254"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-5x94-69rx-g8h2",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-62p4-gmf7-7g93",
+        "PYSEC-2026-3493"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-62p4-gmf7-7g93",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-6r8x-57c9-28j4",
+        "PYSEC-2026-3451"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-6r8x-57c9-28j4",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-8v84-f9pq-wr9x",
+        "PYSEC-2026-2253"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-8v84-f9pq-wr9x",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-9hw9-ch79-4vh6",
+        "PYSEC-2026-3453"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-9hw9-ch79-4vh6",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-fj7v-r99m-22gq",
+        "PYSEC-2026-3494"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-fj7v-r99m-22gq",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-jjj6-mw9f-p565",
+        "PYSEC-2026-3495"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-jjj6-mw9f-p565",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-phj9-mv4w-65pm",
+        "PYSEC-2026-2256"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-phj9-mv4w-65pm",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-r73j-pqj5-w3x7",
+        "PYSEC-2026-2874"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-r73j-pqj5-w3x7",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-vjc4-5qp5-m44j",
+        "PYSEC-2026-3496"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-vjc4-5qp5-m44j",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-wjx4-4jcj-g98j",
+        "PYSEC-2026-165"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-wjx4-4jcj-g98j",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_FIRST_REAL_IMAGE_DECODER",
+      "tierRank": 1,
+      "reasonToReview": "ACTUAL_SOURCE_IMAGE_BYTES_DECODED_IN_PINNED_PILLOW_LIBRARY",
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-xj96-63gp-2gmr",
+        "PYSEC-2026-3454"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-xj96-63gp-2gmr",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-3749-ghw9-m3mg",
+        "PYSEC-2025-191"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-3749-ghw9-m3mg",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-53q9-r3pm-6pq6",
+        "PYSEC-2025-41"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-53q9-r3pm-6pq6",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-887c-mr87-cxwp",
+        "PYSEC-2026-1970"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-887c-mr87-cxwp",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-c678-jfcj-6jmf"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "GHSA-c678-jfcj-6jmf",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-f4hp-rmr7-r7v8"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "GHSA-f4hp-rmr7-r7v8",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-qfhq-4f3w-5fph"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "GHSA-qfhq-4f3w-5fph",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-rrmf-rvhw-rf47"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "GHSA-rrmf-rvhw-rf47",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-vgrw-7cvw-pwgx"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "GHSA-vgrw-7cvw-pwgx",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-x3gm-94wq-g975"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "GHSA-x3gm-94wq-g975",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-198"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-198",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-203"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-203",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-204"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-204",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-205"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-205",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-206"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-206",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-207"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-207",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-208"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-208",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-209"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-209",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2026-139"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2026-139",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_CHECKPOINT_AND_NATIVE_TENSOR_RUNTIME",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_WEIGHT_DESERIALIZATION_AND_NATIVE_TENSOR_INFERENCE_PIPELINE",
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2026-2286"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2026-2286",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-29pf-2h5f-8g72",
+        "PYSEC-2026-2289"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-29pf-2h5f-8g72",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-37mw-44qp-f5jm",
+        "PYSEC-2026-1977"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-37mw-44qp-f5jm",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-37q5-v5qm-c9v8",
+        "PYSEC-2026-1978"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-37q5-v5qm-c9v8",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-3863-2447-669p",
+        "PYSEC-2023-300"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-3863-2447-669p",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-4w7r-h757-3r74",
+        "PYSEC-2026-1980"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-4w7r-h757-3r74",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-59p9-h35m-wg4g",
+        "PYSEC-2026-1981"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-59p9-h35m-wg4g",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-69w3-r845-3855",
+        "PYSEC-2026-2288"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-69w3-r845-3855",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-6rvg-6v2m-4j46",
+        "PYSEC-2026-1982"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-6rvg-6v2m-4j46",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-9356-575x-2w9m",
+        "PYSEC-2026-1983"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-9356-575x-2w9m",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-fgcw-684q-jj6r",
+        "PYSEC-2026-2290"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-fgcw-684q-jj6r",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-fpwr-67px-3qhx",
+        "PYSEC-2026-1984"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-fpwr-67px-3qhx",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-hxxf-235m-72v3",
+        "PYSEC-2024-229"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-hxxf-235m-72v3",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-jjph-296x-mrcr",
+        "PYSEC-2026-1985"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-jjph-296x-mrcr",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-phhr-52qp-3mj4",
+        "PYSEC-2026-1986"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-phhr-52qp-3mj4",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-q2wp-rjmx-x6x9",
+        "PYSEC-2026-1987"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-q2wp-rjmx-x6x9",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-qq3j-4f4f-9583",
+        "PYSEC-2025-40"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-qq3j-4f4f-9583",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-qxrp-vhvm-j765",
+        "PYSEC-2024-227"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-qxrp-vhvm-j765",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-rcv9-qm8p-9p6j",
+        "PYSEC-2026-1988"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-rcv9-qm8p-9p6j",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-v68g-wm8c-6x7j",
+        "PYSEC-2023-301"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-v68g-wm8c-6x7j",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-wrfc-pvp9-mr9g",
+        "PYSEC-2024-228"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-wrfc-pvp9-mr9g",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "GHSA-xrqw-3rrv-vx5w",
+        "PYSEC-2026-3929"
+      ],
+      "publicGroupRecordCount": 2,
+      "groupTitleIdentifier": "GHSA-xrqw-3rrv-vx5w",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-211"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-211",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-212"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-212",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-213"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-213",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-214"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-214",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-215"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-215",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-216"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-216",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-217"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-217",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    },
+    {
+      "reviewTier": "REVIEW_PINNED_MODEL_CONFIG_AND_DYNAMIC_LOADER",
+      "tierRank": 2,
+      "reasonToReview": "PINNED_LOCAL_DINO_VIT_CONFIG_IMPORT_AND_DYNAMIC_PACKAGE_IMPLEMENTATION",
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "sortedAliasGroupRecordIds": [
+        "PYSEC-2025-218"
+      ],
+      "publicGroupRecordCount": 1,
+      "groupTitleIdentifier": "PYSEC-2025-218",
+      "individualGHSAOrCveSeverityNotInferred": true,
+      "perAdvisoryTriggerReachability": "UNKNOWN_NEEDS_MANUAL_TRIAGE",
+      "actualExploitableApplicationBugConfirmed": false,
+      "sourceMetadataAliasesNotIndependentlyVerifiedAsSameRootCause": true,
+      "productionPatchedOrSecure": false
+    }
+  ],
+  "threeRepresentativeVerifiedPublicGHSAExamples": [
+    {
+      "packageName": "Pillow",
+      "representativeAdvisoryId": "GHSA-3f63-hfp8-52jq",
+      "officialAdvisoryUrl": "https://github.com/advisories/GHSA-3f63-hfp8-52jq",
+      "officialSeverity": "CRITICAL",
+      "officialPublishedCvss": 9.3,
+      "officialPublishedPatchedVersion": "10.2.0",
+      "advisoryTrigger": "PIL.ImageMath.eval with attacker-influenced environment",
+      "directTargetApiObservedInG322": false,
+      "userImageByteParserDirectlyUsed": true,
+      "interpretation": "TARGET_IMAGEMATH_API_NOT_DIRECTLY_OBSERVED_BUT_IMAGE_DECODING_IS_ACTIVE",
+      "noActualExploitProven": true,
+      "livePinRemainsOld": true,
+      "severitySource": "OFFICIAL_GITHUB_ADVISORY_PAGE_THREE_SAMPLES_ONLY",
+      "noClaimThatCVSSReflectsLOCAL3DExploitability": true
+    },
+    {
+      "packageName": "transformers",
+      "representativeAdvisoryId": "GHSA-29pf-2h5f-8g72",
+      "officialAdvisoryUrl": "https://github.com/advisories/GHSA-29pf-2h5f-8g72",
+      "officialSeverity": "HIGH",
+      "officialPublishedCvss": 7.8,
+      "officialPublishedPatchedVersion": "5.3.0",
+      "advisoryTrigger": "AutoModelForCausalLM.from_pretrained with attacker-controlled config attention kernel",
+      "directTargetApiObservedInG322": false,
+      "userImageByteParserDirectlyUsed": false,
+      "interpretation": "PINNED_VIT_CONFIG_PATH_EXISTS_BUT_THE_REPRESENTATIVE_AUTOMODEL_TRIGGER_NOT_OBSERVED",
+      "noActualExploitProven": true,
+      "livePinRemainsOld": true,
+      "severitySource": "OFFICIAL_GITHUB_ADVISORY_PAGE_THREE_SAMPLES_ONLY",
+      "noClaimThatCVSSReflectsLOCAL3DExploitability": true
+    },
+    {
+      "packageName": "torch",
+      "representativeAdvisoryId": "GHSA-3749-ghw9-m3mg",
+      "officialAdvisoryUrl": "https://github.com/advisories/GHSA-3749-ghw9-m3mg",
+      "officialSeverity": "LOW",
+      "officialPublishedCvss": 1.9,
+      "officialPublishedPatchedVersion": "2.7.1-rc1",
+      "advisoryTrigger": "torch.mkldnn_max_pool2d local denial of service",
+      "directTargetApiObservedInG322": false,
+      "userImageByteParserDirectlyUsed": false,
+      "interpretation": "PINNED_TORCH_LOAD_AND_NATIVE_TENSOR_RUNTIME_EXIST_TRIGGER_NOT_DIRECTLY_OBSERVED",
+      "noActualExploitProven": true,
+      "livePinRemainsOld": true,
+      "severitySource": "OFFICIAL_GITHUB_ADVISORY_PAGE_THREE_SAMPLES_ONLY",
+      "noClaimThatCVSSReflectsLOCAL3DExploitability": true
+    }
+  ],
+  "exampleSeverityCannotBeExtrapolatedToRemaining101Records": true,
+  "prerequisiteUpgradeAndIsolationSteps": [
+    "Preserve old 34-package frozen manifest, old G2 venv and previous source SHA rights.",
+    "Group CVE aliases and prioritize each exact affected API, file format and attack precondition individually; UNKNOWN until reviewed.",
+    "Resolve fixed package version ranges against pinned TripoSR ViT/tokenizer, torch CPU/GPU ABI, Python 3.11 and Windows CUDA requirements WITHOUT overriding dependency metadata silently.",
+    "If separately authorized, install only into a newly versioned throwaway shadow environment, NEVER live G2 production.",
+    "In isolated CPU-only mode revalidate SHA-pinned DINO ViT local config, Pillow 9/9 source preprocessing, offline imports, no checkpoint loads/inference and full Node/Python tests.",
+    "Review source and parsed-image containment with OS-enforced filesystem/network isolation as a separate approved operating-system change.",
+    "New explicit per-image GPU approval and Office idle/VRAM checks are REQUIRED before any real CUDA compatibility experiment.",
+    "Manufacturing remains DRAFT and has separate real scale, wall, slicer, printer authorization; package fixes never print-qualify."
+  ],
+  "activePackageVersionsUnchanged": true,
+  "osEnforcedNativeParserSandboxReady": false,
+  "modelCompatibilityProvenForPatchedStack": false,
+  "authorizedRealGPUAcceptance": false,
+  "individuallyValidated104Reachability": false,
+  "securityIssue4Resolved": false,
+  "newUntrustedInputsAuthorized": false,
+  "packagesInstalled": 0,
+  "GPUInferenceRuns": 0,
+  "cloudModelOrWeightsDownload": false,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

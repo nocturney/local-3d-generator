@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.24 — 2026-10-10 — G3.24 SHA-linked public-only security review priority queue
+
+- Derived reproducible manual review order over all **104** fully recovered public OSV version matches in **64** alias-connected groups, linked bytewise to G3.22 static codepath and G3.23 full-ID public source proofs: 16 Pillow DIRECT input-byte parser groups first, 29 Transformers fixed ViT config runtime groups, 19 Torch pinned checkpoint/tensor runtime groups. This is an engineering triage order, NOT individual exploitability or vulnerability risk ranking.
+- Included THREE representative official GHSA verified severities and patched-version events: Pillow GHSA-3f63-hfp8-52jq Critical 9.3 (10.2.0), Transformers GHSA-29pf-2h5f-8g72 High 7.8 (5.3.0), Torch GHSA-3749-ghw9-m3mg Low 1.9 (2.7.1-rc1). The named trigger APIs were not directly observed in G3.22 reviewed AST. Unknown transitive/native vulnerability paths and all remaining 101 records remain UNASSESSED. Published upstream fix metadata does not upgrade live G2.
+- Added strict offline queue assembly/replay, adversarial source/status/ID failures and a written gated future shadow-upgrade CPU compatibility, OS isolation and separately approved GPU acceptance plan. No packages installed, no model inference, no firewall/security modifications, no printer actions; Issues #3/#4 OPEN.
+
 ## v0.2.23 — 2026-10-10 — G3.23 complete public OSV ID/alias inventory and immutable offline proof
 
 - Follow-up to G3.22 historical 36/104 saved advisory IDs. Explicitly queried PUBLIC-only OSV.dev PyPI name/version data for fixed Pillow 10.1.0, Transformers 4.35.0 and torch public 2.5.1, sent NO private media/code/machine data, and retrieved exactly **104 full PUBLIC returned advisory IDs** (32/50/22) plus aliases and upstream fixed-range event metadata. Verified all 36 saved historical sample IDs present in fresh data; 68 unsaved old historical IDs cannot be reconstructed with historical certainty despite identical counts.

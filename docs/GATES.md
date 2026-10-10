@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.24 — security-review triage order, NOT fixed-vulnerability acceptance
+
+- PASS deterministic offline public source G3.22+G3.23 SHA-linked 104-record / 64-group review coverage; every public record accounted for exactly once, all 64 alias groups assigned conservative source-input review priority. Pillow real parser = 16 review-first groups, Transformers pinned config = 29 groups, Torch pinned tensor/checkpoint = 19 groups, all per-advisory app exploitability UNKNOWN.
+- PASS THREE verified official GHSA sample fix/severity examples and explicit lack of directly observed named trigger API, still NOT transitive/OS vulnerability clearance or 104 per-record trigger audits. Strict tests reject tampered group IDs, source guard claims and any false safety/print status.
+- OPEN Issue #4: individual GHSA/CVE affected preconditions, native image parser isolation, egress, pinned dependency remediations + Windows CUDA compatibility. G3.6 Pillow 12.3 shadow is not production upgrade. All DRAFT, Issue #3 print geometry OPEN, zero GPU/printer actions.
+- [G3.24 method and gated upgrade plan](G3_24_STATIC_SECURITY_REVIEW_PRIORITY_QUEUE_2026-10-10.md), [public sanitized queue and SHA proof](evidence/g3/g3-24-security-review-queue.json).
+
 ## G3.23 — complete fresh public OSV IDs/alias crossrefs, still NOT vulnerability clearance
 
 - PASS: explicit public-only query of three exact previously pinned PyPI names/versions, 104 current public advisory records with complete returned ID+alias lists and published affected-range fixed-event metadata. All 36 prior G3.5 sampled IDs recovered and linked to G3.22 SHA proof. Historical 68 discarded IDs cannot be independently reconstructed as the same 68, despite current matching total.
