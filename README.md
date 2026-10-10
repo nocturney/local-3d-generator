@@ -37,7 +37,13 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Current v0.2.12 CPU-only full regression on Windows Chris: **80/80 Node**, **92/92 pinned Python** (7 G2, 85 G3), **8/8 G1 Chrome** and **8/8 G2/G3 mock Chrome** phases. The earlier G3.6 Pillow shadow experiment independently covered its THEN-existing 23 Python tests and is NOT automatically re-certified for newer suites. The historical licensed CUDA chair and one previously separately authorized orb inference remain the ONLY two real completed AI outputs of nine benchmark sources. **Normal npm tests and G3.12 diagnostics never execute model inference or allocate CUDA.**
+- Current v0.2.13 CPU-only full regression on Windows Chris: **83/83 Node**, **111/111 pinned Python** (7 G2, 104 G3), **8/8 G1 Chrome** and **8/8 G2/G3 mock Chrome** phases. The earlier G3.6 Pillow shadow experiment independently covered its THEN-existing 23 Python tests and is NOT automatically re-certified for newer suites. The historical licensed CUDA chair and one previously separately authorized orb inference remain the ONLY two real completed AI outputs of nine benchmark sources. **Normal npm tests and G3.12 diagnostics never execute model inference or allocate CUDA.**
+
+## G3.13 — exact-binary-float triangle PAIR predicates, selected pairs only (v0.2.13)
+
+Added a bounded pure-CPU exact-rational predicate for **explicitly selected pairs of triangles**. It detects strict noncoplanar interior edge-piercings, coplanar positive-area overlaps and definite plane separation; zero/borderline exact determinants are UNRESOLVED. The exactness applies ONLY to the IEEE-754 coordinates **already decoded from GLB**, not true CAD/mm precision. This is a reusable primitive **not a full-mesh broadphase or self-intersection-free certificate**.
+
+19 new adversarial Python tests passed. A SHA-locked proof on FOUR previously existing licensed GLBs checked exactly **24 chosen indexed shared-edge face pairs per model**: all 24 in each are **unresolved legitimate shared-edge contacts**, NOT 24 defects or a clearance of untested pairs. No fresh GPU, reconstruction, cloud or printer actions. [G3.13 scope](docs/G3_13_EXACT_SELECTED_TRIANGLE_PREDICATES_CPU_2026-10-10.md) · [Sanitized selection-only evidence](docs/evidence/g3/orb-01-g313-selected-exact-pair-predicate.json).
 
 ## G3.12 — different-index spatial vertex proximity (v0.2.12)
 

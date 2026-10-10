@@ -1,5 +1,12 @@
 # Release notes
 
+## v0.2.13 — 2026-10-10 — G3.13 exact selected triangle-pair predicates, NO whole-mesh scan
+
+- Added CPU-only Python `Fraction` exact-binary-float oriented tetrahedral determinant and rational 2D coplanar polygon clipping, classifying explicitly supplied triangle PAIRS: strict noncoplanar edge-interior piercing, positive-area coplanar overlap, definite plane separation or unresolved boundary. This is exact arithmetic on already decoded IEEE-754 GLB vertex values, NOT true CAD scale or physical manufacture certification.
+- Added 19 adversarial Python controls including strict piercing, coplanar overlap, legitimate shared-edge/corner touching, signed orientation/winding invariance, complex/NaN/invalid pairs and fail-closed time/pair budgets. No external package installation or model changes.
+- SHA-verified four previous GLBs; deliberately classified only 24 deterministic indexed shared-edge-adjacent face pairs per model, each returned boundary/contact UNRESOLVED. This is an intentional **nonrepresentative selected-pair proof**, neither a global contact scan nor evidence of 24 defects; all other triangle pairs are UNTESTED by G3.13.
+- Added sanitized immutable selected-pair proof + Node privacy/lineage tests and updated security/quality/operations documentation. No GPU inference, cloud, Office or printer. Production/untrusted-input and print gates still OPEN.
+
 ## v0.2.12 — 2026-10-10 — G3.12 CPU-only different-index spatial proximity and touching-shell candidates
 
 - Added bounded CPU SciPy cKDTree diagnostic for exact-coordinate and near-coordinate matches among DIFFERENT vertex indices, including whether each vertex belongs to the same indexed connected component or separate shells. Explicit numerical tolerance 1e-7 × model AABB diagonal (arbitrary GLB units); no mm interpretation.

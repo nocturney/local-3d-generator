@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.13: selected exact pair arithmetic is NOT whole-mesh clearance or untrusted-input sandbox
+
+G3.13 only classifies **explicitly passed triangle pairs** using Fraction exact rational representation of prior GLB-decoded IEEE-754 coordinates. It does not implement exhaustive mesh broadphase, robust/global collision exclusion, physical tolerance, multiuser safe parsing, geometry repair, network isolation or manufacturing authorization. Positive strict interior/coplanar overlap results are narrow mathematical facts about supplied triangles; zero findings on a limited chosen pair list cannot rule out any unselected collisions. All 24 deterministically selected shared-indexed-edge adjacent pairs on each of the FOUR previously licensed GLBs yielded UNRESOLVED normal boundary contact; these are not 24 defects.
+
+Inputs are bounded (pair-list <=256, selected mesh <=75k faces/100k vertices, |coordinate|<=1e9 and 15s batch budget) and rejected for invalid geometry, degenerate triangles, complex coordinates, illegal pair references and resource exhaustion. The result retains full DRAFT/no-print flags. Output code never runs a Python model, imports CUDA/Torch, merges vertices or sends files to printers. Sanitized evidence strips private job IDs and raw selected face IDs.
+
+Caveat: exact predicate arithmetic is not an OS security sandbox, and bounded Python GLB parsing remains trusted-local-only. Python supply-chain advisories/OS-backed outbound network constraints remain open under Issue #4. Issue #3's complete global robust geometry, mm scale, walls and physical printer qualification remain blocked.
+
 ## G3.12: geometric vertex proximity evidence is NOT collision/print authority
 
 G3.12's bounded CPU cKDTree screening of SHA-pinned existing GLBs compares different-index vertex positions at <=1e-7 of model AABB diagonal. Even a zero result does not rule out face-to-face contacts away from vertices, coplanar edge-overlaps, microscopic collisions, multi-mesh-object interactions or sub-tolerance numerical conditions. UV/material seams can legitimately have duplicate positions; candidates are review signals, not automatic defects. Physical model scale, mm wall thickness, manufacturing capability, printer/slicer/material qualification remain UNKNOWN/BLOCKED.

@@ -1,5 +1,17 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.13: exact rational PAIR predicate — very limited, no global scan
+
+The new offline Python `engines/quality/exact_triangle_predicates.py` classifies ONLY explicitly supplied triangles or bounded chosen pair lists. It does not scan a whole mesh, infer CAD millimeters, weld vertices or certify manufacturability. The exact Fraction arithmetic applies to ALREADY decoded IEEE-754 model coordinates; ambiguous indexed boundary contacts stay unresolved, as they should.
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g313_exact_predicates.py
+
+Source-locked *read-only* 24-pairs-per-existing-model verification (prior private real completed job ID, NEVER paste it into commits or public docs):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-13-selected-pair-replay.py --job-id <PREVIOUS_COMPLETED_PRIVATE_JOB_UUID>
+
+Public sanitized SHA report: [selected exact pair data](evidence/g3/orb-01-g313-selected-exact-pair-predicate.json). It excludes private job/face IDs; all 24 selected indexed shared-edge pairs per GLB return expected boundary-contact UNRESOLVED. They are NOT 24 actual collision defects nor a sample of all pairs. Avoid treating as a replacement for G3.8 broadphase or any safety gate. See [full method](G3_13_EXACT_SELECTED_TRIANGLE_PREDICATES_CPU_2026-10-10.md). No GPU/Office/printer interaction.
+
 ## G3.12: different-index spatial vertex proximity (existing-model CPU only)
 
 All four pre-existing SHA-verified GLBs were already scanned with a bounded cKDTree census, comparing exact/near XYZ for different vertex IDs. A distance <=1e-7 × arbitrary-unit bounding diagonal is a *numerical screen*, NOT a mm tolerance. The real orb's 20,178 vertices and its G3.7 copy produced zero candidate pairs at this threshold; even zero cannot certify face-interior intersections or print readiness. Closed touching-shell positive controls and resource-cap fail-closed tests passed. No GPU inference, printer, data upload or Office code change.

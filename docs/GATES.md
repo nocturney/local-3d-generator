@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.13 — exact-binary-float triangle PAIR classifier (FOUNDATION ONLY)
+
+- PASS: new standalone CPU-only selected triangle-pair classifier with exact rational orientation and coplanar polygon clipping of *already decoded* IEEE-754 GLB coordinates. 19 adversarial Python tests for definite strict interior piercing, coplanar positive-area overlap, legitimate boundary touching/plane separation and malformed/budget-limited inputs.
+- PASS: SHA-verified previous real orb, winding-only copy, known procedural GT and old chair; 24 lexicographically chosen already-indexed SHARED-EDGE adjacent triangle pairs per existing GLB analyzed. All 24 in each are **UNRESOLVED_BOUNDARY** because neighboring triangles legitimately meet on that indexed edge; NOT defects. NO OTHER PAIRS screened by G3.13 selected-pair proof.
+- BLOCKED: complete mesh pair enumeration/BVH, nonadjacent pairs and degenerate boundary handling globally, exact full self-intersection-free certification, true physical mm-scale/walls, printer/structural QA. No production-code connection or automatic printer action; no new AI model or GPU.
+- Evidence: [limited method](G3_13_EXACT_SELECTED_TRIANGLE_PREDICATES_CPU_2026-10-10.md), [immutable SHA-linked selection-only counts](evidence/g3/orb-01-g313-selected-exact-pair-predicate.json). `printQualified=false`; Issues #3/#4 remain OPEN.
+
 ## G3.12 — different-index spatial position and disconnected-shell proximity (CPU DIAGNOSTIC)
 
 - PASS: on four EXISTING SHA-verified GLBs (20,178-vertex real TripoSR orb, exact-winding copy, 642-vertex procedural GT, 9,986-vertex historical chair), independently enumerated different indexed vertex IDs at distance <=1e-7 of each model's AABB diagonal. **0 exact or near pairs** in each; one indexed component each. No new model run or CUDA permission used.
