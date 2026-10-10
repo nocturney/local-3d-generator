@@ -1,5 +1,12 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.30: trusted synthetic-only host CPU input/output protocol, NOT an isolated decoder
+
+Pure Node source pinning accepts precisely the three known prior 64x64 generated SHA-locked PNG/JPEG/WebP fixture bytes and checks deterministic trusted host CPU Pillow 10.1.0 converted RGB PNG outputs. It binds source+output SHA/size/type, candidate Windows Sandbox profile SHA, explicit fake host-only processing receipt, no guest/egress/file confinement and ALWAYS releaseToRealGPUWorker=false. Forged guest/network evidence, arbitrary paths, unknown media or altered receipts fail closed. This is a *contract simulation*, not an actual guest process or separate verified Windows sandbox. Existing production G2 worker still calls Pillow on Windows host without native OS isolation, and old dependency advisories remain unresolved.
+[G3.30 docs](G3_30_TRUSTED_SYNTHETIC_EXCHANGE_CPU_2026-10-10.md), [immutable public proof](evidence/g3/g3-30-trusted-only-offline-exchange-not-sandbox.json). No real image/customer inputs or GPU/OS/Office/firewall/weights/printer modifications, Issue #4 OPEN, #3 OPEN. A confirmed host feature Enabled flag or simulated candidate receipt is NEVER a native-sandbox/untrusted-image/print release.
+
+## G3.29: Windows Sandbox feature enabled DOES NOT qualify an OS parser sandbox
+
 ## G3.29: Windows Sandbox feature enabled DOES NOT qualify an OS parser sandbox
 
 Read-only host feature discovery on Chris Windows 11 Pro build 26300 returned Containers-DisposableClientVM Enabled and HypervisorPresent true, but ordinary WindowsSandbox.exe launcher names were unresolved. There was **NO** guest launch, CPU decode inside a VM, verified networking egress block, filesystem/clipboard confinement, safe ingress/return channel, or Pillow decoder isolation. A separate exact-byte .wsb profile candidate disables networking/vGPU/clipboard/audio/video/printer, ProtectedClient Enable and provides no mapped folders/guest startup commands. Static readiness gate RETURNS BLOCKED_NO_RUNTIME_OS_ATTESTATION regardless of favorable feature flags. It deliberately does not change G1/G2 runtime or OS state. Microsoft's default Windows Sandbox settings allow networking/clipboard/vGPU; explicit disabled values in a config file are necessary but insufficient until real isolation tests.

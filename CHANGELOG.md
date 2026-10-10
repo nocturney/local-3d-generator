@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.30 — 2026-10-10 — G3.30 original trusted synthetic-only ingress/output candidate
+
+- Added a zero-side-effect CPU-only proposed ingress, deterministic host-generated canonical RGB PNG output and strict host-only simulated receipt for EXACTLY three previously SHA-locked synthetic 64x64 PNG/JPEG/WebP images. Unknown or altered sources, malformed/truncated data, MIME/size/hash changes, secret paths or forged Sandbox/G2 safety attestations fail closed.
+- Pinned Pillow 10.1.0 host generated only these three synthetic outputs, no untrusted input, no actual Windows Sandbox VM or guest egress/file isolation, no real one-way transport. Immutable public source SHA proof links G3.29 policy and G3.27 originals; G3.30 production G1/G2 server and GPU worker remain untouched.
+- Added new Node/Python regression cases, offline deterministic proof and documentation. Untrusted customer upload, OS-isolated decode, physical manufacturing and production-release gates remain OPEN; no GPU/inference, OS/Office/4178/4177 restart, weights, printer or cloud action.
+
 ## v0.2.29 — 2026-10-10 — G3.29 read-only Windows Sandbox capability and fail-closed isolation profile
 
 - Observed Chris Windows 11 Pro build 26300, optional feature Containers-DisposableClientVM Enabled, HypervisorPresent=true, no resolved WindowsSandbox.exe CLI launcher. NO guest launch or boundary test. Feature readiness not security isolation.

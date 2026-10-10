@@ -1,5 +1,14 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.30 — trusted-only host CPU data-envelope simulation
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-30-build-trusted-canonical-fixtures.py
+    node scripts/g3-30-assemble-exchange-proof.mjs
+    node --test tests/g330-synthetic-guest-exchange.test.js tests/g330-protocol-proof.test.js
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g330_trusted_exchange.py
+
+This touches only three pinned public original synthetic generated buffers and emits deterministic CPU-only canonical RGB PNG TEST fixture bytes under tests/fixtures/g330-trusted-canonical-output.json. The source SHA-locked Node exchange contract is **NOT part of G1/G2 live API** and refuses all customer/untrusted inputs or claims of OS guest execution. G3.29 sandbox candidate XML still has no ingress or return channel. Existing 4177 listener not restarted; 4178 Office untouched; G2 manual 4179 off. Future real Sandbox VM testing requires explicit approval/verified launcher; never treat host-only output receipt as signed evidence. [G3.30 methods](G3_30_TRUSTED_SYNTHETIC_EXCHANGE_CPU_2026-10-10.md), [public proof](evidence/g3/g3-30-trusted-only-offline-exchange-not-sandbox.json).
+
 ## G3.29 — read-only Windows Sandbox capability audit and static profile review
 
     node scripts/g3-29-host-readonly-probe.mjs

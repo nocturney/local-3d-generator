@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.30 — data envelope / simulated host-only receipt, NOT a guest security attestation
+
+- PASS: Exactly 3 SHA-pinned original 64x64 generated PNG/JPEG/WebP source bytes accepted; host pinned Pillow 10.1.0 trusted-only converted them to RGB PNG, exact output SHA/format/mode/dimensions tested. Unknown, altered, mislabeled and truncated original bytes rejected. Output limit 64KiB.
+- PASS: Immutable candidate ingress and receipt reject unknown keys, tampering, guest execution claims, false egress/host-file/OS sandbox attestation, fake G2 release and path metadata. Public proof linked to immutable G3.29 source & policy, locked worker + unchanged G1/G2 runtime. No guest ran, no network/host boundary was verified, no customer images consumed.
+- OPEN: Actual separate OS VM launch/teardown, isolated decoder and preflight, validated one-way transport, cryptographic guest receipt/signing, OS network/host filesystem egress proof, patched native decoder, production G2 host Pillow confinement, untrusted upload permission. Issue #4 security OPEN; issue #3 print qualification OPEN.
+- [Method](G3_30_TRUSTED_SYNTHETIC_EXCHANGE_CPU_2026-10-10.md), [strict public evidence](evidence/g3/g3-30-trusted-only-offline-exchange-not-sandbox.json).
+
 ## G3.29 — host Windows Sandbox feature observed; OS confinement still UNVERIFIED
 
 - Read-only CIM/Windows Optional Feature/command discovery on Chris: Sandbox feature Enabled, HypervisorPresent=true, no resolved CLI launcher; actual guest never launched or tested. Never conflate an installed feature with verified egress, filesystem or native decoder sandbox.

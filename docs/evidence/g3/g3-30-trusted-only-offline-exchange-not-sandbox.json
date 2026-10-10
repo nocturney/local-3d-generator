@@ -1,0 +1,61 @@
+{
+  "schema": "local3d.g3.30.original-synthetic-host-exchange-not-sandbox-clearance.v1",
+  "reviewedDate": "2026-10-10",
+  "previousG329ImmutablePublicProofSHA256": "4c49eacb0527cb5403e58bc6a456a3dc8c8f9147e392c5ca82c6c71fdf9eb1a2",
+  "originalG327FixtureSHA256": "171c9b8cc010cd8f05620a70617122a5c97ec074c951cc0ef27ad35ccf1cdbdb",
+  "g330TrustedCanonicalFixtureSHA256": "c061a4160dc5b8e852ae369439054bb4704bf13745721ae2de4ee1bb795ec111",
+  "candidateProtocolSourceNormalizedSHA256": "c2c7976c4dc839d9abf179e8086b3730c189993abe3e566fbb2910a80161c72b",
+  "pinnedPillowGeneratorSourceNormalizedSHA256": "c9a861628ba1d5638c820fb88a05d72523845c42bdaf62f9d7dde02bbca6092e",
+  "candidateWsbProfileNormalizedSHA256": "a948c65412d8d0caa98de0142c06a60d57f52ab9c7abab454effb87da50c3a42",
+  "currentProductionServerUnmodifiedSinceG329NormalizedSHA256": "8d96742aa45c6e815673156cbbfd12d80dc98573676563fa7d1c63d147cc908d",
+  "productionG2PythonWorkerSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "acceptedStrictlyOriginalTrustedSyntheticFixtureCases": 3,
+  "trustedHostCpuSimulationResults": [
+    {
+      "originalFormat": "PNG",
+      "trustedSourceSha256": "d56708bc91a3e8a17b97c0abdf4cccbf886f7c608ebd7a427382e52c36f3d5eb",
+      "candidateOutputPngSha256": "d56708bc91a3e8a17b97c0abdf4cccbf886f7c608ebd7a427382e52c36f3d5eb",
+      "outputBytes": 156,
+      "wasGeneratedByHostPinnedPillowNotSandbox": true,
+      "imageDecodedInOSIsolatedGuest": false,
+      "guestReceiptAcceptedForProduction": false
+    },
+    {
+      "originalFormat": "JPEG",
+      "trustedSourceSha256": "4530bce5b2d096b8fb97183ddfddf291d347efb98738da087446f774f8b449dd",
+      "candidateOutputPngSha256": "e7a6dfafae44633165f6ce4f2abf1de78b17e4ddebfd0a9b889a6ecb664e62e2",
+      "outputBytes": 156,
+      "wasGeneratedByHostPinnedPillowNotSandbox": true,
+      "imageDecodedInOSIsolatedGuest": false,
+      "guestReceiptAcceptedForProduction": false
+    },
+    {
+      "originalFormat": "WEBP",
+      "trustedSourceSha256": "7c80680b4cae2db5072515663f3fc760c9d0078e2861cd2b3e50f848c477bd64",
+      "candidateOutputPngSha256": "56632f4a06838f8b3deee8ed9f2606c615c303103ba9d3cff409e108865047a6",
+      "outputBytes": 318,
+      "wasGeneratedByHostPinnedPillowNotSandbox": true,
+      "imageDecodedInOSIsolatedGuest": false,
+      "guestReceiptAcceptedForProduction": false
+    }
+  ],
+  "simulationOnly": true,
+  "sandboxGuestLaunched": false,
+  "hostToGuestMediaTransportImplemented": false,
+  "guestToHostOutputChannelImplemented": false,
+  "OSIsolationAndNoNetworkProven": false,
+  "anyUserUntrustedInputAccepted": false,
+  "hostPillowNativeParserSecurityCertified": false,
+  "externalGuestReceiptCryptographicallyAttested": false,
+  "sandboxForProductionG2Worker": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "realInferenceRuns": 0,
+  "gpuInferenceRuns": 0,
+  "newPackagesInstalled": 0,
+  "changedOSOfficeCloudOrPrinter": false,
+  "existingG1Port4177Restarted": false,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

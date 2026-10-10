@@ -1,0 +1,50 @@
+{
+  "schema": "local3d.g330.trusted-host-cpu-canonical-fixtures-not-guest-output.v1",
+  "pillowVersion": "10.1.0",
+  "sourceFixtureSetSHA256": "171c9b8cc010cd8f05620a70617122a5c97ec074c951cc0ef27ad35ccf1cdbdb",
+  "trustedOriginalGeneratedOnly": true,
+  "executionEnvironment": "HOST_PINNED_PILLOW_TRUSTED_CPU_FIXTURE_ONLY",
+  "sandboxVMExecuted": false,
+  "networkEgressIsolated": false,
+  "untrustedUploadProcessed": false,
+  "guestDecoderProven": false,
+  "productionGpuOrPrinterReady": false,
+  "samples": [
+    {
+      "sourceFormat": "PNG",
+      "sourceMime": "image/png",
+      "sourceSHA256": "d56708bc91a3e8a17b97c0abdf4cccbf886f7c608ebd7a427382e52c36f3d5eb",
+      "outputMime": "image/png",
+      "outputMode": "RGB",
+      "outputWidth": 64,
+      "outputHeight": 64,
+      "outputSHA256": "d56708bc91a3e8a17b97c0abdf4cccbf886f7c608ebd7a427382e52c36f3d5eb",
+      "outputBytes": 156,
+      "outputBase64": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAOrvCF14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfWv2AaqHnAIRAAAAAElFTkSuQmCC"
+    },
+    {
+      "sourceFormat": "JPEG",
+      "sourceMime": "image/jpeg",
+      "sourceSHA256": "4530bce5b2d096b8fb97183ddfddf291d347efb98738da087446f774f8b449dd",
+      "outputMime": "image/png",
+      "outputMode": "RGB",
+      "outputWidth": 64,
+      "outputHeight": 64,
+      "outputSHA256": "e7a6dfafae44633165f6ce4f2abf1de78b17e4ddebfd0a9b889a6ecb664e62e2",
+      "outputBytes": 156,
+      "outputBase64": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAPohCG14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfZw2AavWr/3kAAAAAElFTkSuQmCC"
+    },
+    {
+      "sourceFormat": "WEBP",
+      "sourceMime": "image/webp",
+      "sourceSHA256": "7c80680b4cae2db5072515663f3fc760c9d0078e2861cd2b3e50f848c477bd64",
+      "outputMime": "image/png",
+      "outputMode": "RGB",
+      "outputWidth": 64,
+      "outputHeight": 64,
+      "outputSHA256": "56632f4a06838f8b3deee8ed9f2606c615c303103ba9d3cff409e108865047a6",
+      "outputBytes": 318,
+      "outputBase64": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABBUlEQVR4nO2YQQ7CMAwEnSiv4Vl8jJ/GHALI0IZYoLI22jm1NJUyWddNKafzRVbUp7P+OCq6vFW0rMd8Q10PiQ0F0LTZhZmZp+5/yf8mYLvNjKM7jIf/SuBuY9f+NQctsZxjzeYDHM9A6aJ153eR7kijHty1VjMo60cZS5v2exERUY1eY9Hnt4QCaNp2fz/er3pzG1f3PY/uMB7SJ0ABNO39/n68ayPU+oz8Cdg9fbSvLQ/5E7An2y+syNU/yJ9AN6sef7235E/AM8h2pwj/RFjSJ0ABNM3TeaLVvSV9AhRAQwE0FEBDATQUQEMBNBRAQwE0FEBDATQUQEMBNBRAQwE0FEBzBX6uJsc4fCN+AAAAAElFTkSuQmCC"
+    }
+  ]
+}
