@@ -37,6 +37,20 @@ Close the terminal with Ctrl+C to stop; automatic restart and OS boot start are 
 - Original isolated standalone pilot remains at runtime/pilots and runtime/pilot-logs; do not overwrite it.
 - Source and weights never committed. Do not copy proprietary images, downloaded model checkpoint or executable venv into GitHub.
 
+## Windows Chris: scoped Git source-owner CPU preflight (before any further GPU request)
+
+The October 10 one-time G3 `01-orb-alpha` attempt passed GPU and Office gates but failed at **`verify_sources`**, before model loading. Its original Windows-PowerShell diagnostic showed Git exit 128: TripoSR checkout owned by **NT AUTHORITY/SYSTEM**, operator **CHRIS/Chris**. This is not a missing checkpoint; Git refused metadata access because of the checkout ownership. Historical G3.4 job failure and spent approval latch are retained privately.
+
+Worker fix: for exactly two fixed metadata commands (`rev-parse HEAD` and `status --porcelain`), `worker.py` sets a command-scoped `-c safe.directory=<resolved exact TripoSR checkout>`, with `core.fsmonitor=false`. The pinned upstream commit, clean-source test and checkpoint/config SHA are still required. **Do not** run `git config --global --add safe.directory`, set `safe.directory=*`, disable ownership checks globally, re-own the SYSTEM source folder or alter Office. This is a deliberately scoped trust decision for the already-pinned source checkout, not a general security workaround.
+
+From the CHRIS interactive PowerShell session run this **CPU-only** test using the NEW project worker (not the immutable failed v0.2.4 snapshot):
+
+    & 'D:\Velvet\Projects\local-3d-generator\runtime\engines\triposr\venv\Scripts\python.exe' 'D:\Velvet\Projects\local-3d-generator\scripts\g3-verify-triposr-source-owner-cpu.py'
+
+Expected: `G3_CPU_ONLY_SOURCE_OWNER_FIX_PASS`, `SOURCE_CLEAN True`, `WEIGHTS_SHA_CHECK PASS`, `NO_CUDA_OR_AI_INFERENCE True`. If Git still fails, **stop** and report output; do not change global trust settings or consume another GPU approval.
+
+**Not authorized:** re-running the archived `runtime/qa/approved-01-orb-alpha-g34-20261010/release-v024/scripts/g3-approved-orb-once.mjs`. Its one-time approval was consumed and original code snapshot is preserved unchanged. New real inference, even on the same image, requires a *new explicit per-image authorization*, live Office/GPU no-conflict gates, and a fresh single-run script. No unattended GPU queue or print release.
+
 ## G3.4 one-click CPU scoring on a completed G3 fixture (NO AI inference)
 
 After an explicitly consented TripoSR G2 job with a licensed G3 source image completes, open that job's details and click **"השוואת G3 (CPU)"**. The bounded offline Python worker verifies hashes/provenance, computes a diagnostic normalized 3D surface distance only when *source original 3D* exists, and attaches **"דוח השוואת G3"** in the existing local job. A second click is idempotent, no new neural inference/Cloud/API calls. DEMO, unlicensed, running, failed or changed files fail closed.

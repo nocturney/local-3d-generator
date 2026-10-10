@@ -1,5 +1,13 @@
 # Release notes
 
+## Unreleased hotfix — 2026-10-10 — G3 TripoSR Windows Git source-owner mismatch
+
+- Confirmed a real one-time user-authorized `01-orb-alpha` job failed **before model inference**, at `verify_sources`: TripoSR source checkout is owned by Windows SYSTEM and the interactive CHRIS operator encountered Git's `detected dubious ownership` (exit 128).
+- Updated `engines/triposr/worker.py` to use `git -c safe.directory=<exact resolved TripoSR source>` **only for fixed `rev-parse HEAD` and `status --porcelain` read-only checks**. No wildcard, no global safe.directory/owner change, no skipping dirty tree, commit, checkpoint, config or DINO SHA256 integrity verification.
+- Added CPU-only `scripts/g3-verify-triposr-source-owner-cpu.py` to validate Git source integrity, model SHA and the licensed `01-orb-alpha` image **without CUDA, job submission, prints or network requests**.
+- Added isolated Python regression cases for exact path/scoped Git commands, disallowed operations and tampered source. Remote CPU-only verification succeeded; **interactive CHRIS-account acceptance is still pending**.
+- Preserved the failed job evidence and spent one-time approval latch. The historic v0.2.4 snapshot remains unchanged, and **no new GPU permission is implied**.
+
 ## v0.2.6 — 2026-10-10 — G3.6 isolated Pillow shadow compatibility research
 
 - Downloaded and cryptographically verified the **official PyPI Pillow 12.3.0 Windows CPython3.11 wheel** in private gitignored runtime only, SHA256 8e95e1385e4998ae9694eeaa4730ba5457ff61185b3a55e2e7bea0880aef452a. Public OSV version matches: **0 candidate vs 32 for Pillow 10.1.0**, not codepath safety certification.

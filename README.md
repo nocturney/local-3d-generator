@@ -39,6 +39,12 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
 - Current v0.2.6 regression: **67 Node** API/geometry/security/evidence tests on Windows, **23 original Python** tests (5 G2 + 18 G3), the same 23 Python CPU tests under shadow Pillow 12.3.0, 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
 
+## Windows source-owner Git hotfix — CPU-only verification pending under CHRIS
+
+An approved single-image `01-orb-alpha` G3 trial failed at the worker's first `verify_sources` step because the source checkout belongs to Windows SYSTEM but interactive CHRIS Git refused it as dubious ownership. **This run consumed its one-use permit but created no GLB.** The initial CPU-only source integrity tests under the connected system account passed, but the interactive-user run identified the trust boundary.
+
+The patched TripoSR worker now passes an **exact, command-local Git safe.directory** only for two pinned read-only source metadata commands; it still checks clean source/expected commit and all downloaded-model SHA256 values. It does **not** alter global Git settings or perform CUDA inference. Before requesting new explicit GPU permission, run the interactive-user CPU-only proof described in [Operations](docs/OPERATIONS.md); do **not** reuse the spent v0.2.4 single-use runner.
+
 ## G3.4 — one-click CPU benchmark review after manual inference (v0.2.4)
 
 Completed manually approved G2 jobs whose image SHA matches one of the nine licensed G3 reference inputs now show **"השוואת G3 (CPU)"**. A click runs the pinned, offline local Python scorer once and exposes a downloadable benchmark-shape.json. It validates the source, output model, QA and pinned model provenance, and is always NOT PRINT QUALIFIED. The ninth upstream chair has no actual original 3D ground truth, so the report states **NO_GROUND_TRUTH_3D** rather than a fictional 3D accuracy score. Changing a source image still revokes GPU consent.

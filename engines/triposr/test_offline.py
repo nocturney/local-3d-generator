@@ -2,12 +2,39 @@
 import json
 import sys
 import unittest
+from unittest.mock import patch
 import numpy as np
 import torch
 import worker
 
 
 class OfflineContractTests(unittest.TestCase):
+    def test_git_owner_exception_is_exact_scope_per_read_only_command(self):
+        path = worker.SOURCE.resolve(strict=True).as_posix()
+        for operation, expected in (
+            ("head", ["rev-parse", "HEAD"]),
+            ("status", ["status", "--porcelain", "--untracked-files=normal"]),
+        ):
+            with patch.object(worker.subprocess, "check_output", return_value=" ok\n") as invoke:
+                self.assertEqual(worker.pinned_source_git(operation), "ok")
+                args = invoke.call_args.args[0]
+                self.assertEqual(args[:3], ["git", "-c", f"safe.directory={path}"])
+                self.assertEqual(args[3:5], ["-c", "core.fsmonitor=false"])
+                self.assertEqual(args[5:7], ["-C", str(worker.SOURCE)])
+                self.assertEqual(args[7:], expected)
+                self.assertEqual(invoke.call_args.kwargs["text"], True)
+        with self.assertRaises(ValueError):
+            worker.pinned_source_git("fetch")
+        with self.assertRaises(ValueError):
+            worker.pinned_source_git("--upload-pack")
+
+    def test_changed_source_is_rejected_even_with_scoped_git_ownership(self):
+        with patch.object(worker, "pinned_source_git", side_effect=[
+            worker.SOURCE_SHA, " M src/altered.py"
+        ]):
+            with self.assertRaisesRegex(RuntimeError, "changed or dirty"):
+                worker.check_materials()
+
     def test_pinned_source_and_downloaded_weights(self):
         manifest = worker.check_materials()
         self.assertEqual(manifest["source"]["commit"], worker.SOURCE_SHA)

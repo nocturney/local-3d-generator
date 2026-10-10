@@ -41,14 +41,37 @@ def hash_file(file: Path) -> str:
             h.update(part)
     return h.hexdigest()
 
+def pinned_source_git(operation: str) -> str:
+    """Read-only Git metadata with a one-command, exact-directory trust scope.
+
+    The isolated TripoSR checkout may be owned by Windows SYSTEM while the
+    operator is CHRIS. A global safe.directory would trust the checkout for
+    every future Git operation, so use -c only for these two fixed, read-only
+    commands. Never use '*' or change global/local Git settings.
+    """
+    allowed = {
+        "head": ["rev-parse", "HEAD"],
+        "status": ["status", "--porcelain", "--untracked-files=normal"],
+    }
+    if operation not in allowed:
+        raise ValueError("Unapproved TripoSR Git operation")
+    actual = SOURCE.resolve(strict=True)
+    if not actual.is_dir() or actual != (ENGINE.resolve(strict=True) / "src"):
+        raise RuntimeError("TripoSR source checkout path is untrusted")
+    return subprocess.check_output(
+        [
+            "git", "-c", f"safe.directory={actual.as_posix()}",
+            "-c", "core.fsmonitor=false",
+            "-C", str(SOURCE), *allowed[operation],
+        ],
+        text=True, timeout=8,
+    ).strip()
+
+
 def check_materials() -> dict:
     lock = json.loads(LOCK.read_text(encoding="utf-8"))
-    sha = subprocess.check_output(
-        ["git", "-C", str(SOURCE), "rev-parse", "HEAD"], text=True, timeout=6
-    ).strip()
-    dirty = subprocess.check_output(
-        ["git", "-C", str(SOURCE), "status", "--porcelain"], text=True, timeout=6
-    ).strip()
+    sha = pinned_source_git("head")
+    dirty = pinned_source_git("status")
     if sha != SOURCE_SHA or dirty or lock["source"]["commit"] != sha:
         raise RuntimeError("Pinned upstream source missing, changed or dirty")
     if CHECKPOINT.stat().st_size != int(lock["weights"]["bytes"]):

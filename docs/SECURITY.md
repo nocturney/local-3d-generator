@@ -37,6 +37,14 @@ G2: explicitly started Windows manual local session → browser per-job GPU cons
 - Browser G1 and opt-in G2 mock tests have 0 page errors and no remote URL requests.
 - Single real G2 local GPU image → verified GLB and DRAFT report → real Chrome 3D preview on Windows; manual server and worker exited after acceptance.
 
+## Windows TripoSR source-owner trust boundary (October 10 hotfix)
+
+A user-authorized 01-orb-alpha test exposed a mismatch between the SYSTEM-owned pinned TripoSR source checkout and the interactive CHRIS account. Git's `dubious ownership` protection refused `git rev-parse HEAD` at the initial `verify_sources` stage. This is an OS account/checkout trust issue; the actual original model result was a failure, not a benchmark success.
+
+The worker now supplies **only per-Git-process** `-c safe.directory=<canonical exact checkout>`, and only for two fixed read-only metadata commands. It also uses `-c core.fsmonitor=false` to avoid invoking configured external fsmonitor helpers. There is no persistent global config change, no trust wildcard and no unverified arbitrary path from HTTP or user input. The helper refuses other Git operations and verifies the resolved checkout path; unchanged-source SHA and clean working tree plus checkpoint/config/DINO SHA256 checks remain mandatory.
+
+**Tradeoff:** trusting a SYSTEM-owned checkout for these two Git subprocesses is still an explicit local trust exception. It is not a general OS filesystem isolation boundary and does not mean a SYSTEM-level administrator cannot modify that checkout. Do not repurpose this scope for downloading, merging, executing hooks or handling arbitrary user-supplied repos. Interactive CHRIS user-account CPU validation must pass before considering another approved GPU experiment; the previous approval remains spent.
+
 ## G3.4 read-only completed-job evaluation and telemetry
 
 POST /v1/jobs/:uuid/benchmark is a deliberate CPU-only write of a **diagnostic JSON artifact**, not a model inference or print operation. It first checks completed real G2 status, model SHA/size, licensed image SHA and catalog integrity. The pinned local Python subprocess uses execFile (no shell), a fixed runtime-only job root and output file, 45-second timeout, offline HF flags and CUDA_VISIBLE_DEVICES=-1. It independently validates the image, model and QA against the manifest and locked TripoSR weights/source; no arbitrary URL, filename or client-provided output path is executed. Concurrent same-job reviews are rejected and a previously verified score is idempotently served.
