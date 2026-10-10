@@ -1,5 +1,13 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.9 — edge-adjacent face-normal-angle diagnostic (PARTIAL CPU PASS)
+
+- PASS: all 60,528 indexed two-face shared-edge pairs of the existing 40,352-face real 01-orb-alpha output and its G3.7 separate winding derivative checked with deterministic CPU Trimesh face normals. Their p95 difference is 33.018760°, 312 edges >45°, 18 >60°, **0 >90°**. Underlying known original project GT has p95 5.731991°, but GT has 1,280 faces vs 40,352 model faces, so direct angle percentiles are NOT mesh-resolution invariant.
+- PASS: reproducible source/model/derivative SHA-linked counts, a completely independent CPU-only replay, immutable sanitized G3.9 evidence and negative tests (including intentional cube sharp edges, open/degenerate geometry and changed winding). 0 newly launched AI workers.
+- LIMITATION: this adds **full indexed edge adjacency angular coverage**, NOT a contact/collision check for edge-adjacent faces. Vertex-only adjacency, true foldover geometry and exact global self-intersections remain **NOT EXAMINED**. Sharp angles do not alone imply a defect; zero angles above 90° cannot imply print/structural safety.
+- Still DRAFT / NOT PRINT QUALIFIED: physical units, walls, material/slicer/strength, mesh self-intersection certification, trusted media sandbox/security, alternative provider and seven unrun synthetic G3 images.
+- Evidence: docs/G3_9_ADJACENT_FACES_CPU_2026-10-10.md and docs/evidence/g3/orb-01-g39-adjacent-angles.json.
+
 ## G3.8 — bounded triangle-contact risk + orb radial quality (CPU diagnostic ONLY)
 
 - PASS: actual previously consented 01-orb-alpha TripoSR GLB and previous non-destructive orientation derivative both underwent bounded, conservative nonadjacent-triangle SAT screening (43,025 eligible pairs per 40,352-face mesh, 0 potential contacts flagged). Independently verified original and derivative SHA and same geometry before testing.

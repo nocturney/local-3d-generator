@@ -1,5 +1,13 @@
 # Release notes
 
+## v0.2.9 — 2026-10-10 — G3.9 CPU-only indexed edge-adjacent face-normal variation
+
+- Advanced beyond G3.8's 43,025 nonadjacent SAT pairs into the adjacent-edge region: inspected all **60,528 indexed edge-adjacent face pairs** in the previously generated real 01-orb-alpha TripoSR 40,352-face model and its separate winding-reversed copy, plus all 1,920 GT source indexed edges.
+- TripoSR adjacent-normal difference: p50 **8.278947°**, p95 **33.018760°**, p99 41.757141°, max 74.402674°; 312 edges above 45° (0.5155%), 18 above 60°, **zero above 90°**. Original procedural 1,280-face GT: p95 5.731991°, zero above 45°. IMPORTANT: tessellation differs greatly so these values are NOT calibrated across meshes, automated fold/defect detection or photographic accuracy.
+- Orientation-only derivative preserved exact face-angle distribution. Sharp corners can be legitimate: a cube is a positive-control example with 12 intentional 90° creases. Face pairs sharing only a vertex are still NOT assessed. No proof of self-intersection freedom or print readiness.
+- Added bounded CPU-only reusable indexed adjacency QA, eight synthetic/previous-chair regression controls, SHA-verified sanitized immutable G3.9 report, CPU-only private recomputation of real/derivative/reference model angle distributions and automatic Node evidence/privacy tests.
+- G3.9 changes **NO GPU inference, model weights, printer, Office or Windows security policy**. Private model-output coverage stays 2/9; seven licensed G3 images require individually authorized GPU runs. Historical public 1/9 benchmark remains a fixed earlier snapshot, not current private data.
+
 ## v0.2.8 — 2026-10-10 — G3.8 CPU-only bounded contact-risk and orb roundness diagnostics
 
 - Introduced a conservative, bounded **non-vertex-adjacent triangle contact screen** for previously generated GLBs: SciPy centroid sphere broadphase, AABB overlap, 17-axis triangle SAT including coplanar in-plane axes. Rejects degenerate coordinates/faces, resource limits or numerical incompleteness; never claims mathematically proven absence of self-intersections. Adjacent triangles are deliberately excluded and noted as an open risk.

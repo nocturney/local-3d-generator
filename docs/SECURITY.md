@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.9: normal-angle statistics cannot authorize print or evade collision guards
+
+Reusable CPU-only adjacent-face-angle inspection on already completed TripoSR and GT GLBs checks only pairs sharing an entire indexed edge. The statistics distinguish flat/high-angular mesh creases but are **not a collision predicate**, signed curvature standard, scale-invariant comparison of differently tessellated meshes or a manufacturing acceptance test. A cube can be valid at 90° creases; this real orb has 0 adjacent-edge normal differences over 90°, yet the vertex-only adjacency/foldover and self-intersection certification gaps remain.
+
+All G3.9 public data are SHA/provenance-checked sanitized JSON, NO private job IDs, raw private GLBs/prompts/image source/customer files or model checkpoints. Model execution/printing/Office/sandbox configuration unchanged. CPU-only run does not lessen prior untrusted-input vulnerabilities, old pinned Python advisory risk or OS egress/multiuser safety limitations.
+
 ## G3.8: conservative mesh-risk checks are NOT secure manufacturing certification
 
 Only CPU-only parsing of **already completed, SHA-verified G3 original orb + derivative + original procedural source GT** took place. The nonadjacent-triangle candidate screen uses capped SciPy cKDTree neighborhoods, AABBs and numerical SAT. Its core BLIND SPOT deliberately excludes any pair of triangles sharing a vertex index: sharp self-foldover adjacent faces may escape, as may numerically ill-conditioned contacts. A candidate positive can also represent touching rather than actual penetration. The code therefore sets selfIntersectionFreeCertified=false even if the full **eligible-pair** screen finishes with 0 flagged pairs. Hard resource limits cause INDETERMINATE, never proof of no geometric collision or printer readiness.

@@ -1,0 +1,102 @@
+{
+  "schema": "local3d.g3.9.real-orb-adjacent-face-angle-evidence.v1",
+  "fixtureId": "01-orb-alpha",
+  "rights": "PROJECT_ORIGINAL_PROCEDURAL",
+  "fixtureSourceImageSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+  "previouslyGeneratedRealModelSha256": "f37a812bc4414ddee34bcb19d2e7535f25d219a3731c14f2dcc89c2c7ba030e2",
+  "windingOnlyDerivativeSha256": "ab2e5aeb55598624209eeca3e700abef93a69a52886c63ecad6a840e62d8d68f",
+  "originalSourceGtSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+  "modelOutputSource": "SINGLE_PREVIOUSLY_APPROVED_REAL_TRIPOSR_INFERENCE",
+  "newAiInferenceExecuted": false,
+  "originalRealTripoSR": {
+    "triangleFaces": 40352,
+    "indexedEdgeAdjacentPairs": 60528,
+    "allIndexedTwoFaceEdgesExamined": true,
+    "angleDegrees": {
+      "max": 74.402674,
+      "p50": 8.278947,
+      "p90": 27.67393,
+      "p95": 33.01876,
+      "p99": 41.757141
+    },
+    "countsAboveAngleThresholds": {
+      "over120Deg": 0,
+      "over150Deg": 0,
+      "over15Deg": 18687,
+      "over30Deg": 4624,
+      "over45Deg": 312,
+      "over60Deg": 18,
+      "over90Deg": 0
+    },
+    "fractionAbove45Deg": 0.00515464,
+    "sharpIntentionalFeaturesArePossible": true,
+    "faceOnlyEdgeAdjacentScope": "FACE_PAIRS_SHARING_EXACTLY_ONE_INDEXED_EDGE"
+  },
+  "copyOnlyCorrectedTripoSR": {
+    "triangleFaces": 40352,
+    "indexedEdgeAdjacentPairs": 60528,
+    "allIndexedTwoFaceEdgesExamined": true,
+    "angleDegrees": {
+      "max": 74.402674,
+      "p50": 8.278947,
+      "p90": 27.67393,
+      "p95": 33.01876,
+      "p99": 41.757141
+    },
+    "countsAboveAngleThresholds": {
+      "over120Deg": 0,
+      "over150Deg": 0,
+      "over15Deg": 18687,
+      "over30Deg": 4624,
+      "over45Deg": 312,
+      "over60Deg": 18,
+      "over90Deg": 0
+    },
+    "fractionAbove45Deg": 0.00515464,
+    "sharpIntentionalFeaturesArePossible": true,
+    "faceOnlyEdgeAdjacentScope": "FACE_PAIRS_SHARING_EXACTLY_ONE_INDEXED_EDGE"
+  },
+  "proceduralSourceGroundTruth": {
+    "triangleFaces": 1280,
+    "indexedEdgeAdjacentPairs": 1920,
+    "allIndexedTwoFaceEdgesExamined": true,
+    "angleDegrees": {
+      "max": 5.751622,
+      "p50": 5.428102,
+      "p90": 5.680823,
+      "p95": 5.731991,
+      "p99": 5.751611
+    },
+    "countsAboveAngleThresholds": {
+      "over120Deg": 0,
+      "over150Deg": 0,
+      "over15Deg": 0,
+      "over30Deg": 0,
+      "over45Deg": 0,
+      "over60Deg": 0,
+      "over90Deg": 0
+    },
+    "fractionAbove45Deg": 0,
+    "sharpIntentionalFeaturesArePossible": true,
+    "faceOnlyEdgeAdjacentScope": "FACE_PAIRS_SHARING_EXACTLY_ONE_INDEXED_EDGE"
+  },
+  "allPriorOrientationChangesPreserveAnglesExactly": true,
+  "mayHaveIntentionalHighAngleCreases": true,
+  "differentFaceDensityMakesAnglePercentilesNonComparableAsAbsoluteQuality": true,
+  "subjectToVertexOnlyFoldoverNotCovered": true,
+  "notProofOfSelfIntersectionFree": true,
+  "notAManufacturingNormalOrThicknessGuarantee": true,
+  "noPhysicalUnitsOrStrengthMeasurements": true,
+  "meaning": "MEASURES_LOCAL_EDGE_ADJACENT_FACE_NORMAL_DIFFERENCES_ONLY",
+  "remainingBlindspots": [
+    "Vertex-only triangle adjacency not analyzed for 3D collision",
+    "True neighboring-surface foldover and near-zero nonadjacent proximity not certified",
+    "GT and prediction differ strongly in tessellation density and triangle size",
+    "Intentional sharp edges can be legitimate; high dihedral alone not a defect",
+    "No wall thickness, mm-scale, mechanical/material/slicer/print evaluation"
+  ],
+  "privateAssetsNeverPublished": true,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

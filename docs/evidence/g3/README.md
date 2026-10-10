@@ -2,6 +2,12 @@
 
 **Historical G3.1–G3.6 evidence** below analyzed the earlier real TripoSR chair GLB, original synthetic GTs, and CPU-only checks. On Oct 10, a NEW, explicitly approved single TripoSR inference successfully generated the first synthetic G3 fixture, **01-orb-alpha**, recorded in separate local private evidence. **G3.7 itself did no additional inference:** it only inspected/reoriented that pre-existing G3 AI output using CPU and produced a sanitized software-browser screenshot. Original and derivative GLB files and job IDs remain locally gitignored.
 
+### G3.9 — edge-adjacent face-angle diagnostics (NO new inference)
+
+- orb-01-g39-adjacent-angles.json: SHA-pinned statistics from the previously generated real 01-orb-alpha TripoSR 40,352-face GLB, the unchanged-geometry winding-reversed derivative, and procedural original reference GT. TripoSR has 60,528 edge-adjacent face pairs, p95 normal-angle difference 33.018760°, 312 pairs >45°, 0 pairs >90°. Procedural GT has 1,920 pairs p95 5.731991°; cross-mesh resolution differs, no percentage-accuracy claim. These are NOT self-fold/contact detection, wall-thickness or print qualification.
+- Reports, private UUID/GLB remain under gitignored runtime; CPU replay and sanitizer prove original/derivative/GT stats, prior G3.8 conservative-contact and G3.7 position/color preservation. No new GPU worker, no private media/executable weights published.
+- Full method: [G3.9 CPU edge-normal angles](../../G3_9_ADJACENT_FACES_CPU_2026-10-10.md).
+
 ### G3.8 — bounded CPU-only self-contact risk and spherical deviation (NO new inference)
 
 - orb-01-g38-cpu-risk-screen.json: independently SHA-validated report on previous actual real 01-orb-alpha TripoSR output, its previous positive-winding derivative and original procedural GT. Bounded nonadjacent-triangle SAT screen found 0 possible contacts among 43,025 eligible pairs per AI GLB; explicitly EXCLUDES vertex-adjacent pairs and DOES NOT certify no self-intersections or print safety. The 4,096-sample radial deviation of best-fit sphere is 0.00062476 reference vs 0.04973669 AI, a narrow normalized shape diagnostic NOT calibrated photo accuracy, strength or physical printer finish.

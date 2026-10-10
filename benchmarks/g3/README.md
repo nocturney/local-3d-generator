@@ -15,6 +15,10 @@ To reproducibly validate original sources on Windows:
 
 The generator refuses to overwrite any existing changed fixture. A repeat run was verified byte-for-byte, identical manifest SHA256 763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a. This is a stable source set, not model outputs.
 
+## G3.9 adjacent-face angle screen on the one real synthetic model
+
+Separate from the nonadjacent triangle potential-contact SAT screen (G3.8), G3.9 checks **all 60,528 EDGE-adjacent two-face pairs** of the already licensed real TripoSR 01-orb-alpha model. Normal-angle p95 is **33.018760°**, with 312 pairs >45° and 0 >90°. The original procedural source GT has 1,920 shared edges, p95 **5.731991°**, but greatly different tessellation/triangle densities mean this is not a calibrated percentage of reconstruction quality. Reversing the AI mesh's triangle winding preserves angle distribution exactly. Vertex-only contacts, actual foldover and physical wall/print suitability are not certified. No new model run or consent; the real model dataset is still 2/9 observed outputs / seven pending. [G3.9 engineering method](../../docs/G3_9_ADJACENT_FACES_CPU_2026-10-10.md) and [sanitized angle evidence](../../docs/evidence/g3/orb-01-g39-adjacent-angles.json).
+
 ## G3.8 existing real orb — independent CPU-only risk checks
 
 The already-authorized TripoSR 01-orb-alpha model and its previous orientation-only derivative were compared against the SHA-pinned project-original sphere with a finite, conservative triangle contact screen and deterministic 4,096-point normalized best-fit sphere radial diagnostic. In the **two 40,352-face** inferred/corrected meshes, **43,025 eligible non-vertex-adjacent triangle pairs** were screened with 0 possible contact findings; vertex-adjacent pairs were excluded, so this is explicitly **NOT proof of self-intersection-free or printable geometry**.

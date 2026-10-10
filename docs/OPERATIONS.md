@@ -1,5 +1,17 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.9: CPU-only adjacent-face angle risk verification (no model execution)
+
+Existing real G3 orb model, prior exact-orientation copy and project-original GT were scanned for all indexed edge-adjacent face normal angles. The operator can reproduce **read-only** using the previous completed local orb job UUID:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-9-verify-cpu-replay.py --job-id <EXISTING_COMPLETED_REAL_JOB_UUID>
+
+This rechecks source and model hashes and deterministically computes 60,528 real mesh edge-pair angles and GT statistics, without output writes, inference, CUDA, cloud or printer. To assemble/verify the fixed SHA sanitized report:
+
+    npm run proof:g3:orb:edge -- --job-id <EXISTING_COMPLETED_REAL_JOB_UUID>
+
+Result in docs/evidence/g3/orb-01-g39-adjacent-angles.json, method docs/G3_9_ADJACENT_FACES_CPU_2026-10-10.md. **No print clearance**: even an absence of normal differences above 90° does not test vertex-only adjacency foldover, intersection, wall thickness or material/physical suitability. No new per-image GPU permission has been granted; still 2/9 private model outputs.
+
 ## G3.8: reproducible CPU-only model surface risk screen (no CUDA)
 
 New reusable commands act only on **already generated licensed GLBs**, with explicit source SHA checks, no model inference, cloud fallback, live service or printer involvement. The original real model/derivative GT filenames remain local under gitignored runtime and G3 benchmarks.
