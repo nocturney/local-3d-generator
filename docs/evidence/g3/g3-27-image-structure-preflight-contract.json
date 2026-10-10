@@ -1,0 +1,66 @@
+{
+  "schema": "local3d.g3.27.bounded-image-container-syntax-contract-not-integration.v1",
+  "previousG326PublicProofSha256": "be9d16848f67238868972d1e1c60db87e595351230142d7d9d1faf257a5267ff",
+  "trackedReadOnlyPreviousServerSha256": "716a9798a65965d3ac43ba37edd73dab6bdfe6a5412be11ccb84f917acd13646",
+  "trackedReadOnlyPreviousPythonWorkerSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "boundedPreflightSourceSha256": "da4c8e312db920788d296823cb76e60383165f8c422a87ac11137315acebc0fa",
+  "sourceFixturesSha256": "171c9b8cc010cd8f05620a70617122a5c97ec074c951cc0ef27ad35ccf1cdbdb",
+  "scope": "OFFLINE_STATIC_AND_TRUSTED_SYNTHETIC_ONLY",
+  "validatedFormats": [
+    "PNG",
+    "JPEG",
+    "WEBP"
+  ],
+  "maxSourceBytes": 8388608,
+  "maxDimensions": [
+    16384,
+    16384
+  ],
+  "maxPixels": 16000000,
+  "maxPngChunks": 1024,
+  "maxJpegMarkerVisits": 4096,
+  "maxWebpChunks": 256,
+  "rawImageDecompressionOrNativeDecoderCalled": false,
+  "strictBoundsAndChecks": "PNG_CHUNKS_CRC_IHDR_IDAT_IEND__JPEG_SOF_SOS_EOI__WEBP_RIFF_CHUNK_FRAMES",
+  "fixtureResults": [
+    {
+      "format": "PNG",
+      "mime": "image/png",
+      "inputSha256": "d56708bc91a3e8a17b97c0abdf4cccbf886f7c608ebd7a427382e52c36f3d5eb",
+      "structuralValidForOriginal": true,
+      "syntheticallyTruncatedVariantsRejected": 6,
+      "bytesOfOriginal": 156
+    },
+    {
+      "format": "JPEG",
+      "mime": "image/jpeg",
+      "inputSha256": "4530bce5b2d096b8fb97183ddfddf291d347efb98738da087446f774f8b449dd",
+      "structuralValidForOriginal": true,
+      "syntheticallyTruncatedVariantsRejected": 6,
+      "bytesOfOriginal": 693
+    },
+    {
+      "format": "WEBP",
+      "mime": "image/webp",
+      "inputSha256": "7c80680b4cae2db5072515663f3fc760c9d0078e2861cd2b3e50f848c477bd64",
+      "structuralValidForOriginal": true,
+      "syntheticallyTruncatedVariantsRejected": 6,
+      "bytesOfOriginal": 86
+    }
+  ],
+  "legacyG1ShortSignatureOnlyStillInProduction": true,
+  "proposedStrictPreflightIntegratedIntoProduction": false,
+  "completeImageDecodeOrSecurityProven": false,
+  "OSNativeParserSandboxReady": false,
+  "liveG2DependenciesChanged": false,
+  "customerMediaProcessed": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "additionalModelExecutions": 0,
+  "GPUInferenceRuns": 0,
+  "packagesInstalled": 0,
+  "newUntrustedImageUploadsApproved": false,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

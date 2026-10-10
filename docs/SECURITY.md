@@ -1,5 +1,9 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.27: strict bounded structural image preflight is NOT native sandbox or active G2 mitigation
+
+A new zero-dependency Node parser validates PNG CRC/chunk layout, JPEG SOF/SOS/EOI markers and WebP RIFF static VP8 family chunk framing within 8MiB/16MP/16,384-side and bounded visits. On 3 original nonprivate 64x64 PNG/JPEG/WebP images it passes, and rejects 18 synthetic truncations plus corrupted/oversized cases. It never decompresses image data, executes a model or invokes unsafe native parsing, so a syntactically passing input still may fail Pillow decode or exploit an unremediated decoder flaw. **Not wired into server/index.js yet**, leaving historic G1/G2 admission unchanged until separate integration. OS-enforced parser network/file confinement and Pillow patch compatibility remain OPEN in #4, manufacturing in #3. [Details](G3_27_BOUNDED_IMAGE_STRUCTURE_PREFLIGHT_CPU_2026-10-10.md) and [sanitized proof](evidence/g3/g3-27-image-structure-preflight-contract.json).
+
 ## G3.26: observed G1 DEMO header acceptance is NOT content validation
 
 The actual G1 fixture-only HTTP source-image admission returns 201 for three deliberately incomplete *harmless* PNG/JPEG/WebP initial signature-only buffers when their declared MIME matches, and 422 for mismatched MIME or an unknown prefix. Separate Pillow 10.1.0 CPU in-memory fixture experiments show that real complete original 64x64 PNG/JPEG/WebP decode correctly while the incomplete harmless bytes fail full decode. This is an observed signature/full-parse mismatch, **not** evidence of a native parser exploit, actual G2 processing, or OS confinement. No untrusted images or GPU model loads were allowed. The gap warrants explicit safe preadmission validity checks and OS-backed native decoder confinement before untrusted customer media, but a validating header alone does not remove parser vulnerabilities.

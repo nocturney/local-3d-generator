@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.27 — bounded PNG/JPEG/WebP input syntax only, NOT in live request path
+
+- PASS: pure Node preflight module covers PNG CRC/container, JPEG SOF/SOS/EOI, WebP RIFF/VP8 static framing, declared MIME mismatch, max 8 MiB/16 MP/16,384 side and bounded chunk/marker visits. Three generated source SHA-locked images pass; 18 truncated copies fail; negative malformed media tests pass. No Pillow/native image parsing or GPU.
+- PASS immutable sanitized SHA proof linked to unchanged G3.26 report, G3.25/26 Node server+worker bytes, new module and synthetic fixtures. Explicit expected current G1 API still accepts short signatures; preflight not integrated yet.
+- OPEN integration to actual G1/manual G2 job admission, safe handling of historic invalid demo tiny PNG fixtures and immutable historical proof replay after any source changes; sandbox/egress/patch/real native parsing Issue #4 OPEN. Print manufacturing Issue #3 OPEN, all GLBs DRAFT.
+- [Method](G3_27_BOUNDED_IMAGE_STRUCTURE_PREFLIGHT_CPU_2026-10-10.md), [SHA proof](evidence/g3/g3-27-image-structure-preflight-contract.json).
+
 ## G3.26 — short HTTP file signatures are NOT full Pillow validity
 
 - PASS CPU-only actual G1 demo API test: 3 harmless incomplete PNG/JPEG/WebP signature-only buffers admitted HTTP 201 on matching MIME; 3 wrong MIME and one unknown signature rejected HTTP 422. All jobs G1 fixture simulated, never TripoSR/GPU.

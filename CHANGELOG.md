@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.27 — 2026-10-10 — G3.27 zero-dependency bounded structural PNG/JPEG/WebP preflight contract
+
+- Built separate, **NOT YET INTEGRATED** pure Node format-structure preflight: CRC/order/IHDR/IDAT/IEND PNG; scan-aware JPEG SOF/SOS/EOI; RIFF chunk framing and VP8/VP8L/VP8X dimensions, no WebP animation; limited CPU/bytes/dimensions, unknown inputs fail closed. Not a native parser sandbox, real full image decode or safe-upload clearance.
+- Tested on 3 original in-memory trusted Pillow 10.1.0 fixture images and 18 truncated versions plus adversarial CRC/trailer/format/size cases. Added source-linked immutable public SHA proof, 11 focused Node tests and safe original synthetic-only fixture records. No production API behavior changes, no GPU, inference, weights/install, OS/Office/4178 or printer actions.
+- Security Issue #4 and manufacturing Issue #3 remain OPEN; G3.28 may separately integrate the validator with the real API after exact historic source SHA preservation strategy.
+
 ## v0.2.26 — 2026-10-10 — G3.26 harmless synthetic short-signature vs full-decode discrepancy
 
 - CPU-only Pillow 10.1.0 in-memory safe 64x64 images: PNG/JPEG/WebP 3/3 properly decoded; three harmless truncated initial signatures 3/3 not fully decoded. No private customer image or malformed exploit payload.

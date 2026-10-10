@@ -1,5 +1,12 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.27 — detached bounded structural image preflight contract
+
+    node scripts/g3-27-assemble-structure-proof.mjs
+    node --test tests/g327-image-structure-contract.test.js tests/g327-structure-proof.test.js
+
+The preflight is a pure zero-dependency **standalone** component in server/image-structure-preflight.js. NO production import or G2 native parsing is added yet; it rejects malformed/incomplete synthetic image containers under CPU/size bounds but is not proof of safe Pillow decoder execution. Existing earlier G3.25/26 proof files remain unchanged; G3.27 immutable proof links source SHA and original frozen synthetic image bytes. Integrate only as a separately QA-verified later milestone with historical source-proof preservation. [Contract and limitations](G3_27_BOUNDED_IMAGE_STRUCTURE_PREFLIGHT_CPU_2026-10-10.md), [immutable proof](evidence/g3/g3-27-image-structure-preflight-contract.json).
+
 ## G3.26 — safe in-memory Pillow images + actual G1 fixture HTTP signature gate
 
 On Chris ONLY, using existing frozen Python venv, CPU with no model load:
