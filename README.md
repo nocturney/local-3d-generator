@@ -37,7 +37,7 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Current v0.2.4 regression: **53 Node** API/geometry/security tests on Windows, **23 Python** tests (5 G2 + 18 G3), 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
+- Current v0.2.5 regression: **64 Node** API/geometry/security tests on Windows, **23 Python** tests (5 G2 + 18 G3), 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
 
 ## G3.4 — one-click CPU benchmark review after manual inference (v0.2.4)
 
@@ -85,3 +85,11 @@ No unattended GPU worker, public/multi-user authentication, arbitrary text-to-3D
 - [G2 source lock](docs/TRIPOSR_SOURCE_LOCK.json) and [scoped original approval](docs/G2_APPROVAL_2026-10-09.json)
 
 This is independent from nocturney/velvetos-core. Its AI3D Issue #613 remains P2/PARKED and is not activated or modified by LOCAL3D.
+
+## G3.5 — resource admission and dependency screening (v0.2.5)
+
+Manual G2 jobs now fail closed **before** acquiring a GPU lease or saving a new image if verified storage thresholds are exceeded (development defaults: 8GiB stored, at least 3GiB remaining after a 128MiB prospective job reservation, at most 400 existing job folders). No private data is deleted, and G1 DEMO is unaffected. G3's topology and licensed-source benchmarking share a **single in-process CPU review permit** to avoid parallel CPU spikes; extra requests return 409 instead of queuing.
+
+**Security limitation:** A read-only public OSV.dev screening of 34 pinned PyPI package versions found 104 advisory matches across Pillow, Transformers and PyTorch. This is NOT proof of exploitability in this pinned offline inference path, but it prevents a responsible production-security clearance without detailed triage and isolated dependency remediation. The manual G2 UI now explicitly warns to use **trusted image sources only**. npm audit of the pinned Node dependency tree returned 0 matches as of this checkpoint. No model packages were changed.
+
+Read [G3.5 resource/supply-chain screening](docs/G3_5_RESOURCE_SECURITY_2026-10-10.md). Public evidence contains only sanitized counts, package names/versions and advisory IDs, never customer images or job IDs.

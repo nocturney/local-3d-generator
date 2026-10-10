@@ -77,3 +77,11 @@ Network fallback, external model URLs, webhooks, remote paths and arbitrary shel
 Every G2 report includes geometryStatus=DRAFT, printQualified=false and approvedForPrinter=false. A watertight sample is not proof of wall thickness, dimensions, strength, supports or printer safety. Real geometry generation is **image-to-3D only**, not semantic text-to-3D or CAD repair.
 
 Full security/operational notes: G2_APP_INTEGRATION.md, SECURITY.md and OPERATIONS.md.
+
+## G3.5 disk and CPU review safety
+
+A real G2 POST /v1/jobs request **must** pass the read-only local storage-admission check **before** any shared GPU lease acquisition or Python subprocess. If the prospective single job would exceed 8GiB of currently accounted job storage, 400 existing manual folders, or leave fewer than 3GiB free after a conservative 128MiB reservation, response is HTTP 507 with G3_STORAGE_QUOTA or G3_LOW_DISK_SPACE. Invalid storage accounting, rogue entries or disk-stat failures return HTTP 503 G3_STORAGE_UNVERIFIED. The request does not create a new job, queue GPU inference or delete old files.
+
+GET /v1/health now has cpuReviewBusy:boolean in addition to gpuBusy:boolean. This reports only a current per-process CPU review, not any secret job ID, exclusive CPU allocation or multi-server workload telemetry. Both G3 manual CPU review routes share one permit; simultaneous requests for different completed jobs or different review types return HTTP 409 G3_CPU_BUSY without adding a background queue. Per-job duplicate codes G3_REVIEW_BUSY/G3_BENCHMARK_BUSY remain as before.
+
+Development safeguards only; no native OS disk quota, automatic retention, untrusted-data isolation or print qualification. See G3_5_RESOURCE_SECURITY_2026-10-10.md.

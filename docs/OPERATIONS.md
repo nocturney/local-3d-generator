@@ -130,3 +130,23 @@ Rollback code: stop servers, preserve both G1/G2 data and runtime/engines, check
 - HTTP 403: localhost Host/Origin guard; no LAN exposure. Do not disable security to resolve access problems.
 
 Never modify Office 2.0 / VelvetOS core / Fabrication Router, UAC/firewall/system CUDA or printer services as part of LOCAL3D operation.
+
+## G3.5 CPU resource and public advisory audit (NO GPU)
+
+All commands below are run manually in LOCAL3D's repository; they never start the TripoSR neural worker or a printer.
+
+    npm run audit:g3:storage
+    npm run audit:g3:admission
+    npm run test:all
+
+The admission proof checks real existing G2 manual job storage at the worst allowed 8MiB input size, without deleting or modifying any existing job. It retains a private sanitized runtime/qa/g3/g3-5-storage-admission.json audit snapshot. New manually consented G2 jobs are now rejected on storage cap (507 G3_STORAGE_QUOTA), low free volume (507 G3_LOW_DISK_SPACE) or unsafe/unverified storage state (503 G3_STORAGE_UNVERIFIED), **before model/GPU access**. The numbers are protective development thresholds, not actual reserved disk blocks.
+
+For optional public security-advisory research ONLY, with explicit outbound Internet contact to OSV.dev (transfers only public PyPI package names/versions; no client images, source code, paths or secrets):
+
+    npm run audit:g3:python-osv
+
+This contacts the public OSV.dev service, saves timestamped matches to gitignored runtime/qa/g3/g3-5-python-osv-screen.json and never installs or changes Python. The separate optional scripts/g3-5-npm-audit-evidence.mjs can summarize previously captured raw npm audit responses with current package-lock SHA; it makes no network calls itself. A version-level advisory match is NOT confirmed code-path exploitability. npm audit of production/development Node dependencies can be run separately in read-only mode. Current Python advisory findings require a scoped, reviewed compatibility/upgrade plan before calling this product secure for untrusted media.
+
+To avoid CPU contention, only one G3 CPU topology or shape review may run in one LOCAL3D Node process at a time. Others receive 409 G3_CPU_BUSY. There is no unattended CPU review queue. No automatic deletion or retention enforcement has been introduced.
+
+Detailed controls: docs/G3_5_RESOURCE_SECURITY_2026-10-10.md.

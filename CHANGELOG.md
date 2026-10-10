@@ -1,5 +1,14 @@
 # Release notes
 
+## v0.2.5 — 2026-10-10 — G3.5 manual storage safety and Python dependency-advisory screen
+
+- Added fail-closed pre-GPU storage admission for each manually consented real TripoSR job: 8GiB maximum accounted G2 job storage, at least 3GiB remaining free after a prospective 128MiB reservation, 400-folder cap and unsafe/corrupt manifest rejection. No automatic deletion, quota reservation or behavior change for default G1 DEMO.
+- Serialized manual G3 geometry and shape CPU reviewers **across review types and job IDs within a single server process**, returning 409 G3_CPU_BUSY instead of launching unbounded parallel CPU tasks.
+- Validated the guard against the existing private Windows G2 storage data in read-only mode: 3 folders and identical audited data before/after, 0 deletions, no new model execution.
+- Read-only Node npm audit reported 0 vulnerability matches. An optional public OSV.dev screen of 34 pinned Python package/version pairs returned 104 **untriaged public advisory matches** across Transformers, Pillow and Torch. No exploitability claim or package upgrade; manual UI explicitly warns to use only trusted image sources pending full Python security triage.
+- Added storage/CPU concurrency and negative-path regression tests, sanitized public evidence, and separate audit scripts excluded from all startup, browser and inference paths. Validation: 64/64 Node, 23/23 Python, 8/8 G1 Chrome and 8/8 G2/G3 mock Chrome phases.
+- G3 benchmark completeness remains **one historical true GPU chair / eight unrun synthetic cases**. No new AI model inference, printer, Office modification, OS firewall change or second engine installation.
+
 ## v0.2.4 — 2026-10-10 — G3.4 completed-job CPU benchmarking and shared-host GPU metrics
 
 - Added an explicit **G3 CPU comparison** button/POST /v1/jobs/:uuid/benchmark for completed G2 jobs whose source SHA matches a licensed G3 fixture. The bounded, isolated local Python scorer verifies the completed job, source/GLB/QA hashes and pinned model; writes downloadable DRAFT benchmark-shape.json without allocating GPU.

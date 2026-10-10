@@ -18,3 +18,11 @@
 For original reference fixture files and license manifest: ../../../benchmarks/g3/README.md.
 Implementation: ../../G3_PROGRESS_2026-10-10.md and ../../../engines/quality.
 No model here is approved for printing or for manufacturing without further dimensional/material testing.
+
+### G3.5 resource/supply-chain evidence (NO NEW INFERENCE)
+
+- g3-5-storage-admission.json: a read-only actual Windows manual-job storage readiness check for a hypothetical maximum 8MiB input; no output model generated, no job created, no file deleted, and private names/images/prompts omitted. Counts are a point-in-time observation only.
+- g3-5-python-osv-screen.json: public OSV.dev version matching for the **pinned public** Python dependency manifest. 34 package versions checked; 104 UNTRIAGED matching advisory IDs across Pillow, Transformers and Torch. This is NOT proof of exploitable paths and NOT a security qualification. No packages or model weights were installed/updated.
+- g3-5-npm-audit-summary.json: sanitized npm audit metadata for both production-only and all pinned Node dependencies; each returned 0 matches for the current v0.2.5 package-lock SHA. Raw npm responses stay gitignored.
+
+Implementation and limitations: ../../G3_5_RESOURCE_SECURITY_2026-10-10.md.

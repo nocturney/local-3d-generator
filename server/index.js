@@ -10,6 +10,7 @@ import { createGeometryReviewer } from './geometry-review.js';
 import { createGpuLease, LeaseUnavailable } from './gpu-lease.js';
 import { getBenchmarkSource, FixtureSourceError } from './benchmark-sources.js';
 import { createBenchmarkReviewer } from './benchmark-review.js';
+import { admitRealJobStorage, StorageAdmissionError } from './storage-admission.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -98,6 +99,7 @@ export async function createApp(options = {}) {
   const geometryReviewer = realAdapter ? (options.geometryReviewer || createGeometryReviewer()) : null;
   const benchmarkReviewer = realAdapter ? (options.benchmarkReviewer || createBenchmarkReviewer()) : null;
   const gpuLease = realAdapter ? (options.gpuLease || createGpuLease({root: options.gpuLeaseRoot})) : null;
+  const storageAdmission = realAdapter ? (options.storageAdmission || admitRealJobStorage) : null;
   const jobsDir = path.join(dataDir, 'jobs');
   const logsDir = path.join(dataDir, 'audit');
   await fs.mkdir(jobsDir, { recursive: true });
@@ -107,6 +109,15 @@ export async function createApp(options = {}) {
   const pending = [];
   const reviews = new Map(); // one CPU-only topology review per completed G2 job
   const benchmarkReviews = new Map(); // one bounded local CPU benchmark per G2 job
+  // One heavy CPU review at a time across BOTH G3 review types.
+  // This is cooperative process-local throttling, not an OS-wide scheduler.
+  let cpuReviewActive = null;
+  function reserveCpuReview(kind, jobId) {
+    if (cpuReviewActive) fail('G3_CPU_BUSY', 409, 'Another local CPU geometry review is active; no background queue');
+    const token = {kind, jobId};
+    cpuReviewActive = token;
+    return () => { if (cpuReviewActive === token) cpuReviewActive = null; };
+  }
   let activeId = null, activeTimer = null, saving = Promise.resolve(), closing = false;
   let realRun = null; // real GPU permit, never queued or restarted unattended
   const jobFile = id => path.join(jobsDir, id, 'job.json');
@@ -309,6 +320,14 @@ export async function createApp(options = {}) {
     // No user-provided path or URL is used to construct a disk location.
     try {
       if (isReal) {
+        try {
+          await storageAdmission({jobsDir, sourceBytes:image.length});
+        } catch (error) {
+          if (error instanceof StorageAdmissionError) {
+            fail(error.code, error.code==='G3_STORAGE_UNVERIFIED' ? 503 : 507, error.message);
+          }
+          throw error;
+        }
         let permit;
         try {
           permit = await gpuLease.acquire({jobId:id});
@@ -374,6 +393,7 @@ export async function createApp(options = {}) {
     }
     if (job.assets.some(asset => asset.id === 'benchmark-shape')) return publicJob(job);
     if (benchmarkReviews.has(job.id)) fail('G3_BENCHMARK_BUSY', 409, 'CPU benchmark already running for this job');
+    const releaseCpu = reserveCpuReview('benchmark',job.id);
     const work = (async () => {
       const sourceAsset = job.assets.find(a => a.id === 'source-image');
       const modelAsset = job.assets.find(a => a.id === 'preview-glb');
@@ -455,7 +475,7 @@ export async function createApp(options = {}) {
       return publicJob(job);
     })();
     benchmarkReviews.set(job.id,work);
-    try { return await work; } finally { benchmarkReviews.delete(job.id); }
+    try { return await work; } finally { benchmarkReviews.delete(job.id); releaseCpu(); }
   }
 
   async function reviewGeometry(job) {
@@ -465,6 +485,7 @@ export async function createApp(options = {}) {
     }
     if (job.assets.some(asset => asset.id === 'geometry-qa')) return publicJob(job);
     if (reviews.has(job.id)) fail('G3_REVIEW_BUSY', 409, 'Geometry review for this job already underway');
+    const releaseCpu = reserveCpuReview('geometry',job.id);
     const work = (async () => {
       const asset = job.assets.find(x => x.id === 'preview-glb');
       if (!asset || asset.mime !== 'model/gltf-binary') {
@@ -500,7 +521,7 @@ export async function createApp(options = {}) {
     })();
     reviews.set(job.id, work);
     try { return await work; }
-    finally { reviews.delete(job.id); }
+    finally { reviews.delete(job.id); releaseCpu(); }
   }
 
   async function serveFile(res, file, contentType, method = 'GET', cache = false) {
@@ -546,7 +567,7 @@ export async function createApp(options = {}) {
       if (req.method === 'GET' && pathname === '/v1/health') return reply(res, 200, {
         schema: 'local3d.health.v1', service: 'ready', localOnly: true,
         inference: Boolean(realAdapter), status: realAdapter ? 'G2_MANUAL_OPT_IN' : 'G1_DEMO', jobs: jobs.size,
-        gpuBusy: Boolean(realRun), autoGpuQueue: false, printing: false
+        gpuBusy: Boolean(realRun), cpuReviewBusy: Boolean(cpuReviewActive), autoGpuQueue: false, printing: false
       });
       if (req.method === 'GET' && pathname === '/v1/benchmarks/g3') {
         const report = JSON.parse(await fs.readFile(G3_PUBLIC_COVERAGE, 'utf8'));

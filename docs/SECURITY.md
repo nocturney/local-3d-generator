@@ -77,3 +77,15 @@ G3 is NOT OS-level untrusted-input sandboxing. The native Trimesh parser still p
 - No formal independent penetration test, signed installers or secure auto-update, and no geometry/manufacturing certification. No business/customer production claims yet.
 
 Next gate: separate user authorization and hardening for multi-user use, broad content, true CAD/manufacturing output or unattended scheduling. Keep Office 2.0 P0 independent.
+
+## G3.5 resource admission and dependency risk — 2026-10-10
+
+Before creating a manually confirmed real G2 job, server/storage-admission.js performs a **read-only and fail-closed** trust/size/statfs audit. The 8GiB stored-data cap, 128MiB prospective job allowance, 3GiB remaining free floor and 400-folder limit are conservative development settings, not a backup or enterprise retention policy. Unexpected symlinks/files, unknown manifests and telemetry errors reject the new GPU job (503/507), without deletion, CPU model execution or altering the working GPU lease. Another process can still change storage after admission; no OS disk quota is installed.
+
+A new process-local permit serializes G3 topology vs source-shape reviews across different completed jobs. It never queues CPU tasks and releases on failure, but multiple separate LOCAL3D servers still have no cross-process CPU semaphore or OS job object.
+
+**Supply-chain gate remains OPEN:** npm audit (production+dev) found 0 advisories in the pinned Node packages on 2026-10-10, but public OSV batch matching of 34 pinned PyPI versions returned 104 advisory IDs across transformers 4.35.0 (50), Pillow 10.1.0 (32), PyTorch 2.5.1+cu121 (22). These are *untriaged package/version advisory matches*, not 104 confirmed exploitable application paths. Selected OSV records include high/critical code-execution advisories, but exact reachable entry points and safe patched compatibility have not been established. Do not claim LOCAL3D is safe for untrusted public image uploads or production multi-tenancy.
+
+For now the G2 manual session is for trusted local images only; arbitrary untrusted images must not be treated as vetted. Upgrade candidates must be tested in a NEW isolated environment with pinned clean-room provenance and functionality regressions, not installed silently in the working engine. No OS network sandbox, antivirus exception, firewall change, new model weights, GPU run or printer release was performed during this phase.
+
+Detailed proof and remediation gate: G3_5_RESOURCE_SECURITY_2026-10-10.md.

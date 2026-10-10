@@ -1,0 +1,27 @@
+{
+  "schema": "local3d.g3-5.storage-admission-proof.v1",
+  "observedAt": "2026-10-10T10:25:46.010Z",
+  "mode": "READ_ONLY_NO_INFERENCE",
+  "sourceBytesScenario": 8388608,
+  "outcome": "ADMITTED",
+  "policy": {
+    "maxStoredBytes": 8589934592,
+    "reservePerJobBytes": 134217728,
+    "minFreeBytesAfterReservation": 3221225472,
+    "maxJobFolders": 400
+  },
+  "foldersBefore": 3,
+  "foldersAfter": 3,
+  "storedBytesBefore": 1921222,
+  "storedBytesAfter": 1921222,
+  "untrustedEntries": 0,
+  "unknownManifests": 0,
+  "freeSpacePassesReservationThreshold": true,
+  "quotaWouldPass": true,
+  "deletedJobs": 0,
+  "gpuInferenceRuns": 0,
+  "cpuReviewRuns": 0,
+  "printQualified": false,
+  "evidenceLane": "POINT_IN_TIME_STORAGE_GUARD_NOT_A_QUOTA_RESERVATION",
+  "note": "Only private metadata sizes/counts checked; no job IDs, client filenames, private images, prompts or free-disk exact byte counts are published"
+}

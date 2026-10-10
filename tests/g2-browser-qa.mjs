@@ -77,6 +77,7 @@ try {
   await page.locator('#healthStatus').getByText('READY').waitFor({timeout:12000});
   await page.locator('#providerTripo:not([disabled])').waitFor();
   assert.equal(await page.locator('#sessionBadge').textContent(),'G2 · MANUAL ONLY');
+  assert.match(await page.locator('#noticeText').textContent(),/תמונות ממקור מהימן/);
   assert.equal(await page.locator('#gpuConsentWrap').isHidden(),true);
   phase('G2 opt-in provider discoverable in operator-enabled session');
 

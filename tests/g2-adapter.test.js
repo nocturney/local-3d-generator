@@ -412,3 +412,57 @@ test('G3.4 Python verification errors never expose internal paths to a web clien
     assert.equal((await env.request('/v1/jobs/'+job.body.id+'/assets/benchmark-shape')).status,404);
   }finally{await env.close()}
 });
+
+test('G3.5 cross-type CPU reviews have one process-local permit, no hidden queue',async()=>{
+  const geometry=fakeReviewer({wait:450});
+  const benchmark=mockCpuBenchmark({wait:80});
+  const adapter=fakeAdapter({wait:40});
+  const env=await fixtureEnv(adapter,geometry.review,benchmark.run);
+  try{
+    const first=await env.request('/v1/jobs','POST',licensedChairPayload());
+    assert.equal(first.status,201);
+    await waitStatus(env.request,first.body.id,'completed');
+    const deadline=Date.now()+2000;
+    while((await env.request('/v1/health')).body.gpuBusy && Date.now()<deadline)await sleep(15);
+    const second=await env.request('/v1/jobs','POST',licensedChairPayload());
+    assert.equal(second.status,201);
+    await waitStatus(env.request,second.body.id,'completed');
+    const running=env.request('/v1/jobs/'+first.body.id+'/review','POST');
+    const startDeadline=Date.now()+2000;
+    while(!(await env.request('/v1/health')).body.cpuReviewBusy && Date.now()<startDeadline)await sleep(10);
+    assert.equal((await env.request('/v1/health')).body.cpuReviewBusy,true);
+    const otherGeometry=await env.request('/v1/jobs/'+second.body.id+'/review','POST');
+    const otherBenchmark=await env.request('/v1/jobs/'+second.body.id+'/benchmark','POST');
+    assert.equal(otherGeometry.status,409);
+    assert.equal(otherGeometry.body.error.code,'G3_CPU_BUSY');
+    assert.equal(otherBenchmark.status,409);
+    assert.equal(otherBenchmark.body.error.code,'G3_CPU_BUSY');
+    assert.equal(benchmark.trace.calls,0,'The benchmark scorer must never spawn while geometry is active');
+    const done=await running;
+    assert.equal(done.status,200);
+    assert.equal((await env.request('/v1/health')).body.cpuReviewBusy,false);
+    const b=await env.request('/v1/jobs/'+second.body.id+'/benchmark','POST');
+    assert.equal(b.status,200);
+    assert.equal(benchmark.trace.calls,1);
+    assert.equal(adapter.trace.started,2,'No new inference is triggered by CPU quality review');
+  }finally{await env.close()}
+});
+
+test('G3.5 CPU permit releases even when a reviewer refuses unsafe print approval',async()=>{
+  const badGeometry=fakeReviewer({invalid:true,wait:35});
+  const cpuBenchmark=mockCpuBenchmark();
+  const env=await fixtureEnv(fakeAdapter({wait:40}),badGeometry.review,cpuBenchmark.run);
+  try{
+    const j=await env.request('/v1/jobs','POST',licensedChairPayload());
+    assert.equal(j.status,201);
+    await waitStatus(env.request,j.body.id,'completed');
+    const rejected=await env.request('/v1/jobs/'+j.body.id+'/review','POST');
+    assert.equal(rejected.status,422);
+    assert.equal(rejected.body.error.code,'G3_BAD_REPORT');
+    assert.equal((await env.request('/v1/health')).body.cpuReviewBusy,false);
+    const accepted=await env.request('/v1/jobs/'+j.body.id+'/benchmark','POST');
+    assert.equal(accepted.status,200);
+    assert.equal(cpuBenchmark.trace.calls,1);
+    assert.equal((await env.request('/v1/jobs/'+j.body.id+'/assets/geometry-qa')).status,404);
+  }finally{await env.close()}
+});

@@ -1,0 +1,33 @@
+{
+  "schema": "local3d.g3-5.npm-audit-summary.v1",
+  "summarizedAt": "2026-10-10T10:33:24.202Z",
+  "source": "npm audit --json [with and without --omit=dev]",
+  "npmPackageLockSha256": "c270d641ecb43b65fc590abf66deb136f42898ed16be820d415af7522e8978da",
+  "results": [
+    {
+      "name": "npm-audit-prod",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    },
+    {
+      "name": "npm-audit-all",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    }
+  ],
+  "dependencyChanges": 0,
+  "modelInferenceRuns": 0,
+  "note": "Timestamped package/advisory matching only; public npm registry data can change. Raw verbose audits remain gitignored."
+}

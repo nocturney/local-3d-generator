@@ -60,3 +60,13 @@ Run identical verified fixtures through each qualified engine. Record source ima
 
 ## G5 - Optional output qualification (NOT RUN)
 STL/3MF export pipeline only with independent geometry report, repair recommendation and explicit state DRAFT / GEOMETRY CHECKED / PRINT QUALIFIED. No print action or automatic release.
+
+## G3.5 — CPU admission and supply-chain safety (PARTIAL PASS)
+
+- PASS in CPU-only tests: a new manual G2 job is not saved or handed to GPU if existing job storage is invalid, exceeds 8GiB prospective quota, has too many job folders or cannot leave >=3GiB volume free after estimated reservation. No automatic deletion. G1 demo unaffected.
+- PASS: one cross-type topology/shape CPU-review permit per server process, immediate HTTP 409 G3_CPU_BUSY without queue, released on success and rejected print-approval report. No GPU tests needed.
+- PASS: read-only existing G2 manual storage preflight found 3 prior job folders and unchanged byte totals before/after. No images, paths or filenames committed.
+- SCREENED / NOT REMEDIATED: npm audit found 0 Node package matches; public OSV matching of 34 frozen Python dependencies found 104 advisory entries in Pillow, Transformers and Torch. Applicability and patched-model compatibility remain unreviewed; untrusted-media/production-security gate is BLOCKED pending triage.
+- STILL OPEN: 8 real TripoSR model runs on G3 synthetic fixtures (each needs new per-run approval); second-model comparison, real-world dimensions, topology/printability, system egress sandbox, OS-backed quotas and production retention. G3 issue stays OPEN. No Office, printer or model changes.
+
+Evidence: docs/G3_5_RESOURCE_SECURITY_2026-10-10.md and docs/evidence/g3/g3-5-*.

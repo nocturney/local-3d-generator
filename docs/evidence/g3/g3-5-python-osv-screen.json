@@ -1,0 +1,329 @@
+{
+  "schema": "local3d.g3-5.python-dependency-screen.v1",
+  "screenedAt": "2026-10-10T10:27:21.392Z",
+  "dataSource": "https://api.osv.dev/v1/querybatch",
+  "frozenDependencyManifestSha256": "887970cf973af2a619bfa6d09ab5a28bf6cd9cc3f24867eefaf35e73f72c21a7",
+  "publicPyPiVersionPairsOnly": true,
+  "sensitiveUserDataTransferred": false,
+  "queryCount": 34,
+  "packagesWithMatchedAdvisories": 3,
+  "totalMatchedAdvisoryIds": 104,
+  "packages": [
+    {
+      "name": "antlr4-python3-runtime",
+      "pinnedVersion": "4.9.3",
+      "matchedPublicVersion": "4.9.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "certifi",
+      "pinnedVersion": "2026.7.22",
+      "matchedPublicVersion": "2026.7.22",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "charset-normalizer",
+      "pinnedVersion": "3.5.2",
+      "matchedPublicVersion": "3.5.2",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "colorama",
+      "pinnedVersion": "0.4.6",
+      "matchedPublicVersion": "0.4.6",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "einops",
+      "pinnedVersion": "0.7.0",
+      "matchedPublicVersion": "0.7.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "filelock",
+      "pinnedVersion": "3.32.3",
+      "matchedPublicVersion": "3.32.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "fsspec",
+      "pinnedVersion": "2026.7.0",
+      "matchedPublicVersion": "2026.7.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "huggingface-hub",
+      "pinnedVersion": "0.17.3",
+      "matchedPublicVersion": "0.17.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "idna",
+      "pinnedVersion": "3.20",
+      "matchedPublicVersion": "3.20",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "imageio",
+      "pinnedVersion": "2.34.1",
+      "matchedPublicVersion": "2.34.1",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "Jinja2",
+      "pinnedVersion": "3.1.6",
+      "matchedPublicVersion": "3.1.6",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "lazy-loader",
+      "pinnedVersion": "0.6",
+      "matchedPublicVersion": "0.6",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "MarkupSafe",
+      "pinnedVersion": "3.0.3",
+      "matchedPublicVersion": "3.0.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "mpmath",
+      "pinnedVersion": "1.3.0",
+      "matchedPublicVersion": "1.3.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "networkx",
+      "pinnedVersion": "3.6.1",
+      "matchedPublicVersion": "3.6.1",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "numpy",
+      "pinnedVersion": "1.26.4",
+      "matchedPublicVersion": "1.26.4",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "omegaconf",
+      "pinnedVersion": "2.3.0",
+      "matchedPublicVersion": "2.3.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "packaging",
+      "pinnedVersion": "26.3",
+      "matchedPublicVersion": "26.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "Pillow",
+      "pinnedVersion": "10.1.0",
+      "matchedPublicVersion": "10.1.0",
+      "advisoryCount": 32,
+      "sampleAdvisoryIds": [
+        "GHSA-3f63-hfp8-52jq",
+        "GHSA-44wm-f244-xhp3",
+        "GHSA-45hq-cxwh-f6vc",
+        "GHSA-4x4j-2g7c-83w6",
+        "GHSA-5x94-69rx-g8h2",
+        "GHSA-62p4-gmf7-7g93",
+        "GHSA-6r8x-57c9-28j4",
+        "GHSA-8v84-f9pq-wr9x",
+        "GHSA-9hw9-ch79-4vh6",
+        "GHSA-fj7v-r99m-22gq",
+        "GHSA-jjj6-mw9f-p565",
+        "GHSA-phj9-mv4w-65pm"
+      ],
+      "moreAdvisoriesBeyondSample": 20
+    },
+    {
+      "name": "PyYAML",
+      "pinnedVersion": "6.0.3",
+      "matchedPublicVersion": "6.0.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "regex",
+      "pinnedVersion": "2026.9.29",
+      "matchedPublicVersion": "2026.9.29",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "requests",
+      "pinnedVersion": "2.34.2",
+      "matchedPublicVersion": "2.34.2",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "safetensors",
+      "pinnedVersion": "0.8.0",
+      "matchedPublicVersion": "0.8.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "scikit-image",
+      "pinnedVersion": "0.22.0",
+      "matchedPublicVersion": "0.22.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "scipy",
+      "pinnedVersion": "1.13.1",
+      "matchedPublicVersion": "1.13.1",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "sympy",
+      "pinnedVersion": "1.13.1",
+      "matchedPublicVersion": "1.13.1",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "tifffile",
+      "pinnedVersion": "2026.3.3",
+      "matchedPublicVersion": "2026.3.3",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "tokenizers",
+      "pinnedVersion": "0.14.1",
+      "matchedPublicVersion": "0.14.1",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "torch",
+      "pinnedVersion": "2.5.1+cu121",
+      "matchedPublicVersion": "2.5.1",
+      "advisoryCount": 22,
+      "sampleAdvisoryIds": [
+        "GHSA-3749-ghw9-m3mg",
+        "GHSA-53q9-r3pm-6pq6",
+        "GHSA-887c-mr87-cxwp",
+        "GHSA-c678-jfcj-6jmf",
+        "GHSA-f4hp-rmr7-r7v8",
+        "GHSA-qfhq-4f3w-5fph",
+        "GHSA-rrmf-rvhw-rf47",
+        "GHSA-vgrw-7cvw-pwgx",
+        "GHSA-x3gm-94wq-g975",
+        "PYSEC-2025-191",
+        "PYSEC-2025-198",
+        "PYSEC-2025-203"
+      ],
+      "moreAdvisoriesBeyondSample": 10
+    },
+    {
+      "name": "tqdm",
+      "pinnedVersion": "4.70.1",
+      "matchedPublicVersion": "4.70.1",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "transformers",
+      "pinnedVersion": "4.35.0",
+      "matchedPublicVersion": "4.35.0",
+      "advisoryCount": 50,
+      "sampleAdvisoryIds": [
+        "GHSA-29pf-2h5f-8g72",
+        "GHSA-37mw-44qp-f5jm",
+        "GHSA-37q5-v5qm-c9v8",
+        "GHSA-3863-2447-669p",
+        "GHSA-4w7r-h757-3r74",
+        "GHSA-59p9-h35m-wg4g",
+        "GHSA-69w3-r845-3855",
+        "GHSA-6rvg-6v2m-4j46",
+        "GHSA-9356-575x-2w9m",
+        "GHSA-fgcw-684q-jj6r",
+        "GHSA-fpwr-67px-3qhx",
+        "GHSA-hxxf-235m-72v3"
+      ],
+      "moreAdvisoriesBeyondSample": 38
+    },
+    {
+      "name": "trimesh",
+      "pinnedVersion": "4.0.5",
+      "matchedPublicVersion": "4.0.5",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "typing_extensions",
+      "pinnedVersion": "4.16.0",
+      "matchedPublicVersion": "4.16.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    },
+    {
+      "name": "urllib3",
+      "pinnedVersion": "2.8.0",
+      "matchedPublicVersion": "2.8.0",
+      "advisoryCount": 0,
+      "sampleAdvisoryIds": [],
+      "moreAdvisoriesBeyondSample": 0
+    }
+  ],
+  "modelInferenceRuns": 0,
+  "dependencyChanges": 0,
+  "installationChanges": 0,
+  "evaluation": "UNTRIAGED_PUBLIC_ADVISORY_MATCHES_NOT_EXPLOIT_CONFIRMATION",
+  "followUp": "Review affected code paths, fixed versions and model compatibility in a new isolated venv before any production or untrusted-user rollout"
+}
