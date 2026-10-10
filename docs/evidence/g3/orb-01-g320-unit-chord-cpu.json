@@ -1,0 +1,227 @@
+{
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE",
+  "fixtureId": "01-orb-alpha",
+  "globalSelfIntersectionFreeCertified": false,
+  "historicLicensedChair": {
+    "approvedForPrinter": false,
+    "boundaryAmbiguousSamplesExcluded": 0,
+    "boundingDiagonalArbitraryUnits": 1.3570529387,
+    "confidentFirstHitSamples": 128,
+    "faces": 19972,
+    "firstHitChordsArbitraryUnits": {
+      "max": 0.6125728991,
+      "median": 0.0906749222,
+      "min": 0.0363642886,
+      "p10": 0.046233909,
+      "p90": 0.4522423184
+    },
+    "firstHitChordsRelativeToAabbDiagonal": {
+      "max": 0.4513994124,
+      "median": 0.0668175276,
+      "min": 0.0267965144,
+      "p10": 0.0340693481,
+      "p90": 0.3332532619
+    },
+    "glTFUnitsClaimCannotProvidePhysicalCalibration": true,
+    "independentMeasuredReferenceMm": "ABSENT",
+    "meshExtentsArbitraryUnits": [
+      0.6134517193,
+      1.0671842694,
+      0.5713032484
+    ],
+    "meshUnitClaimsFromUnverifiedExporterMetadata": [
+      {
+        "claim": "meters",
+        "field": "units"
+      }
+    ],
+    "minimumLocalWallThicknessMeasured": false,
+    "noConfidentHitSamples": 0,
+    "physicalWallThicknessMm": null,
+    "printQualified": false,
+    "rayChordsMayTraverseEntireSolidNotWallThickness": true,
+    "rayIncompleteReason": null,
+    "raySamplesExamined": 128,
+    "raySamplesPlanned": 128,
+    "rayStatus": "SAMPLED_NORMAL_RAY_CHORD_DIAGNOSTIC_COMPLETE",
+    "realPhysicalMillimetersVerified": false,
+    "sourcePositiveSignedVolumeForInwardRays": true,
+    "sourceVerifiedMillimetersPerGLBUnit": null,
+    "status": "SAMPLED_NORMAL_RAY_CHORD_DIAGNOSTIC_COMPLETE",
+    "triangulationEdgeLengthsArbitraryUnits": {
+      "max": 0.0235400975,
+      "median": 0.0138779416,
+      "min": 2.7502e-06,
+      "p10": 0.0063093114,
+      "p90": 0.0195206614
+    },
+    "vertices": 9986
+  },
+  "historicLicensedMITChairSha256": "48ee912229ad73fcbda1a6b455dbcc39d396bdf2c752ccabc90a29097b09b6ec",
+  "historicalCompletedJobAndPriorG319SHARightsVerified": true,
+  "meshMetadataUnitsNotAcceptedAsVerifiedPhysicalScale": true,
+  "minimumPhysicalWallThicknessMm": null,
+  "minimumWallThicknessCertified": false,
+  "mmPerGLBUnit": null,
+  "modelImagesProvideNoIndependentKnownMmDimensions": true,
+  "newAiInference": false,
+  "noMillimeterConversionOrWallThicknessClaim": true,
+  "noNormalRayProbeOnNonpositiveSignedVolumeOriginal": true,
+  "normalRayChordsAreNotLocalWallThickness": true,
+  "originalImageSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+  "originalProceduralGT": {
+    "approvedForPrinter": false,
+    "boundaryAmbiguousSamplesExcluded": 0,
+    "boundingDiagonalArbitraryUnits": 2.9791274042,
+    "confidentFirstHitSamples": 128,
+    "faces": 1280,
+    "firstHitChordsArbitraryUnits": {
+      "max": 1.7137811151,
+      "median": 1.7137127786,
+      "min": 1.7122111989,
+      "p10": 1.7125951758,
+      "p90": 1.7137810746
+    },
+    "firstHitChordsRelativeToAabbDiagonal": {
+      "max": 0.5752627809,
+      "median": 0.5752398424,
+      "min": 0.5747358091,
+      "p10": 0.5748646981,
+      "p90": 0.5752627673
+    },
+    "glTFUnitsClaimCannotProvidePhysicalCalibration": true,
+    "independentMeasuredReferenceMm": "ABSENT",
+    "meshExtentsArbitraryUnits": [
+      1.7200000286,
+      1.719999969,
+      1.7200000286
+    ],
+    "meshUnitClaimsFromUnverifiedExporterMetadata": [],
+    "minimumLocalWallThicknessMeasured": false,
+    "noConfidentHitSamples": 0,
+    "physicalWallThicknessMm": null,
+    "printQualified": false,
+    "rayChordsMayTraverseEntireSolidNotWallThickness": true,
+    "rayIncompleteReason": null,
+    "raySamplesExamined": 128,
+    "raySamplesPlanned": 128,
+    "rayStatus": "SAMPLED_NORMAL_RAY_CHORD_DIAGNOSTIC_COMPLETE",
+    "realPhysicalMillimetersVerified": false,
+    "sourcePositiveSignedVolumeForInwardRays": true,
+    "sourceVerifiedMillimetersPerGLBUnit": null,
+    "status": "SAMPLED_NORMAL_RAY_CHORD_DIAGNOSTIC_COMPLETE",
+    "triangulationEdgeLengthsArbitraryUnits": {
+      "max": 0.1415965923,
+      "median": 0.1295611544,
+      "min": 0.1189234924,
+      "p10": 0.1189235427,
+      "p90": 0.1401818117
+    },
+    "vertices": 642
+  },
+  "originalProceduralSphereGTSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+  "physicalMillimeterScale": "UNKNOWN_UNCALIBRATED",
+  "printQualified": false,
+  "privateRawModelJobIdAndFaceSamplesExcluded": true,
+  "projectOriginalImageRights": "PROJECT_ORIGINAL_PROCEDURAL",
+  "realHistoricTripoSROrbModelSha256": "f37a812bc4414ddee34bcb19d2e7535f25d219a3731c14f2dcc89c2c7ba030e2",
+  "realTripoSR": {
+    "approvedForPrinter": false,
+    "boundaryAmbiguousSamplesExcluded": null,
+    "boundingDiagonalArbitraryUnits": 1.5821132665,
+    "confidentFirstHitSamples": null,
+    "faces": 40352,
+    "firstHitChordsArbitraryUnits": null,
+    "firstHitChordsRelativeToAabbDiagonal": null,
+    "glTFUnitsClaimCannotProvidePhysicalCalibration": true,
+    "independentMeasuredReferenceMm": "ABSENT",
+    "meshExtentsArbitraryUnits": [
+      0.7954449654,
+      0.9713003933,
+      0.962769568
+    ],
+    "meshUnitClaimsFromUnverifiedExporterMetadata": [],
+    "minimumLocalWallThicknessMeasured": false,
+    "noConfidentHitSamples": null,
+    "physicalWallThicknessMm": null,
+    "printQualified": false,
+    "rayChordsMayTraverseEntireSolidNotWallThickness": true,
+    "rayIncompleteReason": "SOURCE_SIGNED_VOLUME_NOT_OUTWARD_NORMAL_RAYS_DISABLED",
+    "raySamplesExamined": 0,
+    "raySamplesPlanned": 0,
+    "rayStatus": "INDETERMINATE_UNVERIFIED_NORMAL_ORIENTATION",
+    "realPhysicalMillimetersVerified": false,
+    "sourcePositiveSignedVolumeForInwardRays": false,
+    "sourceVerifiedMillimetersPerGLBUnit": null,
+    "status": "INDETERMINATE_UNVERIFIED_NORMAL_ORIENTATION",
+    "triangulationEdgeLengthsArbitraryUnits": {
+      "max": 0.0236067062,
+      "median": 0.014047015,
+      "min": 9.311e-07,
+      "p10": 0.0039401662,
+      "p90": 0.0194706913
+    },
+    "vertices": 20178
+  },
+  "realWorldReferenceCalibrationAbsent": true,
+  "sameGeometryPositiveWindingDerivative": {
+    "approvedForPrinter": false,
+    "boundaryAmbiguousSamplesExcluded": 0,
+    "boundingDiagonalArbitraryUnits": 1.5821132665,
+    "confidentFirstHitSamples": 128,
+    "faces": 40352,
+    "firstHitChordsArbitraryUnits": {
+      "max": 0.9702121462,
+      "median": 0.8435766292,
+      "min": 0.5347575954,
+      "p10": 0.7364802583,
+      "p90": 0.9325383321
+    },
+    "firstHitChordsRelativeToAabbDiagonal": {
+      "max": 0.613238108,
+      "median": 0.5331961036,
+      "min": 0.338002093,
+      "p10": 0.4655041291,
+      "p90": 0.5894257711
+    },
+    "glTFUnitsClaimCannotProvidePhysicalCalibration": true,
+    "independentMeasuredReferenceMm": "ABSENT",
+    "meshExtentsArbitraryUnits": [
+      0.7954449654,
+      0.9713003933,
+      0.962769568
+    ],
+    "meshUnitClaimsFromUnverifiedExporterMetadata": [
+      {
+        "claim": "meters",
+        "field": "units"
+      }
+    ],
+    "minimumLocalWallThicknessMeasured": false,
+    "noConfidentHitSamples": 0,
+    "physicalWallThicknessMm": null,
+    "printQualified": false,
+    "rayChordsMayTraverseEntireSolidNotWallThickness": true,
+    "rayIncompleteReason": null,
+    "raySamplesExamined": 128,
+    "raySamplesPlanned": 128,
+    "rayStatus": "SAMPLED_NORMAL_RAY_CHORD_DIAGNOSTIC_COMPLETE",
+    "realPhysicalMillimetersVerified": false,
+    "sourcePositiveSignedVolumeForInwardRays": true,
+    "sourceVerifiedMillimetersPerGLBUnit": null,
+    "status": "SAMPLED_NORMAL_RAY_CHORD_DIAGNOSTIC_COMPLETE",
+    "triangulationEdgeLengthsArbitraryUnits": {
+      "max": 0.0236067062,
+      "median": 0.014047015,
+      "min": 9.311e-07,
+      "p10": 0.0039401662,
+      "p90": 0.0194706913
+    },
+    "vertices": 20178
+  },
+  "sameSurfaceWindingOnlyDerivativeSha256": "ab2e5aeb55598624209eeca3e700abef93a69a52886c63ecad6a840e62d8d68f",
+  "schema": "local3d.g3.20.historical-scale-provenance-normal-ray-chord-four-models.v1",
+  "sourceScope": "PREVIOUS_SHA_LOCKED_TRUSTED_GLB_ONLY",
+  "triangulationEdgesAreNotPhysicalFeatures": true
+}

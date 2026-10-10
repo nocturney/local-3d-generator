@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.20: exporter unit metadata and normal-ray chords cannot authorize production
+
+G3.20 adds a strict physical unit provenance FAIL-CLOSED gate. Untrusted/reported mesh extras.units from a glTF/Trimesh exporter (including "meters" or "millimeters") does NOT authorize converting single-image generated model coordinates to real-world mm; only separately sourced, verified physical measurements plus transforms/landmark correspondence could do so in a future milestone. Current four existing SHA-pinned models all return physicalMillimeterScale=UNKNOWN_UNCALIBRATED, mmPerGLBUnit=null, minimumPhysicalWallThicknessMm=null and printQualified=false. No guessed prices/material tolerances or physical size claims.
+
+A bounded CPU-only float ray screen can sample inward oriented normal **CHORDS** across a solid and triangulation edge lengths in arbitrary GLB coordinate units; neither is actual local wall thickness, tiny printable feature width nor 3D print qualification. Signed volume matters: original historic TripoSR orb has nonpositive signed volume and G3.20 refuses ALL inward ray casts for that file; G3.7 verified positive winding derivative is sampled separately and original SHA untouched. Ambiguous/boundary ray hits and resource cap failures remain INDETERMINATE, not zero thickness or false "pass". Public proof exposes only preexisting model and source image SHAs plus aggregate safe claims/counters; metadata arbitrary private text redacted.
+
+Security Issue #4 pinned Python dependency CVEs, no OS parser isolation and no egress firewall gate remain OPEN. Manufacturing/geometry Issue #3 OPEN, 2/9 genuine G2 AI fixtures only, seven remaining GPU runs need individual explicit permission. All files DRAFT, physicalMmScale UNKNOWN, printQualified=false, no GPU/cloud/printer/Office/4178/Windows security changes.
+
 ## G3.19: second independent triangle oracle cannot certify real-world print safety
 
 G3.19 adds a SECOND independent exact two-triangle rational contact implementation, not a second AI model or new dependencies. It checks all previous REAL orb 43,107 no-index AABB pairs (plus every no-index candidate from three other SHA-verified licensed sources) against primary G3.17 classification, with EXACT label agreement and no false negative on positive synthetic crossings. For indexed shared-edge/vertex-only faces, the second oracle was run only on 256 deterministic selected pairs per category per model, not complete duplicate validation of the 60,528/190,860 full indexed-adjacent orb counts. On discordant exact classifications or malformed source, refuse instead of granting clearance.

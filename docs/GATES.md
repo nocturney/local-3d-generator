@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.20 — trusted source physical unit provenance and bounded CPU chord probes
+
+- PASS: four historical licensed/source SHA models retain realPhysicalMillimeterScale UNKNOWN_UNCALIBRATED and mmPerGLBUnit NULL. glTF mesh extras.units="meters" exists in old G3.7 positive winding and licensed chair but is explicitly an UNVERIFIED exporter metadata claim, not independent subject physical scale calibration. Existing image-to-mesh worker/export has no physical mm reference or certified scaling transform.
+- PASS: CPU-only sampled normal ray FIRST-HIT CHORDS (not walls) for 128 deterministic faces each on positively oriented derivative, original GT sphere and licensed chair; for the historic original real orb signed volume nonpositive, **zero normal rays cast**, INDETERMINATE_UNVERIFIED_NORMAL_ORIENTATION, no mutating original geometry. Triangle edge length distributions and sample chord statistics remain arbitrary GLB units. All physical minimum wall thickness or small printable feature fields null/false; printQualified=false.
+- OPEN: source-verified physical mm correspondence, independent reference measurement, robust actual local thickness, material/printer/slicer dimensions and print QA, Windows OS sandbox/egress and Python pinned dependency advisories Issue #4. Issue #3 stays OPEN and every GLB remains DRAFT.
+- [G3.20 source method and safety boundaries](G3_20_UNIT_PROVENANCE_AND_CHORD_CPU_2026-10-10.md), [four-model unit/chord sanitized SHA proof](evidence/g3/orb-01-g320-unit-chord-cpu.json).
+
 ## G3.19 — second independent exact rational triangle contact differential QA (CPU, previous SHA models)
 
 - PASS: independently coded rational 2-triangle classification (3D edge-plane crossing and finite line interval; coplanar exact point inclusion + all nine segment/segment crossings rather than G3.13 polygon clipping). Direct full per-pair agreement against G3.17 exact math for EVERY no-index AABB candidate on four previously licensed real/reference GLBs. Zero disagreements: prior real orb 43,107/43,107, winding-only copy identical, GT 216/216, historical chair 28,593/28,593. No model inference.

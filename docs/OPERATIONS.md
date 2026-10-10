@@ -1,5 +1,19 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.20: do NOT trust exporter units; sampled GLB-unit normal-ray chord diagnostics only
+
+Source worker engine and pinned G2 real assets contain no independently measured subject dimension. Trimesh-generated glTF extras.units="meters" found in previously licensed G3.7 winding derivative and chair does NOT establish actual meters, mm calibration or print sizing; physicalMillimeterScale remains UNKNOWN_UNCALIBRATED, mmPerGLBUnit null. The new CPU-only engines/quality/unit_scale_and_chord_screen.py samples up to 128 deterministic face barycenters on POSITIVE signed-volume closed manifolds and reports inward normal ray first-hit chords plus triangulation edge lengths IN GLB COORDINATE UNITS ONLY. A sphere full-solid chord demonstrates these are NOT wall thickness. Original previously generated TripoSR orb has NONPOSITIVE signed volume and inward ray probing is DISABLED instead of silently treating wrong normals as safe. No source mutation or physical calibration.
+
+Run adversarial CPU tests:
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g320_unit_chord_screen.py
+
+Replay all FOUR prior licensed immutable source reports READ-ONLY, private locally stored historic original job UUID only:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-20-unit-chord-replay.py --job-id <PREVIOUS_PRIVATE_COMPLETED_G2_ORB_JOB_UUID>
+
+First immutable local reports/sanitized public proof constructed once with --prepare-private --write-public for existing licensed original and derivative GLBs. Subsequent verification OMIT flags and refuse changed bytes. Private job IDs and original source image/model data remain outside Git. [Method](G3_20_UNIT_PROVENANCE_AND_CHORD_CPU_2026-10-10.md) · [public SHA evidence](evidence/g3/orb-01-g320-unit-chord-cpu.json). No new GPU inference, cloud, model installation, printer/Fabrication Router, OS policy, Office or unrelated 4178 changes.
+
 ## G3.19: independent second exact triangle contact oracle differential (CPU only)
 
 New engines/quality/independent_triangle_oracle.py computes exact binary-Fraction triangle-pair contact with mathematically independent noncoplanar plane-edge interpolation and coplanar all-nine segment/segment tests (not G3.13 polygon clip). scripts/g3-19-second-oracle-replay.py rechecks every G3.17 KDTree zero-index AABB candidate with BOTH exact engines, requiring same label on every pair; previous licensed real orb 43,107, copy 43,107, original GT 216 and chair 28,593 all agree. For indexed neighbors only deterministic first 256 shared-full-edge and first 256 single-vertex-only pairs per model are spot-checked by the second oracle; do not claim full independently doubled adjacency clearance.

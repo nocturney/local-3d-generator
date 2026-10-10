@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.20 — 2026-10-10 — G3.20 calibrated-units fail-closed and CPU normal-ray chord proxies
+
+- Audited original G2 TripoSR image-to-GLB worker, Y-up derivative, physical dimension/scale handling and glTF JSON mesh extras. Historical derivative/derivative chair show self-claimed units="meters" from exporter but NO independently measured real subject size; real-world mm coordinate conversion is explicitly null/UNKNOWN_UNCALIBRATED despite exporter hint.
+- Added bounded CPU-only native arbitrary-unit mesh triangle-edge distributions and 128 deterministic inward face-normal first-hit chord probes for three positively oriented old GLBs, carefully excluding incident faces and ambiguous edge hits. A normal chord may span an entire solid and cannot be represented as actual local minimum wall thickness or printable feature size. The original real TripoSR orb has nonpositive signed volume and MUST skip ALL inward ray casts with explicit INDETERMINATE orientation status, while original files remain unmodified.
+- Four existing project/historical rights/SHA GLBs verified through previously completed real G2 source manifests and immutable private/public aggregate evidence. Positive adversarial controls cover misleading units, original inverted winding, thin skew box proxy, symmetric ambiguous box, sphere solid traversal, native-unit scaling, fail-closed budgets and privacy. NO mm wall-thickness certification, no GPU inference/cloud/printer/OS/Office changes; Issues #3/#4 OPEN.
+
 ## v0.2.19 — 2026-10-10 — G3.19 independent second rational triangle-oracle differential QA
 
 - Independently coded exact 3D triangle contact second implementation: noncoplanar intersection via exact edge/plane crossings and support-line intervals; coplanar intersection via exact point-in-triangle + all 9 finite 2D edge/edge crossings, NOT G3.13's polygon clip algorithm. Directly compares each result against G3.17's primary rational triangle predicate; disagreement fails CLOSED, never false clearance.
