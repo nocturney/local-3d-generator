@@ -1,5 +1,13 @@
 # Release notes
 
+## v0.2.4 — 2026-10-10 — G3.4 completed-job CPU benchmarking and shared-host GPU metrics
+
+- Added an explicit **G3 CPU comparison** button/POST /v1/jobs/:uuid/benchmark for completed G2 jobs whose source SHA matches a licensed G3 fixture. The bounded, isolated local Python scorer verifies the completed job, source/GLB/QA hashes and pinned model; writes downloadable DRAFT benchmark-shape.json without allocating GPU.
+- UI clearly distinguishes known procedural original GT (post-hoc normalized Chamfer diagnostic) from licensed sample photographs with **NO GROUND-TRUTH 3D**. Unlicensed, unfinished, tampered or falsely print-approved outputs fail closed.
+- Actual pinned Python scorer exercised through a temporary localhost API using the **existing** historical G2 real chair GLB. No new model inference, no printing and no source-image uploads.
+- Future manually approved TripoSR runs now record NVIDIA shared-host initial/lowest-free/highest-used/highest-utilization snapshots and sampling count separately from PyTorch peak CUDA reserved VRAM, with explicit nonexclusive and inexact-peak caveats. Mock child tests verified this without CUDA.
+- Original G3 public benchmark coverage remains exactly 1 previously observed real chair / 8 unrun new images. Issue #3 stays open for per-image real GPU results and manufacturing validation.
+
 ## v0.2.3 — 2026-10-10 — G3.3 manual benchmark sources and CPU 3D shape diagnostics
 
 - Added reproducible CPU-only reference mesh surface metrics for 8 project-original synthetic cases. Positive self-controls produce zero Chamfer by construction; 4 intentionally wrong-shape controls detect differences. Metrics are post-hoc yaw/scale normalized and NOT print/manufacturing qualified.

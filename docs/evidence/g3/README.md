@@ -2,6 +2,7 @@
 
 **All outputs below analyze an existing real TripoSR chair GLB or original synthetic ground-truth shapes. NO new neural inference was performed to create these reports.** The one real TripoSR chair input/output pair originated in G2 and is SHA-linked here. All future G3 synthetic-image AI runs remain **NOT STARTED**.
 
+- g3-4-existing-chair-cpu-proof.json: sanitized provenance/evidence from **real pinned CPU scorer and local API** using the already-created historic G2 MIT chair GLB and a disposable reconstructed job. Explicitly no *new* AI inference; 0 GPU worker calls. Returns NO_GROUND_TRUTH_3D and no print release.
 - shape-positive-controls.json: eight original synthetic ground-truth models compared to themselves using reproducible normalized bidirectional surface metrics. Exact Chamfer 0 by construction, F1@2% 1.0; these are NOT AI predictions.
 - shape-negative-controls.json: four intentionally incorrect original-source cross-comparisons show nonzero normalized Chamfer 0.0722–0.0984, proving the CPU scorer can distinguish gross shape mismatch on this tiny set, not that any model was run.
 - G3-licensed-source-picker.png: actual G1 Chrome screenshot with a licensed benchmark source image loaded into the input form, with zero jobs and no GPU permission.

@@ -116,3 +116,22 @@ test('G3.3 shape metric controls are original GT-only comparisons, not inferred 
     x.shape.measuresAbsoluteScale===false &&
     x.printQualified===false));
 });
+
+test('G3.4 actual pinned Python CPU review on historical model is not a new inference or synthetic GT claim',async()=>{
+  const proof=await readJson(path.join(ev,'g3-4-existing-chair-cpu-proof.json'));
+  const historicalGlb=await blob(path.join(root,'docs','evidence','g2-app','real-app-output.glb'));
+  const licensedSource=await blob(path.join(root,'docs','evidence','g2','source-chair.png'));
+  assert.equal(proof.schema,'local3d.g3.4.existing-chair-cpu-proof.v1');
+  assert.equal(proof.passed,true);
+  assert.equal(proof.noNewAiInference,true);
+  assert.equal(proof.cpuScorer,'ACTUAL_PINNED_PYTHON_NOT_MOCK');
+  assert.equal(proof.temporaryManifest,'RECONSTRUCTED_FOR_CPU_REVIEW_ONLY');
+  assert.equal(proof.resultEvaluation,'NO_GROUND_TRUTH_3D');
+  assert.equal(proof.historicalModelSha256,sha(historicalGlb));
+  assert.equal(proof.historicalImageSha256,sha(licensedSource));
+  assert.equal(proof.gpuWorkerCalls,0);
+  assert.equal(proof.printQualified,false);
+  assert.equal(proof.reportServedByApi,true);
+  assert.equal(proof.secondRequestIdempotent,true);
+  assert.equal(proof.testFixtureRemoved,true);
+});

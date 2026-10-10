@@ -59,6 +59,37 @@ function checkRun(qa, glb, inputSha, lock) {
      glb.readUInt32LE(4)!==2||
      glb.readUInt32LE(8)!==glb.length)
     throw new Error('BENCHMARK_INVALID_GLB');
+  let hostGpuTelemetry=null;
+  if(p.hostGpuTelemetry!=null){
+    const h=p.hostGpuTelemetry;
+    const numeric=[
+      h.initialUsedMiB,h.initialFreeMiB,h.initialUtilizationPercent,
+      h.peakObservedUsedMiB,h.minimumObservedFreeMiB,
+      h.peakObservedUtilizationPercent,h.runtimeSamples
+    ];
+    if(h.schema!=='local3d.g3.host-gpu-telemetry.v1'||
+       h.measurement!=='NVIDIA_SMI_PERIODIC_SNAPSHOTS_NOT_EXCLUSIVE_VRAM_RESERVATION'||
+       h.peakIsExact!==false||h.intervalMilliseconds!==1500||
+       numeric.some(x=>!Number.isSafeInteger(x)||x<0)||
+       h.runtimeSamples>300||
+       h.initialUtilizationPercent>100||
+       h.peakObservedUtilizationPercent>100||
+       h.peakObservedUsedMiB<h.initialUsedMiB||
+       h.minimumObservedFreeMiB>h.initialFreeMiB){
+      throw new Error('BENCHMARK_INVALID_HOST_GPU_TELEMETRY');
+    }
+    hostGpuTelemetry={
+      classification:'OBSERVED_SHARED_GPU_NOT_MODEL_EXCLUSIVE_MEMORY',
+      initialFreeMiB:h.initialFreeMiB,
+      initialUsedMiB:h.initialUsedMiB,
+      peakObservedUsedMiB:h.peakObservedUsedMiB,
+      minimumObservedFreeMiB:h.minimumObservedFreeMiB,
+      peakObservedUtilizationPercent:h.peakObservedUtilizationPercent,
+      runtimeSamples:h.runtimeSamples,
+      intervalMilliseconds:h.intervalMilliseconds,
+      peakIsExact:false
+    };
+  }
   return {
     providerId:'triposr-local',
     providerPinnedSourceCommit:p.sourceCommit,
@@ -69,6 +100,7 @@ function checkRun(qa, glb, inputSha, lock) {
     modelBytes:glb.length,
     elapsedSeconds:p.elapsedSeconds,
     peakCudaReservedMiB:p.peakCudaReservedMiB,
+    ...(hostGpuTelemetry ? {hostGpuTelemetry} : {}),
     gpuName:p.gpu,
     vertices:p.vertices,
     triangles:p.faces,

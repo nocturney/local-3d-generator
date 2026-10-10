@@ -49,12 +49,12 @@ function fakeAdapter({ wait = 120, error = null } = {}) {
   };
 }
 
-async function fixtureEnv(adapter, geometryReviewer) {
+async function fixtureEnv(adapter, geometryReviewer, benchmarkReviewer) {
   const dir=await fs.mkdtemp(path.join(os.tmpdir(),'local3d-g2-api-'));
   const app=await createApp({
     dataDir:path.join(dir,'data'),
     fixtureFile:path.join(dir,'fixture.glb'),
-    stepMs:25,triposrAdapter:adapter,geometryReviewer,
+    stepMs:25,triposrAdapter:adapter,geometryReviewer,benchmarkReviewer,
     gpuLeaseRoot:path.join(dir,'gpu-coordination')
   });
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
@@ -280,5 +280,135 @@ test('G3 refuses tampered GLB or falsely print-qualified review',async()=>{
     const unsafe=await env.request('/v1/jobs/'+id+'/review','POST');
     assert.equal(unsafe.status,422);assert.equal(unsafe.body.error.code,'G3_BAD_REPORT');
     assert.equal((await env.request('/v1/jobs/'+id+'/assets/geometry-qa')).status,404);
+  }finally{await env.close()}
+});
+
+const licensedChairImage = await fs.readFile(path.join(ROOT,'docs/evidence/g2/source-chair.png'));
+const licensedChairPayload = () => ({
+  ...payload(),
+  image:{mime:'image/png',filename:'licensed-g3-chair.png',base64:licensedChairImage.toString('base64')}
+});
+
+function mockCpuBenchmark({wait=0, falselyPrintQualified=false, fakeThreeDimensionalGT=false}={}){
+  const trace={calls:0};
+  return {
+    trace,
+    async run({outputFile,sourceSha,modelSha}){
+      trace.calls++;
+      if(wait)await sleep(wait);
+      const report={
+        schema:'local3d.g3.manual-job-shape-evaluation.v1',
+        fixtureId:'09-upstream-chair',
+        imageSha256:sourceSha,
+        modelSha256:modelSha,
+        candidateEvidenceLane:'HASH_LINKED_LOCAL_COMPLETED_JOB_NOT_INDEPENDENT_GPU_ATTESTATION',
+        evaluation:fakeThreeDimensionalGT?'POST_HOC_NORMALIZED_3D_SHAPE_DIAGNOSTIC':'NO_GROUND_TRUTH_3D',
+        hasOriginalGroundTruth3d:fakeThreeDimensionalGT,
+        shape:fakeThreeDimensionalGT?{
+          sameInputBinary:false,referenceSelfSimilarityOnly:false,
+          bestView:{chamferL1Normalized:0.0001}
+        }:null,
+        topology:{componentCount:1,watertight:true,positiveVolume:false},
+        modelInferenceExecuted:false,
+        printQualified:falselyPrintQualified,
+        approvedForPrinter:false,
+        fabricationAction:'NONE'
+      };
+      const raw=Buffer.from(JSON.stringify(report,null,2)+'\n');
+      await fs.writeFile(outputFile,raw,{flag:'wx'});
+      return {raw,report};
+    }
+  };
+}
+
+test('G3.4 CPU benchmark rejects DEMO, unfinished or unlicensed real jobs',async()=>{
+  const fake=mockCpuBenchmark(),adapter=fakeAdapter({wait:120});
+  const env=await fixtureEnv(adapter,null,fake.run);
+  try{
+    const g2=await env.request('/v1/jobs','POST',licensedChairPayload());
+    assert.equal(g2.status,201);
+    const notYet=await env.request('/v1/jobs/'+g2.body.id+'/benchmark','POST');
+    assert.equal(notYet.status,422);
+    assert.equal(notYet.body.error.code,'G3_BENCHMARK_UNAVAILABLE');
+    await waitStatus(env.request,g2.body.id,'completed');
+    const unknown=await env.request('/v1/jobs','POST',payload());
+    assert.equal(unknown.status,201);
+    await waitStatus(env.request,unknown.body.id,'completed');
+    const denied=await env.request('/v1/jobs/'+unknown.body.id+'/benchmark','POST');
+    assert.equal(denied.status,422);
+    assert.equal(denied.body.error.code,'G3_BENCHMARK_NO_REFERENCE');
+    assert.equal(fake.trace.calls,0);
+    assert.equal(adapter.trace.started,2,'Only the two original mock submissions can run');
+  }finally{await env.close()}
+});
+
+test('G3.4 explicit CPU review reports missing GT honestly, SHA-locks artifact, idempotent and no extra AI',async()=>{
+  const fake=mockCpuBenchmark(),adapter=fakeAdapter({wait:70}),env=await fixtureEnv(adapter,null,fake.run);
+  try{
+    const j=await env.request('/v1/jobs','POST',licensedChairPayload());
+    assert.equal(j.status,201);
+    await waitStatus(env.request,j.body.id,'completed');
+    const done=await env.request('/v1/jobs/'+j.body.id+'/benchmark','POST');
+    assert.equal(done.status,200);
+    assert.equal(done.body.status,'completed');
+    assert.equal(fake.trace.calls,1);
+    assert.ok(done.body.assets.some(a=>a.id==='benchmark-shape'));
+    const result=await env.request('/v1/jobs/'+j.body.id+'/assets/benchmark-shape');
+    assert.equal(result.status,200);
+    assert.equal(result.body.evaluation,'NO_GROUND_TRUTH_3D');
+    assert.equal(result.body.shape,null);
+    assert.equal(result.body.printQualified,false);
+    const twice=await env.request('/v1/jobs/'+j.body.id+'/benchmark','POST');
+    assert.equal(twice.status,200);
+    assert.equal(fake.trace.calls,1);
+    assert.equal(adapter.trace.started,1,'CPU diagnostic MUST NOT run a second model worker');
+  }finally{await env.close()}
+});
+
+test('G3.4 concurrent same-job CPU scoring rejects duplicate, source tampering and false print authority',async()=>{
+  const fake=mockCpuBenchmark({wait:160}),adapter=fakeAdapter({wait:40}),env=await fixtureEnv(adapter,null,fake.run);
+  try{
+    const j=await env.request('/v1/jobs','POST',licensedChairPayload());
+    await waitStatus(env.request,j.body.id,'completed');
+    const simultaneous=await Promise.all([
+      env.request('/v1/jobs/'+j.body.id+'/benchmark','POST'),
+      env.request('/v1/jobs/'+j.body.id+'/benchmark','POST')
+    ]);
+    assert.deepEqual(simultaneous.map(x=>x.status).sort((a,b)=>a-b),[200,409]);
+    assert.equal(simultaneous.find(x=>x.status===409).body.error.code,'G3_BENCHMARK_BUSY');
+    assert.equal(fake.trace.calls,1);
+  }finally{await env.close()}
+  const wrong=mockCpuBenchmark({falselyPrintQualified:true});
+  const env2=await fixtureEnv(fakeAdapter({wait:40}),null,wrong.run);
+  try{
+    const j=await env2.request('/v1/jobs','POST',licensedChairPayload());
+    await waitStatus(env2.request,j.body.id,'completed');
+    const model=path.join(env2.dir,'data','jobs',j.body.id,'output.glb');
+    const saved=await fs.readFile(model);
+    await fs.writeFile(model,Buffer.from('unsafe source bytes'));
+    const fail=await env2.request('/v1/jobs/'+j.body.id+'/benchmark','POST');
+    assert.equal(fail.status,422);
+    assert.equal(fail.body.error.code,'G3_BENCHMARK_UNVERIFIED');
+    assert.equal(wrong.trace.calls,0);
+    await fs.writeFile(model,saved);
+    const unsafe=await env2.request('/v1/jobs/'+j.body.id+'/benchmark','POST');
+    assert.equal(unsafe.status,422);
+    assert.equal(unsafe.body.error.code,'G3_BAD_BENCHMARK');
+    assert.equal((await env2.request('/v1/jobs/'+j.body.id+'/assets/benchmark-shape')).status,404);
+  }finally{await env2.close()}
+});
+
+test('G3.4 Python verification errors never expose internal paths to a web client',async()=>{
+  const env=await fixtureEnv(fakeAdapter({wait:35}),null,async()=>{
+    throw new Error('PRIVATE_PATH_OR_WEIGHTS_MUST_NOT_REACH_BROWSER');
+  });
+  try{
+    const job=await env.request('/v1/jobs','POST',licensedChairPayload());
+    await waitStatus(env.request,job.body.id,'completed');
+    const result=await env.request('/v1/jobs/'+job.body.id+'/benchmark','POST');
+    assert.equal(result.status,422);
+    assert.equal(result.body.error.code,'G3_BENCHMARK_UNVERIFIED');
+    assert.doesNotMatch(JSON.stringify(result.body),/PRIVATE_PATH_OR_WEIGHTS_MUST_NOT_REACH_BROWSER/);
+    assert.equal((await env.request('/v1/jobs/'+job.body.id+'/assets/benchmark-shape')).status,404);
   }finally{await env.close()}
 });

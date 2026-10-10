@@ -3,7 +3,7 @@ import { OrbitControls } from '/vendor/three/examples/jsm/controls/OrbitControls
 import { GLTFLoader } from '/vendor/three/examples/jsm/loaders/GLTFLoader.js';
 
 const el = id => document.getElementById(id);
-const state = { mode: 'image', provider: 'fixture-demo', providers: [], image: null, imageUrl: null, jobs: [], selected: null, currentModel: null, lastModelUrl: null, viewer: null, geometryCache: new Map(), geometryPending: new Set() };
+const state = { mode: 'image', provider: 'fixture-demo', providers: [], image: null, imageUrl: null, jobs: [], selected: null, currentModel: null, lastModelUrl: null, viewer: null, geometryCache: new Map(), geometryPending: new Set(), benchmarkCache: new Map(), benchmarkPending: new Set(), benchmarkCatalog: new Set() };
 const stageNames = {
   queued: 'ממתין בתור', demo_intake: 'הדמיה: קליטת קלט',
   demo_processing: 'הדמיה: עיבוד', demo_packaging: 'הדמיה: הכנת GLB',
@@ -176,6 +176,47 @@ function renderSelected() {
         });
     }
   }
+  const sourceAsset = job?.assets.find(a => a.id === 'source-image');
+  const hasBenchmark = !!job?.assets.some(a => a.id === 'benchmark-shape');
+  const canBenchmark = realComplete && state.benchmarkCatalog.has(sourceAsset?.sha256);
+  const scorer = el('scoreBenchmark');
+  scorer.hidden = !canBenchmark;
+  scorer.disabled = !canBenchmark || hasBenchmark;
+  scorer.textContent = hasBenchmark ? 'השוואת G3 הושלמה' : 'השוואת G3 (CPU)';
+  const benchmarkLink = el('downloadBenchmark');
+  benchmarkLink.hidden = !hasBenchmark;
+  benchmarkLink.setAttribute('aria-disabled',hasBenchmark ? 'false':'true');
+  benchmarkLink.href = hasBenchmark ?
+    '/v1/jobs/' + encodeURIComponent(job.id) + '/assets/benchmark-shape' : '#';
+  const comparison = el('benchmarkShapeSummary');
+  comparison.hidden = !hasBenchmark;
+  if (hasBenchmark && state.benchmarkCache.has(job.id)) {
+    const result=state.benchmarkCache.get(job.id);
+    if (result.loadingFailed) {
+      comparison.textContent = 'לא ניתן לטעון כרגע את דוח השוואת G3. נסה להוריד את הדוח המלא.';
+    } else if (result.evaluation === 'NO_GROUND_TRUTH_3D') {
+      comparison.textContent = 'השוואת G3 (CPU): לא קיים מודל מקור תלת־ממדי להשוואה. '
+        + 'נבדקה טופולוגיה בלבד. אין ציון התאמה ואין אישור הדפסה.';
+    } else {
+      const n = result.shape?.bestView?.chamferL1Normalized;
+      const distance = typeof n === 'number' && Number.isFinite(n) ? n.toFixed(5) : 'לא זמין';
+      comparison.textContent = 'מרחק משטחים מנורמל (Chamfer): ' + distance
+        + ' · נבחרה זווית מיטבית בדיעבד, וקנה המידה בוטל. '
+        + 'זהו מדד אבחוני, לא אחוז דיוק ולא אישור הדפסה.';
+    }
+  } else if (hasBenchmark) {
+    comparison.textContent = 'טוען דוח השוואת G3…';
+    if (!state.benchmarkPending.has(job.id)) {
+      state.benchmarkPending.add(job.id);
+      void api('/v1/jobs/' + encodeURIComponent(job.id) + '/assets/benchmark-shape')
+        .then(report => state.benchmarkCache.set(job.id,report))
+        .catch(() => state.benchmarkCache.set(job.id,{loadingFailed:true}))
+        .finally(() => {
+          state.benchmarkPending.delete(job.id);
+          if (state.selected === job.id) renderSelected();
+        });
+    }
+  }
   const source = el('viewSource');
   const hasSource = !!(job && job.assets.some(a => a.id === 'source-image'));
   source.setAttribute('aria-disabled', hasSource ? 'false' : 'true');
@@ -240,7 +281,7 @@ async function loadProviders() {
     el('triposrState').textContent = real?.canStart ? 'ידני · זמין' : 'כבוי';
     el('realProviderHealth').textContent = real?.canStart ? 'G2 · באישור בלבד' : 'כבוי (G1)';
     el('sessionBadge').textContent = real?.canStart ? 'G2 · MANUAL ONLY' : 'G1 · DEMO MODE';
-    el('noticeVersion').textContent = real?.canStart ? 'v0.2.3 / G2' : 'v0.2.3 / G1';
+    el('noticeVersion').textContent = real?.canStart ? 'v0.2.4 / G2' : 'v0.2.4 / G1';
     el('footerBuild').textContent = real?.canStart ? 'LOCAL3D / G2 MANUAL BUILD' : 'LOCAL3D / G1 DEVELOPMENT BUILD';
     if (real?.canStart) {
       el('noticeText').textContent = 'G2 בהרשאה ידנית: TripoSR משתמש ב־GPU רק אחרי בחירה ואישור לכל משימה. אין תור AI אוטונומי. המודלים הם DRAFT ואינם מאושרים להדפסה.';
@@ -360,6 +401,22 @@ el('dropzone').addEventListener('drop', e => { e.preventDefault(); el('dropzone'
 el('clearImage').addEventListener('click', clearImage);
 el('startJob').addEventListener('click', startJob);
 el('cancelJob').addEventListener('click', cancelJob);
+el('scoreBenchmark').addEventListener('click', async () => {
+  const job = selectedJob();
+  if (!job || job.simulation || job.status !== 'completed' ||
+      !state.benchmarkCatalog.has(job.assets.find(a=>a.id==='source-image')?.sha256)) return;
+  const button = el('scoreBenchmark');
+  button.disabled = true;
+  button.textContent = 'מודד רשת ב־CPU…';
+  try {
+    await api('/v1/jobs/' + encodeURIComponent(job.id) + '/benchmark','POST');
+    toast('דוח G3 נוצר ב־CPU. אין אישור הדפסה ולא הופעל GPU.');
+    await refresh();
+  } catch (e) {
+    toast('השוואת G3 נכשלה: ' + (e.code || e.message));
+    await refresh();
+  }
+});
 el('reviewGeometry').addEventListener('click', async () => {
   const job = selectedJob(), button = el('reviewGeometry');
   if (!job || job.simulation || job.status !== 'completed') return;
@@ -389,6 +446,7 @@ async function loadBenchmark() {
       throw new Error('Unsupported benchmark coverage report');
     }
     const count = report.fixturesWithPreviouslyObservedE2ERun;
+    state.benchmarkCatalog = new Set(report.fixtureResults.map(x=>x.sourceSha256));
     el('benchmarkProgress').textContent = count + ' / ' + report.fixtureCount;
     el('benchmarkFill').style.width = (100 * count / report.fixtureCount).toFixed(2) + '%';
     el('benchmarkSummary').textContent = count + ' הרצת AI קודמת שנצפתה · ' +
@@ -418,6 +476,7 @@ async function loadBenchmark() {
       ul.append(li);
     }
   } catch {
+    state.benchmarkCatalog = new Set();
     el('benchmarkProgress').textContent = 'לא זמין';
     el('benchmarkSummary').textContent = 'אין כרגע דוח ביצועים מאומת. לא תופעל עבודת AI.';
   }

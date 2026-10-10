@@ -37,7 +37,15 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Current v0.2.3 regression: **47 Node** API/geometry/security tests on Windows, **23 Python** tests (5 G2 + 18 G3), 8 G1 browser phases, 7 G2/G3 mock-provider browser phases, one prior real G2 GPU end-to-end smoke and one actual G3 CPU-only review of the existing GLB. Normal npm tests **do not run any neural model or allocate CUDA**.
+- Current v0.2.4 regression: **53 Node** API/geometry/security tests on Windows, **23 Python** tests (5 G2 + 18 G3), 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
+
+## G3.4 — one-click CPU benchmark review after manual inference (v0.2.4)
+
+Completed manually approved G2 jobs whose image SHA matches one of the nine licensed G3 reference inputs now show **"השוואת G3 (CPU)"**. A click runs the pinned, offline local Python scorer once and exposes a downloadable benchmark-shape.json. It validates the source, output model, QA and pinned model provenance, and is always NOT PRINT QUALIFIED. The ninth upstream chair has no actual original 3D ground truth, so the report states **NO_GROUND_TRUTH_3D** rather than a fictional 3D accuracy score. Changing a source image still revokes GPU consent.
+
+G2 adapter now records **optional shared-host NVIDIA used/free/utilization observations** on future manually approved actual inference runs, explicitly separated from PyTorch's peak CUDA reserved memory; neither is an exclusive VRAM measurement. The actual CPU reviewer passed an end-to-end localhost proof using the **historical G2 chair GLB**, with zero new inference. The model-accuracy benchmark is still **1 historical model observed and 8 licensed sources not inferred**.
+
+Read [G3.4 operator and measurement protocol](docs/G3_4_CPU_REVIEW_TELEMETRY_2026-10-10.md) and [prior CPU proof](docs/evidence/g3/g3-4-existing-chair-cpu-proof.json). Still no automatic model queue, second provider, OS isolation or printer release.
 
 ## G3.3 — measurable 3D shape comparison and ready-to-load test images (v0.2.3)
 

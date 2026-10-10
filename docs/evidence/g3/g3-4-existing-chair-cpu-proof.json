@@ -1,0 +1,19 @@
+{
+  "schema": "local3d.g3.4.existing-chair-cpu-proof.v1",
+  "originalImageIsPreviouslyLicensed": true,
+  "modelSource": "PREVIOUSLY_COMPLETED_G2_REAL_E2E_CHAIR_GLB",
+  "temporaryManifest": "RECONSTRUCTED_FOR_CPU_REVIEW_ONLY",
+  "noNewAiInference": true,
+  "cpuScorer": "ACTUAL_PINNED_PYTHON_NOT_MOCK",
+  "passed": true,
+  "printQualified": false,
+  "historicalModelSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+  "historicalImageSha256": "2503c12a74419d91a4c6c9f1affc48fee6e2b8b9091956ca6211e91ada57b5bf",
+  "resultSha256": "f35ff741ac4c45a059afbc23e775617e31d5db3bce1a48fe4d6de70cdde56454",
+  "resultEvaluation": "NO_GROUND_TRUTH_3D",
+  "gpuWorkerCalls": 0,
+  "reportServedByApi": true,
+  "reportDownloadable": true,
+  "secondRequestIdempotent": true,
+  "testFixtureRemoved": true
+}

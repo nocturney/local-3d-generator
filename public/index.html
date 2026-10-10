@@ -29,7 +29,7 @@
     <div class="notice">
       <span class="notice-icon">i</span>
       <div id="noticeText"><strong>סביבת פיתוח מקומית · הדמיה בלבד</strong> — הקובץ שיופק הוא GLB לדוגמה ואינו נוצר מהתמונה או מהתיאור. אין חיבור לענן, מנוע AI או מדפסת.</div>
-      <span class="notice-version" id="noticeVersion" dir="ltr">v0.2.3 / G1</span>
+      <span class="notice-version" id="noticeVersion" dir="ltr">v0.2.4 / G1</span>
     </div>
     <main class="workspace">
       <aside class="control-pane">
@@ -123,10 +123,13 @@
             <a id="downloadReport" class="plain-button" href="#" download="qa-report.json" aria-disabled="true">דוח משימה</a>
             <button id="reviewGeometry" class="plain-button" type="button" disabled hidden>סריקת רשת (CPU)</button>
             <a id="downloadGeometry" class="plain-button" href="#" download="geometry-qa.json" aria-disabled="true" hidden>דוח רשת מפורט</a>
+            <button id="scoreBenchmark" class="plain-button" type="button" disabled hidden>השוואת G3 (CPU)</button>
+            <a id="downloadBenchmark" class="plain-button" href="#" download="benchmark-shape.json" aria-disabled="true" hidden>דוח השוואת G3</a>
             <a id="viewSource" class="plain-button" href="#" target="_blank" rel="noopener" aria-disabled="true">הצג תמונת מקור</a>
             <button id="copyManifest" class="plain-button" type="button" disabled>העתק Manifest</button>
           </div>
           <div id="geometrySummary" class="geometry-summary" hidden></div>
+          <div id="benchmarkShapeSummary" class="geometry-summary" hidden></div>
           <div class="qa-line"><span class="qa-status">DRAFT</span> תוצרים המופקים בשלב זה אינם מאושרים לייצור או להדפסה.</div>
         </div>
       </section>

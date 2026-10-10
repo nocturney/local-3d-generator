@@ -89,3 +89,27 @@ test('runtime GPU pressure terminates child (mock subprocess)',{skip:!win},async
     assert.ok(samples>=4);
   }finally{await s.close()}
 });
+
+test('G3.4 native mock worker preserves shared-host NVIDIA snapshots separate from CUDA-reserved memory', {skip:!win}, async()=>{
+  let samples=0;
+  const s=await sandbox('delayed-ok',{gpuSample:async()=>{
+    samples++;
+    return samples<=3
+      ?{used:4500,free:11300,util:10}
+      :{used:5400,free:10400,util:36};
+  }});
+  try{
+    const output=await s.adapter.run({jobDir:s.jobDir,inputPath:s.inputPath});
+    const host=output.qa.hostGpuTelemetry;
+    assert.equal(host.schema,'local3d.g3.host-gpu-telemetry.v1');
+    assert.equal(host.initialUsedMiB,4500);
+    assert.equal(host.initialFreeMiB,11300);
+    assert.ok(host.runtimeSamples>=1,'The deliberately delayed mock worker must be observed');
+    assert.equal(host.peakObservedUsedMiB,5400);
+    assert.equal(host.minimumObservedFreeMiB,10400);
+    assert.equal(host.peakObservedUtilizationPercent,36);
+    assert.equal(host.peakIsExact,false);
+    assert.equal(host.measurement,'NVIDIA_SMI_PERIODIC_SNAPSHOTS_NOT_EXCLUSIVE_VRAM_RESERVATION');
+    assert.equal(output.qa.peakCudaReservedMiB,0,'No GPU/torch allocated by fixture');
+  } finally {await s.close()}
+});

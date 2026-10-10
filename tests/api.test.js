@@ -89,6 +89,9 @@ test('valid image -> queued/running -> GLB + non-printable QA report', async () 
   const deniedCpuReview = await req('/v1/jobs/' + job.id + '/review', 'POST');
   assert.equal(deniedCpuReview.status, 422);
   assert.equal(deniedCpuReview.value.error.code, 'G3_REVIEW_UNAVAILABLE');
+  const deniedBenchmark=await req('/v1/jobs/' + job.id + '/benchmark','POST');
+  assert.equal(deniedBenchmark.status,422);
+  assert.equal(deniedBenchmark.value.error.code,'G3_BENCHMARK_UNAVAILABLE');
   assert.equal(report.value.geometryStatus,'DRAFT');
   assert.equal(report.value.printQualified,false);
   const source = await req('/v1/jobs/' + job.id + '/assets/source-image');

@@ -29,6 +29,14 @@ Explicit user authorization covered isolated model installation and limited GPU 
 - RESEARCH ONLY: SF3D, SPAR3D, InstantMesh, Hunyuan Shape, OpenLRM licensing/VRAM comparison in docs/G3_PROVIDER_SCREENING.md. No new candidate weights installed, no commercial licensing assumed.
 - OPEN: run new images through the real G2 model with *per-job authorization*, true multi-image output analysis and comparison to another independently licensed engine. Production print and multi-user hardening remain blocked.
 
+## G3.4 — manual completed-job CPU comparison / host GPU evidence (PARTIAL PASS)
+
+- PASS: manually initiated CPU-only benchmark on a **completed licensed-source G2** job with source/GLB/provenance verification and downloadable, DRAFT benchmark-shape JSON. Denies DEMO, unknown/unlicensed source, running, tampered model, duplicate requests and false print claims.
+- PASS: actual pinned Windows CPU scorer over temporary localhost API against the **existing historical real chair GLB**; no new model inference, accurately reports NO_GROUND_TRUTH_3D, with temp evidence cleaned.
+- PASS: future real-model successful G2 QA can report NVIDIA host usage as sampled shared-GPU observations distinct from model CUDA reserved MiB; the delayed native mock process tests sampling without CUDA.
+- STILL OPEN: eight *new* licensed inputs have NO AI results and no cross-provider ranking; per-image GPU approval and live Office/NVIDIA checks required for each. Camera/real-world scale, self-intersection, thickness/strength/material safety, native process sandbox and OS network denial absent.
+- HOLD Issue #3 OPEN. No printing, no autonomously scheduled inference, no licensing assumptions about additional engines.
+
 ## G3.3 — genuine-source shape metric readiness (PARTIAL PASS)
 
 - PASS: SHA-locked nine-image local picker with server allowlisted image reads and browser consent reset. Selecting an image does not create a GPU job.

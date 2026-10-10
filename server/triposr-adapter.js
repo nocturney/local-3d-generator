@@ -162,6 +162,25 @@ export function createTripoSRAdapter(overrides = {}) {
       }
       onStage('gpu_guard');
       const baseline = await liveGate(signal, readGpu, checkOffice);
+      const hostGpuTelemetry = {
+        schema:'local3d.g3.host-gpu-telemetry.v1',
+        measurement:'NVIDIA_SMI_PERIODIC_SNAPSHOTS_NOT_EXCLUSIVE_VRAM_RESERVATION',
+        initialUsedMiB:baseline.used,
+        initialFreeMiB:baseline.free,
+        initialUtilizationPercent:baseline.util,
+        peakObservedUsedMiB:baseline.used,
+        minimumObservedFreeMiB:baseline.free,
+        peakObservedUtilizationPercent:baseline.util,
+        runtimeSamples:0,
+        intervalMilliseconds:GPU_LIMITS.pollMs,
+        peakIsExact:false
+      };
+      const observeGpu = snapshot => {
+        hostGpuTelemetry.runtimeSamples++;
+        hostGpuTelemetry.peakObservedUsedMiB = Math.max(hostGpuTelemetry.peakObservedUsedMiB,snapshot.used);
+        hostGpuTelemetry.minimumObservedFreeMiB = Math.min(hostGpuTelemetry.minimumObservedFreeMiB,snapshot.free);
+        hostGpuTelemetry.peakObservedUtilizationPercent = Math.max(hostGpuTelemetry.peakObservedUtilizationPercent,snapshot.util);
+      };
       const out = path.join(resolvedDir, 'engine-output');
       if (await fs.stat(out).then(() => true, () => false)) {
         throw new EngineError('G2_OUTPUT_EXISTS', 'Job output path was already used');
@@ -214,6 +233,7 @@ export function createTripoSRAdapter(overrides = {}) {
         void (async () => {
           try {
             const snapshot = await readGpu();
+            observeGpu(snapshot);
             if (snapshot.free < GPU_LIMITS.criticalFreeMiB ||
                 snapshot.used - baseline.used > GPU_LIMITS.maxAdditionalUsedMiB) {
               requestStop('G2_GPU_LIMIT');
@@ -236,7 +256,11 @@ export function createTripoSRAdapter(overrides = {}) {
         if (code !== 0 || !collected.includes('TRIPOSR_PILOT_SUCCESS ')) {
           throw new EngineError('G2_WORKER_FAILED', 'Local inference worker did not complete');
         }
-        return await verifyResult(resolvedDir, resolvedInput);
+        const produced = await verifyResult(resolvedDir, resolvedInput);
+        // These are observations from the shared GPU, NOT exclusive model VRAM
+        // and NOT proof that LOCAL3D caused every observed change.
+        produced.qa.hostGpuTelemetry = hostGpuTelemetry;
+        return produced;
       } finally {
         clearTimeout(timeout);
         clearInterval(timer);

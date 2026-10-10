@@ -45,8 +45,22 @@ const fakeAdapter={
 };
 function phase(label){report.phases.push({label,status:'PASS'});}
 try {
+  const fakeBenchmarkReviewer = async ({outputFile,sourceSha,modelSha}) => {
+    const data = {
+      schema:'local3d.g3.manual-job-shape-evaluation.v1',
+      fixtureId:'09-upstream-chair',
+      imageSha256:sourceSha,modelSha256:modelSha,
+      candidateEvidenceLane:'HASH_LINKED_LOCAL_COMPLETED_JOB_NOT_INDEPENDENT_GPU_ATTESTATION',
+      evaluation:'NO_GROUND_TRUTH_3D',hasOriginalGroundTruth3d:false,shape:null,
+      modelInferenceExecuted:false,printQualified:false,approvedForPrinter:false,
+      fabricationAction:'NONE'
+    };
+    const raw=Buffer.from(JSON.stringify(data,null,2)+'\n');
+    await fs.writeFile(outputFile,raw,{flag:'wx'});
+    return {raw,report:data};
+  };
   app=await createApp({dataDir:path.join(temp,'data'),fixtureFile:path.join(temp,'fixture.glb'),
-    stepMs:30,triposrAdapter:fakeAdapter,
+    stepMs:30,triposrAdapter:fakeAdapter,benchmarkReviewer:fakeBenchmarkReviewer,
     gpuLeaseRoot:path.join(temp,'gpu-coordination')});
   await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
   const base='http://127.0.0.1:'+app.server.address().port;
@@ -114,6 +128,21 @@ try {
   assert.equal(invoked,1,'Geometry review must not invoke AI again');
   await page.screenshot({path:path.join(out,'G3-CPU-REVIEW-MOCK-WORKFLOW.png'),fullPage:true});
   phase('G3 CPU-only topology review and negative volume shown in browser without AI inference');
+
+  await page.locator('#scoreBenchmark:visible:not([disabled])').waitFor();
+  await page.locator('#scoreBenchmark').click();
+  await page.locator('#downloadBenchmark:visible').waitFor({timeout:14000});
+  await page.waitForFunction(()=>document.querySelector('#benchmarkShapeSummary')?.textContent.includes('לא קיים מודל מקור'),null,{timeout:12000});
+  const benchmarkHref=await page.locator('#downloadBenchmark').getAttribute('href');
+  const benchmark=await (await page.request.get(base+benchmarkHref)).json();
+  assert.equal(benchmark.fixtureId,'09-upstream-chair');
+  assert.equal(benchmark.evaluation,'NO_GROUND_TRUTH_3D');
+  assert.equal(benchmark.shape,null);
+  assert.equal(benchmark.printQualified,false);
+  assert.equal(benchmark.modelInferenceExecuted,false);
+  assert.equal(invoked,1,'CPU reference analysis must not start a second AI worker');
+  await page.screenshot({path:path.join(out,'G3-CPU-BENCHMARK-MOCK-WORKFLOW.png'),fullPage:true});
+  phase('G3.4 explicit CPU benchmark is visible only for a licensed completed source; real 3D GT absence is stated');
 
   await page.locator('#providerFixture').click();
   assert.equal(await page.locator('#gpuConsentWrap').isHidden(),true);

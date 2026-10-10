@@ -2,6 +2,14 @@
 
 Bind: **127.0.0.1 only**; default G1 4177, explicit G2 Windows manual session 4179. No CORS, no printer, remote URLs, paid providers or unattended GPU scheduling. JSON request and response formats are authoritative.
 
+## G3.4 explicit finished-job CPU benchmark (NO GPU)
+
+POST /v1/jobs/:uuid/benchmark — only when a manually consented local TripoSR job is **completed**, its GLB SHA matches the stored manifest, and its exact licensed input image matches the pinned G3 nine-reference catalog. No unlicensed user media are passed through the evaluation. The server invokes a fixed offline Python CPU evaluator with a 45-second timeout and no client filesystem paths.
+
+Results remain DRAFT as **benchmark-shape.json** and are downloadable by GET /v1/jobs/:uuid/assets/benchmark-shape. Reports always set modelInferenceExecuted=false, printQualified=false, approvedForPrinter=false, fabricationAction=NONE. A matching original reference model yields scale-normalized post-hoc 3D shape distance (NOT physical millimeter accuracy); the upstream chair yields NO_GROUND_TRUTH_3D and no fabricated shape value. Empty/DEMO/running/unlicensed input returns 422; simultaneous reviews of the same job return 409 G3_BENCHMARK_BUSY; reports already persisted are idempotent. This endpoint does NOT start a model, acquire GPU, queue tasks or print.
+
+Successful future G2 real-mode QA provenance may include hostGpuTelemetry: observed initial shared GPU free/used/utilization, peak observed used/utilization, minimum observed free, sample count and period (1.5s). These are NVIDIA telemetry estimates, not exclusive model GPU allocation or exact peaks; PyTorch peakCudaReservedMiB remains a separate metric.
+
 ## G3.3 licensed benchmark-image loader (read-only)
 
 GET /v1/benchmarks/g3/sources/:fixtureId — accepts only one of the nine exact G3 licensed IDs (01-orb-alpha through 09-upstream-chair). Returns schema local3d.g3.fixture-image.v1 with image={filename,mime:image/png,base64,bytes}, fixtureId, sourceRights, sha256, manualOnly=true, confirmationGranted=false, modelInferenceExecuted=false and printQualified=false. The server checks fixed allowlisted paths, PNG magic, 8MiB file limit and source SHA256 before return. It does NOT create jobs, execute inference, change provider state, confirm GPU or access client files. Invalid ID returns 404; source-integrity failure 503.

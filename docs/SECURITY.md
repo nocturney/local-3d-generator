@@ -37,6 +37,14 @@ G2: explicitly started Windows manual local session → browser per-job GPU cons
 - Browser G1 and opt-in G2 mock tests have 0 page errors and no remote URL requests.
 - Single real G2 local GPU image → verified GLB and DRAFT report → real Chrome 3D preview on Windows; manual server and worker exited after acceptance.
 
+## G3.4 read-only completed-job evaluation and telemetry
+
+POST /v1/jobs/:uuid/benchmark is a deliberate CPU-only write of a **diagnostic JSON artifact**, not a model inference or print operation. It first checks completed real G2 status, model SHA/size, licensed image SHA and catalog integrity. The pinned local Python subprocess uses execFile (no shell), a fixed runtime-only job root and output file, 45-second timeout, offline HF flags and CUDA_VISIBLE_DEVICES=-1. It independently validates the image, model and QA against the manifest and locked TripoSR weights/source; no arbitrary URL, filename or client-provided output path is executed. Concurrent same-job reviews are rejected and a previously verified score is idempotently served.
+
+It does **not** provide an OS process sandbox, OS-level outbound-network denial or multiuser untrusted parsing boundary; Trimesh/SciPy still run with the current logged-in user's permissions. Do not use this on untrusted network uploads or equate source/QA SHA matching with independent hardware attestation.
+
+Optional G2 hostGpuTelemetry comes from 1.5-second NVIDIA-SMI snapshots *while a manually approved worker is running*. The stats include all GPU users (potentially Office) and are not exact peaks or exclusive GPU memory; CUDA allocations in the worker are measured and represented separately. No GPU checks or worker activity are triggered by the benchmark HTTP endpoint. Cross-process cooperative lease and live Office no-conflict gate remain mandatory for new inference.
+
 ## G3.3 source-integrity and CPU scoring trust boundary
 
 The new G3 benchmark-source HTTP route only serves one of nine license-attested images from exact fixed repo paths, after SHA256 and PNG magic/size verification. No arbitrary filesystem path, private media, URL, third-party download, POST or GPU job is permitted by this route. The browser adds it to the existing input form without submission, and changing/clearing any selected image explicitly clears stale GPU consent.

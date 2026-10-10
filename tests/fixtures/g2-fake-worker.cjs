@@ -30,5 +30,5 @@ if(mode==='hang'){
     }));
     console.log('TRIPOSR_STAGE export_glb');
     console.log('TRIPOSR_PILOT_SUCCESS mock-no-gpu');
-  },80);
+  },mode==='delayed-ok'?2400:80);
 }

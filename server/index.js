@@ -9,6 +9,7 @@ import { createTripoSRAdapter } from './triposr-adapter.js';
 import { createGeometryReviewer } from './geometry-review.js';
 import { createGpuLease, LeaseUnavailable } from './gpu-lease.js';
 import { getBenchmarkSource, FixtureSourceError } from './benchmark-sources.js';
+import { createBenchmarkReviewer } from './benchmark-review.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -95,6 +96,7 @@ export async function createApp(options = {}) {
   // requires explicit operator opt-in before process launch, and per-job consent.
   const realAdapter = options.triposrAdapter || (process.platform === 'win32' && process.env.L3D_ENABLE_TRIPOSR === '1' ? createTripoSRAdapter() : null);
   const geometryReviewer = realAdapter ? (options.geometryReviewer || createGeometryReviewer()) : null;
+  const benchmarkReviewer = realAdapter ? (options.benchmarkReviewer || createBenchmarkReviewer()) : null;
   const gpuLease = realAdapter ? (options.gpuLease || createGpuLease({root: options.gpuLeaseRoot})) : null;
   const jobsDir = path.join(dataDir, 'jobs');
   const logsDir = path.join(dataDir, 'audit');
@@ -103,7 +105,8 @@ export async function createApp(options = {}) {
   await ensureFixture(fixtureFile);
   const jobs = new Map();
   const pending = [];
-  const reviews = new Map(); // one CPU-only review per completed G2 job
+  const reviews = new Map(); // one CPU-only topology review per completed G2 job
+  const benchmarkReviews = new Map(); // one bounded local CPU benchmark per G2 job
   let activeId = null, activeTimer = null, saving = Promise.resolve(), closing = false;
   let realRun = null; // real GPU permit, never queued or restarted unattended
   const jobFile = id => path.join(jobsDir, id, 'job.json');
@@ -167,6 +170,7 @@ export async function createApp(options = {}) {
           weightsSha256: produced.qa.weightsSha256, sourceSha256: produced.qa.inputSha256,
           artifactSha256: produced.qa.artifactSha256, elapsedSeconds: produced.qa.elapsedSeconds,
           gpu: produced.qa.gpu, peakCudaReservedMiB: produced.qa.peakCudaReservedMiB,
+          hostGpuTelemetry: produced.qa.hostGpuTelemetry || null,
           vertices: produced.qa.vertices, faces: produced.qa.faces,
           coordinateSystem: produced.qa.coordinateSystem,
           preprocessing: produced.qa.preprocessing
@@ -363,6 +367,97 @@ export async function createApp(options = {}) {
     return publicJob(job);
   }
 
+  async function reviewBenchmark(job) {
+    if (!benchmarkReviewer || job.providerId !== 'triposr-local' || job.simulation ||
+        job.status !== 'completed' || closing) {
+      fail('G3_BENCHMARK_UNAVAILABLE', 422, 'Only completed local G2 jobs can be scored on CPU');
+    }
+    if (job.assets.some(asset => asset.id === 'benchmark-shape')) return publicJob(job);
+    if (benchmarkReviews.has(job.id)) fail('G3_BENCHMARK_BUSY', 409, 'CPU benchmark already running for this job');
+    const work = (async () => {
+      const sourceAsset = job.assets.find(a => a.id === 'source-image');
+      const modelAsset = job.assets.find(a => a.id === 'preview-glb');
+      if (!sourceAsset || !modelAsset || modelAsset.mime !== 'model/gltf-binary') {
+        fail('G3_BENCHMARK_UNVERIFIED', 422, 'Completed job has no verified source and GLB model');
+      }
+      // No arbitrary private customer media gets sent through the licensed
+      // G3 source benchmark. Only the SHA-locked nine-reference catalog.
+      const staticReport = JSON.parse(await fs.readFile(G3_PUBLIC_COVERAGE,'utf8'));
+      if (staticReport.schema !== 'local3d.g3.benchmark-coverage.v1' ||
+          staticReport.fixtureResults?.length !== 9) {
+        fail('G3_BENCHMARK_UNVERIFIED', 503, 'Licensed G3 source catalog is invalid');
+      }
+      const fixture = staticReport.fixtureResults.find(x => x.sourceSha256 === sourceAsset.sha256);
+      if (!fixture) fail('G3_BENCHMARK_NO_REFERENCE', 422,
+        'This completed job has no licensed G3 benchmark reference');
+      try {
+        const attested = await getBenchmarkSource(fixture.fixtureId);
+        if (attested.sha256 !== sourceAsset.sha256) {
+          fail('G3_BENCHMARK_UNVERIFIED', 503, 'Pinned G3 source bytes changed');
+        }
+      } catch (e) {
+        if (e instanceof HttpError) throw e;
+        fail('G3_BENCHMARK_UNVERIFIED', 503, 'G3 source rights or SHA cannot be verified');
+      }
+      const modelFile = path.join(jobFolder(job.id),'output.glb');
+      const modelStat = await fs.lstat(modelFile).catch(() => null);
+      if (!modelStat || !modelStat.isFile() || modelStat.isSymbolicLink() ||
+          modelStat.size !== modelAsset.bytes || modelStat.size > 64*1024*1024 ||
+          sha(await fs.readFile(modelFile)) !== modelAsset.sha256) {
+        fail('G3_BENCHMARK_UNVERIFIED', 422, 'Model GLB failed hash or size verification');
+      }
+      const outputFile = path.join(jobFolder(job.id),'benchmark-shape.json');
+      await audit('g3_cpu_benchmark_started',job.id,{fixtureId:fixture.fixtureId});
+      let raw,report;
+      try {
+        ({raw,report} = await benchmarkReviewer({
+          jobsRoot:jobsDir,jobId:job.id,outputFile,
+          sourceSha:sourceAsset.sha256,modelSha:modelAsset.sha256
+        }));
+      } catch {
+        // A pinned CPU scanner may reject model provenance, an existing
+        // conflicting report, timeout, or invalid geometry. Never disclose
+        // internal paths or Python stderr in an HTTP response.
+        fail('G3_BENCHMARK_UNVERIFIED',422,
+          'CPU reference analysis refused the model or local provenance');
+      }
+      if (!Buffer.isBuffer(raw) || raw.length > 128*1024 ||
+          report?.schema !== 'local3d.g3.manual-job-shape-evaluation.v1' ||
+          report.fixtureId !== fixture.fixtureId ||
+          report.imageSha256 !== sourceAsset.sha256 ||
+          report.modelSha256 !== modelAsset.sha256 ||
+          report.candidateEvidenceLane !== 'HASH_LINKED_LOCAL_COMPLETED_JOB_NOT_INDEPENDENT_GPU_ATTESTATION' ||
+          report.printQualified !== false || report.approvedForPrinter !== false ||
+          report.modelInferenceExecuted !== false || report.fabricationAction !== 'NONE' ||
+          !['NO_GROUND_TRUTH_3D','POST_HOC_NORMALIZED_3D_SHAPE_DIAGNOSTIC'].includes(report.evaluation)) {
+        fail('G3_BAD_BENCHMARK', 422, 'Unsafe or inconsistent benchmark score refused');
+      }
+      const referenceAvailable = fixture.sourceRights === 'PROJECT_ORIGINAL_PROCEDURAL';
+      if (referenceAvailable !== (report.evaluation === 'POST_HOC_NORMALIZED_3D_SHAPE_DIAGNOSTIC') ||
+          (referenceAvailable && (
+             !report.shape || report.shape.sameInputBinary !== false ||
+             report.shape.referenceSelfSimilarityOnly !== false ||
+             !Number.isFinite(report.shape.bestView?.chamferL1Normalized) ||
+             report.shape.bestView.chamferL1Normalized < 0)) ||
+          (!referenceAvailable && report.shape !== null)) {
+        fail('G3_BAD_BENCHMARK', 422, 'Model claims a nonexistent or unverified 3D reference');
+      }
+      const disk = await fs.readFile(outputFile).catch(() => null);
+      if (!disk || sha(disk) !== sha(raw)) fail('G3_BAD_BENCHMARK',422,
+        'CPU benchmark report cannot be verified on disk');
+      job.assets.push(recordAsset('benchmark-shape','report','application/json',raw,
+        'G3 CPU shape diagnostic — DRAFT, NOT PRINT QUALIFIED'));
+      job.updatedAt = now();
+      await persist(job);
+      await audit('g3_cpu_benchmark_completed',job.id,{
+        fixtureId:fixture.fixtureId,reportSha256:sha(raw)
+      });
+      return publicJob(job);
+    })();
+    benchmarkReviews.set(job.id,work);
+    try { return await work; } finally { benchmarkReviews.delete(job.id); }
+  }
+
   async function reviewGeometry(job) {
     if (!geometryReviewer || job.providerId !== 'triposr-local' || job.simulation ||
         job.status !== 'completed' || closing) {
@@ -486,19 +581,21 @@ export async function createApp(options = {}) {
         return reply(res, 200, { schema: 'local3d.jobs.v1', jobs: all.map(publicJob) });
       }
       if (req.method === 'POST' && pathname === '/v1/jobs') return reply(res, 201, await createJob(await readBody(req)));
-      const match = pathname.match(/^\/v1\/jobs\/([^/]+)(?:\/(cancel|review|assets\/([^/]+)))?$/);
+      const match = pathname.match(/^\/v1\/jobs\/([^/]+)(?:\/(cancel|review|benchmark|assets\/([^/]+)))?$/);
       if (match) {
         const id = match[1]; if (!isUuid(id)) fail('INVALID_JOB_ID', 404, 'Job not found');
         const job = jobs.get(id); if (!job) fail('NOT_FOUND', 404, 'Job not found');
         if (req.method === 'GET' && !match[2]) return reply(res, 200, publicJob(job));
         if (req.method === 'POST' && match[2] === 'cancel') return reply(res, 200, await cancelJob(job));
         if (req.method === 'POST' && match[2] === 'review') return reply(res, 200, await reviewGeometry(job));
+        if (req.method === 'POST' && match[2] === 'benchmark') return reply(res, 200, await reviewBenchmark(job));
         if (['GET', 'HEAD'].includes(req.method) && match[3]) {
           const asset = job.assets.find(x => x.id === match[3]);
           if (!asset) fail('NOT_FOUND', 404, 'Asset not found');
           const leaf = asset.id === 'preview-glb' ? 'output.glb' :
             asset.id === 'qa-report' ? 'qa-report.json' :
             asset.id === 'geometry-qa' ? 'geometry-qa.json' :
+            asset.id === 'benchmark-shape' ? 'benchmark-shape.json' :
             asset.id === 'source-image' && job.source ? 'input' + sniffMimeExt(job.source.mime) : null;
           if (!leaf) fail('NOT_FOUND', 404, 'Asset not found');
           return await serveFile(res, path.join(jobFolder(id), leaf), asset.mime, req.method);
@@ -529,6 +626,7 @@ export async function createApp(options = {}) {
     // Do not close the job persistence layer while a bounded CPU reviewer
     // is still writing its report or manifest.
     if (reviews.size) await Promise.allSettled([...reviews.values()]);
+    if (benchmarkReviews.size) await Promise.allSettled([...benchmarkReviews.values()]);
     for (const job of jobs.values()) {
       if (job.status === 'running' || job.status === 'queued' || job.status === 'cancelling') {
         job.status = 'interrupted'; job.stage = 'interrupted'; job.progress = 0;

@@ -98,6 +98,14 @@ test('local SHA-matched record is explicitly un-attested, not labeled independen
     const model=await fs.readFile(path.join(ROOT,'docs','evidence','g2-app','real-app-output.glb'));
     const qa=await read(path.join(ROOT,'docs','evidence','g2-app','qa-report.json'));
     qa.jobId=id;qa.provenance.sourceSha256=sha(input);
+    qa.provenance.hostGpuTelemetry={
+      schema:'local3d.g3.host-gpu-telemetry.v1',
+      measurement:'NVIDIA_SMI_PERIODIC_SNAPSHOTS_NOT_EXCLUSIVE_VRAM_RESERVATION',
+      initialUsedMiB:4500,initialFreeMiB:11300,initialUtilizationPercent:10,
+      peakObservedUsedMiB:5400,minimumObservedFreeMiB:10400,
+      peakObservedUtilizationPercent:36,runtimeSamples:2,
+      intervalMilliseconds:1500,peakIsExact:false
+    };
     const report=Buffer.from(JSON.stringify(qa));
     const asset=(id,mime,b)=>({id,mime,sha256:sha(b),bytes:b.length});
     await fs.writeFile(path.join(jobDir,'input.png'),input);
@@ -120,6 +128,10 @@ test('local SHA-matched record is explicitly un-attested, not labeled independen
       'LOCAL_COMPLETED_JOB_HASH_MATCHED_NOT_EXTERNAL_GPU_ATTESTATION');
     assert.equal(synthetic.runs[0].silhouette.status,'NOT_SCORED');
     assert.equal(synthetic.runs[0].geometry.audit,'NOT_RUN');
+    assert.equal(synthetic.runs[0].hostGpuTelemetry.classification,
+      'OBSERVED_SHARED_GPU_NOT_MODEL_EXCLUSIVE_MEMORY');
+    assert.equal(synthetic.runs[0].hostGpuTelemetry.minimumObservedFreeMiB,10400);
+    assert.equal(synthetic.runs[0].hostGpuTelemetry.peakIsExact,false);
 
     // An explicitly produced private 3D metric is optional, and even when
     // present must never upgrade a hash-linked record to proven GPU execution.
