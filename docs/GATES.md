@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.19 — second independent exact rational triangle contact differential QA (CPU, previous SHA models)
+
+- PASS: independently coded rational 2-triangle classification (3D edge-plane crossing and finite line interval; coplanar exact point inclusion + all nine segment/segment crossings rather than G3.13 polygon clipping). Direct full per-pair agreement against G3.17 exact math for EVERY no-index AABB candidate on four previously licensed real/reference GLBs. Zero disagreements: prior real orb 43,107/43,107, winding-only copy identical, GT 216/216, historical chair 28,593/28,593. No model inference.
+- PASS but SAMPLED ONLY: second oracle agrees on first deterministic 256 shared-edge and 256 one-vertex-only pairs for EACH prior model. G3.15 and G3.16 full indexed-adjacent classifications remain separate earlier proofs; G3.19 does NOT exhaustively reconfirm all of them with second implementation. Seeded randomized adversarial and forced disagreement tests fail closed.
+- OPEN: source GLB already quantized and not reconstructed CAD; second full indexed adjacency oracle, physical mm scale and min printable wall/strength/slicer/printer QA, Windows native parser sandbox/network isolation and Python OSV triage. Issue #3/#4 OPEN; never printQualified, every model DRAFT.
+- [G3.19 method and scope](G3_19_SECOND_EXACT_TRIANGLE_ORACLE_CPU_2026-10-10.md), [G3.19 sanitized four-source evidence](evidence/g3/orb-01-g319-second-exact-oracle-proof.json).
+
 ## G3.18 — independent exact-axis AABB candidate completeness corroboration (CPU)
 
 - PASS: bounded sorted-X interval sweep independent of G3.17 SciPy KDTree, followed by Y/Z OUTWARD-rounded prefilters and exact Fraction rational 3D AABB endpoint comparisons. Counts strict zero-tolerance pairs (necessary for all geometric triangle contact in finite decoded GLB XYZ), and exact fixed-margin pairs. 0/1/2 indexed partition agrees with G3.14; EXACT no-index PAIR ID membership (privately only) agrees with G3.17 numeric KDTree set, not merely counts. Any exact no-index candidate missing from numeric set is INDETERMINATE.

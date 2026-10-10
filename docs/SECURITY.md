@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.19: second independent triangle oracle cannot certify real-world print safety
+
+G3.19 adds a SECOND independent exact two-triangle rational contact implementation, not a second AI model or new dependencies. It checks all previous REAL orb 43,107 no-index AABB pairs (plus every no-index candidate from three other SHA-verified licensed sources) against primary G3.17 classification, with EXACT label agreement and no false negative on positive synthetic crossings. For indexed shared-edge/vertex-only faces, the second oracle was run only on 256 deterministic selected pairs per category per model, not complete duplicate validation of the 60,528/190,860 full indexed-adjacent orb counts. On discordant exact classifications or malformed source, refuse instead of granting clearance.
+
+Exact rational arithmetic is only for GLB coordinates after lossy binary-float export; no CAD source reconstruction, physically calibrated mm, minimum wall/feature size, supports, material stress/slicer/printer data or whole-mesh commercial safety certificate. Private G2 job/source/license SHA and data remain local, public only aggregates and fixed SHAs. All model/runtime resource limits remain; compare <=100k no-index, <=256 each indexed adjacency sample, <=105s CPU per historical source. No GPU AI inference, cloud, model downloads, printer, Office, security policy or 4178 changes.
+
+Issue #3 manufacturing and #4 pinned dependency advisories/untrusted parser OS confinement/egress remain OPEN; every result DRAFT, globalSelfIntersectionFreeCertified=false and printQualified=false.
+
 ## G3.18: independent exact-AABB spatial coverage still does not authorize printing
 
 A new bounded CPU sorted-X sweep independently enumerates 3D AABB overlaps with strict exact binary-float-derived endpoint comparisons and conservative outward numeric prefilters; it is not dependent upon earlier KDTree geometry culling. Every real-orb exact no-index AABB candidate matches the G3.17 KDTree numeric pair ID set (in private runtime memory only), and zero missing exact no-index pairs on four licensed old sources. This strengthens **decoded-coordinate spatial broadphase completeness**, not validation of the entire independent triangle narrowphase engine, original ideal unquantized CAD, real physical mm scale, wall thickness, supportability, slicer mechanics or material strength.

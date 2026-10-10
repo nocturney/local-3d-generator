@@ -1,5 +1,19 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.19: independent second exact triangle contact oracle differential (CPU only)
+
+New engines/quality/independent_triangle_oracle.py computes exact binary-Fraction triangle-pair contact with mathematically independent noncoplanar plane-edge interpolation and coplanar all-nine segment/segment tests (not G3.13 polygon clip). scripts/g3-19-second-oracle-replay.py rechecks every G3.17 KDTree zero-index AABB candidate with BOTH exact engines, requiring same label on every pair; previous licensed real orb 43,107, copy 43,107, original GT 216 and chair 28,593 all agree. For indexed neighbors only deterministic first 256 shared-full-edge and first 256 single-vertex-only pairs per model are spot-checked by the second oracle; do not claim full independently doubled adjacency clearance.
+
+Python randomized and adversarial CPU controls:
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g319_independent_oracle.py
+
+Prior completed private G2 real job SHA locked source, four-model READ-ONLY immutable replay:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-19-second-oracle-replay.py --job-id <EXISTING_PREVIOUS_PRIVATE_REAL_ORB_JOB_UUID>
+
+The one-time private and sanitized public proof construction used --prepare-private --write-public for previously SHA-approved historical sources only; subsequent replay WITHOUT those flags refuses altered evidence. Never include source private job UUID, source image binary or sampled face-pair IDs in Git. [Method/limitations](G3_19_SECOND_EXACT_TRIANGLE_ORACLE_CPU_2026-10-10.md), [sanitized SHA proof](evidence/g3/orb-01-g319-second-exact-oracle-proof.json). Still DRAFT, printQualified=false, no CPU result authorizes printer, new GPU job, Office, cloud, Windows security or unrelated 4178 changes.
+
 ## G3.18: independent exact AABB axis sweep crosschecks full numeric KDTree candidate selection (CPU)
 
 The bounded CPU module engines/quality/exact_aabb_sweep_audit.py sorts face AABBs by their decoded IEEE754 minimum X coordinate, conservatively prefilters Y/Z with outward IEEE754 rounding, then performs all 6 interval comparisons using Fraction exact rationals, both strict and under the declared 1e-9 diagonal-relative GLB-unit margin. No cKDTree is used by the independent pass. Compare full 0/1/2 shared-index candidate counts to G3.14 and complete no-index pair SET membership against G3.17 KDTree. Any missed exact no-index candidate is INDETERMINATE. Four previous licensed SHA/asset sources had zero missed candidates. This proves candidate-coverage only for finite decoded coordinates within bounded resource limits, NOT physical mm/print clearance.

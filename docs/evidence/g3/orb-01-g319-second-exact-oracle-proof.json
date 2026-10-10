@@ -1,0 +1,132 @@
+{
+  "approvedForPrinter": false,
+  "decodedGeometryNotUnquantizedCAD": true,
+  "eachIndexedSharedEdgeAndVertexOnlySubsetSizeAtMost": 256,
+  "fabricationAction": "NONE",
+  "fixtureId": "01-orb-alpha",
+  "globalSelfIntersectionFreeCertified": false,
+  "historicLicensedMITChairSha256": "48ee912229ad73fcbda1a6b455dbcc39d396bdf2c752ccabc90a29097b09b6ec",
+  "historicRealOrbTripoSRModelSha256": "f37a812bc4414ddee34bcb19d2e7535f25d219a3731c14f2dcc89c2c7ba030e2",
+  "historicalG2CompletedJobAssetsAndOriginalSourceRightsVerified": true,
+  "historicalLicensedChair": {
+    "G317AllNumAabbPairs": 151180,
+    "G317NoIndexPairCandidates": 28593,
+    "G319NoIndexIndependentOracleClassified": 28593,
+    "completeNoIndexDifferentialExactEveryCandidate": true,
+    "faces": 19972,
+    "independentSecondExactOracleClassificationCounts": {
+      "EXACT_COPLANAR_POSITIVE_AREA_OVERLAP": 0,
+      "EXACT_COPLANAR_POSITIVE_LENGTH_BOUNDARY_SEGMENT": 0,
+      "EXACT_DISJOINT": 28593,
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 0,
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 0
+    },
+    "indexedFullEdgeOracleSampleCount": 256,
+    "indexedFullEdgeSampleClassificationCounts": {
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 256
+    },
+    "indexedFullSharedEdgePairsTotal": 29958,
+    "indexedOneVertexOracleSampleCount": 256,
+    "indexedSingleVertexPairsTotal": 92629,
+    "indexedSingleVertexSampleClassificationCounts": {
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 256
+    },
+    "onlySelectedIndexedAdjacencyDifferentialNotEntire": true,
+    "printQualified": false
+  },
+  "historicalOriginalImageSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+  "identicalGeometricOriginalAndWindingCopyCounts": true,
+  "independentCoplanarMethod": "ALL_NINE_SEGMENT_INTERSECTIONS_PLUS_VERTEX_INSIDE",
+  "independentNoncoplanarMethod": "EXACT_EDGE_PLANE_CROSSING_LINE_INTERVALS",
+  "noNewGpuAiInference": true,
+  "notFullIndependentIndexedAdjacencyOracle": true,
+  "originalProceduralGT": {
+    "G317AllNumAabbPairs": 7866,
+    "G317NoIndexPairCandidates": 216,
+    "G319NoIndexIndependentOracleClassified": 216,
+    "completeNoIndexDifferentialExactEveryCandidate": true,
+    "faces": 1280,
+    "independentSecondExactOracleClassificationCounts": {
+      "EXACT_COPLANAR_POSITIVE_AREA_OVERLAP": 0,
+      "EXACT_COPLANAR_POSITIVE_LENGTH_BOUNDARY_SEGMENT": 0,
+      "EXACT_DISJOINT": 216,
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 0,
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 0
+    },
+    "indexedFullEdgeOracleSampleCount": 256,
+    "indexedFullEdgeSampleClassificationCounts": {
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 256
+    },
+    "indexedFullSharedEdgePairsTotal": 1920,
+    "indexedOneVertexOracleSampleCount": 256,
+    "indexedSingleVertexPairsTotal": 5730,
+    "indexedSingleVertexSampleClassificationCounts": {
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 256
+    },
+    "onlySelectedIndexedAdjacencyDifferentialNotEntire": true,
+    "printQualified": false
+  },
+  "originalProceduralGroundTruthSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+  "physicalMillimeterScale": "UNKNOWN_UNCALIBRATED",
+  "printQualified": false,
+  "rawModelImagePrivateJobUUIDAndSampleFaceIndicesExcluded": true,
+  "realTripoSR": {
+    "G317AllNumAabbPairs": 294495,
+    "G317NoIndexPairCandidates": 43107,
+    "G319NoIndexIndependentOracleClassified": 43107,
+    "completeNoIndexDifferentialExactEveryCandidate": true,
+    "faces": 40352,
+    "independentSecondExactOracleClassificationCounts": {
+      "EXACT_COPLANAR_POSITIVE_AREA_OVERLAP": 0,
+      "EXACT_COPLANAR_POSITIVE_LENGTH_BOUNDARY_SEGMENT": 0,
+      "EXACT_DISJOINT": 43107,
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 0,
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 0
+    },
+    "indexedFullEdgeOracleSampleCount": 256,
+    "indexedFullEdgeSampleClassificationCounts": {
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 256
+    },
+    "indexedFullSharedEdgePairsTotal": 60528,
+    "indexedOneVertexOracleSampleCount": 256,
+    "indexedSingleVertexPairsTotal": 190860,
+    "indexedSingleVertexSampleClassificationCounts": {
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 256
+    },
+    "onlySelectedIndexedAdjacencyDifferentialNotEntire": true,
+    "printQualified": false
+  },
+  "schema": "local3d.g3.19.independent-second-triangle-oracle-four-source.v1",
+  "scope": "EVERY_G317_NOINDEX_AABB_CANDIDATE_PLUS_256_INDEXED_EDGE_AND_VERTEX_SAMPLES_PER_MODEL",
+  "sourceDataAlwaysPreviouslyCreatedRealOrLicensed": true,
+  "sourceRights": "PROJECT_ORIGINAL_PROCEDURAL",
+  "twoDifferentExactNarrowphaseImplementationsAgreeForEveryNoIndexAabbCandidate": true,
+  "unchangedWindingOnlyCopySha256": "ab2e5aeb55598624209eeca3e700abef93a69a52886c63ecad6a840e62d8d68f",
+  "wallThickness": "NOT_TESTED",
+  "windingOnlySameSurface": {
+    "G317AllNumAabbPairs": 294495,
+    "G317NoIndexPairCandidates": 43107,
+    "G319NoIndexIndependentOracleClassified": 43107,
+    "completeNoIndexDifferentialExactEveryCandidate": true,
+    "faces": 40352,
+    "independentSecondExactOracleClassificationCounts": {
+      "EXACT_COPLANAR_POSITIVE_AREA_OVERLAP": 0,
+      "EXACT_COPLANAR_POSITIVE_LENGTH_BOUNDARY_SEGMENT": 0,
+      "EXACT_DISJOINT": 43107,
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 0,
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 0
+    },
+    "indexedFullEdgeOracleSampleCount": 256,
+    "indexedFullEdgeSampleClassificationCounts": {
+      "EXACT_NONCOPLANAR_POSITIVE_LENGTH_LINE_INTERSECTION": 256
+    },
+    "indexedFullSharedEdgePairsTotal": 60528,
+    "indexedOneVertexOracleSampleCount": 256,
+    "indexedSingleVertexPairsTotal": 190860,
+    "indexedSingleVertexSampleClassificationCounts": {
+      "EXACT_SINGLE_POINT_BOUNDARY_CONTACT": 256
+    },
+    "onlySelectedIndexedAdjacencyDifferentialNotEntire": true,
+    "printQualified": false
+  }
+}

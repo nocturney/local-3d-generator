@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.19 — 2026-10-10 — G3.19 independent second rational triangle-oracle differential QA
+
+- Independently coded exact 3D triangle contact second implementation: noncoplanar intersection via exact edge/plane crossings and support-line intervals; coplanar intersection via exact point-in-triangle + all 9 finite 2D edge/edge crossings, NOT G3.13's polygon clip algorithm. Directly compares each result against G3.17's primary rational triangle predicate; disagreement fails CLOSED, never false clearance.
+- Every prior SHA-licensed model's full no-index AABB candidate subset independently checked: real TripoSR orb 43,107/43,107 equal exact classifications, G3.7 copy equal, procedural GT 216/216, historical MIT chair 28,593/28,593; zero disagreement. Deterministically selected only 256 indexed shared-edge + 256 indexed single-vertex neighbors per model for second-engine spot comparison; never generalize that to full indexed adjacency.
+- Added 17 Python adversarial seeded random-grid/coplanar/tiny-binary-float differential tests, explicit positive boundary/area crossing controls and injected disagreement fail-closed, plus 3 public Node SHA/privacy/scope tests. All four prior GLBs and asset/license source provenances validated with immutable private and sanitized public evidence. Physical mm/printing and OS sandbox/advisory gates remain blocked. GitHub Issues #3/#4 OPEN; no GPU, new model inference, cloud or printer.
+
 ## v0.2.18 — 2026-10-10 — G3.18 independent exact-axis spatial candidate-completeness audit
 
 - Independent sorted-X sweep computes every conservative finite 3D AABB candidate for already decoded GLB IEEE754 triangle coordinates, using outward-rounded numeric prefilter and final exact Fraction rational 3-axis interval comparisons with/without fixed margin. Does NOT use the previous SciPy KDTree for its own spatial enumeration.
