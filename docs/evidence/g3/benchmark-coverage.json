@@ -9,6 +9,7 @@
   "fixturesWithPreviouslyObservedE2ERun": 1,
   "fixturesAwaitingRecordedOutput": 8,
   "excludedUnverifiedLocalJobs": 0,
+  "excludedInvalidPrivateScores": 0,
   "providersRepresented": [
     "triposr-local"
   ],
@@ -19,6 +20,7 @@
     "PyTorch peak reserved VRAM is NOT total GPU utilization or an exclusive GPU reservation",
     "SHA-linked local job records are not independent hardware-execution attestations",
     "No known physical unit, wall-thickness, structural-strength or printing qualification",
+    "Private candidate-vs-original-3D metrics, when present, are post-hoc normalized diagnostics, not fixed-camera or physical scale measurements",
     "No external engine was installed or benchmarked in this coverage report"
   ],
   "printQualified": false,

@@ -37,6 +37,14 @@ G2: explicitly started Windows manual local session → browser per-job GPU cons
 - Browser G1 and opt-in G2 mock tests have 0 page errors and no remote URL requests.
 - Single real G2 local GPU image → verified GLB and DRAFT report → real Chrome 3D preview on Windows; manual server and worker exited after acceptance.
 
+## G3.3 source-integrity and CPU scoring trust boundary
+
+The new G3 benchmark-source HTTP route only serves one of nine license-attested images from exact fixed repo paths, after SHA256 and PNG magic/size verification. No arbitrary filesystem path, private media, URL, third-party download, POST or GPU job is permitted by this route. The browser adds it to the existing input form without submission, and changing/clearing any selected image explicitly clears stale GPU consent.
+
+The CPU-only manual scorer accepts only a direct UUID subfolder of LOCAL3D's fixed private manual-job storage, completed local TripoSR manifest, catalog-matching source image SHA, manifest-matching GLB/QA bytes, pinned local source/checkpoint SHA and DRAFT-only flags. Outputs go to gitignored private path without prompts, filenames, job IDs or source images. A copied original ground-truth GLB is blocked from masquerading as AI output. No 3D GT means no 3D score.
+
+Local manifests and SHA256 prove internal record consistency, **NOT hardware execution**; no malicious local OS user sandbox or independent attestation is implemented. 3D metrics normalize size/translation and optimize yaw after observing data; they are shape diagnostics only, NOT actual dimensions, printer supportability or a general AI-quality certification. All printApproved fields remain false.
+
 ## G3.2 resource and privacy hardening
 
 G2 now uses an additional atomic fixed project-wide runtime/gpu-coordination/triposr-gpu.lock **across distinct LOCAL3D Node servers**. Per-process atomic reservation remains. A second server receives 409 without creating a GPU job. Owner-specific release occurs after runner process exit, and an unclear/crashed lock is NEVER auto-stolen: a dead parent may leave a child worker alive. Read-only GPU lease diagnostic: npm run audit:g3:gpu-lock. This is cooperative LOCAL3D-only locking, NOT Windows GPU isolation or an Office scheduler.

@@ -50,6 +50,30 @@ test('G3 benchmark coverage is public read-only fixture metadata, never runs GPU
   assert.equal((await req('/v1/jobs')).value.jobs.length,0);
 });
 
+test('licensed G3 source images are SHA-verified and loading them never submits inference',async()=>{
+  const catalog = JSON.parse(await fs.readFile(path.resolve(import.meta.dirname,'..','benchmarks/g3/fixtures/manifest.json'),'utf8'));
+  for(const fixture of catalog.fixtures){
+    const got=await req('/v1/benchmarks/g3/sources/'+fixture.id);
+    assert.equal(got.status,200);
+    assert.equal(got.value.schema,'local3d.g3.fixture-image.v1');
+    assert.equal(got.value.fixtureId,fixture.id);
+    assert.equal(got.value.sha256,fixture.imageSha256);
+    assert.equal(got.value.image.mime,'image/png');
+    assert.equal(got.value.manualOnly,true);
+    assert.equal(got.value.confirmationGranted,false);
+    assert.equal(got.value.modelInferenceExecuted,false);
+    const bytes=Buffer.from(got.value.image.base64,'base64');
+    assert.equal(bytes.length,got.value.image.bytes);
+    assert.equal((await import('node:crypto')).createHash('sha256').update(bytes).digest('hex'),fixture.imageSha256);
+  }
+  const none=await req('/v1/benchmarks/g3/sources/UNKNOWN');
+  assert.equal(none.status,404);
+  const traversal=await req('/v1/benchmarks/g3/sources/%2e%2e%2fsecret');
+  assert.notEqual(traversal.status,200);
+  const jobs=await req('/v1/jobs');
+  assert.equal(jobs.value.jobs.length,0);
+});
+
 test('valid image -> queued/running -> GLB + non-printable QA report', async () => {
   const created = await req('/v1/jobs', 'POST', {
     providerId:'fixture-demo', mode:'image', prompt:'ornamental sculpture',

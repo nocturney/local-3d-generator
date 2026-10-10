@@ -101,7 +101,7 @@ function checkGeometry(q,run) {
   };
 }
 
-export async function buildBenchmarkCoverage({root=ROOT,jobsDir=null}={}) {
+export async function buildBenchmarkCoverage({root=ROOT,jobsDir=null,scoresDir=null}={}) {
   root=path.resolve(root);
   const manifest=await readJson(path.join(root,'benchmarks','g3','fixtures','manifest.json'));
   const lock=await readJson(path.join(root,'docs','TRIPOSR_SOURCE_LOCK.json'));
@@ -167,6 +167,7 @@ export async function buildBenchmarkCoverage({root=ROOT,jobsDir=null}={}) {
   baseline.runs.push(baselineRun);
 
   let excludedManualJobs=0;
+  let excludedPrivateScores=0;
   if(jobsDir){
     const entries=await fs.readdir(jobsDir,{withFileTypes:true});
     if(entries.length>1000)throw new Error('BENCHMARK_TOO_MANY_LOCAL_JOBS');
@@ -208,6 +209,52 @@ export async function buildBenchmarkCoverage({root=ROOT,jobsDir=null}={}) {
           run.geometry=checkGeometry(JSON.parse(gb.toString('utf8')),run);
         }else run.geometry={audit:'NOT_RUN'};
         run.silhouette={status:'NOT_SCORED',bestIoU:null};
+        if(scoresDir) {
+          const scoreFile=path.join(scoresDir,run.modelSha256+'-'+entry.fixtureId+'.json');
+          const stat=await fs.lstat(scoreFile).catch(e=>{
+            if(e.code==='ENOENT')return null;throw e;
+          });
+          if(stat) {
+            try{
+              const score=await readJson(scoreFile,64*1024);
+              const shape=score.shape;
+              const valid=(
+                score.schema==='local3d.g3.manual-job-shape-evaluation.v1' &&
+                score.fixtureId===entry.fixtureId &&
+                score.imageSha256===entry.sourceSha256 &&
+                score.modelSha256===run.modelSha256 &&
+                score.candidateEvidenceLane==='HASH_LINKED_LOCAL_COMPLETED_JOB_NOT_INDEPENDENT_GPU_ATTESTATION' &&
+                score.printQualified===false &&
+                score.approvedForPrinter===false &&
+                score.modelInferenceExecuted===false &&
+                ((score.hasOriginalGroundTruth3d===true &&
+                  score.evaluation==='POST_HOC_NORMALIZED_3D_SHAPE_DIAGNOSTIC' &&
+                  shape?.candidateSha256===run.modelSha256 &&
+                  shape?.referenceSelfSimilarityOnly===false &&
+                  shape?.sameInputBinary===false &&
+                  shape?.scalePolicy==='EACH_AABB_DIAGONAL_NORMALIZED_TO_ONE_INDEPENDENTLY' &&
+                  shape?.selectionPolicy==='MIN_CHAMFER_OVER_POST_HOC_YAW_SEARCH' &&
+                  Number.isFinite(shape.bestView?.chamferL1Normalized) &&
+                  shape.bestView.chamferL1Normalized>=0 &&
+                  Number.isFinite(shape.bestView?.f1At2Pct) &&
+                  shape.bestView.f1At2Pct>=0 && shape.bestView.f1At2Pct<=1) ||
+                (score.hasOriginalGroundTruth3d===false &&
+                  score.evaluation==='NO_GROUND_TRUTH_3D' && shape===null))
+              );
+              if(!valid)throw new Error('Invalid private score provenance');
+              run.originalSyntheticReferenceComparison=shape?
+                {
+                  classification:'POST_HOC_NORMALIZED_3D_SHAPE_DIAGNOSTIC',
+                  chamferL1Normalized:shape.bestView.chamferL1Normalized,
+                  f1At2Pct:shape.bestView.f1At2Pct,
+                  bestYawDegrees:shape.bestView.candidateYawDegrees,
+                  independentlyAttestedGpu:false,
+                  printQualified:false
+                }:
+                {classification:'NO_ORIGINAL_SOURCE_GROUND_TRUTH_3D',printQualified:false};
+            }catch{excludedPrivateScores++;}
+          }
+        }
         if(!entry.runs.some(x=>x.modelSha256===run.modelSha256)){
           entry.runs.push(run);
         }
@@ -231,6 +278,7 @@ export async function buildBenchmarkCoverage({root=ROOT,jobsDir=null}={}) {
     fixturesWithPreviouslyObservedE2ERun:cases.filter(x=>x.runs.some(r=>r.evidenceLane==='G2_PREVIOUS_REAL_LOCAL_API_CHROME_PROOF')).length,
     fixturesAwaitingRecordedOutput:cases.length-completed,
     excludedUnverifiedLocalJobs:excludedManualJobs,
+    excludedInvalidPrivateScores:excludedPrivateScores,
     providersRepresented:['triposr-local'],
     reportingCaveats:[
       'Existing G2 chair is a single previous licensed true-local run, NOT a multi-image benchmark',
@@ -239,6 +287,7 @@ export async function buildBenchmarkCoverage({root=ROOT,jobsDir=null}={}) {
       'PyTorch peak reserved VRAM is NOT total GPU utilization or an exclusive GPU reservation',
       'SHA-linked local job records are not independent hardware-execution attestations',
       'No known physical unit, wall-thickness, structural-strength or printing qualification',
+      'Private candidate-vs-original-3D metrics, when present, are post-hoc normalized diagnostics, not fixed-camera or physical scale measurements',
       'No external engine was installed or benchmarked in this coverage report'
     ],
     printQualified:false,

@@ -240,7 +240,7 @@ async function loadProviders() {
     el('triposrState').textContent = real?.canStart ? 'ידני · זמין' : 'כבוי';
     el('realProviderHealth').textContent = real?.canStart ? 'G2 · באישור בלבד' : 'כבוי (G1)';
     el('sessionBadge').textContent = real?.canStart ? 'G2 · MANUAL ONLY' : 'G1 · DEMO MODE';
-    el('noticeVersion').textContent = real?.canStart ? 'v0.2.2 / G2' : 'v0.2.2 / G1';
+    el('noticeVersion').textContent = real?.canStart ? 'v0.2.3 / G2' : 'v0.2.3 / G1';
     el('footerBuild').textContent = real?.canStart ? 'LOCAL3D / G2 MANUAL BUILD' : 'LOCAL3D / G1 DEVELOPMENT BUILD';
     if (real?.canStart) {
       el('noticeText').textContent = 'G2 בהרשאה ידנית: TripoSR משתמש ב־GPU רק אחרי בחירה ואישור לכל משימה. אין תור AI אוטונומי. המודלים הם DRAFT ואינם מאושרים להדפסה.';
@@ -259,6 +259,9 @@ function chooseImage(file) {
   if (file.size > 8 * 1024 * 1024 || !['image/png','image/jpeg','image/webp'].includes(file.type)) {
     el('formError').textContent = 'התמונה צריכה להיות PNG, JPG או WebP ועד 8MB.'; return;
   }
+  // A consent checkbox applies to exactly the image selected when checked.
+  // Replacing the image (file, drop, fixture) always requires fresh consent.
+  el('gpuConsent').checked = false;
   if (state.imageUrl) URL.revokeObjectURL(state.imageUrl);
   state.image = file; state.imageUrl = URL.createObjectURL(file);
   el('inputPreview').src = state.imageUrl; el('inputPreview').hidden = false;
@@ -268,6 +271,7 @@ function chooseImage(file) {
   el('formError').textContent = '';
 }
 function clearImage() {
+  el('gpuConsent').checked = false;
   state.image = null;
   if (state.imageUrl) URL.revokeObjectURL(state.imageUrl);
   state.imageUrl = null; el('inputPreview').removeAttribute('src');
@@ -319,6 +323,30 @@ async function cancelJob() {
     await refresh();
   } catch(e) { toast('לא ניתן לבטל: ' + e.message); }
 }
+async function loadBenchmarkSource() {
+  const id = el('benchmarkSource').value;
+  if (!id) { toast('יש לבחור תחילה מקרה בדיקה.'); return; }
+  const button = el('loadBenchmarkSource');
+  button.disabled = true;
+  try {
+    const data = await api('/v1/benchmarks/g3/sources/' + encodeURIComponent(id));
+    if (data.schema !== 'local3d.g3.fixture-image.v1' || data.fixtureId !== id ||
+        data.manualOnly !== true || data.confirmationGranted !== false ||
+        data.modelInferenceExecuted !== false || data.image?.mime !== 'image/png') {
+      throw new Error('Invalid licensed source fixture response');
+    }
+    const bytes = Uint8Array.from(atob(data.image.base64),char=>char.charCodeAt(0));
+    if (bytes.length !== data.image.bytes || bytes.length > 8*1024*1024) {
+      throw new Error('Invalid reference PNG length');
+    }
+    setMode('image');
+    chooseImage(new File([bytes],data.image.filename,{type:'image/png'}));
+    toast('תמונת מבחן מורשית נטענה לטופס. לא נוצרה משימה ולא אושר GPU.');
+  } catch (e) {
+    el('formError').textContent = 'טעינת תמונת המבחן נכשלה: ' + (e.code || e.message);
+  } finally { button.disabled = false; }
+}
+el('loadBenchmarkSource').addEventListener('click',loadBenchmarkSource);
 el('providerFixture').addEventListener('click', () => setProvider('fixture-demo'));
 el('providerTripo').addEventListener('click', () => setProvider('triposr-local'));
 el('imageMode').addEventListener('click', () => setMode('image'));

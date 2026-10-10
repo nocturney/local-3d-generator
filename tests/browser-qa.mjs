@@ -45,6 +45,15 @@ try {
   const desktopStart = path.join(output,'01-empty-desktop.png');
   await page.screenshot({path:desktopStart,fullPage:true});
   pushPhase('Desktop initial UI, Hebrew RTL, local health, empty state');
+  await page.locator('#benchmarkSource').selectOption('04-torus-hole');
+  await page.locator('#loadBenchmarkSource').click();
+  await page.waitForFunction(()=>document.querySelector('#fileNote')?.textContent==='G3-04-torus-hole.png',null,{timeout:9000});
+  assert.equal(await page.locator('#inputPreview').isVisible(),true);
+  assert.equal((await(await page.request.get(base+'/v1/jobs')).json()).jobs.length,0,'Loading a licensed image must never create a job');
+  assert.equal(await page.locator('#gpuConsent').isChecked(),false);
+  await page.screenshot({path:path.join(output,'G3-licensed-source-loaded-no-job.png'),fullPage:true});
+  await page.locator('#clearImage').click();
+  pushPhase('G3 licensed fixture image loads locally with no job or GPU consent');
   // Run text-based fixture job.
   await page.locator('#textMode').click();
   assert.equal(await page.locator('#imageControls').isHidden(),true);

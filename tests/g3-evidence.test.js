@@ -92,3 +92,27 @@ test('G3 source-silhouette positive controls and existing real sample are not fa
   assert.deepEqual(browser.browserErrors,[]);
   assert.deepEqual(browser.externalRequests,[]);
 });
+
+test('G3.3 shape metric controls are original GT-only comparisons, not inferred results',async()=>{
+  const positive=await readJson(path.join(ev,'shape-positive-controls.json'));
+  const negative=await readJson(path.join(ev,'shape-negative-controls.json'));
+  assert.equal(positive.schema,'local3d.g3.shape-control-set.v1');
+  assert.equal(negative.schema,'local3d.g3.shape-control-set.v1');
+  assert.equal(positive.noAiInference,true);
+  assert.equal(negative.noAiInference,true);
+  assert.equal(positive.count,8);
+  assert.equal(negative.count,4);
+  assert.ok(positive.reports.every(x =>
+    x.referenceClassification==='ORIGINAL_PROCEDURAL_3D_NOT_AN_AI_OUTPUT' &&
+    x.candidateEvidenceLane==='ORIGINAL_REFERENCE_SELF_CHECK' &&
+    x.shape.sameInputBinary===true &&
+    x.shape.bestView.chamferL1Normalized===0 &&
+    x.shape.bestView.f1At2Pct===1 &&
+    x.printQualified===false));
+  assert.ok(negative.reports.every(x =>
+    x.candidateEvidenceLane==='DELIBERATELY_WRONG_ORIGINAL_CONTROL_NOT_AN_AI_RESULT' &&
+    x.shape.bestView.chamferL1Normalized>.06 &&
+    x.shape.bestView.f1At2Pct<.25 &&
+    x.shape.measuresAbsoluteScale===false &&
+    x.printQualified===false));
+});

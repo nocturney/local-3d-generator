@@ -29,6 +29,14 @@ Explicit user authorization covered isolated model installation and limited GPU 
 - RESEARCH ONLY: SF3D, SPAR3D, InstantMesh, Hunyuan Shape, OpenLRM licensing/VRAM comparison in docs/G3_PROVIDER_SCREENING.md. No new candidate weights installed, no commercial licensing assumed.
 - OPEN: run new images through the real G2 model with *per-job authorization*, true multi-image output analysis and comparison to another independently licensed engine. Production print and multi-user hardening remain blocked.
 
+## G3.3 — genuine-source shape metric readiness (PARTIAL PASS)
+
+- PASS: SHA-locked nine-image local picker with server allowlisted image reads and browser consent reset. Selecting an image does not create a GPU job.
+- PASS: independent CPU normalized-surface Chamfer/F1 diagnostics on eight original synthetic source GT models, with eight exact identity controls and four intentionally wrong-shape controls, explicit optimism/scale limits.
+- PASS: private, hash-linked completed-G2-job scorer; denies unlicensed/incomplete/tampered job files, original GT copies and incorrect weights provenance. Upstream chair has no original 3D and must not get a fake 3D metric. Local records are not independent hardware attestations.
+- PASS: optional private scores may enter private coverage snapshot, but public benchmark remains **1 prior observed real chair / 8 new images not yet inferred**.
+- OPEN: actual G2 inference on each of the eight (requires per-job explicit consent), second local engine and fair real-output comparison, real-world dimensions/self-intersections/wall thickness/print release, and production security hardening. Issue #3 stays OPEN.
+
 ## G3.2 — management/benchmark coverage (PARTIAL PASS)
 
 - PASS: one real pre-existing G2 model, eight untouched synthetic reference inputs; reproducible SHA-evidence ledger with explicit "pending" statuses and **no fabricated nine-model results**. Fixed read-only /v1/benchmarks/g3 response in UI.

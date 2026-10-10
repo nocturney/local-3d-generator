@@ -29,7 +29,7 @@
     <div class="notice">
       <span class="notice-icon">i</span>
       <div id="noticeText"><strong>סביבת פיתוח מקומית · הדמיה בלבד</strong> — הקובץ שיופק הוא GLB לדוגמה ואינו נוצר מהתמונה או מהתיאור. אין חיבור לענן, מנוע AI או מדפסת.</div>
-      <span class="notice-version" id="noticeVersion" dir="ltr">v0.2.2 / G1</span>
+      <span class="notice-version" id="noticeVersion" dir="ltr">v0.2.3 / G1</span>
     </div>
     <main class="workspace">
       <aside class="control-pane">
@@ -51,6 +51,23 @@
           </div>
           <input id="imageInput" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp" hidden>
           <button class="link-button" id="clearImage" type="button" hidden>הסר תמונה</button>
+          <div class="fixture-picker">
+            <label class="field-title" for="benchmarkSource">G3 · תמונות מבחן מורשות</label>
+            <select id="benchmarkSource" aria-label="בחר מקרה בדיקה">
+              <option value="">בחר מקרה בדיקה (לא מפעיל GPU)</option>
+              <option value="01-orb-alpha">01 · כדור · רקע שקוף</option>
+              <option value="02-orb-opaque">02 · כדור · רקע אטום</option>
+              <option value="03-hollow-vase">03 · אגרטל חלול</option>
+              <option value="04-torus-hole">04 · טבעת עם חור</option>
+              <option value="05-disconnected-pair">05 · שני עצמים מופרדים</option>
+              <option value="06-thin-chair">06 · כיסא עם חלקים דקים</option>
+              <option value="07-gear-opaque">07 · גלגל שיניים</option>
+              <option value="08-arch-opaque">08 · קשת עם חלל</option>
+              <option value="09-upstream-chair">09 · כיסא המקור (ניסוי קודם)</option>
+            </select>
+            <button id="loadBenchmarkSource" type="button" class="plain-button">טען תמונה לטופס בלבד</button>
+            <p>בחירת תמונה אינה יוצרת משימה ואינה מאשרת GPU. אישור עיבוד נפרד נדרש לכל תמונה.</p>
+          </div>
         </div>
         <div class="control-block">
           <label class="field-title" for="prompt">תיאור והערות <span class="optional" id="promptRequirement">אופציונלי</span></label>

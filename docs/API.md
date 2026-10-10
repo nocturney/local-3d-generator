@@ -2,6 +2,14 @@
 
 Bind: **127.0.0.1 only**; default G1 4177, explicit G2 Windows manual session 4179. No CORS, no printer, remote URLs, paid providers or unattended GPU scheduling. JSON request and response formats are authoritative.
 
+## G3.3 licensed benchmark-image loader (read-only)
+
+GET /v1/benchmarks/g3/sources/:fixtureId — accepts only one of the nine exact G3 licensed IDs (01-orb-alpha through 09-upstream-chair). Returns schema local3d.g3.fixture-image.v1 with image={filename,mime:image/png,base64,bytes}, fixtureId, sourceRights, sha256, manualOnly=true, confirmationGranted=false, modelInferenceExecuted=false and printQualified=false. The server checks fixed allowlisted paths, PNG magic, 8MiB file limit and source SHA256 before return. It does NOT create jobs, execute inference, change provider state, confirm GPU or access client files. Invalid ID returns 404; source-integrity failure 503.
+
+The browser image picker requests a source then creates a File object locally; like manual upload or drag/drop, **any source-image replacement/clear revokes the previous GPU consent**. Explicit checkbox + POST /v1/jobs with confirmGpu=true is still required separately for each real image.
+
+CPU-only private comparison after completed G2 job is an operator CLI, not an HTTP endpoint: npm run score:g3 -- --job-id <uuid>. It writes a gitignored private score. Only the eight project-original synthetic references have actual source 3D for post-hoc normalized surface comparison; the upstream chair has no ground-truth 3D.
+
 ## Read-only G3 source-quality coverage
 
 GET /v1/benchmarks/g3 returns schema local3d.g3.benchmark-coverage.v1 from the fixed licensed, publicly committed benchmark-coverage.json. It is a **stored snapshot** of nine reference sources: one previously observed true-local TripoSR E2E result, eight cases with no recorded model. It is not a live provider status, does not scan private user files and cannot trigger inference. Distinguishes original synthetic source 3D from generated model outputs, and hash-matched local records from independent GPU execution proof. All manufacturing flags remain false.

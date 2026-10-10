@@ -120,5 +120,38 @@ test('local SHA-matched record is explicitly un-attested, not labeled independen
       'LOCAL_COMPLETED_JOB_HASH_MATCHED_NOT_EXTERNAL_GPU_ATTESTATION');
     assert.equal(synthetic.runs[0].silhouette.status,'NOT_SCORED');
     assert.equal(synthetic.runs[0].geometry.audit,'NOT_RUN');
+
+    // An explicitly produced private 3D metric is optional, and even when
+    // present must never upgrade a hash-linked record to proven GPU execution.
+    const scoresDir=path.join(dir,'private-scores');
+    await fs.mkdir(scoresDir);
+    const scorePath=path.join(scoresDir,sha(model)+'-01-orb-alpha.json');
+    const privateScore={
+      schema:'local3d.g3.manual-job-shape-evaluation.v1',
+      fixtureId:'01-orb-alpha',imageSha256:sha(input),
+      modelSha256:sha(model),
+      candidateEvidenceLane:'HASH_LINKED_LOCAL_COMPLETED_JOB_NOT_INDEPENDENT_GPU_ATTESTATION',
+      approvedForPrinter:false,printQualified:false,modelInferenceExecuted:false,
+      hasOriginalGroundTruth3d:true,evaluation:'POST_HOC_NORMALIZED_3D_SHAPE_DIAGNOSTIC',
+      shape:{
+        candidateSha256:sha(model),referenceSelfSimilarityOnly:false,sameInputBinary:false,
+        scalePolicy:'EACH_AABB_DIAGONAL_NORMALIZED_TO_ONE_INDEPENDENTLY',
+        selectionPolicy:'MIN_CHAMFER_OVER_POST_HOC_YAW_SEARCH',
+        bestView:{chamferL1Normalized:.083,f1At2Pct:.12,candidateYawDegrees:90}
+      }
+    };
+    await fs.writeFile(scorePath,JSON.stringify(privateScore));
+    const scored=await buildBenchmarkCoverage({jobsDir:dir,scoresDir});
+    const retained=scored.fixtureResults.find(x=>x.fixtureId==='01-orb-alpha');
+    assert.equal(retained.coverage,'HASHED_LOCAL_JOB_NO_INDEPENDENT_GPU_ATTESTATION');
+    assert.equal(retained.runs[0].originalSyntheticReferenceComparison.chamferL1Normalized,.083);
+    assert.equal(retained.runs[0].originalSyntheticReferenceComparison.independentlyAttestedGpu,false);
+    assert.equal(scored.excludedInvalidPrivateScores,0);
+    privateScore.modelSha256='0'.repeat(64);
+    await fs.writeFile(scorePath,JSON.stringify(privateScore));
+    const rejected=await buildBenchmarkCoverage({jobsDir:dir,scoresDir});
+    assert.equal(rejected.excludedInvalidPrivateScores,1);
+    assert.equal(rejected.fixtureResults.find(x=>x.fixtureId==='01-orb-alpha')
+      .runs[0].originalSyntheticReferenceComparison,undefined);
   }finally{await fs.rm(dir,{force:true,recursive:true})}
 });

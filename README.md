@@ -37,7 +37,15 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Tests as of G3 preview: **33 Node** API/geometry/security tests on Windows, **15 Python** tests (5 G2 + 10 G3), 7 G1 browser phases, 6 G2/G3 mock-provider browser phases, one prior real G2 GPU end-to-end smoke and one actual G3 CPU-only review of the existing GLB. No GPU model is run by npm test/test:all.
+- Current v0.2.3 regression: **47 Node** API/geometry/security tests on Windows, **23 Python** tests (5 G2 + 18 G3), 8 G1 browser phases, 7 G2/G3 mock-provider browser phases, one prior real G2 GPU end-to-end smoke and one actual G3 CPU-only review of the existing GLB. Normal npm tests **do not run any neural model or allocate CUDA**.
+
+## G3.3 — measurable 3D shape comparison and ready-to-load test images (v0.2.3)
+
+The G3 reference catalog can now be opened directly inside the Hebrew image input via **טען תמונה לטופס בלבד**. It loads one of nine licensed PNG inputs but **NEVER starts a job or allocates GPU**. Selecting/replacing/clearing any source image invalidates prior GPU consent, so real G2 jobs still require a fresh checkbox approval **per image**.
+
+A CPU-only, reproducible [3D shape-distance evaluator](docs/G3_3_SHAPE_EVALUATION_2026-10-10.md) compares completed local models to the eight original synthetic source geometries after independent scale normalization and best-of-eight yaw search. Eight identical source/self controls and four deliberately wrong-shape controls prove the diagnostic responds to gross shape changes; they are NOT new AI results. The ninth upstream chair has no original 3D reference and receives no fake 3D fidelity score.
+
+Run **npm run score:g3 -- --job-id <full-job-uuid>** only after explicitly approving and completing a manual TripoSR image job; it validates source/model/QA SHA and saves the shape score to gitignored private runtime. Optional private benchmark collector joins verified metadata without presenting it as independently verified GPU execution. **Public historical coverage remains 1/9; eight new inputs are still not inferred.** No print qualifications or new GPU model runs were introduced.
 
 ## G3.2 — benchmark coverage and shared GPU protection (v0.2.2)
 

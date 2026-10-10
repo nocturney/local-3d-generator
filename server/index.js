@@ -8,6 +8,7 @@ import { ensureFixture } from './fixture.js';
 import { createTripoSRAdapter } from './triposr-adapter.js';
 import { createGeometryReviewer } from './geometry-review.js';
 import { createGpuLease, LeaseUnavailable } from './gpu-lease.js';
+import { getBenchmarkSource, FixtureSourceError } from './benchmark-sources.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -461,6 +462,16 @@ export async function createApp(options = {}) {
           fail('G3_BENCHMARK_UNVERIFIED', 503, 'Stored quality coverage is unavailable');
         }
         return reply(res, 200, report);
+      }
+      const fixtureSourcePath=pathname.match(/^\/v1\/benchmarks\/g3\/sources\/([^/]+)$/);
+      if (req.method === 'GET' && fixtureSourcePath){
+        try{return reply(res,200,await getBenchmarkSource(fixtureSourcePath[1]));}
+        catch(error){
+          if(error instanceof FixtureSourceError){
+            fail(error.code,error.code==='G3_SOURCE_NOT_FOUND'?404:503,error.message);
+          }
+          throw error;
+        }
       }
       if (req.method === 'GET' && pathname === '/v1/providers') return reply(res, 200, {
         schema: 'local3d.providers.v1',

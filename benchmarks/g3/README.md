@@ -15,6 +15,14 @@ To reproducibly validate original sources on Windows:
 
 The generator refuses to overwrite any existing changed fixture. A repeat run was verified byte-for-byte, identical manifest SHA256 763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a. This is a stable source set, not model outputs.
 
+## CPU three-dimensional reference diagnostics (G3.3)
+
+For the eight original procedural source meshes, engines/quality/shape_metrics.py compares deterministic surface samples using bidirectional normalized Chamfer distance and precision/recall/F1 near points within 2%/5% of independently normalized object diagonals; candidate yaw is selected from eight choices after the fact. Eight source-model identity controls score zero Chamfer; four wrong-source references differ substantially. **These are diagnostic calibration cases, not AI inference results, and physically wrong scales can be hidden by normalization.**
+
+After manually completing a real G2 job with one of the nine licensed source images, use npm run score:g3 -- --job-id <uuid>. The validated, local SHA-linked score stays under gitignored runtime/qa/g3/manual-scores and is eligible for a PRIVATE report only. Even matching hashes cannot independently prove GPU execution. The ninth MIT chair has no actual source reference 3D and no valid ground-truth 3D score.
+
+The Hebrew web workbench now offers a one-click fixture image input loader, not a generation control. Every source replacement resets GPU consent. See docs/G3_3_SHAPE_EVALUATION_2026-10-10.md.
+
 ## Public scorecard generated from recorded outputs, not AI simulation
 
 The SHA-verified, read-only coverage ledger is stored at docs/evidence/g3/benchmark-coverage.json. It deliberately counts only the previous TripoSR MIT chair real E2E output (**1 of 9**) and records eight NO-AI-YET references. It distinguishes original synthetic GT from AI reconstructions and marks post-hoc silhouette views exploratory, not calibrated accuracy. The CLI is npm run benchmark:g3; optionally scan private local G2 jobs with --jobs-dir runtime/data-g2-manual/jobs to produce a **gitignored** private report. No model runs or original source media are uploaded externally.

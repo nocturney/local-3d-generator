@@ -68,6 +68,15 @@ try {
 
   await page.locator('#providerTripo').click();
   assert.equal(await page.locator('#gpuConsentWrap').isVisible(),true);
+  // Consent granted for a previous image MUST be revoked when the image changes.
+  await page.locator('#gpuConsent').check();
+  await page.locator('#benchmarkSource').selectOption('05-disconnected-pair');
+  await page.locator('#loadBenchmarkSource').click();
+  await page.waitForFunction(()=>document.querySelector('#fileNote')?.textContent==='G3-05-disconnected-pair.png',null,{timeout:10000});
+  assert.equal(await page.locator('#gpuConsent').isChecked(),false);
+  assert.equal((await(await page.request.get(base+'/v1/jobs')).json()).jobs.length,0);
+  assert.equal(invoked,0,'Loading a benchmark fixture must never invoke any AI worker');
+  phase('G3 benchmark source selection revokes stale consent without GPU or job creation');
   assert.equal(await page.locator('#gpuConsent').isChecked(),false);
   await page.locator('#imageInput').setInputFiles({name:'licensed-chair.png',mimeType:'image/png',buffer:image});
   await page.locator('#startJob').click();

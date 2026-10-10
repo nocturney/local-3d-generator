@@ -1,5 +1,13 @@
 # Release notes
 
+## v0.2.3 — 2026-10-10 — G3.3 manual benchmark sources and CPU 3D shape diagnostics
+
+- Added reproducible CPU-only reference mesh surface metrics for 8 project-original synthetic cases. Positive self-controls produce zero Chamfer by construction; 4 intentionally wrong-shape controls detect differences. Metrics are post-hoc yaw/scale normalized and NOT print/manufacturing qualified.
+- Added strict hash-linked local G2 completed-job scoring to gitignored private runtime, without claiming independent GPU execution attestation, using existing pinned TripoSR source/weight provenance. Upstream chair has no original 3D GT, and attempts to pass original GT copies off as AI are rejected.
+- Added an allowlisted SHA-verified source-image endpoint and Hebrew G3 image picker. Loading images never creates jobs or allocates GPU; changing a selected image revokes prior GPU consent.
+- Connected optional private scores to the privacy-preserving benchmark collector while leaving public 1/9 coverage intentionally fixed. No new model inference, Office changes, printer actions or second engine installation.
+- Regression: CPU quality and provenance negative tests plus Chrome G1/G2 per-image consent tests. Issue #3 still OPEN for actual per-image AI benchmarking and manufacturing qualifications.
+
 ## v0.2.2 — 2026-10-10 — G3.2 resource safety & honest benchmark coverage
 
 - Introduced a cross-process LOCAL3D GPU filesystem lease shared across manual G2 server processes; concurrency rejected with 409 before allocating a GPU worker, release on completion/cancel/shutdown, stale locks never auto-recovered.

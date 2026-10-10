@@ -2,6 +2,9 @@
 
 **All outputs below analyze an existing real TripoSR chair GLB or original synthetic ground-truth shapes. NO new neural inference was performed to create these reports.** The one real TripoSR chair input/output pair originated in G2 and is SHA-linked here. All future G3 synthetic-image AI runs remain **NOT STARTED**.
 
+- shape-positive-controls.json: eight original synthetic ground-truth models compared to themselves using reproducible normalized bidirectional surface metrics. Exact Chamfer 0 by construction, F1@2% 1.0; these are NOT AI predictions.
+- shape-negative-controls.json: four intentionally incorrect original-source cross-comparisons show nonzero normalized Chamfer 0.0722–0.0984, proving the CPU scorer can distinguish gross shape mismatch on this tiny set, not that any model was run.
+- G3-licensed-source-picker.png: actual G1 Chrome screenshot with a licensed benchmark source image loaded into the input form, with zero jobs and no GPU permission.
 - chair-geometry.json: independent offline Trimesh inspection of docs/evidence/g2-app/real-app-output.glb. 19,972 faces, 1 connected component, zero open boundary edges, consistent winding but **negative signed volume −0.0613843**, positiveVolume=false. No real-world units/wall thickness.
 - chair-silhouette-exploratory.json: 24-view post-hoc orthographic 2D silhouette search, best normalized IoU 0.82448. This is **pose-searched, not calibrated ground truth**, so never classify as product accuracy.
 - silhouette-positive-controls.json: **8 original procedural source/GT pairs**, exact camera, all known geometry; minimum self-consistency IoU 0.935812. These are not AI generated models.

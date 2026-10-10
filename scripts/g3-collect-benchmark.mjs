@@ -21,7 +21,10 @@ if(args.length){
     throw new Error('Manual job scan must stay inside LOCAL3D gitignored runtime directory');
   jobsDir=requested;
 }
-const report=await buildBenchmarkCoverage({jobsDir});
+const report=await buildBenchmarkCoverage({
+  jobsDir,
+  scoresDir:jobsDir?path.join(ROOT,'runtime','qa','g3','manual-scores'):null
+});
 const raw=JSON.stringify(report,null,2)+'\n';
 const reportFingerprint=createHash('sha256').update(raw).digest('hex').slice(0,16);
 const output=jobsDir?
@@ -40,6 +43,7 @@ console.log('G3_COVERAGE_READ_ONLY '+JSON.stringify({
   previouslyObservedE2EOutputFixtures:report.fixturesWithPreviouslyObservedE2ERun,
   fixturesAwaitingOutput:report.fixturesAwaitingRecordedOutput,
   excludedUnverifiedLocalJobs:report.excludedUnverifiedLocalJobs,
+  excludedInvalidPrivateScores:report.excludedInvalidPrivateScores,
   newGpuExecutions:0,printQualified:false,
   outputPath:output
 }));
