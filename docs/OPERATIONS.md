@@ -1,5 +1,17 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.16: all exact indexed shared-single-vertex face contacts (CPU only)
+
+The independent CPU module engines/quality/exact_indexed_vertex_contact.py reads only already-existing SHA-pinned indexed GLB geometry. It enumerates all unordered face pairs sharing exactly ONE original indexed vertex, independent of the G3.14 box broadphase, and EXACTLY classifies positive-length noncoplanar/coplanar intersections beyond that point. Four previous licensed GLBs rechecked: orb 190,860 pairs, identical G3.7 copy 190,860, GT 5,730, chair 92,629; zero positive extra intersections within this indexed one-vertex-only class. Exact arithmetic applies ONLY to decoded binary-float coordinates, not CAD source dimensions or physical-print qualification.
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g316_exact_indexed_vertex_contact.py
+
+Read-only SHA-verified replay of the PREVIOUSLY completed private genuine local G2 orb job (do NOT store its private job ID in Git or client logs):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-16-vertex-replay.py --job-id <PREVIOUS_REAL_PRIVATE_JOB_UUID>
+
+The first immutable per-model local report and sanitized public aggregate SHA proof were already created; on future verification invoke WITHOUT --prepare-private/--write-public. All model/photo/raw pair example evidence remains in ignored runtime. [Method](G3_16_EXACT_INDEXED_VERTEX_CONTACT_CPU_2026-10-10.md), [public SHA counts](evidence/g3/orb-01-g316-exact-indexed-vertex-only.json). This is not full exact nonindexed collision checking; no user-untrusted GLB, cloud, GPU inference or printer access is approved. Office and unrelated service 4178 remain untouched.
+
 ## G3.15: exact binary-float contact of every indexed shared-edge face-pair (no GPU)
 
 The standalone CPU module engines/quality/exact_indexed_edge_contact.py evaluates all 60,528 previously generated REAL TripoSR orb indexed shared-edge adjacency pairs, exactly distinguishing noncoplanar expected edge-only geometry, coplanar opposite-side expected edge-only geometry and coplanar same-side positive area overlap in already decoded GLB floating coordinates. No candidate same-side coplanar area overlap on this prior orb/copy/GT/chair. This is not a full self-intersection-free or physical/mm wall thickness/printing test.

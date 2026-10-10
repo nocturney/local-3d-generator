@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.16: exact single-index vertex intersection diagnosis still no production/sandbox clearance
+
+The CPU-only all-indexed-vertex-only exact rational contact module detects whether adjacent triangles that share exactly ONE original indexed vertex intersect beyond that point as a noncoplanar/coplanar line segment or a positive-area planar overlap, on decoded IEEE754 coordinates ONLY. It does not certify the whole mesh self-intersection free: G3.14's 43,107 zero-index AABB real-orb pairs were screened with NUMERICAL floating SAT but not exhaustive exact robust predicates; GLB quantization, actual CAD coordinate precision, mm-scale wall thickness and manufactured part fitness remain unproven.
+
+Bounded CPU: 100k vertices/75k triangles/1M incidence candidate pair visits/280k one-vertex-only pairs/90s and coordinates abs <=1e9. Overflow/time/invalid input become explicit INDETERMINATE/rejection, NEVER a 'printQualified' status. Previously authorized source assets and license/G2 output SHA, earlier G3.14 count and G3.15 proof re-verified; only SHA/aggregate counts reach public Git; per-pair indices and private IDs retained in ignored local runtime. No new inference, GPU, model/weights install, cloud, network or printing. TripoSR pinned advisories, untrusted GLB/image parser OS confinement, egress and privacy controls remain UNRESOLVED in Issue #4; geometry/manufacture in Issue #3. No Office, 4178 or Windows security changes.
+
 ## G3.15: exact-binary-float shared-edge result is NOT production or print clearance
 
 G3.15 classifies every indexed full shared-edge pair in the prior licensed GLB under exact rational arithmetic on previously decoded IEEE-754 coordinates; its zero positive-area same-side coplanar overlap result is narrow, geometric, and not physical CAD precision or proof that the whole mesh has no collisions. Indexed vertex-only additional intersections, no-index near-coplanar contact, quantization-sensitive features, multiple scene objects, real mm-scale, local wall thickness, supports, material strength and slicer/printer QA remain outside this exact shared-edge sub-gate.

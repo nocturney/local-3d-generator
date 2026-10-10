@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.16 — 2026-10-10 — G3.16 exact indexed single-vertex face contact census
+
+- Added bounded CPU exact rational triangle-pair classifier for ALL original vertex-index-only adjacency pairs. Independently enumerate face incidence, excluding shared-indexed-edge pairs, without relying on G3.14 KD-tree/AABB. Classify expected vertex-only contact, noncoplanar extra line intersection, coplanar extra line contact and coplanar positive area overlap. Exactness applies ONLY to already-decoded IEEE754 GLB XYZ, not true CAD/mm tolerances; budget and invalid sources fail closed.
+- Previously generated real orb: **190,860 / 190,860** pairs exactly classified with 0 extra geometric intersections in THIS pair class. Previous G3.7 winding-only copy matches exactly; original project GT 5,730/5,730 and historical licensed chair 92,629/92,629 both 0 extras. All original source SHA/image rights and prior G3.14 pair census numbers verified; no new inference.
+- Added 18 adversarial CPU Python controls for genuine positive/negative noncoplanar and coplanar examples, original vertex reindexing, independent brute-force small-mesh completeness, budget/degeneracy fail-closed and immutable private evidence. Added 3 Node evidence privacy/rights/count regression controls and four SHA-locked model reports. **Nonindexed AABB pairs are not exact-global verified**, and physical scale, wall thickness, OS sandbox, independent printer QA remain blocked (GitHub Issues #3/#4 OPEN). DRAFT, printQualified=false; no GPU, cloud, printer or Office writes.
+
 ## v0.2.15 — 2026-10-10 — G3.15 exact binary-float every shared-index-edge pair classification
 
 - New bounded CPU exact rational geometry for ALL indexed full-edge-adjacent triangles: detects noncoplanar expected edge-only contact, coplanar opposite-side expected edge-only contact and coplanar same-side positive interior area overlap, with degenerate/time/resource cases fail-closed. Operates only on already decoded IEEE-754 GLB coordinates; no physical mm calibration or 3D printer clearance.

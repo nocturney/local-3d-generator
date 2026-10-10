@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.16 — exact shared ONE-index vertex-only face contacts (CPU, decoded GLB only)
+
+- PASS: raw original vertex-to-face index incidence census independently enumerates every face pair with exactly ONE shared index; it excludes full-indexed-edge neighbors. Mathematical exact signed planes/rays or exact 2D coplanar polygon clipping distinguishes expected only-point contact, extra line contact beyond that shared vertex and positive-area coplanar overlap, all on IEEE754-decoded source XYZ values. Valid synthetic overlaps MUST be flagged. Budget/time/degenerate cases never pass as clear.
+- PASS: previous real orb and G3.7 same-surface copy: 190,860 exact pairs each, 0 extra contacts. Project-original GT 5,730 and earlier licensed chair 92,629, also 0. All four actual SHA/image provenance and G3.14 independent counts agree, and source reports replay immutably. No new neural job.
+- OPEN: G3.14 no-index pair class has only conservative NUMERICAL SAT (43,107 previous real AABB pairs), not exact whole-mesh proof; original CAD/mm precision, wall thickness, supports/mechanics/printer suitability and OS/network sandbox/security Issue #4 not satisfied. Print release remains BLOCKED, Issue #3 OPEN and every model DRAFT / printQualified=false.
+- [G3.16 exact vertex method and caveats](G3_16_EXACT_INDEXED_VERTEX_CONTACT_CPU_2026-10-10.md), [sanitized four-model SHA evidence](evidence/g3/orb-01-g316-exact-indexed-vertex-only.json).
+
 ## G3.15 — exact shared-index-edge adjacency classification (CPU, DECODED GLB COORDINATES ONLY)
 
 - PASS: rational signed tetrahedral orientation and coplanar side-of-shared-edge classifies every indexed full-edge face pair, distinguishing expected edge-only contact from true coplanar same-side positive interior area overlap under exact IEEE-754-decoded GLB numeric geometry. Tests include positive synthetic coplanar same-side overlap, valid cube/flat seam, reversed winding and fail-closed unsafe/degenerate input.
