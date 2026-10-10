@@ -1,5 +1,13 @@
 # Release notes
 
+## v0.2.10 — 2026-10-10 — G3.10 CPU-only shared-one-vertex extra-contact ray screen
+
+- Added a bounded, CPU-only shared-one-indexed-vertex **extra-ray contact candidate** diagnostic. Typical triangles touching at an existing indexed vertex are NOT flagged as mesh defects. Noncoplanar triangle planes are checked for shared positive/negative rays lying inside both triangular sectors; near-coplanar/borderline cases explicitly remain UNRESOLVED.
+- On genuine previously user-approved real TripoSR `01-orb-alpha` and its G3.7 orientation-only copy, exhaustively enumerated and analyzed **190,860 unique exactly-one-vertex face pairs each**, with **0 additional noncoplanar common-ray candidates** and **0 unresolved near-parallel cases** under the chosen numerical tolerances. The known project-original GT had 5,730 such pairs and the historical real chair derivative 92,629, also with no candidate rays flagged.
+- Verified earlier G3.8 nonshared-vertex SAT and G3.9 shared-edge angular metrics independently. **No full global geometric self-intersection or print certification**: edge-sharing true foldovers, differently indexed coincident coordinates, coplanar/near-zero numerical cases, mm scale, walls, supports and strength are still unqualified.
+- Added adversarial positive/nonpositive crossing controls, coplanar/edge-borderline UNRESOLVED cases, indexed edge exclusions, CPU-time/valence/pair guards, poisoned-input and immutable-evidence tests; same original/copy counts prove no geometry change or fake model quality improvement.
+- Added a read-only 4-model private CPU replay and strictly sanitized, SHA-verified immutable public G3.10 report. No additional AI inference/GPU authorization, cloud/Office, source model rewrite or printer actions occurred. Private actual model coverage **still 2/9**; static public earlier 1/9 remains a reviewed historical snapshot.
+
 ## v0.2.9 — 2026-10-10 — G3.9 CPU-only indexed edge-adjacent face-normal variation
 
 - Advanced beyond G3.8's 43,025 nonadjacent SAT pairs into the adjacent-edge region: inspected all **60,528 indexed edge-adjacent face pairs** in the previously generated real 01-orb-alpha TripoSR 40,352-face model and its separate winding-reversed copy, plus all 1,920 GT source indexed edges.

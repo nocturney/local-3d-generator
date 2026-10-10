@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.10: single-indexed-vertex contact screening is not a full self-intersection guard
+
+All earlier real source media and TripoSR model outputs remain under gitignored runtime. G3.10's new shared-one-vertex candidate-ray routine is CPU only. It enumerates pairs of triangles sharing exactly ONE indexed vertex and tests whether their noncoplanar plane intersection contains a positive-length segment beyond the expected shared vertex. **An ordinary valid shared indexed vertex is not considered a defect.** Near-parallel/coplanar and barycentric-boundary cases are intentionally marked UNRESOLVED, not clearance. Huge valence/input/time/pair workloads fail to INDETERMINATE instead of silently truncating and reporting safety.
+
+Even a completed zero-finding run cannot certify missing self-intersections: geometric duplicate vertices with differing indices, edge-connected coplanar folds, tolerance-sensitive/near-zero contacts, actual millimeter units, insufficient walls and material/print conditions remain unverified. These data do NOT authorize printer/slicer/Fabrication Router. Public evidence is SHA-verified, sanitized, and contains no private job ID/model binary/customer media. No OS sandbox, egress, credentials or dependency vulnerabilities were changed or declared resolved by G3.10.
+
 ## G3.9: normal-angle statistics cannot authorize print or evade collision guards
 
 Reusable CPU-only adjacent-face-angle inspection on already completed TripoSR and GT GLBs checks only pairs sharing an entire indexed edge. The statistics distinguish flat/high-angular mesh creases but are **not a collision predicate**, signed curvature standard, scale-invariant comparison of differently tessellated meshes or a manufacturing acceptance test. A cube can be valid at 90° creases; this real orb has 0 adjacent-edge normal differences over 90°, yet the vertex-only adjacency/foldover and self-intersection certification gaps remain.

@@ -2,6 +2,12 @@
 
 **Historical G3.1–G3.6 evidence** below analyzed the earlier real TripoSR chair GLB, original synthetic GTs, and CPU-only checks. On Oct 10, a NEW, explicitly approved single TripoSR inference successfully generated the first synthetic G3 fixture, **01-orb-alpha**, recorded in separate local private evidence. **G3.7 itself did no additional inference:** it only inspected/reoriented that pre-existing G3 AI output using CPU and produced a sanitized software-browser screenshot. Original and derivative GLB files and job IDs remain locally gitignored.
 
+### G3.10 — unique indexed shared-one-vertex candidate ray contacts (CPU only)
+
+- orb-01-g310-shared-vertex-ray-screen.json: license+SHA-pinned sanitized result from prior genuine TripoSR 01-orb-alpha, copy-only orientation derivative, procedural GT and historic chair derivative. Real orb + copy each have **190,860** unique one-vertex-only face pairs screened, with 0 detected beyond-vertex noncoplanar common-ray candidates and 0 near-parallel unresolved at numeric tolerance. GT=5,730 and historic chair derivative=92,629. Normal touching at the shared vertex is NEVER a defect or AI failure.
+- This is NOT mathematical proof of no intersections: coplanar folds, edge-sharing intersections, differently indexed duplicate vertices and finite precision remain limitations. Private per-face examples/UUID/model source remain gitignored; no new GPU inference or printer activity.
+- Full method and safety scope: [G3.10 CPU shared-vertex rays](../../G3_10_SHARED_VERTEX_CPU_2026-10-10.md).
+
 ### G3.9 — edge-adjacent face-angle diagnostics (NO new inference)
 
 - orb-01-g39-adjacent-angles.json: SHA-pinned statistics from the previously generated real 01-orb-alpha TripoSR 40,352-face GLB, the unchanged-geometry winding-reversed derivative, and procedural original reference GT. TripoSR has 60,528 edge-adjacent face pairs, p95 normal-angle difference 33.018760°, 312 pairs >45°, 0 pairs >90°. Procedural GT has 1,920 pairs p95 5.731991°; cross-mesh resolution differs, no percentage-accuracy claim. These are NOT self-fold/contact detection, wall-thickness or print qualification.

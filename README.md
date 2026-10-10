@@ -39,6 +39,14 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
 - Current v0.2.7 full regression: **68/68 Node**, **33/33 pinned Python** (7 G2, 26 G3 including 8 new CPU-only winding tests), **8/8 G1 Chrome** and **8/8 G2/G3 mock Chrome** phases. The earlier G3.6 Pillow shadow experiment independently covered the THEN-existing 23 Python tests, and is not automatically re-certified for new tests. The historical real CUDA chair and one newly authorized orb inference are separate manual observations. **Normal npm tests never run a neural model or allocate CUDA.**
 
+## G3.10 — vertex-only additional contact-ray screening (v0.2.10)
+
+G3.10 extends the CPU-only diagnostic series to triangle pairs that share **exactly ONE vertex but not an edge**. On the prior genuine TripoSR `01-orb-alpha` model and its non-destructive winding-only copy, all **190,860 unique vertex-only pairs** per model were analyzed for a possible **extra nonzero common ray beyond the ordinary shared vertex**, with 0 candidates flagged and 0 near-coplanar unresolved cases at the configured numerical tolerances. Known procedural GT and the earlier real chair derivative are additional CPU controls.
+
+This is **not mathematical proof of no self-intersections or readiness to print**: the algorithm does not certify coplanar/near-zero numerical edge cases, coincident coordinates with different vertex IDs, true edge-adjacent foldover, physical wall thickness, scale in millimeters, materials or slicer suitability. The difference between a normal shared-vertex contact and additional overlap is explicit; uncertainty and resource exhaustion never produce a false clearance.
+
+[**G3.10 full CPU method**](docs/G3_10_SHARED_VERTEX_CPU_2026-10-10.md) · [Sanitized SHA-linked real-model results](docs/evidence/g3/orb-01-g310-shared-vertex-ray-screen.json). Normal workflow does not allocate GPU or modify model files. The independent local model-output ledger remains 2/9 real completed cases (7 require fresh per-image authorization).
+
 ## G3.9 — indexed edge-adjacent normal-angle diagnostic (v0.2.9)
 
 Following G3.8's nonadjacent-triangle conservative SAT contact screen, G3.9 now assesses **all 60,528 EDGE-adjacent face pairs** of the one previously generated actual 01-orb-alpha TripoSR mesh. Adjacent surface-normal angle p95 is **33.019°**, with 312 edges above 45° and none above 90°. The 1,280-triangle original procedural GT's p95 is **5.732°**, but their very different mesh densities make these percentages unsuitable as calibrated 3D prediction accuracy or physical finish metrics.

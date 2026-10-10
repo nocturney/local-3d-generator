@@ -1,5 +1,19 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.10: shared-one-vertex ray screen / complete read-only replay (no GPU)
+
+The existing one-time-approved real orb output and its G3.7 winding-only copy were additionally screened for **190,860 unique vertex-only face pairs per model**, looking for extra nonzero rays of geometric intersection beyond the legitimately shared indexed vertex. Zero numerical common-ray candidates were found. **This is not proof of global intersection-free geometry or print readiness.** Near-coplanar cases and limited CPU budgets never silently pass.
+
+Operator-side read-only reproduction (replace the placeholder with the UUID of the **already completed** real local TripoSR orb job, never queue a new inference):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-10-verify-cpu-replay.py --job-id <EXISTING_COMPLETED_ORB_JOB_UUID>
+
+The script verifies SHA-locked original, orientation-derivative, project-original GT and historical chair GLBs; recalculates all four CPU-only pair screens in memory and compares deterministic report fields. To assemble/verify the strictly sanitized, immutable Git evidence:
+
+    npm run proof:g3:orb:vertex -- --job-id <EXISTING_COMPLETED_ORB_JOB_UUID>
+
+Evidence: docs/evidence/g3/orb-01-g310-shared-vertex-ray-screen.json. No job UUID, private GLB, image, model checkpoint, prompt or customer record is uploaded. Nothing in these diagnostic commands invokes CUDA, neural inference, cloud, Office or printing; no prior authorization may be re-used.
+
 ## G3.9: CPU-only adjacent-face angle risk verification (no model execution)
 
 Existing real G3 orb model, prior exact-orientation copy and project-original GT were scanned for all indexed edge-adjacent face normal angles. The operator can reproduce **read-only** using the previous completed local orb job UUID:

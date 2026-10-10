@@ -1,5 +1,13 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.10 — extra-contact rays between exactly-one-vertex-adjacent faces (CPU DIAGNOSTIC)
+
+- PASS: on prior genuinely authorized 01-orb-alpha TripoSR real output AND unchanged-surface G3.7 winding copy, enumerated all **190,860 unique vertex-only triangle pairs per GLB** and tested positive/negative possible shared noncoplanar rays away from the common indexed point. No such extra ray candidate found under finite precision. Project-original GT: 5,730 pairs; historical real chair derivative: 92,629 pairs; 0 extra candidates in those numerical screens. None of these counts constitutes a new model run.
+- PASS: separate ray detection from **NORMAL shared-vertex touching**, which is not a defect; explicit near-coplanar/ray-boundary UNRESOLVED outcome, fail-closed resource exhaustion, 13 adversarial CPU controls including synthetic true extra-ray intersection, SHA-pinned immutable public proof and 4-model private read-only CPU replay. G3.7 shape is preserved.
+- LIMITATION: G3.8 no-shared-vertex SAT=43,025 eligible orb pairs; G3.9 indexed SHARED-EDGE angle statistics=60,528; G3.10 shared-ONE-vertex ray candidates=190,860. These are different diagnostics, **NOT** complete exact global mesh self-intersection screening. A truly coplanar folded edge, hidden wall issue or mm tolerance still requires new independent tests.
+- BLOCKED: **no** manufacturing certification, true minimum mm walls, absolute model scale, supports/material strength, slicer/physical QA, model provider licensing, seven unrun synthetic G3 images. G3 real-output private coverage remains 2/9, public historical scorecard remains earlier 1/9.
+- Evidence: docs/G3_10_SHARED_VERTEX_CPU_2026-10-10.md and docs/evidence/g3/orb-01-g310-shared-vertex-ray-screen.json. Model printing remains disabled; G3.10 runs CPU-only.
+
 ## G3.9 — edge-adjacent face-normal-angle diagnostic (PARTIAL CPU PASS)
 
 - PASS: all 60,528 indexed two-face shared-edge pairs of the existing 40,352-face real 01-orb-alpha output and its G3.7 separate winding derivative checked with deterministic CPU Trimesh face normals. Their p95 difference is 33.018760°, 312 edges >45°, 18 >60°, **0 >90°**. Underlying known original project GT has p95 5.731991°, but GT has 1,280 faces vs 40,352 model faces, so direct angle percentiles are NOT mesh-resolution invariant.
