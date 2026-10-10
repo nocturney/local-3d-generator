@@ -37,13 +37,23 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Current v0.2.6 regression: **67 Node** API/geometry/security/evidence tests on Windows, **23 original Python** tests (5 G2 + 18 G3), the same 23 Python CPU tests under shadow Pillow 12.3.0, 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
+- Current v0.2.7 full regression: **68/68 Node**, **33/33 pinned Python** (7 G2, 26 G3 including 8 new CPU-only winding tests), **8/8 G1 Chrome** and **8/8 G2/G3 mock Chrome** phases. The earlier G3.6 Pillow shadow experiment independently covered the THEN-existing 23 Python tests, and is not automatically re-certified for new tests. The historical real CUDA chair and one newly authorized orb inference are separate manual observations. **Normal npm tests never run a neural model or allocate CUDA.**
 
-## Windows source-owner Git hotfix — CPU-only verification pending under CHRIS
+## G3.7 — true orb model, copy-only winding and local visual verification (v0.2.7)
+
+A genuinely generated TripoSR result now exists for the first project-original G3 fixture, **01-orb-alpha**. Its one-time authorized inference took 12.59s and produced a SHA-verified 808,092-byte GLB, 20,178 vertices and 40,352 triangles. Independent CPU QA found a **watertight but inward-facing** mesh, with negative signed volume.
+
+G3.7 corrected **ONLY triangle winding** in a separate private/ignored copy and independently proved that vertex positions, per-vertex colors and individual triangle geometry were preserved exactly. The corrected copy has positive signed volume, but BOTH versions remain DRAFT/NOT PRINT QUALIFIED: physical dimensions, self-intersections, wall thickness and structural/material safety are untested. The reconstructed orb visibly contains surface roughness not present in the smooth procedural GT; the winding-only correction does not smooth it.
+
+[Three-way true GLB software preview](docs/evidence/g3/orb-01-threeway-preview.png) · [G3.7 CPU evidence and safety gates](docs/G3_7_ORB_WINDING_CPU_2026-10-10.md) · [Sanitized QA/provenance](docs/evidence/g3/orb-01-cpu-quality-milestone.json). **All G3.7 computation used CPU/software-rendering; zero new inference, printer actions or Office changes.**
+
+The private SHA-verified local benchmark now includes **2/9 real model outputs** (old MIT chair + new 01 orb), while the published fixed historical snapshot remains **1/9 by design** and is not an automatically refreshed live counter. Seven licensed fixtures still await explicit per-image GPU approval. Private GLB files stay gitignored.
+
+## Windows source-owner Git hotfix — resolved for interactive CHRIS
 
 An approved single-image `01-orb-alpha` G3 trial failed at the worker's first `verify_sources` step because the source checkout belongs to Windows SYSTEM but interactive CHRIS Git refused it as dubious ownership. **This run consumed its one-use permit but created no GLB.** The initial CPU-only source integrity tests under the connected system account passed, but the interactive-user run identified the trust boundary.
 
-The patched TripoSR worker now passes an **exact, command-local Git safe.directory** only for two pinned read-only source metadata commands; it still checks clean source/expected commit and all downloaded-model SHA256 values. It does **not** alter global Git settings or perform CUDA inference. Before requesting new explicit GPU permission, run the interactive-user CPU-only proof described in [Operations](docs/OPERATIONS.md); do **not** reuse the spent v0.2.4 single-use runner.
+The patched TripoSR worker now passes an **exact, command-local Git safe.directory** only for two pinned read-only source metadata commands; it still checks clean source/expected commit and all downloaded-model SHA256 values. No global Git settings were modified. The interactive-user CPU-only proof **passed in CHRIS**, and a **new, separately authorized single-image 01-orb-alpha GPU run** subsequently completed; the earlier failed v0.2.4 approval remains spent and must never be reused.
 
 ## G3.4 — one-click CPU benchmark review after manual inference (v0.2.4)
 
@@ -73,7 +83,7 @@ See [G3.2 security + operations](docs/G3_2_SAFETY_BENCHMARK_2026-10-10.md). Stil
 
 A new manual **סריקת רשת (CPU)** button on completed TripoSR jobs runs independent topology inspection in the local isolated Python environment. It checks GLB source SHA, connected components, open/nonmanifold edges, signed volume, winding and face quality; exposes a separate downloadable **geometry-qa.json** asset, with explicit unknown real-world units and wall thickness. It NEVER print-qualifies a model.
 
-A reproducible **9-fixture benchmark source catalog** is available under [benchmarks/g3](benchmarks/g3/README.md): 8 project-original synthetic image/mask/source-3D triples plus the already-licensed upstream chair photo and mask. NO NEW synthetic image has yet been through actual AI inference. Exact-source-camera positive controls validate the silhouette scorer, not the AI. The previous real chair's signed volume was found to be **negative despite watertightness**. A separate CPU-only optional winding derivative preserves the original and still remains DRAFT.
+A reproducible **9-fixture benchmark source catalog** is available under [benchmarks/g3](benchmarks/g3/README.md): 8 project-original synthetic image/mask/source-3D triples plus the already-licensed upstream chair photo and mask. At the original G3 preview checkpoint, no new synthetic image had been inferred; G3.7 now documents ONE real previously authorized TripoSR orb output, leaving seven original inputs unrun. Exact-source-camera positive controls validate the silhouette scorer, not the AI. The previous real chair's signed volume was found to be **negative despite watertightness**. A separate CPU-only optional winding derivative preserves the original and still remains DRAFT.
 
 Read [G3 progress](docs/G3_PROGRESS_2026-10-10.md), [real-world geometry evidence](docs/evidence/g3/README.md) and [research-only engine screening](docs/G3_PROVIDER_SCREENING.md). **Issue #3 remains open** for licensed-image GPU benchmarking, actual provider comparisons, physical print geometry qualification and hardening.
 

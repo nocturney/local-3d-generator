@@ -1,6 +1,6 @@
 {
   "name": "local-3d-generator",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "type": "module",
   "description": "Independent local-first 3D workbench; G1 demo plus opt-in G2 guarded TripoSR adapter",
@@ -20,7 +20,8 @@
     "proof:g3:cpu": "node scripts/g3-4-actual-cpu-review-proof.mjs",
     "audit:g3:admission": "node scripts/g3-5-storage-readiness.mjs",
     "audit:g3:python-osv": "node scripts/g3-5-dependency-screen.mjs",
-    "audit:g3:pillow-shadow-public": "node scripts/g3-6-pillow-candidate-screen.mjs"
+    "audit:g3:pillow-shadow-public": "node scripts/g3-6-pillow-candidate-screen.mjs",
+    "proof:g3:orb:cpu": "node scripts/g3-7-assemble-orb-evidence.mjs"
   },
   "engines": {
     "node": ">=20.0.0"

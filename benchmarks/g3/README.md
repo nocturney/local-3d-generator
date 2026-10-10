@@ -25,13 +25,13 @@ The Hebrew web workbench now offers a one-click fixture image input loader, not 
 
 ## Public scorecard generated from recorded outputs, not AI simulation
 
-The SHA-verified, read-only coverage ledger is stored at docs/evidence/g3/benchmark-coverage.json. It deliberately counts only the previous TripoSR MIT chair real E2E output (**1 of 9**) and records eight NO-AI-YET references. It distinguishes original synthetic GT from AI reconstructions and marks post-hoc silhouette views exploratory, not calibrated accuracy. The CLI is npm run benchmark:g3; optionally scan private local G2 jobs with --jobs-dir runtime/data-g2-manual/jobs to produce a **gitignored** private report. No model runs or original source media are uploaded externally.
+The SHA-verified, read-only **historical public baseline** is stored at docs/evidence/g3/benchmark-coverage.json. Its frozen scope counts only the earlier TripoSR MIT chair result (**1 of 9**); after a later separately approved real TripoSR inference on project-original 01-orb-alpha, the vetted **private** local report now includes **2 of 9 observed real model outputs** and 7 still awaiting model execution. The public file is not a live/private data counter. It distinguishes original synthetic GT from AI reconstructions and marks post-hoc silhouette views exploratory, not calibrated accuracy. The CLI is npm run benchmark:g3; optionally scan private local G2 jobs with --jobs-dir runtime/data-g2-manual/jobs to produce a **gitignored** private report. No model runs or original source media are uploaded externally.
 
 ## Current evaluation state
 
 - Eight original source/GT pairs have an **exact-camera, positive-control silhouette** verification (not AI inference). Minimum projected-mask IoU: 0.935812 after consistent bounding-box normalization. See docs/evidence/g3/silhouette-positive-controls.json.
 - Existing real TripoSR output for ninth upstream chair was scanned **only after it already existed**. A diagnostic search across 24 yaw/elevation views gave provisional best normalized silhouette IoU 0.82448. This is NOT a calibrated accuracy benchmark, not camera-aligned ground truth, and not production QA.
-- **No G3 synthetic image has been run through TripoSR or another AI provider.** The existing real chair was run previously in G2. There are no comparative provider ranking results yet.
+- **01-orb-alpha now has one genuinely generated TripoSR model** after a fresh explicit single-image GPU approval, 12.59s engine elapsed, source SHA and GLB verified. Seven other original synthetic fixtures still have no completed AI model output. The existing licensed MIT chair is the other previously observed real model; no alternative provider has been qualified or compared.
 - Geometry of the existing real chair was independently scanned: 1 component, 19972 triangles, watertight-index topology true, consistent triangle winding, negative signed volume -0.0613843 arbitrary cubic units. Thus positive-volume check FAIL despite watertight true. Not print-qualified.
 
 ## Repeatable CPU-only audit
@@ -52,8 +52,8 @@ Measured: binary mask, reference projection, mesh triangle count, disconnected c
 
 **Not measured:** actual millimeter dimensions, structural integrity, minimum wall thickness, supportability, interpenetrations/self-intersections, per-surface aesthetic quality, calibrated single-view camera reconstruction or print readiness. Positive controls are generated from the same source geometry and are therefore NOT predictions of AI model accuracy.
 
-## Future GPU benchmark protocol (NOT EXECUTED)
+## Future GPU benchmark protocol for the seven remaining inputs (NOT AUTHORIZED)
 
-If new per-job model-use approval and a live no-conflict check are obtained, submit the 8 new original images one at a time through G2 manual UI. No unattended queues. For each: capture input SHA/model config/seed (if supported), output SHA, worker wall time, NVIDIA shared-VRAM preflight/peak, CPU geometry report and provisional silhouette metric; compare to known GT dimensions only in arbitrary normalized synthetic units. Review the actual 3D geometry and human visual fidelity. Then repeat under the same protocol with a license-qualified second provider, if any.
+If new per-job model-use approval and a live no-conflict check are obtained, submit the remaining seven not-yet-inferred original images one at a time through G2 manual UI. No unattended queues. For each: capture input SHA/model config/seed (if supported), output SHA, worker wall time, NVIDIA shared-VRAM preflight/peak, CPU geometry report and provisional silhouette metric; compare to known GT dimensions only in arbitrary normalized synthetic units. Review the actual 3D geometry and human visual fidelity. Then repeat under the same protocol with a license-qualified second provider, if any.
 
 Never infer a winner from one sample or print release from watertightness.

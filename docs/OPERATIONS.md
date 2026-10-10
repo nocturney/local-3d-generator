@@ -1,5 +1,21 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.7: CPU-only exact winding derivative of an existing real orb model
+
+A single genuinely approved local TripoSR inference already completed on 01-orb-alpha. Its source output remains under the original G2 manual job's private runtime folder; the separate CPU-only orientation derivative lives at:
+
+    runtime/qa/g3/orb-01-positive-winding/orb-positive-winding.glb
+
+Independent CPU verification requires exactly unchanged vertex coordinates, unchanged vertex RGBA, exactly reversed face indices, opposite face normals and same one-component watertight bounds/absolute signed volume. The original GLB SHA is f37a812bc4414ddee34bcb19d2e7535f25d219a3731c14f2dcc89c2c7ba030e2; the separate DRAFT derivative SHA is ab2e5aeb55598624209eeca3e700abef93a69a52886c63ecad6a840e62d8d68f.
+
+The public model binaries are NOT uploaded to GitHub; output is local and ignored. Re-create a sanitized read-only proof from an **already completed and hash-verified** local job (pass the full UUID operator-side only):
+
+    node scripts/g3-7-assemble-orb-evidence.mjs --job-id <existing-G3-orb-job-UUID>
+
+The command is CPU/Node-only and does NOT launch TripoSR, GPU, slicers or printers. Evidence and screenshot under docs/evidence/g3 include no job IDs, client names or private source files. The local report now counts 2/9 observed outputs including the historic chair, while the immutable checked-in public G3 baseline stays 1/9. No one has standing approval to infer the seven remaining images without a fresh per-image request.
+
+**Never treat volume-positive, closed-topology or visually similar geometry as print-ready.** Physical mm units, minimum wall thickness, intersections, supports, material strength and printer suitability remain untested. See docs/G3_7_ORB_WINDING_CPU_2026-10-10.md.
+
 ## Hardware and environment (checked 2026-10-09–10)
 
 Windows Chris: NVIDIA GeForce RTX 4080 SUPER 16GB, Intel i9-14900K, Node 24.19, Python 3.11.9, Torch 2.5.1+cu121 **inside isolated G2 venv only**. nvidia-smi observed Office/GUI GPU use; production resource reservations are not guaranteed.

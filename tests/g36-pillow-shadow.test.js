@@ -53,10 +53,20 @@ test('v0.2.6 Node audit evidence is separate from historical v0.2.5 snapshot',as
   const report=JSON.parse(bytes.toString('utf8'));
   const lock=await fs.readFile(path.join(ROOT,'package-lock.json'));
   const meta=JSON.parse(lock.toString('utf8'));
-  assert.equal(meta.version,'0.2.6');
+  const packageJson=JSON.parse(await fs.readFile(path.join(ROOT,'package.json'),'utf8'));
+  // A prior release audit is an immutable historical snapshot. It MUST NOT
+  // be falsely attributed to a newer release just because dependencies are
+  // similar; after a version bump, the lockfile SHA naturally changes.
+  assert.equal(meta.version,packageJson.version);
   assert.equal(report.schema,'local3d.g3-6.npm-audit-summary.v1');
   assert.equal(report.applicationVersion,'0.2.6');
-  assert.equal(report.packageLockSha256,sha(lock));
+  assert.match(report.packageLockSha256,/^[a-f0-9]{64}$/);
+  if(meta.version===report.applicationVersion) {
+    assert.equal(report.packageLockSha256,sha(lock));
+  } else {
+    assert.notEqual(report.packageLockSha256,sha(lock),
+      'Historical v0.2.6 audit must not be silently re-labeled as current');
+  }
   assert.equal(report.modelInferenceExecuted,false);
   assert.equal(report.dependenciesInstalled,false);
   assert.equal(report.noSecurityGuarantee,true);

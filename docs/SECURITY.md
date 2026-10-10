@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.7: orientation derivative evidence is NOT a manufacturing/security pass
+
+The only new G3.7 transformation was a COPY-ONLY, CPU Trimesh winding reversal on a previously generated real 01-orb-alpha TripoSR output. The source remained locally unchanged and SHA-pinned; the derivative is gitignored and strictly separate. An independently implemented audit demands exact vertex coordinates, exact reversed face indices, original vertex colors, opposite normals and volume-sign correction, and marks printQualified=false. All new CPU audit, synthetic negative tests and Chrome SwiftShader preview require no CUDA or internet.
+
+Only SHA-linked, **sanitized** milestone JSON and a screenshot from original project-synthetic reference/model derivatives are committed; no local UUID, prompt, source customer photo, source GLB, derivative GLB, model weights or OS path. The private observed-model coverage 2/9 must not be confused with the immutable historical public scoreboard's 1/9. Local SHA linkage is NOT independent remote hardware attestation.
+
+**Security limits unchanged:** current Python package-version advisories from OSV screening, lack of OS-enforced network isolation and untrusted multi-user input containment, and absent retention/quotas are still open. Geometry limits also remain: positive volume does not detect self-intersections, wall thickness, physical units, supports or mechanical strength. Never use the derivative to bypass human print/slicer safety review or enable Fabrication Router writes.
+
 LOCAL3D is a **trusted single-OS-user, loopback development application**, NOT a remotely secure multi-tenant inference service. Controls here are implementation defenses and are not a penetration-test certification.
 
 ## Trust boundaries

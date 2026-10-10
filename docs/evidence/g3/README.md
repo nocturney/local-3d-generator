@@ -1,6 +1,16 @@
 # G3 verified CPU-only geometry / benchmark evidence
 
-**All outputs below analyze an existing real TripoSR chair GLB or original synthetic ground-truth shapes. NO new neural inference was performed to create these reports.** The one real TripoSR chair input/output pair originated in G2 and is SHA-linked here. All future G3 synthetic-image AI runs remain **NOT STARTED**.
+**Historical G3.1–G3.6 evidence** below analyzed the earlier real TripoSR chair GLB, original synthetic GTs, and CPU-only checks. On Oct 10, a NEW, explicitly approved single TripoSR inference successfully generated the first synthetic G3 fixture, **01-orb-alpha**, recorded in separate local private evidence. **G3.7 itself did no additional inference:** it only inspected/reoriented that pre-existing G3 AI output using CPU and produced a sanitized software-browser screenshot. Original and derivative GLB files and job IDs remain locally gitignored.
+
+### G3.7 — first genuinely reconstructed synthetic fixture (CPU-only postprocessing)
+
+- orb-01-cpu-quality-milestone.json: sanitized SHA-validated summary of the earlier user-authorized REAL 01-orb-alpha TripoSR output and subsequent G3.7 private derivative; source+derivative SHAs, volumes, unchanged geometric surface/colors, score caveats and no print qualification. Contains no private job identifiers.
+- orb-01-winding-provenance.json: CPU-only non-destructive correction record; signed volume flipped from negative to positive, unchanged face counts.
+- orb-01-positive-volume-qa.json: independent offline derivative QA; watertight and positive-volume true but no physical-unit, self-intersection, wall-thickness or print certification.
+- orb-01-exact-winding-proof.json: independent bitwise-equal positions/colors, exactly reversed face indices, opposite face normals and no surface movement.
+- orb-01-threeway-preview.png and orb-01-threeway-browser-proof.json: headless Chrome software render of original procedural reference 3D, previously generated REAL AI GLB and CPU derivative. No outside requests, no new model inference, printQualified=false. The generated sphere looks visibly uneven relative to source; reversing winding did NOT smooth it.
+- Existing actual model and corrected GLB remain LOCAL ONLY; private coverage is now 2/9 recorded models / 7 unrun, whereas immutable checked-in public legacy benchmark evidence still shows 1/9.
+- Full method: [G3.7 CPU winding validation](../../G3_7_ORB_WINDING_CPU_2026-10-10.md).
 
 - g3-4-existing-chair-cpu-proof.json: sanitized provenance/evidence from **real pinned CPU scorer and local API** using the already-created historic G2 MIT chair GLB and a disposable reconstructed job. Explicitly no *new* AI inference; 0 GPU worker calls. Returns NO_GROUND_TRUTH_3D and no print release.
 - shape-positive-controls.json: eight original synthetic ground-truth models compared to themselves using reproducible normalized bidirectional surface metrics. Exact Chamfer 0 by construction, F1@2% 1.0; these are NOT AI predictions.

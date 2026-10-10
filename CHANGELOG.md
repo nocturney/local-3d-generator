@@ -1,11 +1,21 @@
 # Release notes
 
-## Unreleased hotfix — 2026-10-10 — G3 TripoSR Windows Git source-owner mismatch
+## v0.2.7 — 2026-10-10 — G3.7 authentic orb winding correction, independent CPU-only evidence
+
+- Used the previously successfully approved single-use real TripoSR 01-orb-alpha reconstruction (12.59s, 808,092-byte GLB, 20,178 vertices / 40,352 faces). G3.7 performed **NO NEW GPU inference**.
+- Made a **private, non-destructive CPU-only winding derivative** of the inward-facing but watertight real orb model: signed volume -0.3691746 -> +0.3691746 arbitrary units cubed, same geometry, faces and bounds, source SHA unchanged.
+- Added independent winding-equivalence verification requiring bit-identical vertex positions/colors, exactly reversed face indices, opposite normals, same component topology and abs(volume). Unsupported materials, altered vertices/colors/faces, positive/open inputs and overwritten reports fail closed.
+- Added G3.7 provenance/independent QA records, immutable sanitized milestone generator and local-only three-way Chrome SwiftShader screenshot; real GLBs, job UUIDs, prompts and private source files remain gitignored. Browser proof: no remote URLs, no model inference, no JavaScript errors.
+- The real model remains visibly uneven compared to procedural reference. Original-vs-GT normalized Chamfer=0.02209413, F1@2%=0.4836679; winding DOES NOT improve this surface metric or establish print readiness.
+- **Private benchmark coverage now 2/9 actual model outputs** (historic MIT chair plus 01 orb), 7 remaining. The separate checked-in historic public ledger intentionally stays 1/9 pending independently controlled review, not a live data counter. No printer, Office or security configuration changes.
+- Validation: **68/68 Node, 7/7 G2 Python, 26/26 G3 Python, 8/8 G1 Chrome, 8/8 G2/G3 mock Chrome**; immutable SHA-derived milestone and historical benchmark snapshot reproducible. No CUDA jobs were triggered by tests.
+
+## Windows Git source-owner hotfix (included in v0.2.7) — 2026-10-10
 
 - Confirmed a real one-time user-authorized `01-orb-alpha` job failed **before model inference**, at `verify_sources`: TripoSR source checkout is owned by Windows SYSTEM and the interactive CHRIS operator encountered Git's `detected dubious ownership` (exit 128).
 - Updated `engines/triposr/worker.py` to use `git -c safe.directory=<exact resolved TripoSR source>` **only for fixed `rev-parse HEAD` and `status --porcelain` read-only checks**. No wildcard, no global safe.directory/owner change, no skipping dirty tree, commit, checkpoint, config or DINO SHA256 integrity verification.
 - Added CPU-only `scripts/g3-verify-triposr-source-owner-cpu.py` to validate Git source integrity, model SHA and the licensed `01-orb-alpha` image **without CUDA, job submission, prints or network requests**.
-- Added isolated Python regression cases for exact path/scoped Git commands, disallowed operations and tampered source. Remote CPU-only verification succeeded; **interactive CHRIS-account acceptance is still pending**.
+- Added isolated Python regression cases for exact path/scoped Git commands, disallowed operations and tampered source. **Interactive CHRIS-account CPU verification subsequently passed**, and an independently user-approved one-time real 01-orb-alpha TripoSR retry then completed. The earlier failed approval was never reused.
 - Preserved the failed job evidence and spent one-time approval latch. The historic v0.2.4 snapshot remains unchanged, and **no new GPU permission is implied**.
 
 ## v0.2.6 — 2026-10-10 — G3.6 isolated Pillow shadow compatibility research

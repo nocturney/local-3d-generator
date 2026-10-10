@@ -1,5 +1,15 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.7 — one actual new G3 synthetic model + copy-only CPU QA (PARTIAL PASS)
+
+- REAL PREEXISTING INPUT: one newly consented TripoSR 01-orb-alpha inference successfully generated an 808,092-byte GLB in 12.59s, with source/job/output SHA consistency and complete native worker stages. This real inference occurred BEFORE the G3.7 CPU-only milestone. Seven other new synthetic reference images are unrun; previous real MIT chair is the other observed output.
+- PASS: new private, source-preserving GLB derivative flips only triangle winding on closed inward-facing original mesh: signed volume -0.3691746 -> +0.3691746 arbitrary units cubed, same 40,352 triangles / 20,178 vertices, one watertight component.
+- PASS: independent CPU auditor demands bit-exact unchanged vertex coordinates/vertex colors, exact per-triangle reversed face indices, opposite normals and identical bounds/abs(volume). Malformed/open/reordered/mutated inputs and overwrite attempts are rejected; no CUDA inference needed.
+- PASS: native three-way Chrome SwiftShader screenshot of original source 3D, generated real output and winding-only derivative with no external network calls. The AI surface visibly has roughness relative to original source. Inverted-to-positive winding does NOT improve original-vs-reference shape distance.
+- EVIDENCE: private SHA-linked input, GLB and CPU QA; sanitized docs/evidence/g3/orb-01-* and docs/G3_7_ORB_WINDING_CPU_2026-10-10.md. Public fixed historical benchmark remains 1/9; private live observed-output coverage 2/9 (7 pending).
+- BLOCKED: self-intersections, physical dimensions, minimum walls, strength, support/material/printer profile, second licensed provider, real-world quality generalization, OS network sandbox/authentication. PrintQualified remains FALSE and no printer action occurred.
+- GPU: zero NEW TripoSR inference from G3.7; all additional model tasks require explicit per-image approval and live Office/GPU safeguards.
+
 ## G0 - Source and rights screening
 - PASS: inspected ctate source reference: app is Rodin SaaS UI, no standalone inference.
 - PASS: do not copy source without a verified explicit license; clean-room app chosen.
