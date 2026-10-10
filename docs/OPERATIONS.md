@@ -1,5 +1,17 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.17: all NUMERICAL AABB selected NO-index pairs, EXACT rational contact narrowphase (CPU only)
+
+The bounded G3.17 CPU module engines/quality/exact_nonindexed_contact.py independently reproduces the G3.14 numerical AABB candidate census and splits 0/1/2 original indexed vertex overlap classes. For 0-index candidates only, exact Fraction geometry classifies true decoded IEEE-754 triangle-plane intersection: disjoint, point-only, positive-length noncoplanar/coplanar boundary line, positive-area coplanar overlap. Previous real 01-orb-alpha TripoSR 43,107 noindex candidates, unchanged winding 43,107, original GT 216 and licensed MIT chair 28,593 all exactly DISJOINT within numerically selected AABB candidates. AABB selection remains numerical and not a universal formally exact all-triangle broadphase, and real physical millimeter/wall/print suitability remains unknown.
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g317_exact_nonindexed_contact.py
+
+SHA-locked four previous licensed sources, local READ-ONLY replay, operator-only previously completed genuine G2 job private UUID (never include in Git or assistant report):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-17-noindex-replay.py --job-id <PREVIOUS_PRIVATE_REAL_SOURCE_JOB_UUID>
+
+The one-time immutable local private reports and sanitized public SHA aggregate proof were already prepared. On subsequent replays OMIT --prepare-private and --write-public. [G3.17 method](G3_17_EXACT_NOINDEX_AABB_CONTACT_CPU_2026-10-10.md), [sanitized counts](evidence/g3/orb-01-g317-exact-noindex-aabb-pairs.json). No new GPU permission, cloud/model run, printer action, Office or service 4178 modifications.
+
 ## G3.16: all exact indexed shared-single-vertex face contacts (CPU only)
 
 The independent CPU module engines/quality/exact_indexed_vertex_contact.py reads only already-existing SHA-pinned indexed GLB geometry. It enumerates all unordered face pairs sharing exactly ONE original indexed vertex, independent of the G3.14 box broadphase, and EXACTLY classifies positive-length noncoplanar/coplanar intersections beyond that point. Four previous licensed GLBs rechecked: orb 190,860 pairs, identical G3.7 copy 190,860, GT 5,730, chair 92,629; zero positive extra intersections within this indexed one-vertex-only class. Exact arithmetic applies ONLY to decoded binary-float coordinates, not CAD source dimensions or physical-print qualification.

@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.17 — 2026-10-10 — G3.17 exact no-index triangle contact on all bounded AABB candidates
+
+- CPU-only independent numerical bounding-BOX sphere broadphase enumerates the entire conservative AABB-overlap candidate set and independently partitions index adjacency 0/1/2, cross-verified vs G3.14. Every ZERO-index candidate is then EXACTLY classified by rational signed plane/triangle sections and interval overlap, or exact coplanar convex clipping, distinguishing disjoint, point, line and positive-area overlap.
+- Previously licensed real TripoSR orb: 294,495 AABB candidates, 43,107 zero-index and **43,107 exact disjoint**; winding-only source copy matches. Project-original procedural GT 216/216, prior licensed chair 28,593/28,593 exact disjoint. This strengthens G3.14's numerical SAT negative findings, but does NOT certify a universal exact global collision-free mesh: broadphase remains bounded numerical and only existing decoded IEEE-754 GLB positions are tested.
+- Added 15 adversarial G3.17 CPU Python tests (positive 3D line pierces, coplanar area, boundary segment and point examples; independent brute AABB validation and resource fail-closed) and 3 Node SHA/rights/privacy tests. Immutable reports for four preexisting SHA-pinned sources and sanitized evidence. Physical mm-scale, minimum wall thickness, print, dependency CVE/OS sandbox remain blocked. Issues #3/#4 OPEN; no AI/GPU/cloud/printer modifications.
+
 ## v0.2.16 — 2026-10-10 — G3.16 exact indexed single-vertex face contact census
 
 - Added bounded CPU exact rational triangle-pair classifier for ALL original vertex-index-only adjacency pairs. Independently enumerate face incidence, excluding shared-indexed-edge pairs, without relying on G3.14 KD-tree/AABB. Classify expected vertex-only contact, noncoplanar extra line intersection, coplanar extra line contact and coplanar positive area overlap. Exactness applies ONLY to already-decoded IEEE754 GLB XYZ, not true CAD/mm tolerances; budget and invalid sources fail closed.

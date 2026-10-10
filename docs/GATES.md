@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.17 — exact NO-index triangle contacts for every conservative numerical AABB candidate (CPU)
+
+- PASS: independent bounding-BOX-sphere cKDTree broadphase + exact 3D AABB axis checks with declared numerical tolerance enumerates candidate unordered face pairs; 0/1/2 original-index partitions exactly match pinned G3.14. Every candidate with 0 shared indexed vertices receives exact digital IEEE-754 rational triangle/plane section and interval or coplanar polygon clipping, including point/line/positive area vs disjoint. This is exact *narrowphase on each enumerated numerical AABB candidate*, NOT a universal mathematical guarantee about floating broadphase under all possible geometry.
+- PASS: previous licensed real orb 43,107/43,107 exact no-index disjoint pairs; unchanged surface winding copy identical, project GT 216/216, historical chair 28,593/28,593. 15 new Python adversarial controls exercise positive actual intersections and 3 Node source SHA/privacy. No new AI job, GPU or printer.
+- OPEN: independent exact broadphase completeness proof or alternative kernel audit, original CAD/quantization/real mm scale and wall thickness, print/slicer/structural tests, parser/OS network isolation and security Issue #4. G3 quality Issue #3 remains OPEN; every model DRAFT / printQualified=false.
+- [G3.17 limits and CPU method](G3_17_EXACT_NOINDEX_AABB_CONTACT_CPU_2026-10-10.md), [four-source sanitized SHA proof](evidence/g3/orb-01-g317-exact-noindex-aabb-pairs.json).
+
 ## G3.16 — exact shared ONE-index vertex-only face contacts (CPU, decoded GLB only)
 
 - PASS: raw original vertex-to-face index incidence census independently enumerates every face pair with exactly ONE shared index; it excludes full-indexed-edge neighbors. Mathematical exact signed planes/rays or exact 2D coplanar polygon clipping distinguishes expected only-point contact, extra line contact beyond that shared vertex and positive-area coplanar overlap, all on IEEE754-decoded source XYZ values. Valid synthetic overlaps MUST be flagged. Budget/time/degenerate cases never pass as clear.

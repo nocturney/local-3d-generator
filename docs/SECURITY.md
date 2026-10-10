@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.17: exact selected no-index face contacts are not a formal global or print clearance
+
+Every zero-index 3D-AABB-overlap candidate from a bounded independent numerical bounding-box-sphere selection receives rational IEEE754-decoded triangle contact classification (including coplanar and boundary) in CPU; ALL real historical orb 43,107 no-index candidates classify EXACT_DISJOINT. Source hashes and G3.14/15/16 prior count lineage/rights were verified. This is NOT a proof that arbitrary floating-based spatial broadphase can never miss candidates at all magnitude/precision extremes, nor is decoded GLB geometry unquantized ideal CAD. The test adds NO physical mm/wall/support/material/slicer/fabrication certainty, and cannot set printQualified=true.
+
+Fail-closed caps: 75k faces, 100k vertices, 2M sphere broadphase candidates, 750k conservative numerical AABB pairs, 300k no-index exact pairs and 120 seconds CPU. Adversarial coplanar area, point-only and positive-line controls verify flagged positives. Public SHA proof contains no private job IDs, GLB binary, original image or indexed face-pair examples. Historical local job/rights are verified in ignored runtime. Untrusted image/GLB parsing has NOT obtained OS-backed confinement or no-network restrictions, and pinned Python OSV advisories remain unresolved Issue #4; geometry/manufacture Issue #3 OPEN. No inference, new dependencies, GPU, cloud, Office, 4178, Windows security, slicer or printer changes.
+
 ## G3.16: exact single-index vertex intersection diagnosis still no production/sandbox clearance
 
 The CPU-only all-indexed-vertex-only exact rational contact module detects whether adjacent triangles that share exactly ONE original indexed vertex intersect beyond that point as a noncoplanar/coplanar line segment or a positive-area planar overlap, on decoded IEEE754 coordinates ONLY. It does not certify the whole mesh self-intersection free: G3.14's 43,107 zero-index AABB real-orb pairs were screened with NUMERICAL floating SAT but not exhaustive exact robust predicates; GLB quantization, actual CAD coordinate precision, mm-scale wall thickness and manufactured part fitness remain unproven.
