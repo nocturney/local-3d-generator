@@ -1,0 +1,2791 @@
+{
+  "schema": "local3d.g3.23.full-public-osv-advisory-alias-census.v1",
+  "queriedAt": "2026-10-10T17:02:01.923Z",
+  "queryEndpoint": "https://api.osv.dev/v1/query",
+  "publicNameVersionOnlyRequests": true,
+  "priorG322StaticTriageProofSha256": "b44a35942fe5f425f3d5d981f52f5618c068a92d3dad71a130794fab7268e1ca",
+  "freshPublicOSVSourceJsonSha256": "16d1ff5b6dc7deaf6cf4d501dd1569e93cf0a0d31c4225ea48a2c1da8cc7867a",
+  "previousG35VersionLevelMatches": 104,
+  "previousG35IndividualIDsRetained": 36,
+  "previousG35IndividualIDsNotRetained": 68,
+  "newFullPublicVersionResultCount": 104,
+  "newFullPublicReturnedIdsCount": 104,
+  "newAliasLinkedPublicRecordGroupCount": 64,
+  "aliasLinkedGroupsCannotBeAssumedUniqueConfirmedCves": true,
+  "previous36SampleIdMembershipVerifiedSeparatelyByAssembler": true,
+  "individualAdvisoryDetailsAvailableForCurrentReturnedRecords": true,
+  "everyAdvisoryActualApplicationReachabilityTriaged": false,
+  "deduplicationIsAliasCrossReferenceNotExploitableVulnerabilityCount": true,
+  "perPackage": [
+    {
+      "packageName": "Pillow",
+      "historicalVersionMatchCount": 32,
+      "newCurrentFullRecordCount": 32,
+      "publicAliasesAcrossRecords": 96,
+      "recordsWithExplicitFixedRangeEvents": 32,
+      "recordsWithoutExplicitFixedRangeEvents": 0,
+      "historicalIdsPersistedPreviously": 12,
+      "historicIdsOmittedPreviously": 20,
+      "advisoryReachabilityStatus": "NOT_TRIAGED_INDIVIDUALLY",
+      "pinProductionUpgradePerformed": false
+    },
+    {
+      "packageName": "transformers",
+      "historicalVersionMatchCount": 50,
+      "newCurrentFullRecordCount": 50,
+      "publicAliasesAcrossRecords": 92,
+      "recordsWithExplicitFixedRangeEvents": 41,
+      "recordsWithoutExplicitFixedRangeEvents": 9,
+      "historicalIdsPersistedPreviously": 12,
+      "historicIdsOmittedPreviously": 38,
+      "advisoryReachabilityStatus": "NOT_TRIAGED_INDIVIDUALLY",
+      "pinProductionUpgradePerformed": false
+    },
+    {
+      "packageName": "torch",
+      "historicalVersionMatchCount": 22,
+      "newCurrentFullRecordCount": 22,
+      "publicAliasesAcrossRecords": 58,
+      "recordsWithExplicitFixedRangeEvents": 17,
+      "recordsWithoutExplicitFixedRangeEvents": 5,
+      "historicalIdsPersistedPreviously": 12,
+      "historicIdsOmittedPreviously": 10,
+      "advisoryReachabilityStatus": "NOT_TRIAGED_INDIVIDUALLY",
+      "pinProductionUpgradePerformed": false
+    }
+  ],
+  "allPublicVersionMatchingAdvisoryRecords": [
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-3f63-hfp8-52jq",
+      "publicAliases": [
+        "BIT-pillow-2023-50447",
+        "CVE-2023-50447",
+        "PYSEC-2026-457"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "10.2.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-44wm-f244-xhp3",
+      "publicAliases": [
+        "BIT-pillow-2024-28219",
+        "CVE-2024-28219",
+        "PYSEC-2026-1793"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "10.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-45hq-cxwh-f6vc",
+      "publicAliases": [
+        "BIT-pillow-2026-55379",
+        "CVE-2026-55379",
+        "PYSEC-2026-2255"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-4x4j-2g7c-83w6",
+      "publicAliases": [
+        "BIT-pillow-2026-55798",
+        "CVE-2026-55798",
+        "PYSEC-2026-2257"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-5x94-69rx-g8h2",
+      "publicAliases": [
+        "BIT-pillow-2026-54060",
+        "CVE-2026-54060",
+        "PYSEC-2026-2254"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-62p4-gmf7-7g93",
+      "publicAliases": [
+        "BIT-pillow-2026-54058",
+        "CVE-2026-54058",
+        "PYSEC-2026-3493"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-6r8x-57c9-28j4",
+      "publicAliases": [
+        "BIT-pillow-2026-59199",
+        "CVE-2026-59199",
+        "PYSEC-2026-3451"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-8v84-f9pq-wr9x",
+      "publicAliases": [
+        "BIT-pillow-2026-54059",
+        "CVE-2026-54059",
+        "PYSEC-2026-2253"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-9hw9-ch79-4vh6",
+      "publicAliases": [
+        "BIT-pillow-2026-59205",
+        "CVE-2026-59205",
+        "PYSEC-2026-3453"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-fj7v-r99m-22gq",
+      "publicAliases": [
+        "BIT-pillow-2026-59198",
+        "CVE-2026-59198",
+        "PYSEC-2026-3494"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-jjj6-mw9f-p565",
+      "publicAliases": [
+        "BIT-pillow-2026-59200",
+        "CVE-2026-59200",
+        "PYSEC-2026-3495"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-phj9-mv4w-65pm",
+      "publicAliases": [
+        "BIT-pillow-2026-55380",
+        "CVE-2026-55380",
+        "PYSEC-2026-2256"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-r73j-pqj5-w3x7",
+      "publicAliases": [
+        "BIT-pillow-2026-42310",
+        "CVE-2026-42310",
+        "PYSEC-2026-2874"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.2.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-vjc4-5qp5-m44j",
+      "publicAliases": [
+        "BIT-pillow-2026-59204",
+        "CVE-2026-59204",
+        "PYSEC-2026-3496"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-wjx4-4jcj-g98j",
+      "publicAliases": [
+        "BIT-pillow-2026-42308",
+        "CVE-2026-42308",
+        "PYSEC-2026-165"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.2.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "GHSA-xj96-63gp-2gmr",
+      "publicAliases": [
+        "BIT-pillow-2026-59197",
+        "CVE-2026-59197",
+        "PYSEC-2026-3454"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-165",
+      "publicAliases": [
+        "BIT-pillow-2026-42308",
+        "CVE-2026-42308",
+        "GHSA-wjx4-4jcj-g98j"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.2.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-1793",
+      "publicAliases": [
+        "BIT-pillow-2024-28219",
+        "CVE-2024-28219",
+        "GHSA-44wm-f244-xhp3"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "10.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-2253",
+      "publicAliases": [
+        "BIT-pillow-2026-54059",
+        "CVE-2026-54059",
+        "GHSA-8v84-f9pq-wr9x"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-2254",
+      "publicAliases": [
+        "BIT-pillow-2026-54060",
+        "CVE-2026-54060",
+        "GHSA-5x94-69rx-g8h2"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-2255",
+      "publicAliases": [
+        "BIT-pillow-2026-55379",
+        "CVE-2026-55379",
+        "GHSA-45hq-cxwh-f6vc"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-2256",
+      "publicAliases": [
+        "BIT-pillow-2026-55380",
+        "CVE-2026-55380",
+        "GHSA-phj9-mv4w-65pm"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-2257",
+      "publicAliases": [
+        "BIT-pillow-2026-55798",
+        "CVE-2026-55798",
+        "GHSA-4x4j-2g7c-83w6"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-2874",
+      "publicAliases": [
+        "BIT-pillow-2026-42310",
+        "CVE-2026-42310",
+        "GHSA-r73j-pqj5-w3x7"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.2.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3451",
+      "publicAliases": [
+        "BIT-pillow-2026-59199",
+        "CVE-2026-59199",
+        "GHSA-6r8x-57c9-28j4"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3453",
+      "publicAliases": [
+        "BIT-pillow-2026-59205",
+        "CVE-2026-59205",
+        "GHSA-9hw9-ch79-4vh6"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3454",
+      "publicAliases": [
+        "BIT-pillow-2026-59197",
+        "CVE-2026-59197",
+        "GHSA-xj96-63gp-2gmr"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3493",
+      "publicAliases": [
+        "BIT-pillow-2026-54058",
+        "CVE-2026-54058",
+        "GHSA-62p4-gmf7-7g93"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3494",
+      "publicAliases": [
+        "BIT-pillow-2026-59198",
+        "CVE-2026-59198",
+        "GHSA-fj7v-r99m-22gq"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3495",
+      "publicAliases": [
+        "BIT-pillow-2026-59200",
+        "CVE-2026-59200",
+        "GHSA-jjj6-mw9f-p565"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-3496",
+      "publicAliases": [
+        "BIT-pillow-2026-59204",
+        "CVE-2026-59204",
+        "GHSA-vjc4-5qp5-m44j"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "12.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "Pillow",
+      "publicVersionQueried": "10.1.0",
+      "advisoryId": "PYSEC-2026-457",
+      "publicAliases": [
+        "BIT-pillow-2023-50447",
+        "CVE-2023-50447",
+        "GHSA-3f63-hfp8-52jq"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "10.2.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-3749-ghw9-m3mg",
+      "publicAliases": [
+        "BIT-pytorch-2025-2953",
+        "CVE-2025-2953",
+        "PYSEC-2025-191"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.7.1-rc1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-53q9-r3pm-6pq6",
+      "publicAliases": [
+        "BIT-pytorch-2025-32434",
+        "CVE-2025-32434",
+        "PYSEC-2025-41"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.6.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-887c-mr87-cxwp",
+      "publicAliases": [
+        "BIT-pytorch-2025-3730",
+        "CVE-2025-3730",
+        "PYSEC-2026-1970"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.8.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-c678-jfcj-6jmf",
+      "publicAliases": [
+        "BIT-pytorch-2025-2148",
+        "CVE-2025-2148",
+        "PYSEC-2025-189"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-f4hp-rmr7-r7v8",
+      "publicAliases": [
+        "BIT-pytorch-2025-2998",
+        "CVE-2025-2998",
+        "PYSEC-2025-192"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-qfhq-4f3w-5fph",
+      "publicAliases": [
+        "BIT-pytorch-2025-3001",
+        "CVE-2025-3001",
+        "PYSEC-2025-195"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.10.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-rrmf-rvhw-rf47",
+      "publicAliases": [
+        "BIT-pytorch-2025-3000",
+        "CVE-2025-3000",
+        "PYSEC-2025-194"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.13.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-vgrw-7cvw-pwgx",
+      "publicAliases": [
+        "BIT-pytorch-2025-2999",
+        "CVE-2025-2999",
+        "PYSEC-2025-193"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.9.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "GHSA-x3gm-94wq-g975",
+      "publicAliases": [
+        "BIT-pytorch-2025-2149",
+        "CVE-2025-2149",
+        "PYSEC-2025-190"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-191",
+      "publicAliases": [
+        "BIT-pytorch-2025-2953",
+        "CVE-2025-2953",
+        "GHSA-3749-ghw9-m3mg"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-198",
+      "publicAliases": [
+        "BIT-pytorch-2025-46148",
+        "CVE-2025-46148"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.7.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-203",
+      "publicAliases": [
+        "BIT-pytorch-2025-55551",
+        "CVE-2025-55551"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.9.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-204",
+      "publicAliases": [
+        "BIT-pytorch-2025-55552",
+        "CVE-2025-55552"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.9.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-205",
+      "publicAliases": [
+        "BIT-pytorch-2025-55553",
+        "CVE-2025-55553"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.7.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-206",
+      "publicAliases": [
+        "BIT-pytorch-2025-55554",
+        "CVE-2025-55554"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.9.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-207",
+      "publicAliases": [
+        "BIT-pytorch-2025-55557",
+        "CVE-2025-55557"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.7.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-208",
+      "publicAliases": [
+        "BIT-pytorch-2025-55558",
+        "CVE-2025-55558"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.7.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-209",
+      "publicAliases": [
+        "BIT-pytorch-2025-55560",
+        "CVE-2025-55560"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.7.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2025-41",
+      "publicAliases": [
+        "BIT-pytorch-2025-32434",
+        "CVE-2025-32434",
+        "GHSA-53q9-r3pm-6pq6"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.6.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2026-139",
+      "publicAliases": [
+        "BIT-pytorch-2026-4538",
+        "CVE-2026-4538"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2026-1970",
+      "publicAliases": [
+        "BIT-pytorch-2025-3730",
+        "CVE-2025-3730",
+        "GHSA-887c-mr87-cxwp"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.8.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "torch",
+      "publicVersionQueried": "2.5.1",
+      "advisoryId": "PYSEC-2026-2286",
+      "publicAliases": [
+        "BIT-pytorch-2026-24747",
+        "CVE-2026-24747",
+        "GHSA-63cw-57p8-fm3p",
+        "PYSEC-2026-1856"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "2.10.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-29pf-2h5f-8g72",
+      "publicAliases": [
+        "CVE-2026-4372",
+        "PYSEC-2026-2289"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-37mw-44qp-f5jm",
+      "publicAliases": [
+        "CVE-2025-3933",
+        "PYSEC-2026-1977"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.52.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-37q5-v5qm-c9v8",
+      "publicAliases": [
+        "CVE-2024-3568",
+        "PYSEC-2026-1978"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.38.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-3863-2447-669p",
+      "publicAliases": [
+        "CVE-2023-6730",
+        "PYSEC-2023-300"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.36.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-4w7r-h757-3r74",
+      "publicAliases": [
+        "CVE-2025-6921",
+        "PYSEC-2026-1980"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-59p9-h35m-wg4g",
+      "publicAliases": [
+        "CVE-2025-6638",
+        "PYSEC-2026-1981"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-69w3-r845-3855",
+      "publicAliases": [
+        "CVE-2026-1839",
+        "PYSEC-2026-2288"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.0.0rc3"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-6rvg-6v2m-4j46",
+      "publicAliases": [
+        "CVE-2024-12720",
+        "PYSEC-2026-1982"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-9356-575x-2w9m",
+      "publicAliases": [
+        "CVE-2025-5197",
+        "PYSEC-2026-1983"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-fgcw-684q-jj6r",
+      "publicAliases": [
+        "CVE-2026-5241",
+        "PYSEC-2026-2290"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.5.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-fpwr-67px-3qhx",
+      "publicAliases": [
+        "CVE-2025-1194",
+        "PYSEC-2026-1984"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.50.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-hxxf-235m-72v3",
+      "publicAliases": [
+        "CVE-2024-11394",
+        "PYSEC-2024-229"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-jjph-296x-mrcr",
+      "publicAliases": [
+        "CVE-2025-3264",
+        "PYSEC-2026-1985"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.51.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-phhr-52qp-3mj4",
+      "publicAliases": [
+        "CVE-2025-3777",
+        "PYSEC-2026-1986"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.52.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-q2wp-rjmx-x6x9",
+      "publicAliases": [
+        "CVE-2025-3263",
+        "PYSEC-2026-1987"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.51.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-qq3j-4f4f-9583",
+      "publicAliases": [
+        "CVE-2025-2099",
+        "PYSEC-2025-40"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.50.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-qxrp-vhvm-j765",
+      "publicAliases": [
+        "CVE-2024-11392",
+        "PYSEC-2024-227"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-rcv9-qm8p-9p6j",
+      "publicAliases": [
+        "CVE-2025-6051",
+        "PYSEC-2026-1988"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-v68g-wm8c-6x7j",
+      "publicAliases": [
+        "CVE-2023-7018",
+        "PYSEC-2023-301"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.36.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-wrfc-pvp9-mr9g",
+      "publicAliases": [
+        "CVE-2024-11393",
+        "PYSEC-2024-228"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "GHSA-xrqw-3rrv-vx5w",
+      "publicAliases": [
+        "CVE-2026-9856",
+        "PYSEC-2026-3929"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.10.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2023-300",
+      "publicAliases": [
+        "CVE-2023-6730",
+        "GHSA-3863-2447-669p"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "1d63b0ec361e7a38f1339385e8a5a855085532ce",
+        "4.36.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2023-301",
+      "publicAliases": [
+        "CVE-2023-7018",
+        "GHSA-v68g-wm8c-6x7j"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "1d63b0ec361e7a38f1339385e8a5a855085532ce",
+        "4.36.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2024-227",
+      "publicAliases": [
+        "CVE-2024-11392",
+        "GHSA-qxrp-vhvm-j765"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2024-228",
+      "publicAliases": [
+        "CVE-2024-11393",
+        "GHSA-wrfc-pvp9-mr9g"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2024-229",
+      "publicAliases": [
+        "CVE-2024-11394",
+        "GHSA-hxxf-235m-72v3"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-211",
+      "publicAliases": [
+        "CVE-2025-14920"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-212",
+      "publicAliases": [
+        "CVE-2025-14921"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-213",
+      "publicAliases": [
+        "CVE-2025-14924"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-214",
+      "publicAliases": [
+        "CVE-2025-14926"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-215",
+      "publicAliases": [
+        "CVE-2025-14927"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-216",
+      "publicAliases": [
+        "CVE-2025-14928"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-217",
+      "publicAliases": [
+        "CVE-2025-14929"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-218",
+      "publicAliases": [
+        "CVE-2025-14930"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2025-40",
+      "publicAliases": [
+        "CVE-2025-2099",
+        "GHSA-qq3j-4f4f-9583"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.49.0",
+        "8cb522b4190bd556ce51be04942720650b1a3e57"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1977",
+      "publicAliases": [
+        "CVE-2025-3933",
+        "GHSA-37mw-44qp-f5jm"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.52.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1978",
+      "publicAliases": [
+        "CVE-2024-3568",
+        "GHSA-37q5-v5qm-c9v8"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.38.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1980",
+      "publicAliases": [
+        "CVE-2025-6921",
+        "GHSA-4w7r-h757-3r74"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1981",
+      "publicAliases": [
+        "CVE-2025-6638",
+        "GHSA-59p9-h35m-wg4g"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1982",
+      "publicAliases": [
+        "CVE-2024-12720",
+        "GHSA-6rvg-6v2m-4j46"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.48.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1983",
+      "publicAliases": [
+        "CVE-2025-5197",
+        "GHSA-9356-575x-2w9m"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1984",
+      "publicAliases": [
+        "CVE-2025-1194",
+        "GHSA-fpwr-67px-3qhx"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.50.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1985",
+      "publicAliases": [
+        "CVE-2025-3264",
+        "GHSA-jjph-296x-mrcr"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.51.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1986",
+      "publicAliases": [
+        "CVE-2025-3777",
+        "GHSA-phhr-52qp-3mj4"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.52.1"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1987",
+      "publicAliases": [
+        "CVE-2025-3263",
+        "GHSA-q2wp-rjmx-x6x9"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.51.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-1988",
+      "publicAliases": [
+        "CVE-2025-6051",
+        "GHSA-rcv9-qm8p-9p6j"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "4.53.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-2288",
+      "publicAliases": [
+        "CVE-2026-1839",
+        "GHSA-69w3-r845-3855"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.0.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-2289",
+      "publicAliases": [
+        "CVE-2026-4372",
+        "GHSA-29pf-2h5f-8g72"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.3.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-2290",
+      "publicAliases": [
+        "CVE-2026-5241",
+        "GHSA-fgcw-684q-jj6r"
+      ],
+      "publicAffectedRangeFixedEvents": [],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    },
+    {
+      "packageName": "transformers",
+      "publicVersionQueried": "4.35.0",
+      "advisoryId": "PYSEC-2026-3929",
+      "publicAliases": [
+        "CVE-2026-9856",
+        "GHSA-xrqw-3rrv-vx5w"
+      ],
+      "publicAffectedRangeFixedEvents": [
+        "5.10.0"
+      ],
+      "publicFixedEventDoesNotCertifyPatchCompatibility": true,
+      "appCodePathReachability": "UNASSESSED_PER_ADVISORY",
+      "status": "VERSION_MATCH_NOT_CONFIRMED_EXPLOIT_OR_FIXED"
+    }
+  ],
+  "aliasLinkedGroups": [
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-29pf-2h5f-8g72",
+        "PYSEC-2026-2289"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2026-4372",
+        "GHSA-29pf-2h5f-8g72",
+        "PYSEC-2026-2289"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-3749-ghw9-m3mg",
+        "PYSEC-2025-191"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-2953",
+        "CVE-2025-2953",
+        "GHSA-3749-ghw9-m3mg",
+        "PYSEC-2025-191"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-37mw-44qp-f5jm",
+        "PYSEC-2026-1977"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-3933",
+        "GHSA-37mw-44qp-f5jm",
+        "PYSEC-2026-1977"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-37q5-v5qm-c9v8",
+        "PYSEC-2026-1978"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2024-3568",
+        "GHSA-37q5-v5qm-c9v8",
+        "PYSEC-2026-1978"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-3863-2447-669p",
+        "PYSEC-2023-300"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2023-6730",
+        "GHSA-3863-2447-669p",
+        "PYSEC-2023-300"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-3f63-hfp8-52jq",
+        "PYSEC-2026-457"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2023-50447",
+        "CVE-2023-50447",
+        "GHSA-3f63-hfp8-52jq",
+        "PYSEC-2026-457"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-44wm-f244-xhp3",
+        "PYSEC-2026-1793"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2024-28219",
+        "CVE-2024-28219",
+        "GHSA-44wm-f244-xhp3",
+        "PYSEC-2026-1793"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-45hq-cxwh-f6vc",
+        "PYSEC-2026-2255"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-55379",
+        "CVE-2026-55379",
+        "GHSA-45hq-cxwh-f6vc",
+        "PYSEC-2026-2255"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-4w7r-h757-3r74",
+        "PYSEC-2026-1980"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-6921",
+        "GHSA-4w7r-h757-3r74",
+        "PYSEC-2026-1980"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-4x4j-2g7c-83w6",
+        "PYSEC-2026-2257"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-55798",
+        "CVE-2026-55798",
+        "GHSA-4x4j-2g7c-83w6",
+        "PYSEC-2026-2257"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-53q9-r3pm-6pq6",
+        "PYSEC-2025-41"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-32434",
+        "CVE-2025-32434",
+        "GHSA-53q9-r3pm-6pq6",
+        "PYSEC-2025-41"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-59p9-h35m-wg4g",
+        "PYSEC-2026-1981"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-6638",
+        "GHSA-59p9-h35m-wg4g",
+        "PYSEC-2026-1981"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-5x94-69rx-g8h2",
+        "PYSEC-2026-2254"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-54060",
+        "CVE-2026-54060",
+        "GHSA-5x94-69rx-g8h2",
+        "PYSEC-2026-2254"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-62p4-gmf7-7g93",
+        "PYSEC-2026-3493"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-54058",
+        "CVE-2026-54058",
+        "GHSA-62p4-gmf7-7g93",
+        "PYSEC-2026-3493"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-69w3-r845-3855",
+        "PYSEC-2026-2288"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2026-1839",
+        "GHSA-69w3-r845-3855",
+        "PYSEC-2026-2288"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-6r8x-57c9-28j4",
+        "PYSEC-2026-3451"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-59199",
+        "CVE-2026-59199",
+        "GHSA-6r8x-57c9-28j4",
+        "PYSEC-2026-3451"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-6rvg-6v2m-4j46",
+        "PYSEC-2026-1982"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2024-12720",
+        "GHSA-6rvg-6v2m-4j46",
+        "PYSEC-2026-1982"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-887c-mr87-cxwp",
+        "PYSEC-2026-1970"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-3730",
+        "CVE-2025-3730",
+        "GHSA-887c-mr87-cxwp",
+        "PYSEC-2026-1970"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-8v84-f9pq-wr9x",
+        "PYSEC-2026-2253"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-54059",
+        "CVE-2026-54059",
+        "GHSA-8v84-f9pq-wr9x",
+        "PYSEC-2026-2253"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-9356-575x-2w9m",
+        "PYSEC-2026-1983"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-5197",
+        "GHSA-9356-575x-2w9m",
+        "PYSEC-2026-1983"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-9hw9-ch79-4vh6",
+        "PYSEC-2026-3453"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-59205",
+        "CVE-2026-59205",
+        "GHSA-9hw9-ch79-4vh6",
+        "PYSEC-2026-3453"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-c678-jfcj-6jmf"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-2148",
+        "CVE-2025-2148",
+        "PYSEC-2025-189"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-f4hp-rmr7-r7v8"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-2998",
+        "CVE-2025-2998",
+        "PYSEC-2025-192"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-fgcw-684q-jj6r",
+        "PYSEC-2026-2290"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2026-5241",
+        "GHSA-fgcw-684q-jj6r",
+        "PYSEC-2026-2290"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-fj7v-r99m-22gq",
+        "PYSEC-2026-3494"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-59198",
+        "CVE-2026-59198",
+        "GHSA-fj7v-r99m-22gq",
+        "PYSEC-2026-3494"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-fpwr-67px-3qhx",
+        "PYSEC-2026-1984"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-1194",
+        "GHSA-fpwr-67px-3qhx",
+        "PYSEC-2026-1984"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-hxxf-235m-72v3",
+        "PYSEC-2024-229"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2024-11394",
+        "GHSA-hxxf-235m-72v3",
+        "PYSEC-2024-229"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-jjj6-mw9f-p565",
+        "PYSEC-2026-3495"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-59200",
+        "CVE-2026-59200",
+        "GHSA-jjj6-mw9f-p565",
+        "PYSEC-2026-3495"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-jjph-296x-mrcr",
+        "PYSEC-2026-1985"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-3264",
+        "GHSA-jjph-296x-mrcr",
+        "PYSEC-2026-1985"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-phhr-52qp-3mj4",
+        "PYSEC-2026-1986"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-3777",
+        "GHSA-phhr-52qp-3mj4",
+        "PYSEC-2026-1986"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-phj9-mv4w-65pm",
+        "PYSEC-2026-2256"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-55380",
+        "CVE-2026-55380",
+        "GHSA-phj9-mv4w-65pm",
+        "PYSEC-2026-2256"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-q2wp-rjmx-x6x9",
+        "PYSEC-2026-1987"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-3263",
+        "GHSA-q2wp-rjmx-x6x9",
+        "PYSEC-2026-1987"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-qfhq-4f3w-5fph"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-3001",
+        "CVE-2025-3001",
+        "PYSEC-2025-195"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-qq3j-4f4f-9583",
+        "PYSEC-2025-40"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-2099",
+        "GHSA-qq3j-4f4f-9583",
+        "PYSEC-2025-40"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-qxrp-vhvm-j765",
+        "PYSEC-2024-227"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2024-11392",
+        "GHSA-qxrp-vhvm-j765",
+        "PYSEC-2024-227"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-r73j-pqj5-w3x7",
+        "PYSEC-2026-2874"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-42310",
+        "CVE-2026-42310",
+        "GHSA-r73j-pqj5-w3x7",
+        "PYSEC-2026-2874"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-rcv9-qm8p-9p6j",
+        "PYSEC-2026-1988"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-6051",
+        "GHSA-rcv9-qm8p-9p6j",
+        "PYSEC-2026-1988"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-rrmf-rvhw-rf47"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-3000",
+        "CVE-2025-3000",
+        "PYSEC-2025-194"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-v68g-wm8c-6x7j",
+        "PYSEC-2023-301"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2023-7018",
+        "GHSA-v68g-wm8c-6x7j",
+        "PYSEC-2023-301"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-vgrw-7cvw-pwgx"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-2999",
+        "CVE-2025-2999",
+        "PYSEC-2025-193"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-vjc4-5qp5-m44j",
+        "PYSEC-2026-3496"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-59204",
+        "CVE-2026-59204",
+        "GHSA-vjc4-5qp5-m44j",
+        "PYSEC-2026-3496"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-wjx4-4jcj-g98j",
+        "PYSEC-2026-165"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-42308",
+        "CVE-2026-42308",
+        "GHSA-wjx4-4jcj-g98j",
+        "PYSEC-2026-165"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-wrfc-pvp9-mr9g",
+        "PYSEC-2024-228"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2024-11393",
+        "GHSA-wrfc-pvp9-mr9g",
+        "PYSEC-2024-228"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-x3gm-94wq-g975"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-2149",
+        "CVE-2025-2149",
+        "PYSEC-2025-190"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-xj96-63gp-2gmr",
+        "PYSEC-2026-3454"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pillow-2026-59197",
+        "CVE-2026-59197",
+        "GHSA-xj96-63gp-2gmr",
+        "PYSEC-2026-3454"
+      ],
+      "affectedPublicPackageNames": [
+        "Pillow"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "GHSA-xrqw-3rrv-vx5w",
+        "PYSEC-2026-3929"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2026-9856",
+        "GHSA-xrqw-3rrv-vx5w",
+        "PYSEC-2026-3929"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 2,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-198"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-46148",
+        "CVE-2025-46148"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-203"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55551",
+        "CVE-2025-55551"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-204"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55552",
+        "CVE-2025-55552"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-205"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55553",
+        "CVE-2025-55553"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-206"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55554",
+        "CVE-2025-55554"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-207"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55557",
+        "CVE-2025-55557"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-208"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55558",
+        "CVE-2025-55558"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-209"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2025-55560",
+        "CVE-2025-55560"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-211"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14920"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-212"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14921"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-213"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14924"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-214"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14926"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-215"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14927"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-216"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14928"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-217"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14929"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2025-218"
+      ],
+      "overlappingIdentifierAliases": [
+        "CVE-2025-14930"
+      ],
+      "affectedPublicPackageNames": [
+        "transformers"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2026-139"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2026-4538",
+        "CVE-2026-4538"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    },
+    {
+      "returnedPublicRecordIds": [
+        "PYSEC-2026-2286"
+      ],
+      "overlappingIdentifierAliases": [
+        "BIT-pytorch-2026-24747",
+        "CVE-2026-24747",
+        "GHSA-63cw-57p8-fm3p",
+        "PYSEC-2026-1856"
+      ],
+      "affectedPublicPackageNames": [
+        "torch"
+      ],
+      "recordCount": 1,
+      "groupSemantics": "SHARED_PUBLIC_IDENTIFIER_OR_ALIAS_NOT_PROVEN_SINGLE_ROOT_CAUSE",
+      "allAdvisoryConditionsReviewed": false,
+      "remediationOrExploitability": "NOT_DETERMINED"
+    }
+  ],
+  "noCustomerMediaOrRepoFilesSentToAdvisoryService": true,
+  "noNewOperatingSystemOrProductionDependenciesChanges": true,
+  "osNativeImageParserSandboxImplemented": false,
+  "unsafePackageVulnerabilitiesProvenResolved": false,
+  "securityIssue4Resolved": false,
+  "untrustedUserImageUploadsAuthorized": false,
+  "newGPUInference": false,
+  "printQualified": false,
+  "previousSaved36AdvisoryIdsFoundInCurrentPublicResponse": 36,
+  "fullReconstructionOfUnrecordedHistorical68IdsProven": false,
+  "historicalSampleMembershipByPackage": [
+    {
+      "publicPackageName": "Pillow",
+      "historicalRetainedSampledAdvisoryIds": 12,
+      "historicalIdsResolvedInFreshVersionInventory": 12,
+      "missingHistoricalSampleCount": 0,
+      "historicalFullAdvisoryIdSetReconstructionImpossible": true
+    },
+    {
+      "publicPackageName": "torch",
+      "historicalRetainedSampledAdvisoryIds": 12,
+      "historicalIdsResolvedInFreshVersionInventory": 12,
+      "missingHistoricalSampleCount": 0,
+      "historicalFullAdvisoryIdSetReconstructionImpossible": true
+    },
+    {
+      "publicPackageName": "transformers",
+      "historicalRetainedSampledAdvisoryIds": 12,
+      "historicalIdsResolvedInFreshVersionInventory": 12,
+      "missingHistoricalSampleCount": 0,
+      "historicalFullAdvisoryIdSetReconstructionImpossible": true
+    }
+  ],
+  "previousOSVPublicSourceJsonSha256": "f1803008bd72c182c4b1fe69bd8390da257c66506f78c1929af0006f4756b9cf"
+}

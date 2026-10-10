@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.23: full public OSV identity is not remediation
+
+G3.23 explicitly retrieved PUBLIC PyPI/version-only full advisory ID+alias lists: original old G3.5 report had only 36/104 saved IDs; fresh 2026-10-10 query returned full 104 current records (Pillow 32, transformers 50, torch 22), matching all 36 prior samples. Conservative alias-link grouping yields **64 related cross-reference groups**, NOT 64 distinct physical exploits or unique vulnerabilities. Public affected-range fixed-event metadata does NOT establish the currently locked/GPU-compatible installed packages are fixed, nor does absence of a fixed event prove absence of a fix.
+
+Only public package and version strings went to OSV.dev; query snapshot gitignored, public ID+alias grouping and source SHA proof published with no source code/media/credentials. Offline deterministic later replay does not access the network. G3.22's code-path review showed real Pillow image-decoding input exposure; no real-world unrestricted user-upload safety, package remediation, OS network egress or native image parser confinement has been implemented. Live Pillow 10.1.0, Transformers 4.35.0 and torch 2.5.1+cu121 unchanged. Security Issue #4 OPEN, manufacturing Issue #3 OPEN, no new GPU/Office/printer actions.
+
 ## G3.22: OSV historical version matches do NOT prove advisories reachable or fixed
 
 G3.22 offline static source analysis verifies 34 pinned installed Windows Python dist versions, prior G3.5 public OSV proof, G3.6 Pillow shadow proof, pinned clean TSR source. Historical OSV returns 104 version matches (Transformers 50, Pillow 32, Torch 22) but only 36 actual IDs were saved; other 68 are NOT reviewed or individually known. Targeted examples from official advisories include ImageMath.eval, AutoModelForCausalLM.from_pretrained and torch.mkldnn_max_pool2d, which were not directly called in selected audited Python sources; THAT IS NOT A TRANSITIVE exploitability proof and DOES NOT clear those packages.

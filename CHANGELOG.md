@@ -1,5 +1,12 @@
 # Release notes
 
+## v0.2.23 — 2026-10-10 — G3.23 complete public OSV ID/alias inventory and immutable offline proof
+
+- Follow-up to G3.22 historical 36/104 saved advisory IDs. Explicitly queried PUBLIC-only OSV.dev PyPI name/version data for fixed Pillow 10.1.0, Transformers 4.35.0 and torch public 2.5.1, sent NO private media/code/machine data, and retrieved exactly **104 full PUBLIC returned advisory IDs** (32/50/22) plus aliases and upstream fixed-range event metadata. Verified all 36 saved historical sample IDs present in fresh data; 68 unsaved old historical IDs cannot be reconstructed with historical certainty despite identical counts.
+- Built STRICT offline group-by-overlapping-OSV/GHSA/CVE/PYSEC-alias logic to form **64 related public identifier groups**. This is NOT 64 unique exploitable flaws; 104 advisory matches remain NOT individually codepath triaged, and fixed-event metadata does not certify the installed old production venv. Immutable gitignored query source and sanitized public SHA/alias group evidence; first explicit public fetch only, replay OFFLINE.
+- Added Node adversarial alias-union/false-clearance tests and complete full-proof SHA ancestry checks. No live dependency change, CPU/GPU model inference, OS security change, Office or printer interaction. Security #4 and physical manufacturing #3 gates remain OPEN.
+- Fixed an independent Windows test-harness regression revealed during the first v0.2.23 full suite: randomly OS-assigned HTTP test ports may be rejected by WHATWG/Node fetch as forbidden (TypeError: bad port); the test-only safe-loopback-fixture helper now binds nonprivileged loopback 20000..29999 with collision retry, replacing ephemeral listen(0) in four test modules. Four originally failed G2 test cases now pass, plus 3 new adversarial safe-port helper tests. NOT a change to production G1/G2 service ports, Windows network/firewall policy or the default application.
+
 ## v0.2.22 — 2026-10-10 — G3.22 pinned Python security static call-path triage
 
 - Read-only CPU/AST research matches previous frozen 34-package G2 manifest and installed distribution metadata exactly (34/34), source SHA/clean pinned TSR checkout, G3.5 OSV snapshot and G3.6 Pillow shadow SHA proof. Prior 104 public OSV VERSION matches are only recorded with 36 sample advisory IDs, 68 IDs omitted; those missing details remain UNKNOWN, not cleared.

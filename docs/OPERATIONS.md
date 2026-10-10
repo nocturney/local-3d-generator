@@ -1,5 +1,15 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.23: full public OSV ID/alias census — explicit public query, offline replay
+
+G3.23 performed a one-time HTTPS POST to public OSV.dev for ONLY preverified public package/version pairs Pillow 10.1.0, transformers 4.35.0, torch 2.5.1. Saved strict sanitized public ID/alias/fixed-range metadata under gitignored runtime/qa/g3/osv-full-g323; no client/model media or secrets sent. G3.5 historical old 104 matches had only 36 actual IDs saved; current full response has 104 IDs and all old 36 appear. Strict alias-linking groups 104 returned records into 64 groups (NOT confirmed distinct flaws). No remediation/fix or actual exploitability claim.
+
+The explicit network fetch utility scripts/g3-23-fetch-public-osv-full.mjs REFUSES overwriting its saved source; it is NOT part of npm tests or server startup. The assembler can replay fully OFFLINE, SHA verifying both G3.22 and G3.5 proof ancestry, with no private G2 jobs or external requests:
+
+    node scripts/g3-23-assemble-osv-full.mjs
+
+The one-time initial public report creation used --write-public; subsequent no-flag replay refuses any drift. [Method](G3_23_FULL_PUBLIC_OSV_IDS_ALIAS_CENSUS_2026-10-10.md) and [full ID/alias SHA proof](evidence/g3/g3-23-full-public-osv-id-census.json). Security #4 remains OPEN, live dependencies unchanged, NO OS isolation, GPU, model inference, printer or 4178 changes.
+
 ## G3.22: offline Python advisory static reachability — read-only ONLY
 
 No Python install, model loading or live OSV query. G3.22 parses existing historical G3.5 OSV JSON, verifies original pinned 34-dependency freeze hash and local importlib.metadata exact 34 installed versions, pinned upstream clean Git checkout and G3.6 Pillow 12.3 shadow evidence SHA. Reviews 63 first-party Python + 2 upstream relevant pinned files using AST. 104 previous OSV version matches are NOT 104 established vulnerabilities; only 36 actual IDs retained and 68 remain unsampled/UNKNOWN. Pillow directly decodes image bytes; Transformers/Torch have pinned source/model calls but no transitive absence proof. Worker SHA/weights_only/offline app guards are code checks, not OS sandbox guarantees. Package pins unmodified.

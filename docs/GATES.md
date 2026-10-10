@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.23 — complete fresh public OSV IDs/alias crossrefs, still NOT vulnerability clearance
+
+- PASS: explicit public-only query of three exact previously pinned PyPI names/versions, 104 current public advisory records with complete returned ID+alias lists and published affected-range fixed-event metadata. All 36 prior G3.5 sampled IDs recovered and linked to G3.22 SHA proof. Historical 68 discarded IDs cannot be independently reconstructed as the same 68, despite current matching total.
+- PASS: pure offline full-ID census grouped 104 public entries by shared identifiers/aliases -> **64 related identifier groups**. These are not guaranteed unique CVEs, distinct root causes or exploitable LOCAL3D weaknesses. No per-advisory real codepath/fix/security approval. Query source gitignored and SHA-linked; public aggregate and tests contain NO private source inputs/jobs.
+- OPEN: remediation/timing/high-priority reachability, frozen runtime upgrade testing, OS image parser sandbox and true enforced network egress. Security Issue #4 OPEN; print/geometry Issue #3 OPEN, no GPU/printer.
+- [Method & reproducibility](G3_23_FULL_PUBLIC_OSV_IDS_ALIAS_CENSUS_2026-10-10.md), [104 public IDs / 64 alias groups SHA proof](evidence/g3/g3-23-full-public-osv-id-census.json).
+
 ## G3.22 — pinned Python advisory snapshot and static codepath controls (NOT SECURITY CLEARED)
 
 - PASS static: read-only G3.5 OSV evidence SHA/34 exact installed dependency pins/source Git HEAD, 63 first-party + 2 selected upstream AST files. Previous OSV 104 version matches **50 Transformers, 32 Pillow, 22 torch**, but only 36 sampled advisory IDs persisted and **68 missing IDs** require new full inventory; zero evidence supports individually clearing 104.

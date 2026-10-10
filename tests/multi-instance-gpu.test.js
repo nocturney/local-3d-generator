@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { createApp } from '../server/index.js';
+import { listenFixtureSafePort } from './safe-loopback-fixture.mjs';
 
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI_ScL_nwAAAABJRU5ErkJggg'.replace(/_/g,'/'),'base64');
@@ -41,7 +42,7 @@ test('two separate LOCAL3D HTTP app instances on different ports cannot overlap 
         fixtureFile:path.join(base,'fixture-'+i+'.glb'),
         gpuLeaseRoot:root,triposrAdapter:engine
       });
-      await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
+      await listenFixtureSafePort(app.server);
       servers.push({app,base:'http://127.0.0.1:'+app.server.address().port});
     }
     async function post(server){

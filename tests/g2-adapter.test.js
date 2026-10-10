@@ -6,6 +6,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { createApp } from '../server/index.js';
 import { parseGpuTelemetry } from '../server/triposr-adapter.js';
+import { listenFixtureSafePort } from './safe-loopback-fixture.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const glbFixture = await fs.readFile(path.join(ROOT, 'docs/evidence/g2/chair-yup.glb'));
@@ -57,7 +58,7 @@ async function fixtureEnv(adapter, geometryReviewer, benchmarkReviewer) {
     stepMs:25,triposrAdapter:adapter,geometryReviewer,benchmarkReviewer,
     gpuLeaseRoot:path.join(dir,'gpu-coordination')
   });
-  await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
+  await listenFixtureSafePort(app.server);
   const base='http://127.0.0.1:'+app.server.address().port;
   const request=async (url,method='GET',data)=>{
     const res=await fetch(base+url,{method,headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined});

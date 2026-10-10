@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { createApp } from '../server/index.js';
+import { listenFixtureSafePort } from './safe-loopback-fixture.mjs';
 import {
   admitRealJobStorage, StorageAdmissionError, DEFAULT_G3_STORAGE_POLICY
 } from '../server/storage-admission.js';
@@ -116,7 +117,7 @@ test('Storage admission is G2-only, blocks before lease or Python; G1 remains us
       gpuLease:{async acquire(){leases++;throw new Error('SHOULD_NEVER_ACQUIRE')}},
       storageAdmission:async()=>{throw new StorageAdmissionError('G3_STORAGE_QUOTA','Cap reached')}
     });
-    await new Promise(resolve=>app.server.listen(0,'127.0.0.1',resolve));
+    await listenFixtureSafePort(app.server);
     const base='http://127.0.0.1:'+app.server.address().port;
     const json=async(body)=> {
       const r=await fetch(base+'/v1/jobs',{method:'POST',

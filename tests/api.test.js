@@ -6,6 +6,7 @@ import path from 'node:path';
 import http from 'node:http';
 import { createApp } from '../server/index.js';
 import { createFixtureBuffer } from '../server/fixture.js';
+import { listenFixtureSafePort } from './safe-loopback-fixture.mjs';
 
 let app, base, tmp;
 const tinyPng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI_ScL_nwAAAABJRU5ErkJggg'.replace(/_/g,'/'), 'base64');
@@ -26,7 +27,7 @@ async function waitFor(id, wanted, timeout = 1800) {
 beforeEach(async () => {
   tmp = await fs.mkdtemp(path.join(os.tmpdir(), 'local3d-test-'));
   app = await createApp({ dataDir: path.join(tmp, 'data'), fixtureFile: path.join(tmp, 'fixture.glb'), stepMs: 32 });
-  await new Promise(resolve => app.server.listen(0, '127.0.0.1', resolve));
+  await listenFixtureSafePort(app.server);
   base = 'http://127.0.0.1:' + app.server.address().port;
 });
 afterEach(async () => { await app.close(); await fs.rm(tmp, { recursive:true, force:true }); });
@@ -145,7 +146,7 @@ test('restart persists records and does not falsely complete unfinished work', a
   const id = created.value.id;
   await app.close();
   app = await createApp({dataDir:path.join(tmp,'data'),fixtureFile:path.join(tmp,'fixture.glb'),stepMs:32});
-  await new Promise(resolve => app.server.listen(0,'127.0.0.1',resolve));
+  await listenFixtureSafePort(app.server);
   base = 'http://127.0.0.1:' + app.server.address().port;
   const readBack = await req('/v1/jobs/' + id);
   assert.equal(readBack.status,200);
