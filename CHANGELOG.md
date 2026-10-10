@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.29 — 2026-10-10 — G3.29 read-only Windows Sandbox capability and fail-closed isolation profile
+
+- Observed Chris Windows 11 Pro build 26300, optional feature Containers-DisposableClientVM Enabled, HypervisorPresent=true, no resolved WindowsSandbox.exe CLI launcher. NO guest launch or boundary test. Feature readiness not security isolation.
+- New exact-byte .wsb candidate explicitly disables networking, vGPU, clipboard, microphone/video, printer; ProtectedClient Enable; no host mapped folders or logon command. This is static policy, **not executed**, with no ingress/egress channel.
+- Added CPU-only isolation readiness function refusing arbitrary capability flags as VM/egress/security clearance, sanitized read-only CIM/optional-feature/command probe, immutable SHA-bound historic G3.28 parent report, and adversarial candidate-profile tests. No real G2, OS/Office/4178, printer, GPU, installer, cloud or customer media changes. Security Issue #4 and print Issue #3 remain OPEN.
+
 ## v0.2.28 — 2026-10-10 — G3.28 integrated fail-closed structural media admission in real localhost API
 
 - Wired zero-dependency G3.27 structural PNG/JPEG/WebP format preflight into server/index.js before any job ID, disk write, GPU lease or G2 worker. Full original synthetic images admitted, structurally incomplete images and PNG CRC corruption rejected 422 BAD_IMAGE_STRUCTURE, declared MIME mismatch keeps BAD_IMAGE.

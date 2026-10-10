@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.29 — read-only Windows Sandbox capability audit and static profile review
+
+    node scripts/g3-29-host-readonly-probe.mjs
+    node scripts/g3-29-assemble-sandbox-readiness.mjs
+    node --test tests/g329-windows-sandbox-readiness.test.js
+
+Host capability probe queries CIM, optional-feature STATE, and command discovery only. An Enabled feature is not proof that the Sandbox app can launch or that a guest egress/file/clipboard boundary is enforced. Exact candidate docs/security/g329-candidate-networkless-nohost-share.wsb DISABLES networking, vGPU and host shares; DO NOT double-click/launch it automatically. No actual Sandbox VM was launched in G3.29. The frozen one-time public readiness snapshot is replayed without fresh host probing; use the separate read-only probe to observe live state. Production G2 native worker is still unconfined, Issue #4 OPEN, no new untrusted media permission. [Full G3.29 assessment](G3_29_WINDOWS_SANDBOX_READINESS_CPU_2026-10-10.md) and [immutable evidence](evidence/g3/g3-29-windows-sandbox-readiness-not-attestation.json).
+
 ## G3.28 — integrated structural image admission, historic evidence preserved
 
     node scripts/g3-28-assemble-integration-proof.mjs

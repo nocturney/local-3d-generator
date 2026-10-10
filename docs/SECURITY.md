@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.29: Windows Sandbox feature enabled DOES NOT qualify an OS parser sandbox
+
+Read-only host feature discovery on Chris Windows 11 Pro build 26300 returned Containers-DisposableClientVM Enabled and HypervisorPresent true, but ordinary WindowsSandbox.exe launcher names were unresolved. There was **NO** guest launch, CPU decode inside a VM, verified networking egress block, filesystem/clipboard confinement, safe ingress/return channel, or Pillow decoder isolation. A separate exact-byte .wsb profile candidate disables networking/vGPU/clipboard/audio/video/printer, ProtectedClient Enable and provides no mapped folders/guest startup commands. Static readiness gate RETURNS BLOCKED_NO_RUNTIME_OS_ATTESTATION regardless of favorable feature flags. It deliberately does not change G1/G2 runtime or OS state. Microsoft's default Windows Sandbox settings allow networking/clipboard/vGPU; explicit disabled values in a config file are necessary but insufficient until real isolation tests.
+[Design and limitations](G3_29_WINDOWS_SANDBOX_READINESS_CPU_2026-10-10.md) / [immutable capability-only proof](evidence/g3/g3-29-windows-sandbox-readiness-not-attestation.json).
+Untrusted user uploads and native parser security Issue #4 remain OPEN; manufacturing Issue #3 remains OPEN. No Office, 4178, OS security policy, GPU/TripoSR, weights, cloud or printing operations.
+
+## G3.28: bounded image container validation added to API, but NOT untrusted-upload security
+
 ## G3.28: bounded image container validation added to API, but NOT untrusted-upload security
 
 New server/index.js rejects structurally incomplete PNG/JPEG/WebP files via zero-dependency bounded CPU preflight **before creating jobs, writing uploads or taking a G2 GPU permit**. G1 HTTP tests accepted valid synthetic images and rejected incomplete header-only/CRC corruption; the G2 manual MOCK-only path rejected invalid media without invoking its adapter. G2 worker Python itself was NOT modified. The current source change is distinct from the old immutable G3.25/26/27 CRLF SHA proofs, now reproduced exactly via a pinned historical Git blob normalization helper; no old proof bytes were changed.

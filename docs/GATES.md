@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.29 — host Windows Sandbox feature observed; OS confinement still UNVERIFIED
+
+- Read-only CIM/Windows Optional Feature/command discovery on Chris: Sandbox feature Enabled, HypervisorPresent=true, no resolved CLI launcher; actual guest never launched or tested. Never conflate an installed feature with verified egress, filesystem or native decoder sandbox.
+- Candidate .wsb has explicit Networking/virtual GPU/clipboard/audio/video/printer Disable, ProtectedClient Enable, NO MappedFolders, NO LogonCommand. Static exact-byte allowlisting fails closed if changed. Code readiness decision always BLOCKED_NO_RUNTIME_OS_ATTESTATION even when capability flags look good.
+- OPEN: actual guest launch/teardown & effective isolation test, safe one-way data channel for approved synthetic input, isolated native image decoder/patched package compatibility and independent G2 host GPU worker gate. No customer images, no GPU. Issue #4 OPEN; Issue #3 print OPEN.
+- [G3.29 method and policy](G3_29_WINDOWS_SANDBOX_READINESS_CPU_2026-10-10.md) / [sanitized immutable public readiness evidence](evidence/g3/g3-29-windows-sandbox-readiness-not-attestation.json).
+
 ## G3.28 — live API source now rejects structurally incomplete image containers (not native safety)
 
 - PASS: integrated Node server image handler invokes G3.27 structural validator after initial magic/MIME/size check and BEFORE generating a job ID, persisting bytes or taking shared GPU/storage leases; all three trusted synthetic PNG/JPEG/WebP full images accepted by new G1 test server, truncated/malformed rejected HTTP 422 BAD_IMAGE_STRUCTURE, MIME mismatch rejected BAD_IMAGE, G2 MOCK manual rejects before worker invocation and requires consent.
