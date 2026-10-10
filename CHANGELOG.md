@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.25 — 2026-10-10 — G3.25 Pillow GHSA codec/format/API static case review
+
+- Mapped all 16 Pillow GHSA/PYSEC public alias groups (32 version-level OSV record IDs) from existing G3.23 and G3.24 SHA ancestry to manually summarized **official public upstream trigger conditions**. Carefully distinguished alternate McIdas AREA/JPEG2000 codecs, font/PDF/TGA output, ImageMath/ImageCms/ImageFilter/image-coordinate and ImageShow APIs from the actual PNG/JPEG/WebP source bytes decoded by Pillow. No blanket claim that any advisory is unreachable or the native stack safe.
+- Added SHA-bound current source entrypoint checks for Node three short signatures, declared MIME, 8 MiB size and Python Image.open/load/EXIF/16 MP/worker filename path; guards are not OS-enforced parser containment. Individual applicability remains **UNRESOLVED** for 32/32, no CVSS extrapolation, unknown transitive/native library execution.
+- Added immutable public sanitized proof generator and seven fail-closed tests for source drift, missing/forged alias/fix records, security flags, MIME validation and privacy. All old G2/CUDA pins unchanged, no model/GPU, dependency install, untrusted payload test, OS/Office/4178, cloud or printer action. Issues #4 and #3 OPEN.
+
 ## v0.2.24 — 2026-10-10 — G3.24 SHA-linked public-only security review priority queue
 
 - Derived reproducible manual review order over all **104** fully recovered public OSV version matches in **64** alias-connected groups, linked bytewise to G3.22 static codepath and G3.23 full-ID public source proofs: 16 Pillow DIRECT input-byte parser groups first, 29 Transformers fixed ViT config runtime groups, 19 Torch pinned checkpoint/tensor runtime groups. This is an engineering triage order, NOT individual exploitability or vulnerability risk ranking.

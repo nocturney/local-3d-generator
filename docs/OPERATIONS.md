@@ -1,5 +1,14 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.25: offline Pillow codec/format-specific upstream-condition review
+
+Read-only CPU replay, no model/native image decoding:
+
+    node scripts/g3-25-assemble-pillow-format-review.mjs
+    node --test tests/g325-pillow-format-triage.test.js
+
+Uses only G3.23/G3.24 existing public reports and the current tracked server/index.js + engines/triposr/worker.py. Recomputes SHA256 source ancestry and verifies immutable 16-group/32-record source-boundary review, or fails closed on changed security code or version/fix records. The historical first public proof was created with --write-public only once; do not regenerate an altered report silently. No new images, native codec exploitation, internet, package install, CUDA inference, Office, OS configuration or printer. [Method](G3_25_PILLOW_FORMAT_API_TRIAGE_CPU_2026-10-10.md), [public proof](evidence/g3/g3-25-pillow-format-review.json). Security Issue #4 and production geometry #3 still OPEN; no change to G2 pinned venv.
+
 ## G3.24: immutable public security REVIEW queue — no new OSV/network/GPU/install
 
 Builds source-SHA-stable manual review ordering from prior G3.22 static app-path evidence and full G3.23 public 104-entry/64-alias-group metadata. These are workflow queues, NOT vulnerability severities or fixed package acceptance: Pillow direct byte decoder groups reviewed first (16), pinned Transformers DINO ViT loader groups (29), Torch checkpoint/native tensor runtime groups (19). Three representative official GHSA severity/patch-version examples only; all individual codepath reachability remains UNKNOWN.

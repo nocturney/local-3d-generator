@@ -1,0 +1,333 @@
+{
+  "schema": "local3d.g3.25.pillow-format-and-api-triage-not-clearance.v1",
+  "reviewDate": "2026-10-10",
+  "inheritedOSVSnapshotDatetime": "2026-10-10T17:02:01.923Z",
+  "parentG323Sha256": "e2246f5d2c00aec62232afe3054d132f0f5f815b8cd10ff3d78b554c02d250ca",
+  "parentG324Sha256": "4335bcf6d97d3be7373f63c9ed464e3fc584934f52c2510ceec925ff913fde20",
+  "inputSourceNodeSha256": "716a9798a65965d3ac43ba37edd73dab6bdfe6a5412be11ccb84f917acd13646",
+  "inputSourcePythonSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "publicPillowRecordsAccountedFor": 32,
+  "aliasLinkedPillowGroupsReviewed": 16,
+  "upstreamDescriptionsManuallySummarizedFromOfficialGHSA": true,
+  "officialDescriptionsNotRuntimeExploitProof": true,
+  "sourceReviewBoundedToServerAndWorkerEntrypoints": true,
+  "actualInputPath": {
+    "submittedPayloadLimitBytes": 8388608,
+    "signatureAndDeclaredMimeMustAgree": true,
+    "admittedTopLevelImageMimeTypes": [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ],
+    "validatedWholeFileCodecContentBeforePillow": false,
+    "imageLoadAndExifProcessingDirectlyActive": true,
+    "declaredPixelLimit": 16000000,
+    "OSNativeParserConfinementVerified": false,
+    "alternateFormatsProvenUniversallyUnreachable": false
+  },
+  "pillowReviewCases": [
+    {
+      "reviewedGHSAId": "GHSA-3f63-hfp8-52jq",
+      "sourceUrl": "https://github.com/advisories/GHSA-3f63-hfp8-52jq",
+      "publicOsVRecordIds": [
+        "GHSA-3f63-hfp8-52jq",
+        "PYSEC-2026-457"
+      ],
+      "publiclyListedFirstFixedVersion": "10.2.0",
+      "upstreamNamedTrigger": "ImageMath.eval attacker-controlled environment",
+      "upstreamFormatOrAPISurface": "ImageMath, not an image codec",
+      "triggerClass": "SPECIALIZED_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-44wm-f244-xhp3",
+      "sourceUrl": "https://github.com/advisories/GHSA-44wm-f244-xhp3",
+      "publicOsVRecordIds": [
+        "GHSA-44wm-f244-xhp3",
+        "PYSEC-2026-1793"
+      ],
+      "publiclyListedFirstFixedVersion": "10.3.0",
+      "upstreamNamedTrigger": "_imagingcms.c unsafe strcpy; exact app trigger unverified",
+      "upstreamFormatOrAPISurface": "ICC/ImageCms native extension",
+      "triggerClass": "NATIVE_CMS",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-45hq-cxwh-f6vc",
+      "sourceUrl": "https://github.com/advisories/GHSA-45hq-cxwh-f6vc",
+      "publicOsVRecordIds": [
+        "GHSA-45hq-cxwh-f6vc",
+        "PYSEC-2026-2255"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "BdfFontFile.bdf_char on hostile BDF glyph dimensions",
+      "upstreamFormatOrAPISurface": "BDF font",
+      "triggerClass": "FONT_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-4x4j-2g7c-83w6",
+      "sourceUrl": "https://github.com/advisories/GHSA-4x4j-2g7c-83w6",
+      "publicOsVRecordIds": [
+        "GHSA-4x4j-2g7c-83w6",
+        "PYSEC-2026-2257"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "ImageShow.WindowsViewer.get_command with unsafe viewer filename",
+      "upstreamFormatOrAPISurface": "Windows image viewer",
+      "triggerClass": "DISPLAY_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-5x94-69rx-g8h2",
+      "sourceUrl": "https://github.com/advisories/GHSA-5x94-69rx-g8h2",
+      "publicOsVRecordIds": [
+        "GHSA-5x94-69rx-g8h2",
+        "PYSEC-2026-2254"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "FontFile.compile large BDF/PCF glyph atlas allocation",
+      "upstreamFormatOrAPISurface": "BDF/PCF font",
+      "triggerClass": "FONT_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-62p4-gmf7-7g93",
+      "sourceUrl": "https://github.com/advisories/GHSA-62p4-gmf7-7g93",
+      "publicOsVRecordIds": [
+        "GHSA-62p4-gmf7-7g93",
+        "PYSEC-2026-3493"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "McIdas AREA raw mmap row-stride derived from image header",
+      "upstreamFormatOrAPISurface": "McIdas AREA image (not PNG/JPEG/WebP)",
+      "triggerClass": "OTHER_CODEC",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": false,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-6r8x-57c9-28j4",
+      "sourceUrl": "https://github.com/advisories/GHSA-6r8x-57c9-28j4",
+      "publicOsVRecordIds": [
+        "GHSA-6r8x-57c9-28j4",
+        "PYSEC-2026-3451"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "Image.paste/Image.crop with extreme signed coordinates",
+      "upstreamFormatOrAPISurface": "caller-controlled editing coordinates",
+      "triggerClass": "PIXEL_OPERATION",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-8v84-f9pq-wr9x",
+      "sourceUrl": "https://github.com/advisories/GHSA-8v84-f9pq-wr9x",
+      "publicOsVRecordIds": [
+        "GHSA-8v84-f9pq-wr9x",
+        "PYSEC-2026-2253"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "PcfFontFile._load_bitmaps oversized PCF glyph",
+      "upstreamFormatOrAPISurface": "PCF font",
+      "triggerClass": "FONT_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-9hw9-ch79-4vh6",
+      "sourceUrl": "https://github.com/advisories/GHSA-9hw9-ch79-4vh6",
+      "publicOsVRecordIds": [
+        "GHSA-9hw9-ch79-4vh6",
+        "PYSEC-2026-3453"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "ImageCmsTransform.apply output image mode mismatch",
+      "upstreamFormatOrAPISurface": "caller-configured CMS transform",
+      "triggerClass": "NATIVE_CMS",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-fj7v-r99m-22gq",
+      "sourceUrl": "https://github.com/advisories/GHSA-fj7v-r99m-22gq",
+      "publicOsVRecordIds": [
+        "GHSA-fj7v-r99m-22gq",
+        "PYSEC-2026-3494"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "TGA RLE save of 1-bit image causes buffer overread",
+      "upstreamFormatOrAPISurface": "TGA encoder (not input decoder)",
+      "triggerClass": "ENCODER_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-jjj6-mw9f-p565",
+      "sourceUrl": "https://github.com/advisories/GHSA-jjj6-mw9f-p565",
+      "publicOsVRecordIds": [
+        "GHSA-jjj6-mw9f-p565",
+        "PYSEC-2026-3495"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "PdfParser.PdfStream.decode unbounded FlateDecode output",
+      "upstreamFormatOrAPISurface": "PDF stream parser",
+      "triggerClass": "PDF_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-phj9-mv4w-65pm",
+      "sourceUrl": "https://github.com/advisories/GHSA-phj9-mv4w-65pm",
+      "publicOsVRecordIds": [
+        "GHSA-phj9-mv4w-65pm",
+        "PYSEC-2026-2256"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "GdImageFile.open and large GD dimensions",
+      "upstreamFormatOrAPISurface": "GD image plugin (not generic Image.open)",
+      "triggerClass": "OTHER_PLUGIN",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-r73j-pqj5-w3x7",
+      "sourceUrl": "https://github.com/advisories/GHSA-r73j-pqj5-w3x7",
+      "publicOsVRecordIds": [
+        "GHSA-r73j-pqj5-w3x7",
+        "PYSEC-2026-2874"
+      ],
+      "publiclyListedFirstFixedVersion": "12.2.0",
+      "upstreamNamedTrigger": "PdfParser trailer Prev offset cycle",
+      "upstreamFormatOrAPISurface": "PDF trailer parser",
+      "triggerClass": "PDF_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-vjc4-5qp5-m44j",
+      "sourceUrl": "https://github.com/advisories/GHSA-vjc4-5qp5-m44j",
+      "publicOsVRecordIds": [
+        "GHSA-vjc4-5qp5-m44j",
+        "PYSEC-2026-3496"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "JPEG2000 tiled decoder accumulation of scratch buffer",
+      "upstreamFormatOrAPISurface": "JPEG2000 JP2/J2K (not JPEG)",
+      "triggerClass": "OTHER_CODEC",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": false,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-wjx4-4jcj-g98j",
+      "sourceUrl": "https://github.com/advisories/GHSA-wjx4-4jcj-g98j",
+      "publicOsVRecordIds": [
+        "GHSA-wjx4-4jcj-g98j",
+        "PYSEC-2026-165"
+      ],
+      "publiclyListedFirstFixedVersion": "12.2.0",
+      "upstreamNamedTrigger": "glyph advance overflow in font rendering",
+      "upstreamFormatOrAPISurface": "font advance metrics",
+      "triggerClass": "FONT_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    },
+    {
+      "reviewedGHSAId": "GHSA-xj96-63gp-2gmr",
+      "sourceUrl": "https://github.com/advisories/GHSA-xj96-63gp-2gmr",
+      "publicOsVRecordIds": [
+        "GHSA-xj96-63gp-2gmr",
+        "PYSEC-2026-3454"
+      ],
+      "publiclyListedFirstFixedVersion": "12.3.0",
+      "upstreamNamedTrigger": "ImageFilter.RankFilter with huge odd filter size",
+      "upstreamFormatOrAPISurface": "caller-configured image filter",
+      "triggerClass": "FILTER_API",
+      "standardPNGJPEGWebPEntryPathIsNotProofOfSpecificTrigger": true,
+      "ordinaryDirectUploadMatchesNamedAlternateCodec": null,
+      "firstPartyDirectCallToNamedTriggerEstablished": false,
+      "nativeOrTransitiveApplicability": "UNKNOWN_NOT_AUDITED_END_TO_END",
+      "appExploitabilityStatus": "UNRESOLVED_STATIC_SOURCE_REVIEW_ONLY",
+      "patchedProductionVerified": false
+    }
+  ],
+  "perAdvisoryActualReachabilityCertified": 0,
+  "formatWhitelistAloneMakesNativeParsersSafe": false,
+  "livePillowVersion": "10.1.0",
+  "productionDependenciesModified": false,
+  "g3ShadowPillow12_3DoesNotUpgradeProduction": true,
+  "vulnerabilityRemediationCompleted": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "OSRestrictionsModified": false,
+  "newUntrustedUserFilesApproved": false,
+  "modelExecutions": 0,
+  "GPUInferenceRuns": 0,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.25 — individual Pillow source/format conditions are REVIEWED, not CLEARED
+
+- PASS: 16 official upstream GHSA named-condition summaries cover exactly 32 public Pillow OSV GHSA/PYSEC version records, anchored to bytewise SHA of historical G3.23+G3.24 public reports and current Node/Python entrypoint code. Includes two alternate **non-allowlisted** top-level image codecs (McIdas AREA, JPEG2000) and specialized image editing, CMS, fonts, PDF, viewer, filter and encoder API triggers; no claim that a format signature gate is OS security containment.
+- PASS: G3.25 sanitized immutable replay and adversarial guard tests reject missing/forged records, changed upload MIME byte limits or Python decode controls, and false security release statuses.
+- OPEN: all 32 individual runtime/transitive/native applicability and exploitation assessments, production Pillow 10.1.0 remediation, OS parser/file/egress sandbox, untrusted input policy, frozen Torch/Transformers review. Security Issue #4 OPEN, manufacturing #3 OPEN, no GPU/printer authorization.
+- [Method](G3_25_PILLOW_FORMAT_API_TRIAGE_CPU_2026-10-10.md), [source-linked proof](evidence/g3/g3-25-pillow-format-review.json).
+
 ## G3.24 — security-review triage order, NOT fixed-vulnerability acceptance
 
 - PASS deterministic offline public source G3.22+G3.23 SHA-linked 104-record / 64-group review coverage; every public record accounted for exactly once, all 64 alias groups assigned conservative source-input review priority. Pillow real parser = 16 review-first groups, Transformers pinned config = 29 groups, Torch pinned tensor/checkpoint = 19 groups, all per-advisory app exploitability UNKNOWN.

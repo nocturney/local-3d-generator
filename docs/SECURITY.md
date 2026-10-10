@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.25: 32 Pillow version-matches have named trigger cases, zero cleared app paths
+
+G3.25 manually reviewed the official public upstream GHSA trigger descriptions for all **16** alias-linked Pillow groups (32 current public OSV records) and statically compared them to current G2 Node 8MiB PNG/JPEG/WebP *short magic* + MIME guard and Python Pillow 16MP Image.open/src.load/EXIF. PDF, fonts, TGA *encoding*, specialized ImageMath/ImageCms/ImageFilter/ImageShow APIs and JPEG2000/McIdas alternate image formats have distinct reported preconditions. "Not directly called" or "top-level format not allowlisted" never demonstrates transitive/native codepath nonreachability, no concealed format/polyglot routes, safe malicious image handling or a working OS sandbox. All 32 record-level impact dispositions **UNRESOLVED**.
+
+The proof is read-only SHA-linked to existing G3.23+G3.24 reports and exact server/worker code and fails closed if source controls weaken. G2 Pillow 10.1.0 remains pinned, prior Pillow 12.3 shadow does not upgrade production, and no version-match means a proven vulnerability in this application. No OS file/network confinement, native parser isolation, unknown-media permission, G2 model/GPU experiments, Office/printer action or security release. Issue #4 OPEN, Issue #3 OPEN. [Method](G3_25_PILLOW_FORMAT_API_TRIAGE_CPU_2026-10-10.md) / [public evidence](evidence/g3/g3-25-pillow-format-review.json).
+
 ## G3.24: review queue priority does not imply advisory exploitability or mitigated runtime
 
 G3.24 cross-links 104 current public OSV records (64 alias groups) to prior SHA-verified G3.22 source calls: 16 Pillow direct-image-decoder related groups get highest REVIEW PRIORITY; 29 Transformers DINO ViT config and 19 Torch weights-only/local native tensor groups are next. This is an application workflow ordering, NOT severity, actual exploitability, 64 distinct bugs, remediation, or untrusted user input authorization. All 104 per-advisory trigger conditions remain UNKNOWN until individually verified.
