@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.11: zero shared-edge coplanar findings are NOT fabrication authority
+
+CPU-only screening over previously generated real orb and licensed sources now considers shared-indexed-edge, same-side, near-coplanar third-vertex positions. A positive indicator is a **possible** overlapping planar region, not certified penetration. The numerical plane-distance tolerance is relative to unknown arbitrary AABB coordinates and can miss exact/very small/degenerate physical issues. Intentional sharp folded geometry is not automatically a defect. It does NOT make the older G3.8 nonshared pair SAT, G3.9 normal angles or G3.10 vertex-only rays a robust exact global collision library.
+
+All original/derivative geometry and customer media remain local/ignored. The public G3.11 report is sanitized and SHA-pinned and contains no job UUID, private GLB, prompt, checkpoint, local PC path or raw example triangles. No OS sandbox, egress/privacy, pinned Python dependency advisory or multiuser security gap was closed. G3.11 is CPU-only and never authorizes a printer, slicer or Fabrication Router call.
+
 ## G3.10: single-indexed-vertex contact screening is not a full self-intersection guard
 
 All earlier real source media and TripoSR model outputs remain under gitignored runtime. G3.10's new shared-one-vertex candidate-ray routine is CPU only. It enumerates pairs of triangles sharing exactly ONE indexed vertex and tests whether their noncoplanar plane intersection contains a positive-length segment beyond the expected shared vertex. **An ordinary valid shared indexed vertex is not considered a defect.** Near-parallel/coplanar and barycentric-boundary cases are intentionally marked UNRESOLVED, not clearance. Huge valence/input/time/pair workloads fail to INDETERMINATE instead of silently truncating and reporting safety.

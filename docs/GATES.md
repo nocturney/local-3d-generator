@@ -1,5 +1,13 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.11 — shared-edge same-side planar fold screening (DIAGNOSTIC ONLY)
+
+- PASS: CPU screen over all **60,528** actual indexed two-face edge pairs in the prior real 01-orb-alpha TripoSR model and G3.7 exact-surface orientation copy, with **0 possible coplanar same-side beyond-edge overlap candidates**, 0 near-antiparallel >=175°, 0 suspicious same-side >=150° backturns and 0 borderline cases. Source procedural GT: 1,920 edge pairs; historical MIT chair: 29,958, also zero under these numerical predicates.
+- PASS: adversarial coplanar same-side overlapping triangle test MUST flag; valid opposite-side planar pair, legitimate cube corners and sphere do not. Noncoplanar high-backturn pair is a separate indicator, not falsely called coplanar penetration. Four-model SHA validation/read-only CPU replay and public sanitized immutable report passed. No GPU tasks.
+- NOT CERTIFIED: G3.8 SAT no shared indexed vertex, G3.9 edge-normal angle, G3.10 shared-one-vertex ray, G3.11 edge-coplanar same-side fold are *different narrow numerical screens*, not one mathematically exhaustive global geometric collision predicate.
+- BLOCKED: true robust 3D intersection under degeneracies, co-located separate-index vertices, physical mm scale, local minimum thickness, supports/material strength/slicer/real-world photos, seven still-unrun G3 originals and independent second engine.
+- [G3.11 scope](G3_11_EDGE_BACKFOLD_CPU_2026-10-10.md), [real model evidence](evidence/g3/orb-01-g311-edge-coplanar-screen.json). All output remains DRAFT, printQualified=false.
+
 ## G3.10 — extra-contact rays between exactly-one-vertex-adjacent faces (CPU DIAGNOSTIC)
 
 - PASS: on prior genuinely authorized 01-orb-alpha TripoSR real output AND unchanged-surface G3.7 winding copy, enumerated all **190,860 unique vertex-only triangle pairs per GLB** and tested positive/negative possible shared noncoplanar rays away from the common indexed point. No such extra ray candidate found under finite precision. Project-original GT: 5,730 pairs; historical real chair derivative: 92,629 pairs; 0 extra candidates in those numerical screens. None of these counts constitutes a new model run.

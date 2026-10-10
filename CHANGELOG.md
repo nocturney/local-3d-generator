@@ -1,5 +1,12 @@
 # Release notes
 
+## v0.2.11 — 2026-10-10 — G3.11 CPU-only shared-edge coplanar backfold risk
+
+- Added a new CPU-only geometric predicate on **every shared indexed edge**, beyond G3.9's normal-angle histogram: detect **possible coplanar SAME-SIDE interior overlaps** between triangles sharing the full edge, requiring a near-coplanar third point and >=175° antiparallel face normals. Separately count same-side >=150° backturns and numerically borderline coplanar cases. Explicitly not robust global collision or manufacturing certification.
+- On prior genuine, SHA-verified TripoSR 01-orb-alpha and exact-surface winding copy: all **60,528 indexed shared-edge face pairs per GLB** screened, 0 possible coplanar same-side overlap candidates, 0 near-antiparallel >=175°, 0 high backturn >=150°, and 0 borderline. Original project procedural source sphere 1,920 edges and prior licensed real chair derivative 29,958 edges likewise screened; both had zero such findings.
+- Added adversarial unit examples: intentionally overlapping two coplanar triangles sharing an edge MUST be flagged, ordinary coplanar triangles on opposite sides MUST NOT, near-noncoplanar fold not falsely labeled a coplanar overlap, near-collinear uncertainty explicit, cube/icosphere controls, winding-invariance and invalid input/immutable evidence refusal.
+- Added read-only four-model CPU replay and source-locked private-to-public sanitized G3.11 proof. No new image/model inference, GPU, provider install, printer/slicer, Office/Windows changes or private model/checkpoint/source/UUID Git exposure. **Not print qualified**; still untested: exact robust nonlocal self-collision, physical mm dimensions, wall thickness, structural/material and machine suitability.
+
 ## v0.2.10 — 2026-10-10 — G3.10 CPU-only shared-one-vertex extra-contact ray screen
 
 - Added a bounded, CPU-only shared-one-indexed-vertex **extra-ray contact candidate** diagnostic. Typical triangles touching at an existing indexed vertex are NOT flagged as mesh defects. Noncoplanar triangle planes are checked for shared positive/negative rays lying inside both triangular sectors; near-coplanar/borderline cases explicitly remain UNRESOLVED.

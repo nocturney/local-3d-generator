@@ -2,6 +2,12 @@
 
 **Historical G3.1–G3.6 evidence** below analyzed the earlier real TripoSR chair GLB, original synthetic GTs, and CPU-only checks. On Oct 10, a NEW, explicitly approved single TripoSR inference successfully generated the first synthetic G3 fixture, **01-orb-alpha**, recorded in separate local private evidence. **G3.7 itself did no additional inference:** it only inspected/reoriented that pre-existing G3 AI output using CPU and produced a sanitized software-browser screenshot. Original and derivative GLB files and job IDs remain locally gitignored.
 
+### G3.11 — real orb indexed edge-shared coplanar same-side risk (CPU only)
+
+- orb-01-g311-edge-coplanar-screen.json: original genuine prior TripoSR orb (40,352 faces/60,528 indexed shared-edge pairs), exact winding copy, known source sphere and previous real chair derivative all SHA-linked and numerically screened for coplanar same-side triangle area overlap/backfold indicators. Zero such findings on all four **does not certify exact self-intersection-free geometry, physical dimensions or printability**.
+- Adversarial same-side coplanar triangle pair test flags a deliberate overlap; normal opposite-side planar adjacency and legitimate cube corners are not flagged. Read-only four-model CPU replay, provenance/rights verified and public proof immutable, with no private UUID/GLB/model weights or new AI.
+- Full methodology: [G3.11 CPU edge planar backfold check](../../G3_11_EDGE_BACKFOLD_CPU_2026-10-10.md).
+
 ### G3.10 — unique indexed shared-one-vertex candidate ray contacts (CPU only)
 
 - orb-01-g310-shared-vertex-ray-screen.json: license+SHA-pinned sanitized result from prior genuine TripoSR 01-orb-alpha, copy-only orientation derivative, procedural GT and historic chair derivative. Real orb + copy each have **190,860** unique one-vertex-only face pairs screened, with 0 detected beyond-vertex noncoplanar common-ray candidates and 0 near-parallel unresolved at numeric tolerance. GT=5,730 and historic chair derivative=92,629. Normal touching at the shared vertex is NEVER a defect or AI failure.

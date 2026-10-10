@@ -1,5 +1,19 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.11: CPU-only indexed shared-edge potential coplanar overlap (no new model)
+
+The existing completed `01-orb-alpha` actual TripoSR job's original output and its G3.7 copy-only orientation derivative now also have a conservative shared-edge coplanar same-side overlap screen. On real orb + derivative, each screened 60,528 indexed face-pairs sharing a full edge; 0 candidate coplanar overlap/near-antiparallel/high-backturn findings. This does NOT establish full self-intersection absence, physical scale, wall thickness or permission to print.
+
+Operator-only read-only replay using the **already completed** private real orb job UUID:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-11-verify-edge-replay.py --job-id <EXISTING_COMPLETED_ORB_JOB_UUID>
+
+It validates original, correction, project-original known 3D reference and historic real chair model SHAs and recomputes all four CPU edge screens without modifying files or using GPU. Public sanitized immutable evidence:
+
+    npm run proof:g3:orb:edge-backfold -- --job-id <EXISTING_COMPLETED_ORB_JOB_UUID>
+
+See docs/G3_11_EDGE_BACKFOLD_CPU_2026-10-10.md and docs/evidence/g3/orb-01-g311-edge-coplanar-screen.json. The UUID and GLB binaries remain gitignored locally; there is no new model authorization or printer command.
+
 ## G3.10: shared-one-vertex ray screen / complete read-only replay (no GPU)
 
 The existing one-time-approved real orb output and its G3.7 winding-only copy were additionally screened for **190,860 unique vertex-only face pairs per model**, looking for extra nonzero rays of geometric intersection beyond the legitimately shared indexed vertex. Zero numerical common-ray candidates were found. **This is not proof of global intersection-free geometry or print readiness.** Near-coplanar cases and limited CPU budgets never silently pass.
