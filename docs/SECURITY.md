@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.26: observed G1 DEMO header acceptance is NOT content validation
+
+The actual G1 fixture-only HTTP source-image admission returns 201 for three deliberately incomplete *harmless* PNG/JPEG/WebP initial signature-only buffers when their declared MIME matches, and 422 for mismatched MIME or an unknown prefix. Separate Pillow 10.1.0 CPU in-memory fixture experiments show that real complete original 64x64 PNG/JPEG/WebP decode correctly while the incomplete harmless bytes fail full decode. This is an observed signature/full-parse mismatch, **not** evidence of a native parser exploit, actual G2 processing, or OS confinement. No untrusted images or GPU model loads were allowed. The gap warrants explicit safe preadmission validity checks and OS-backed native decoder confinement before untrusted customer media, but a validating header alone does not remove parser vulnerabilities.
+
+Immutable sanitized source-linked [G3.26 proof](evidence/g3/g3-26-harmless-image-boundary.json) and [documented methods](G3_26_SAFE_IMAGE_SIGNATURE_BOUNDARY_CPU_2026-10-10.md). Production Pillow/G2 unchanged, Issue #4 OPEN. Physical print Issue #3 OPEN, printQualified=false.
+
 ## G3.25: 32 Pillow version-matches have named trigger cases, zero cleared app paths
 
 G3.25 manually reviewed the official public upstream GHSA trigger descriptions for all **16** alias-linked Pillow groups (32 current public OSV records) and statically compared them to current G2 Node 8MiB PNG/JPEG/WebP *short magic* + MIME guard and Python Pillow 16MP Image.open/src.load/EXIF. PDF, fonts, TGA *encoding*, specialized ImageMath/ImageCms/ImageFilter/ImageShow APIs and JPEG2000/McIdas alternate image formats have distinct reported preconditions. "Not directly called" or "top-level format not allowlisted" never demonstrates transitive/native codepath nonreachability, no concealed format/polyglot routes, safe malicious image handling or a working OS sandbox. All 32 record-level impact dispositions **UNRESOLVED**.

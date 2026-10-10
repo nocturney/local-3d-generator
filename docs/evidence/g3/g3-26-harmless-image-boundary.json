@@ -1,0 +1,83 @@
+{
+  "schema": "local3d.g3.26.cpu-synthetic-pillow-boundary-not-security-clearance.v1",
+  "createdOn": "2026-10-10",
+  "previousG325SanitizedProofSha256": "49313c92aae255a98fb972f08ef3544b3c0279429dac8e42191b40c7ae0e5a93",
+  "trackedSourceSha256": {
+    "serverIndex": "716a9798a65965d3ac43ba37edd73dab6bdfe6a5412be11ccb84f917acd13646",
+    "worker": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+    "inMemoryProbe": "cf1711b37e83723547bf318be132c81d91686aaacbd76f530539768f12acd95c"
+  },
+  "pillowSourceTests": {
+    "schema": "local3d.g3.26.harmless-inmemory-images.v1",
+    "pillowVersion": "10.1.0",
+    "synthetic64PixelSourcesOnly": true,
+    "sourceImageFormatCount": 3,
+    "allThreeImageFormatsSupportedForHarmlessFixtures": true,
+    "results": [
+      {
+        "format": "PNG",
+        "declaredMime": "image/png",
+        "syntheticPixelDimensions": [
+          64,
+          64
+        ],
+        "sourceBytesSha256": "d56708bc91a3e8a17b97c0abdf4cccbf886f7c608ebd7a427382e52c36f3d5eb",
+        "sourceByteCount": 156,
+        "observedPillowFormat": "PNG",
+        "shortHeaderClassification": "image/png",
+        "incompletePrefixFullyPillowDecodable": false,
+        "dangerousParserPayloadUsed": false
+      },
+      {
+        "format": "JPEG",
+        "declaredMime": "image/jpeg",
+        "syntheticPixelDimensions": [
+          64,
+          64
+        ],
+        "sourceBytesSha256": "4530bce5b2d096b8fb97183ddfddf291d347efb98738da087446f774f8b449dd",
+        "sourceByteCount": 693,
+        "observedPillowFormat": "JPEG",
+        "shortHeaderClassification": "image/jpeg",
+        "incompletePrefixFullyPillowDecodable": false,
+        "dangerousParserPayloadUsed": false
+      },
+      {
+        "format": "WEBP",
+        "declaredMime": "image/webp",
+        "syntheticPixelDimensions": [
+          64,
+          64
+        ],
+        "sourceBytesSha256": "7c80680b4cae2db5072515663f3fc760c9d0078e2861cd2b3e50f848c477bd64",
+        "sourceByteCount": 86,
+        "observedPillowFormat": "WEBP",
+        "shortHeaderClassification": "image/webp",
+        "incompletePrefixFullyPillowDecodable": false,
+        "dangerousParserPayloadUsed": false
+      }
+    ],
+    "headerFilteringGuaranteesFullDecodeSafety": false,
+    "nativeLibraryExploitabilityAssessed": false,
+    "customerMediaProcessed": false,
+    "modelExecutions": 0,
+    "gpuInferenceRuns": 0,
+    "printQualified": false,
+    "approvedForPrinter": false,
+    "fabricationAction": "NONE"
+  },
+  "sourceImagesTrustedSyntheticOnly": true,
+  "workerAndApiIntegrationNotCertifiedByInMemoryPillowProbe": true,
+  "headerCheckNotFullImageValidation": true,
+  "all32PillowAdvisoryApplicabilityUnresolved": true,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "newUntrustedUploadsAllowed": false,
+  "nativeParserOSConfinementVerified": false,
+  "packagesInstalled": 0,
+  "gpuInferenceRuns": 0,
+  "modelExecutions": 0,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.26 — 2026-10-10 — G3.26 harmless synthetic short-signature vs full-decode discrepancy
+
+- CPU-only Pillow 10.1.0 in-memory safe 64x64 images: PNG/JPEG/WebP 3/3 properly decoded; three harmless truncated initial signatures 3/3 not fully decoded. No private customer image or malformed exploit payload.
+- ACTUAL G1 fixture-only HTTP /v1/jobs admits 3/3 incomplete synthetic short-signature buffers with matching declared MIME, and rejects 3/3 MIME mismatches plus unknown signatures as BAD_IMAGE. This demonstrates a **signature-only admission gap**, NOT an observed model invocation or exploitable native-code vulnerability. G2 provider was never launched.
+- Added SHA-linked immutable public evidence source and 3 Node real G1 HTTP / 8 Python safe-format adversarial tests. No G2/Pillow upgrade, GPU, model, OS/Office/4178, cloud or printer action; Issues #4 and #3 OPEN, no unrestricted media clearance.
+
 ## v0.2.25 — 2026-10-10 — G3.25 Pillow GHSA codec/format/API static case review
 
 - Mapped all 16 Pillow GHSA/PYSEC public alias groups (32 version-level OSV record IDs) from existing G3.23 and G3.24 SHA ancestry to manually summarized **official public upstream trigger conditions**. Carefully distinguished alternate McIdas AREA/JPEG2000 codecs, font/PDF/TGA output, ImageMath/ImageCms/ImageFilter/image-coordinate and ImageShow APIs from the actual PNG/JPEG/WebP source bytes decoded by Pillow. No blanket claim that any advisory is unreachable or the native stack safe.

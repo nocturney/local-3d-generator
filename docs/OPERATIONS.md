@@ -1,5 +1,15 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.26 — safe in-memory Pillow images + actual G1 fixture HTTP signature gate
+
+On Chris ONLY, using existing frozen Python venv, CPU with no model load:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-26-safe-image-boundary-proof.py
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g326_safe_image_boundary.py
+    node --test tests/g326-harmless-format-api.test.js
+
+The proof regenerates 3 tiny original in-memory images, checks full Pillow decode and immutable source SHA lineage to prior G3.25, current Node/Python entrypoints and own source; no-flags verifies the previously created sanitized public JSON byte-for-byte, --write-public for initial creation ONLY. Separate Node tests start a temporary G1 fixture-only loopback app, submit harmless INCOMPLETE signature-only bytes, and check accepted 201 versus bad MIME 422, NEVER G2 provider/GPU. Source [method](G3_26_SAFE_IMAGE_SIGNATURE_BOUNDARY_CPU_2026-10-10.md) and [proof](evidence/g3/g3-26-harmless-image-boundary.json). Security and print gates remain OPEN.
+
 ## G3.25: offline Pillow codec/format-specific upstream-condition review
 
 Read-only CPU replay, no model/native image decoding:

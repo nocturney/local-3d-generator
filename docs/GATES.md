@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.26 — short HTTP file signatures are NOT full Pillow validity
+
+- PASS CPU-only actual G1 demo API test: 3 harmless incomplete PNG/JPEG/WebP signature-only buffers admitted HTTP 201 on matching MIME; 3 wrong MIME and one unknown signature rejected HTTP 422. All jobs G1 fixture simulated, never TripoSR/GPU.
+- PASS pinned Pillow 10.1.0 CPU in-memory three 64x64 self-generated encoded safe images decode PNG/JPEG/WebP correctly; incomplete header-only fragments do NOT decode. Public SHA proof bound to prior G3.25 evidence and exact tracked Node/Python code bytes.
+- OPEN: full-content preadmission validation and OS-backed parser confinement, transitive/native applicability of 32 Pillow advisory version matches, runtime upgrade plans (Issue #4); physical mm/wall/material/slicer/print qualification (Issue #3). NO authorization for unsafe customer uploads or printing.
+- [Experiment and limits](G3_26_SAFE_IMAGE_SIGNATURE_BOUNDARY_CPU_2026-10-10.md), [immutable sanitized evidence](evidence/g3/g3-26-harmless-image-boundary.json).
+
 ## G3.25 — individual Pillow source/format conditions are REVIEWED, not CLEARED
 
 - PASS: 16 official upstream GHSA named-condition summaries cover exactly 32 public Pillow OSV GHSA/PYSEC version records, anchored to bytewise SHA of historical G3.23+G3.24 public reports and current Node/Python entrypoint code. Includes two alternate **non-allowlisted** top-level image codecs (McIdas AREA, JPEG2000) and specialized image editing, CMS, fonts, PDF, viewer, filter and encoder API triggers; no claim that a format signature gate is OS security containment.
