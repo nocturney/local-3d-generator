@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.14: full conservative AABB candidate coverage is NOT global contact-free proof
+
+G3.14's independent bounded box-sphere CPU broadphase enumerates all AABB-overlapping face-pair CANDIDATES with a finite declared numerical tolerance relative to arbitrary GLB coordinates. This is a useful new count/provenance gate, NOT an exact test that surfaces do not penetrate. It counts indexed edge/vertex adjacency but does NOT classify their extra intersections globally. Non-indexed overlapping AABBs receive floating-point SAT risk screening only, exact G3.13 pair checks are limited to SAT-positive pairs; a numerical SAT negative can miss near-degenerate tiny features. True CAD mm-scale, minimum wall thickness and physical printer qualification remain BLOCKED.
+
+Inputs are capped at 75k faces, 100k vertices, 2M bounding-sphere pairs, 750k AABB pairs, 300k numerical SAT, 64 exact flagged refinements and 45s CPU; resource failure is INDETERMINATE, never a declaration of clearance. Verified GLB SHA/provenance only from PREVIOUSLY approved local inference and licensed GT/chair assets; public JSON contains only aggregate counts and SHAs, not local job IDs, model/face binaries, prompts or customer assets.
+
+This CPU code does not import/execute a neural model, install dependencies, take a GPU lease, change firewall/Defender/OS policy, alter Office, or command printers. Native GLB parser remains trusted-local-only; pinned Python advisory reachability/OS egress and untrusted-input isolation are still open under Issue #4. Quality Issue #3 remains OPEN; all models DRAFT and printQualified=false.
+
 ## G3.13: selected exact pair arithmetic is NOT whole-mesh clearance or untrusted-input sandbox
 
 G3.13 only classifies **explicitly passed triangle pairs** using Fraction exact rational representation of prior GLB-decoded IEEE-754 coordinates. It does not implement exhaustive mesh broadphase, robust/global collision exclusion, physical tolerance, multiuser safe parsing, geometry repair, network isolation or manufacturing authorization. Positive strict interior/coplanar overlap results are narrow mathematical facts about supplied triangles; zero findings on a limited chosen pair list cannot rule out any unselected collisions. All 24 deterministically selected shared-indexed-edge adjacent pairs on each of the FOUR previously licensed GLBs yielded UNRESOLVED normal boundary contact; these are not 24 defects.

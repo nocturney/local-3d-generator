@@ -1,5 +1,21 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.14: all conservative NUMERICAL AABB-overlapping face-pair census (CPU only)
+
+New engines/quality/aabb_pair_census.py enumerates all numerical AABB-overlap candidate face pairs with an independent bounding-BOX-sphere cKDTree; the source G3.8 uses a different, triangle-centroid-sphere prefilter. G3.14 includes indexed shared-edge/one-vertex adjacency in its pair COUNT, but only performs numerical SAT on no-index pairs, escalating any SAT-positive to bounded exact G3.13 pair predicates. It is NOT a global exact mesh intersection test, mm-size measurement or printer clearance.
+
+The previously existing SHA-pinned real orb's 294,495 conservative AABB candidate pairs partition into 60,528 edge + 190,860 vertex-only + 43,107 no-index, numerical no-index SAT positive=0. The increase of 82 conservative AABB candidates vs earlier G3.8 is NOT 82 actual collisions. No model was rerun.
+
+CPU-only controls (using the already pinned interpreter):
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g314_aabb_census.py
+
+Four-model read-only SHA-locked replay from a previous, completed local G2 job ID (NEVER include the UUID in Git/console screenshots):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-14-aabb-replay.py --job-id <PREVIOUSLY_COMPLETED_PRIVATE_JOB_UUID>
+
+Private ignored per-model reports and sanitized public evidence were already created once; do not reuse --prepare-private --write-public unless genuinely rebuilding immutable evidence under reviewed source hashes. See [complete caveats](G3_14_AABB_FULL_PAIR_CENSUS_CPU_2026-10-10.md) and [public counts](evidence/g3/orb-01-g314-full-aabb-census.json). No permission granted to print, launch CUDA, run other models, change Office or call cloud.
+
 ## G3.13: exact rational PAIR predicate — very limited, no global scan
 
 The new offline Python `engines/quality/exact_triangle_predicates.py` classifies ONLY explicitly supplied triangles or bounded chosen pair lists. It does not scan a whole mesh, infer CAD millimeters, weld vertices or certify manufacturability. The exact Fraction arithmetic applies to ALREADY decoded IEEE-754 model coordinates; ambiguous indexed boundary contacts stay unresolved, as they should.

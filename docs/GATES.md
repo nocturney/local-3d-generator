@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.14 — independently exhaustive AABB numerical candidate and indexed adjacency census (CPU ONLY)
+
+- PASS: conservative bounding-box-sphere cKDTree broadphase independently accounts for every numerical AABB-overlapping face-pair candidate; explicit indexed partition into exactly-one-vertex, full-edge and no shared indexed vertices. The no-index category is fully screened by conservative numerical SAT; SAT-positive pairs would be routed to bounded G3.13 exact refinement. 12 synthetic/trusted Python controls including brute-force AABB comparisons and 3 Node public source/privacy checks pass.
+- PASS: previous real 01-orb-alpha (40,352 triangles) contains 294,495 AABB candidate pairs: 60,528 shared indexed edge + 190,860 only indexed vertex + 43,107 no-index, 0 numerical SAT positives among all 43,107. This is 82 more conservative AABB candidate boxes than the G3.8 previously triangle-centroid-sphere filtered count. The G3.7 winding-only copy reproduces results exactly; GT and chair were also SHA-verified CPU replayed. NO NEW MODEL INFERENCE.
+- LIMITATION: numerical SAT negatives are NOT exact proof of no microscopic intersection, and shared-edge/vertex candidate pairs are NOT globally classified for extra geometric intersections here. Candidate boxes do not equal real mesh penetrations. No wall thickness, mm scale, manufacturing or printer clearance.
+- Evidence: [G3.14 numerical scope](G3_14_AABB_FULL_PAIR_CENSUS_CPU_2026-10-10.md), [sanitized SHA report](evidence/g3/orb-01-g314-full-aabb-census.json). G3 Issue #3, security Issue #4 both OPEN. Every model DRAFT / printQualified=false.
+
 ## G3.13 — exact-binary-float triangle PAIR classifier (FOUNDATION ONLY)
 
 - PASS: new standalone CPU-only selected triangle-pair classifier with exact rational orientation and coplanar polygon clipping of *already decoded* IEEE-754 GLB coordinates. 19 adversarial Python tests for definite strict interior piercing, coplanar positive-area overlap, legitimate boundary touching/plane separation and malformed/budget-limited inputs.

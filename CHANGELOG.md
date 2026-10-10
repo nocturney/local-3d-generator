@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.14 — 2026-10-10 — G3.14 complete conservative numerical AABB candidate census
+
+- Independently enumerates every conservative decoded-coordinate AABB-overlapping unordered pair via bounding-BOX spheres (not prior G3.8 centroid/triangle spheres), including 0/1/2 indexed shared vertex pairs. Enforces exact partition counts and checks all no-index AABB pairs with previous numerical SAT; bounded G3.13 exact refinement only on SAT positives. Conservative numerical AABB coverage is not a robust global exact 3D self-intersection certificate.
+- On previously licensed real orb: 294,495 AABB overlaps (60,528 edge-indexed + 190,860 vertex-only + 43,107 non-indexed). Prior G3.8 centroid-sphere filtered AABB count 294,413 and no-index 43,025; new pass includes 82 more AABB candidate boxes, not evidence of 82 material defects. All 43,107 no-index candidates were numerical SAT negative. Winding-only derivative exactly matches; source GT and historical chair also pass SHA-locked four-source CPU replay.
+- Added adversarial exhaustive brute-force comparisons on synthetic geometries, strict crossing/coplanar exact escalation, budget/time fail-closed controls, read-only immutable source model proof, public sanitized JSON and Node privacy/provenance tests. Still no physical scale, wall QA, complete indexed-adjacent exact contact classification, inference or printer authorization. Security Issue #4 / quality Issue #3 remain OPEN.
+
 ## v0.2.13 — 2026-10-10 — G3.13 exact selected triangle-pair predicates, NO whole-mesh scan
 
 - Added CPU-only Python `Fraction` exact-binary-float oriented tetrahedral determinant and rational 2D coplanar polygon clipping, classifying explicitly supplied triangle PAIRS: strict noncoplanar edge-interior piercing, positive-area coplanar overlap, definite plane separation or unresolved boundary. This is exact arithmetic on already decoded IEEE-754 GLB vertex values, NOT true CAD scale or physical manufacture certification.
