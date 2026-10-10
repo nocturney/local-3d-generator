@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.28 — live API source now rejects structurally incomplete image containers (not native safety)
+
+- PASS: integrated Node server image handler invokes G3.27 structural validator after initial magic/MIME/size check and BEFORE generating a job ID, persisting bytes or taking shared GPU/storage leases; all three trusted synthetic PNG/JPEG/WebP full images accepted by new G1 test server, truncated/malformed rejected HTTP 422 BAD_IMAGE_STRUCTURE, MIME mismatch rejected BAD_IMAGE, G2 MOCK manual rejects before worker invocation and requires consent.
+- PASS: G3.25/26/27 historical read-only SHA immutable proof replays pass from pinned old Git source commit with explicit CRLF normalization; no rewriting historical evidence. New G3.28 proof SHA binds actual current server source and old proof bytes; tests/code/rights/privacy verified.
+- NOT YET LIVE on preexisting G1 4177 process (no restart). No native Pillow decoder sandbox, no full-image bitstream acceptance guarantee, no patched G2 GPU stack, no multi-user/untrusted upload clearance. Security Issue #4 OPEN; geometry/physical mm/wall/material/printer Issue #3 OPEN. G2 manual worker no inference ran.
+- [Method, QA and limitations](G3_28_INTEGRATED_IMAGE_ADMISSION_CPU_2026-10-10.md), [source-linked public proof](evidence/g3/g3-28-integrated-structural-image-admission.json).
+
 ## G3.27 — bounded PNG/JPEG/WebP input syntax only, NOT in live request path
 
 - PASS: pure Node preflight module covers PNG CRC/container, JPEG SOF/SOS/EOI, WebP RIFF/VP8 static framing, declared MIME mismatch, max 8 MiB/16 MP/16,384 side and bounded chunk/marker visits. Three generated source SHA-locked images pass; 18 truncated copies fail; negative malformed media tests pass. No Pillow/native image parsing or GPU.

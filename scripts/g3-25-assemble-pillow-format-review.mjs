@@ -8,6 +8,7 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {buildPillowFormatTriage} from './g3-25-pillow-format-triage-lib.mjs';
+import {readHistoricalServerBytes} from './g3-28-historical-server-source.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const P={
@@ -24,8 +25,8 @@ async function safeRead(p){
    throw new Error('G3.25 invalid, symlinked or oversized public/source input');
  return fs.readFile(p);
 }
-const [f,q,s,w]=await Promise.all([safeRead(P.full),safeRead(P.prior),
-  safeRead(P.server),safeRead(P.worker)]);
+const [f,q,w]=await Promise.all([safeRead(P.full),safeRead(P.prior),safeRead(P.worker)]);
+const s=readHistoricalServerBytes(); // immutable, SHA-recovered old CRLF source
 const opts={full:hash(f),prior:hash(q),server:hash(s),worker:hash(w)};
 const report=buildPillowFormatTriage(JSON.parse(f),JSON.parse(q),
  s.toString('utf8'),w.toString('utf8'),opts);

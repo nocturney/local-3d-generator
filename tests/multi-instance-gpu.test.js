@@ -7,7 +7,7 @@ import { createApp } from '../server/index.js';
 import { listenFixtureSafePort } from './safe-loopback-fixture.mjs';
 
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI_ScL_nwAAAABJRU5ErkJggg'.replace(/_/g,'/'),'base64');
+const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAOrvCF14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfWv2AaqHnAIRAAAAAElFTkSuQmCC'.replace(/_/g,'/'),'base64');
 const requestPayload={
   providerId:'triposr-local',confirmGpu:true,mode:'image',prompt:'Simulated child; no GPU',
   image:{filename:'test.png',mime:'image/png',base64:tinyPng.toString('base64')}

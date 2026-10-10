@@ -1,5 +1,15 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.28 — integrated structural image admission, historic evidence preserved
+
+    node scripts/g3-28-assemble-integration-proof.mjs
+    node --test tests/g328-api-image-preflight.test.js tests/g328-integration-proof.test.js
+    node scripts/g3-25-assemble-pillow-format-review.mjs
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-26-safe-image-boundary-proof.py
+    node scripts/g3-27-assemble-structure-proof.mjs
+
+G3.28 tests call createApp in NEW ephemeral loopback instances; 3 synthetically complete files are accepted and incomplete ones rejected 422 before any job or manual-G2 MOCK adapter. Old public G3.25/26/27 JSON files MUST NEVER be edited. Updated read-only replay helpers reconstruct exact Windows CRLF server source from fixed Git ancestor with SHA check; keep that commit reachable in offline git history. Current server/index.js is DIFFERENT from the historical SHA and invokes the bounded container validator. 4177 currently running the old code has not been restarted; a future coordinated restart and post-restart tests are separate from this milestone. Do not touch 4178/Office, activate G2 inference or OS firewall/egress. [Full details](G3_28_INTEGRATED_IMAGE_ADMISSION_CPU_2026-10-10.md), [immutable new proof](evidence/g3/g3-28-integrated-structural-image-admission.json).
+
 ## G3.27 — detached bounded structural image preflight contract
 
     node scripts/g3-27-assemble-structure-proof.mjs

@@ -10,7 +10,7 @@ import { listenFixtureSafePort } from './safe-loopback-fixture.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const glbFixture = await fs.readFile(path.join(ROOT, 'docs/evidence/g2/chair-yup.glb'));
-const tinyPng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI_ScL_nwAAAABJRU5ErkJggg'.replace(/_/g,'/'),'base64');
+const tinyPng = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAOrvCF14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfWv2AaqHnAIRAAAAAElFTkSuQmCC'.replace(/_/g,'/'),'base64');
 const hash = b => createHash('sha256').update(b).digest('hex');
 const sleep = ms => new Promise(r => setTimeout(r,ms));
 

@@ -10,7 +10,10 @@ import json
 import os
 from pathlib import Path
 import sys
+import subprocess
 ROOT = Path(__file__).resolve().parents[1]
+HISTORICAL_COMMIT = '6a40a6d70d123642c53167a36655b4f24d049c9c'
+HISTORICAL_SERVER_SHA = '716a9798a65965d3ac43ba37edd73dab6bdfe6a5412be11ccb84f917acd13646'
 sys.path.insert(0, str(ROOT))
 from engines.quality.safe_image_fixture_probe import build_safe_probe
 
@@ -28,8 +31,22 @@ def sha(path: Path) -> str:
         raise ValueError("G3.26 refuses invalid, symlinked or oversized public/source file")
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def historical_server_sha() -> str:
+    """Reconstruct the original Windows CRLF source bytes from a pinned Git ancestor."""
+    blob = subprocess.check_output(
+        ['git','show',HISTORICAL_COMMIT+':server/index.js'], cwd=ROOT,
+        timeout=8, stderr=subprocess.PIPE)
+    if not 10000 < len(blob) < 150000 or b'\r' in blob or b'\n' not in blob:
+        raise ValueError('G3.28 invalid historical LF git source blob')
+    recovered=blob.replace(b'\n',b'\r\n')
+    digest=hashlib.sha256(recovered).hexdigest()
+    if digest != HISTORICAL_SERVER_SHA:
+        raise ValueError('G3.28 historical Windows source SHA mismatch')
+    return digest
+
 def report() -> dict:
-    hashes={k:sha(v) for k,v in FILES.items()}
+    hashes={k:sha(v) for k,v in FILES.items() if k!='server'}
+    hashes['server']=historical_server_sha()
     prior=json.loads(FILES["g325"].read_text(encoding="utf-8"))
     if prior.get("schema") != "local3d.g3.25.pillow-format-and-api-triage-not-clearance.v1" or \
        prior.get("livePillowVersion") != "10.1.0" or \

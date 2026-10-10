@@ -18,7 +18,7 @@ let app = null, browser = null, page = null;
 const messages = [], requests = [], phases = [];
 const pushPhase = (name, result = 'PASS') => phases.push({ name, result, at: new Date().toISOString() });
 const hash = buf => createHash('sha256').update(buf).digest('hex');
-const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j5s8AAAAASUVORK5CYII=', 'base64');
+const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAOrvCF14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfWv2AaqHnAIRAAAAAElFTkSuQmCC', 'base64');
 let port = 0;
 try {
   app = await createApp({dataDir:path.join(temp,'data'), fixtureFile:path.join(temp,'demo.glb'), stepMs:210});

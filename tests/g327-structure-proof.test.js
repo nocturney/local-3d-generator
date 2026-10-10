@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {readHistoricalServerBytes} from '../scripts/g3-28-historical-server-source.mjs';
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const evidence=path.join(ROOT,'docs/evidence/g3');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -11,7 +12,7 @@ test('G3.27 immutable source SHA links to G3.26 and known old server/worker byte
  const report=JSON.parse(await fs.readFile(path.join(evidence,'g3-27-image-structure-preflight-contract.json'),'utf8'));
  const parent=await fs.readFile(path.join(evidence,'g3-26-harmless-image-boundary.json'));
  assert.equal(report.previousG326PublicProofSha256,sha(parent));
- assert.equal(report.trackedReadOnlyPreviousServerSha256,sha(await fs.readFile(path.join(ROOT,'server/index.js'))));
+ assert.equal(report.trackedReadOnlyPreviousServerSha256,sha(readHistoricalServerBytes()));
  assert.equal(report.trackedReadOnlyPreviousPythonWorkerSha256,sha(await fs.readFile(path.join(ROOT,'engines/triposr/worker.py'))));
  assert.equal(report.boundedPreflightSourceSha256,sha(await fs.readFile(path.join(ROOT,'server/image-structure-preflight.js'))));
  assert.equal(report.sourceFixturesSha256,sha(await fs.readFile(path.join(ROOT,'tests/fixtures/g327-synthetic-images.json'))));

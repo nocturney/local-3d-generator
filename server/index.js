@@ -11,6 +11,7 @@ import { createGpuLease, LeaseUnavailable } from './gpu-lease.js';
 import { getBenchmarkSource, FixtureSourceError } from './benchmark-sources.js';
 import { createBenchmarkReviewer } from './benchmark-review.js';
 import { admitRealJobStorage, StorageAdmissionError } from './storage-admission.js';
+import {preflightImageStructure, ImageStructureError} from './image-structure-preflight.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -298,6 +299,14 @@ export async function createApp(options = {}) {
       image = Buffer.from(payload.image.base64, 'base64');
       imageInfo = sniffImage(image);
       if (!imageInfo || image.length > MAX_IMAGE_BYTES || payload.image.mime !== imageInfo.mime) fail('BAD_IMAGE', 422, 'Image signature, MIME or size not supported');
+      // G3.28 structural gate BEFORE creating a job, writing media or taking any GPU permit.
+      // Not a native decoder sandbox; the G2 worker must still apply Pillow bounds.
+      try {
+        preflightImageStructure(image, imageInfo.mime, {minDimension:isReal ? 64 : 1});
+      } catch (error) {
+        if (error instanceof ImageStructureError) fail('BAD_IMAGE_STRUCTURE', 422, 'Incomplete or unsupported PNG, JPEG or WebP image container');
+        throw error;
+      }
     }
     const id = randomUUID();
     // Reserve GPU lease BEFORE the first asynchronous disk operation.

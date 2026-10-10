@@ -7,6 +7,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {preflightImageStructure,ImageStructureError} from '../server/image-structure-preflight.js';
+import {readHistoricalServerBytes} from './g3-28-historical-server-source.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const file={
  prior:path.join(root,'docs/evidence/g3/g3-26-harmless-image-boundary.json'),
@@ -23,8 +24,9 @@ async function read(name){
    throw new Error('G3.27 FAIL CLOSED: untrusted public/source file '+name);
  return fs.readFile(file[name]);
 }
-const [rawPrior,rawFixtures,rawParser,rawServer,rawWorker]=await Promise.all(
- ['prior','fixtures','parser','server','worker'].map(read));
+const [rawPrior,rawFixtures,rawParser,rawWorker]=await Promise.all(
+ ['prior','fixtures','parser','worker'].map(read));
+const rawServer=readHistoricalServerBytes(); // original G3.27 server at pinned commit
 const parent=JSON.parse(rawPrior),synthetic=JSON.parse(rawFixtures);
 if(parent.schema!=='local3d.g3.26.cpu-synthetic-pillow-boundary-not-security-clearance.v1'
   ||parent.all32PillowAdvisoryApplicabilityUnresolved!==true

@@ -39,14 +39,13 @@ async function withFixtureServer(callback){
    await fs.rm(temp,{recursive:true,force:true});
  }
 }
-test('G3.26 REAL G1 HTTP admission: short magic alone admits harmless incomplete synthetic buffers',async()=>{
+test('G3.26 historical short-header gap is now rejected by G3.28 API admission',async()=>{
  await withFixtureServer(async(post)=>{
    for(const {name,mime,bytes} of probes){
      const got=await post(bytes,mime);
-     assert.equal(got.status,201,name);
-     assert.equal(got.body.simulation,true,name);
-     assert.equal(got.body.providerId,'fixture-demo',name);
-     assert.ok(got.body.id,name);
+     assert.equal(got.status,422,name);
+     assert.equal(got.body.error.code,'BAD_IMAGE_STRUCTURE',name);
+     // Historical 201 observations stay in immutable G3.26 public proof.
    }
  });
 });

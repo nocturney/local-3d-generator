@@ -1,5 +1,12 @@
 # Release notes
 
+## v0.2.28 — 2026-10-10 — G3.28 integrated fail-closed structural media admission in real localhost API
+
+- Wired zero-dependency G3.27 structural PNG/JPEG/WebP format preflight into server/index.js before any job ID, disk write, GPU lease or G2 worker. Full original synthetic images admitted, structurally incomplete images and PNG CRC corruption rejected 422 BAD_IMAGE_STRUCTURE, declared MIME mismatch keeps BAD_IMAGE.
+- G1 actual ephemeral localhost HTTP and G2 MANUAL MOCK-only tested; no real GPU or TripoSR. Replaced historical invalid-CRC tiny example images in TESTS ONLY with frozen original valid synthetic 64x64 PNG bytes, preserving G2 test meaning and avoiding fragile intentional corrupt example input.
+- Preserved G3.25/26/27 immutable public JSON SHA reports byte-for-byte; historical read-only replayers now reconstruct exact old Windows CRLF source from pinned Git ancestor 6a40a6d rather than falsely claiming new server is historical old code. Added immutable current-code/public ancestry proof and explicit reject-before-job/GPU tests.
+- Original production G2 venv, weights, Pillow, Office/4178, OS security and printers unchanged; existing 4177 service NOT restarted. Native decoder security Issue #4 and print release Issue #3 still OPEN. No new untrusted media authorization.
+
 ## v0.2.27 — 2026-10-10 — G3.27 zero-dependency bounded structural PNG/JPEG/WebP preflight contract
 
 - Built separate, **NOT YET INTEGRATED** pure Node format-structure preflight: CRC/order/IHDR/IDAT/IEND PNG; scan-aware JPEG SOF/SOS/EOI; RIFF chunk framing and VP8/VP8L/VP8X dimensions, no WebP animation; limited CPU/bytes/dimensions, unknown inputs fail closed. Not a native parser sandbox, real full image decode or safe-upload clearance.

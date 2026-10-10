@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {preflightImageStructure,ImageStructureError} from '../server/image-structure-preflight.js';
+import {readHistoricalServerBytes} from '../scripts/g3-28-historical-server-source.mjs';
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const source=JSON.parse(await fs.readFile(path.join(ROOT,'tests/fixtures/g327-synthetic-images.json'),'utf8'));
 const good=source.images.map(x=>({...x,raw:Buffer.from(x.base64,'base64')}));
@@ -94,7 +95,7 @@ test('G3.27 size, type, dimension and finite resource limits',()=>{
  assert.equal(preflightImageStructure(x.raw,x.mime,{minDimension:64}).width,64);
 });
 test('G3.27 production signature acceptance is NOT the same as proposed strict preflight',async()=>{
- const server=await fs.readFile(path.join(ROOT,'server/index.js'),'utf8');
+ const server=readHistoricalServerBytes().toString('utf8');
  assert.match(server,/function sniffImage\(bytes\)/);
  assert.doesNotMatch(server,/preflightImageStructure/);
  for(const x of good)rejected(x.raw.subarray(0,x.format==='WEBP'?12:x.format==='JPEG'?3:8),x.mime);

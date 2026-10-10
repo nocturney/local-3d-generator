@@ -8,7 +8,7 @@ import { createTripoSRAdapter } from '../server/triposr-adapter.js';
 const win=process.platform==='win32';
 const root=path.resolve(import.meta.dirname,'..');
 const worker=path.join(root,'tests','fixtures','g2-fake-worker.cjs');
-const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI_ScL_nwAAAABJRU5ErkJggg'.replace(/_/g,'/'),'base64');
+const tinyPng=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAOrvCF14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfWv2AaqHnAIRAAAAAElFTkSuQmCC'.replace(/_/g,'/'),'base64');
 const gpu=()=>({used:4500,free:11300,util:10});
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 

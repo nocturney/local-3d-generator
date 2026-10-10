@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.28: bounded image container validation added to API, but NOT untrusted-upload security
+
+New server/index.js rejects structurally incomplete PNG/JPEG/WebP files via zero-dependency bounded CPU preflight **before creating jobs, writing uploads or taking a G2 GPU permit**. G1 HTTP tests accepted valid synthetic images and rejected incomplete header-only/CRC corruption; the G2 manual MOCK-only path rejected invalid media without invoking its adapter. G2 worker Python itself was NOT modified. The current source change is distinct from the old immutable G3.25/26/27 CRLF SHA proofs, now reproduced exactly via a pinned historical Git blob normalization helper; no old proof bytes were changed.
+
+This guards format *syntax*, not full codec decoding, native parser exploitation, image polyglots, malicious metadata, filesystem/network confinement or commercial/untrusted upload safety. Pillow 10.1.0/Transformers/Torch pinned vulnerabilities unresolved, Issue #4 OPEN. G1 4177 running process was not restarted (new admission verified on ephemeral test servers only); Office/4178 unchanged. Manufacturing #3 OPEN; all output DRAFT and printQualified=false. [Implementation](G3_28_INTEGRATED_IMAGE_ADMISSION_CPU_2026-10-10.md) and [source-linked new proof](evidence/g3/g3-28-integrated-structural-image-admission.json).
+
 ## G3.27: strict bounded structural image preflight is NOT native sandbox or active G2 mitigation
 
 A new zero-dependency Node parser validates PNG CRC/chunk layout, JPEG SOF/SOS/EOI markers and WebP RIFF static VP8 family chunk framing within 8MiB/16MP/16,384-side and bounded visits. On 3 original nonprivate 64x64 PNG/JPEG/WebP images it passes, and rejects 18 synthetic truncations plus corrupted/oversized cases. It never decompresses image data, executes a model or invokes unsafe native parsing, so a syntactically passing input still may fail Pillow decode or exploit an unremediated decoder flaw. **Not wired into server/index.js yet**, leaving historic G1/G2 admission unchanged until separate integration. OS-enforced parser network/file confinement and Pillow patch compatibility remain OPEN in #4, manufacturing in #3. [Details](G3_27_BOUNDED_IMAGE_STRUCTURE_PREFLIGHT_CPU_2026-10-10.md) and [sanitized proof](evidence/g3/g3-27-image-structure-preflight-contract.json).

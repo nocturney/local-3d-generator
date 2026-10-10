@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {buildPillowFormatTriage} from '../scripts/g3-25-pillow-format-triage-lib.mjs';
+import {readHistoricalServerBytes} from '../scripts/g3-28-historical-server-source.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const paths={
@@ -17,7 +18,8 @@ const paths={
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 const clone=x=>JSON.parse(JSON.stringify(x));
 async function input(){
- const [f,p,s,w]=await Promise.all(['full','prior','server','worker'].map(k=>fs.readFile(paths[k])));
+ const [f,p,w]=await Promise.all(['full','prior','worker'].map(k=>fs.readFile(paths[k])));
+ const s=readHistoricalServerBytes();
  return {f:JSON.parse(f),p:JSON.parse(p),s:s.toString('utf8'),w:w.toString('utf8'),
    opts:{full:sha(f),prior:sha(p),server:sha(s),worker:sha(w)}};
 }

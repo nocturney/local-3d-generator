@@ -124,7 +124,7 @@ test('Storage admission is G2-only, blocks before lease or Python; G1 remains us
         headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
       return {status:r.status,body:await r.json()};
     };
-    const source=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI_ScL_nwAAAABJRU5ErkJggg','base64');
+    const source=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAY0lEQVR4nO3PQQ3AIADAQMAOrvCF14ngcVnSU9DOfe74s6UDXjWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgNaA1oDWgfWv2AaqHnAIRAAAAAElFTkSuQmCC','base64');
     const deniedResponse=await json({
       providerId:'triposr-local',mode:'image',confirmGpu:true,
       image:{mime:'image/png',filename:'safe.png',base64:source.toString('base64')}
