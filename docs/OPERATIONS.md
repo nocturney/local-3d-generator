@@ -1,5 +1,21 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.8: reproducible CPU-only model surface risk screen (no CUDA)
+
+New reusable commands act only on **already generated licensed GLBs**, with explicit source SHA checks, no model inference, cloud fallback, live service or printer involvement. The original real model/derivative GT filenames remain local under gitignored runtime and G3 benchmarks.
+
+Operator read-only reproduction on Chris (replace UUID with the full **previously completed** G3 `01-orb-alpha` job UUID, never a new/queued job):
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-8-verify-cpu-replay.py --job-id <EXISTING_LOCAL_REAL_JOB_UUID>
+
+This re-runs in memory: 3 conservative triangle screens (original inferred model, separate positive-winding derivative and synthetic original GT) and 4096-sample normalized sphere-fit residual. It compares deterministic fields with private stored records, ignores wall-clock runtime variation, refuses changed source/model SHA and does NO output file writes.
+
+To verify/create the unchanged sanitized SHA-linked *public* evidence from those private results:
+
+    npm run proof:g3:orb:risk -- --job-id <EXISTING_LOCAL_REAL_JOB_UUID>
+
+Evidence lives at docs/evidence/g3/orb-01-g38-cpu-risk-screen.json. It does not expose UUIDs, output GLBs, prompts or private paths. The original and corrected 40,352-face meshes each had 43,025 eligible SAT pairs tested and 0 possible nonadjacent contacts; **251,388 vertex-adjacent AABB candidate pairs are not tested for overlaps**. This is not a full self-intersection test, millimeter wall/strength check or print certification. The sphere residual comparison 0.0625% GT vs 4.974% AI is an uncalibrated roundness-only research observation. See docs/G3_8_ORB_CPU_RISK_2026-10-10.md. Every future real GPU image still needs fresh explicit permission.
+
 ## G3.7: CPU-only exact winding derivative of an existing real orb model
 
 A single genuinely approved local TripoSR inference already completed on 01-orb-alpha. Its source output remains under the original G2 manual job's private runtime folder; the separate CPU-only orientation derivative lives at:

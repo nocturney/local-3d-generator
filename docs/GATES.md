@@ -1,5 +1,15 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.8 — bounded triangle-contact risk + orb radial quality (CPU diagnostic ONLY)
+
+- PASS: actual previously consented 01-orb-alpha TripoSR GLB and previous non-destructive orientation derivative both underwent bounded, conservative nonadjacent-triangle SAT screening (43,025 eligible pairs per 40,352-face mesh, 0 potential contacts flagged). Independently verified original and derivative SHA and same geometry before testing.
+- LIMITATION: this is **NOT a complete self-intersection or print pass**. Excludes all pairs sharing a vertex index (251,388 AABB candidate pairs) and uses tolerant floating-point potential-contact checks. Traversal/resource budgets are explicit and INDETERMINATE if exceeded; false negatives/positives remain possible.
+- PASS: licensed procedural orb GT and actual generated AI orb compared via 4096 deterministic area-weighted surface samples and separate best-fit spheres. Mean absolute radial residual relative to fitted radius: 0.00062476 GT vs 0.04973669 TripoSR. Can measure nonroundness but not millimeter thickness/finish or physical accuracy.
+- PASS: synthetic intersecting/disjoint/coplanar negative controls, degenerate/over-budget/invalid-mesh refusal, deterministic private CPU-only replay of all 3 scans and the radial metric, immutable sanitized evidence SHA validated against actual completed job.
+- ZERO new AI in this phase, no second provider, no cloud or printer, no Office runtime modifications. **2/9 private actual model outputs** remain unchanged, 7 G3 sources require separate new GPU approvals. Public fixed historical 1/9 baseline is not live.
+- BLOCKED: adjacent-face foldover, mathematically exact global collision checking, real-world mm dimensions, thickness, supportability, mechanics, slicer validation, OS sandbox/authentication and resolved Python advisory triage. DRAFT/printQualified=false.
+- Evidence: docs/G3_8_ORB_CPU_RISK_2026-10-10.md and docs/evidence/g3/orb-01-g38-cpu-risk-screen.json.
+
 ## G3.7 — one actual new G3 synthetic model + copy-only CPU QA (PARTIAL PASS)
 
 - REAL PREEXISTING INPUT: one newly consented TripoSR 01-orb-alpha inference successfully generated an 808,092-byte GLB in 12.59s, with source/job/output SHA consistency and complete native worker stages. This real inference occurred BEFORE the G3.7 CPU-only milestone. Seven other new synthetic reference images are unrun; previous real MIT chair is the other observed output.

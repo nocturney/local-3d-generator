@@ -1,5 +1,14 @@
 # Release notes
 
+## v0.2.8 — 2026-10-10 — G3.8 CPU-only bounded contact-risk and orb roundness diagnostics
+
+- Introduced a conservative, bounded **non-vertex-adjacent triangle contact screen** for previously generated GLBs: SciPy centroid sphere broadphase, AABB overlap, 17-axis triangle SAT including coplanar in-plane axes. Rejects degenerate coordinates/faces, resource limits or numerical incompleteness; never claims mathematically proven absence of self-intersections. Adjacent triangles are deliberately excluded and noted as an open risk.
+- On actual preexisting project-original G3 `01-orb-alpha` real TripoSR model and its winding-only copy, independently screened **43,025 eligible nonadjacent triangle pairs** per model with **0 possible contacts flagged**, 40,352 triangles each; **251,388 AABB candidate pairs were skipped for sharing a vertex index**. No print certification or exact collision proof. Procedural source GT also screened (1,280 triangles, no eligible nonadjacent pairs after adjacency exclusions).
+- Added reproducible 4,096-point *area-weighted best-fit sphere* radial deviation comparing known procedural GT to already created TripoSR surface: mean absolute radial residual normalized to its own fitted radius **0.00062476 vs 0.04973669**, respectively (0.0625% vs 4.974%). This is a narrow orb-roundness diagnostic, not physical surface finish, dimensional/image reconstruction accuracy or a claim of 80x overall quality difference.
+- Added CPU-only negative cases for penetrating closed cubes, disjoint meshes, coplanar overlap, degenerate faces, invalid arrays, resource exhaustion, a deformed sphere and scale/translation invariance; incomplete screens are reported INDETERMINATE, never passed.
+- Introduced privately reproducible, SHA-locked CPU replay of all 3 contact screens + radial metric, and immutable provenance-verified sanitized G3.8 public JSON. No new GPU inference, printer/slicer action or any private GLB/image/job UUID copied to Git.
+- Benchmark private observed output coverage unchanged: **2/9**, seven pending real G3 inputs. Historic public snapshot 1/9 remains a deliberately frozen reviewed baseline, not a live count. Issue #3 stays open for engineering/manufacturing gates and #4 for Python supply-chain/sandbox.
+
 ## v0.2.7 — 2026-10-10 — G3.7 authentic orb winding correction, independent CPU-only evidence
 
 - Used the previously successfully approved single-use real TripoSR 01-orb-alpha reconstruction (12.59s, 808,092-byte GLB, 20,178 vertices / 40,352 faces). G3.7 performed **NO NEW GPU inference**.

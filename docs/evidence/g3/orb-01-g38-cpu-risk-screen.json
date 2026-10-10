@@ -1,0 +1,120 @@
+{
+  "schema": "local3d.g3.8.real-orb-cpu-risk-diagnostic.v1",
+  "fixtureId": "01-orb-alpha",
+  "inputRights": "PROJECT_ORIGINAL_PROCEDURAL",
+  "sourceImageSha256": "9cb2f41de1b0239570068b055dc06bf941491559e11942b5bbc5757adb3d886a",
+  "realOriginalOutputSha256": "f37a812bc4414ddee34bcb19d2e7535f25d219a3731c14f2dcc89c2c7ba030e2",
+  "previousOrientationOnlyDerivativeSha256": "ab2e5aeb55598624209eeca3e700abef93a69a52886c63ecad6a840e62d8d68f",
+  "originalGroundTruthSha256": "c8834b2668210e58a73ff8b2ab3bcf2d0bc5d2df9a09b3dd0313b425b3664749",
+  "modelEvidenceLane": "PREVIOUSLY_APPROVED_REAL_TRIPOSR_INFERENCE",
+  "newNeuralInferenceThisMilestone": false,
+  "geometricSurfaceSameAfterWindingCorrection": true,
+  "contacts": {
+    "original": {
+      "status": "NO_NONADJACENT_CONTACTS_DETECTED_WITHIN_NUMERICAL_TOLERANCE",
+      "screenCompleted": true,
+      "faces": 40352,
+      "broadphasePairs": 641074,
+      "aabbPairs": 294413,
+      "vertexAdjacentPairsExcluded": 251388,
+      "conservativeSatPairChecks": 43025,
+      "potentialContactsLowerBound": 0,
+      "geometricToleranceInOriginalArbitraryUnits": 1.582e-9,
+      "noIntersectionCertification": true,
+      "boundedCaps": {
+        "contactStopLimit": 32,
+        "maxBroadphasePairs": 1500000,
+        "maxNarrowPairs": 500000,
+        "maxSeconds": 35,
+        "maxTriangles": 75000
+      }
+    },
+    "corrected": {
+      "status": "NO_NONADJACENT_CONTACTS_DETECTED_WITHIN_NUMERICAL_TOLERANCE",
+      "screenCompleted": true,
+      "faces": 40352,
+      "broadphasePairs": 641074,
+      "aabbPairs": 294413,
+      "vertexAdjacentPairsExcluded": 251388,
+      "conservativeSatPairChecks": 43025,
+      "potentialContactsLowerBound": 0,
+      "geometricToleranceInOriginalArbitraryUnits": 1.582e-9,
+      "noIntersectionCertification": true,
+      "boundedCaps": {
+        "contactStopLimit": 32,
+        "maxBroadphasePairs": 1500000,
+        "maxNarrowPairs": 500000,
+        "maxSeconds": 35,
+        "maxTriangles": 75000
+      }
+    },
+    "originalProceduralGroundTruth": {
+      "status": "NO_NONADJACENT_CONTACTS_DETECTED_WITHIN_NUMERICAL_TOLERANCE",
+      "screenCompleted": true,
+      "faces": 1280,
+      "broadphasePairs": 7650,
+      "aabbPairs": 7650,
+      "vertexAdjacentPairsExcluded": 7650,
+      "conservativeSatPairChecks": 0,
+      "potentialContactsLowerBound": 0,
+      "geometricToleranceInOriginalArbitraryUnits": 2.979e-9,
+      "noIntersectionCertification": true,
+      "boundedCaps": {
+        "contactStopLimit": 32,
+        "maxBroadphasePairs": 1500000,
+        "maxNarrowPairs": 500000,
+        "maxSeconds": 35,
+        "maxTriangles": 75000
+      }
+    },
+    "interpretation": "CONSERVATIVE_NONADJACENT_TRIANGLE_SAT_CONTACT_SCREEN_NOT_GEOMETRIC_CERTIFICATION",
+    "criticalBlindSpot": "TRIANGLES_SHARING_ANY_VERTEX_INDEX_ARE_EXCLUDED_EVEN_IF_THEY_SELF_FOLD",
+    "collisionPredicate": "FLOATING_POINT_SEPARATING_AXIS_AND_AABB_WITH_TOLERANCE",
+    "zeroContactsDoesNotProveSelfIntersectionFree": true
+  },
+  "radial": {
+    "proceduralGroundTruth": {
+      "absoluteRadialResidualMeanRelativeToRadius": 0.00062476,
+      "absoluteRadialResidualP95RelativeToRadius": 0.00157925,
+      "radialResidualRmsRelativeToRadius": 0.00079004,
+      "radialSpreadP95MinusP5RelativeToRadius": 0.00270997,
+      "sampleCount": 4096,
+      "seed": 20261010,
+      "fit": "LINEAR_LEAST_SQUARES_SPHERE_TO_SAMPLED_SURFACE",
+      "coordinates": "EACH_MESH_AABB_CENTERED_DIAGONAL_NORMALIZED_INDEPENDENTLY",
+      "sampleDistribution": "AREA_WEIGHTED_TRIANGLES_DETERMINISTIC"
+    },
+    "previouslyGeneratedTripoSRModel": {
+      "absoluteRadialResidualMeanRelativeToRadius": 0.04973669,
+      "absoluteRadialResidualP95RelativeToRadius": 0.11574727,
+      "radialResidualRmsRelativeToRadius": 0.05983397,
+      "radialSpreadP95MinusP5RelativeToRadius": 0.18831454,
+      "sampleCount": 4096,
+      "seed": 20261010,
+      "fit": "LINEAR_LEAST_SQUARES_SPHERE_TO_SAMPLED_SURFACE",
+      "coordinates": "EACH_MESH_AABB_CENTERED_DIAGONAL_NORMALIZED_INDEPENDENTLY",
+      "sampleDistribution": "AREA_WEIGHTED_TRIANGLES_DETERMINISTIC"
+    },
+    "modelToGroundTruthMeanRadialResidualRatio": 79.60927396,
+    "lowerRadialErrorMeansCloserToBestFitSphereNotImageAccuracy": true,
+    "derivativeExactlySameSurfaceSoNotScoredAsNewImprovement": true,
+    "methodCaveats": [
+      "Lower normalized radial residual is closer to SOME best-fit sphere, not necessarily more faithful to original input image",
+      "This metric combines global nonroundness, triangle faceting and local ripple; it cannot isolate a roughness frequency",
+      "Separate normalization conceals physical scale; procedural source is not a TripoSR output",
+      "One original-synthetic fixture does not establish quality on photographs"
+    ]
+  },
+  "status": "DIAGNOSTIC_ONLY_NO_MANUFACTURING_CLEARANCE",
+  "realWorldUnits": "UNKNOWN_UNCALIBRATED",
+  "wallThickness": "NOT_TESTED",
+  "adjacentFaceFoldover": "NOT_TESTED",
+  "manufacturingSelfIntersectionCertification": "NOT_AVAILABLE",
+  "supports": "NOT_TESTED",
+  "materialStrength": "NOT_TESTED",
+  "noPrinterAction": true,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE",
+  "noPrivateJobIdsPathsPromptsOrOriginalGlbsInOutput": true
+}

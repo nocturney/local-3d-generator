@@ -15,6 +15,12 @@ To reproducibly validate original sources on Windows:
 
 The generator refuses to overwrite any existing changed fixture. A repeat run was verified byte-for-byte, identical manifest SHA256 763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a. This is a stable source set, not model outputs.
 
+## G3.8 existing real orb — independent CPU-only risk checks
+
+The already-authorized TripoSR 01-orb-alpha model and its previous orientation-only derivative were compared against the SHA-pinned project-original sphere with a finite, conservative triangle contact screen and deterministic 4,096-point normalized best-fit sphere radial diagnostic. In the **two 40,352-face** inferred/corrected meshes, **43,025 eligible non-vertex-adjacent triangle pairs** were screened with 0 possible contact findings; vertex-adjacent pairs were excluded, so this is explicitly **NOT proof of self-intersection-free or printable geometry**.
+
+The mean relative sphere radial residual was **0.00062476 source GT vs 0.04973669 TripoSR**. This is not 80x overall image→3D error or real-world millimeter finish. Seven other G3 originals remain without real model outputs; private observed-output count 2/9, historical public fixed scorecard 1/9. See [G3.8 method](../../docs/G3_8_ORB_CPU_RISK_2026-10-10.md) and [sanitized CPU report](../../docs/evidence/g3/orb-01-g38-cpu-risk-screen.json). Zero new GPU jobs, no print release.
+
 ## CPU three-dimensional reference diagnostics (G3.3)
 
 For the eight original procedural source meshes, engines/quality/shape_metrics.py compares deterministic surface samples using bidirectional normalized Chamfer distance and precision/recall/F1 near points within 2%/5% of independently normalized object diagonals; candidate yaw is selected from eight choices after the fact. Eight source-model identity controls score zero Chamfer; four wrong-source references differ substantially. **These are diagnostic calibration cases, not AI inference results, and physically wrong scales can be hidden by normalization.**

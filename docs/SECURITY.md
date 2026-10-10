@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.8: conservative mesh-risk checks are NOT secure manufacturing certification
+
+Only CPU-only parsing of **already completed, SHA-verified G3 original orb + derivative + original procedural source GT** took place. The nonadjacent-triangle candidate screen uses capped SciPy cKDTree neighborhoods, AABBs and numerical SAT. Its core BLIND SPOT deliberately excludes any pair of triangles sharing a vertex index: sharp self-foldover adjacent faces may escape, as may numerically ill-conditioned contacts. A candidate positive can also represent touching rather than actual penetration. The code therefore sets selfIntersectionFreeCertified=false even if the full **eligible-pair** screen finishes with 0 flagged pairs. Hard resource limits cause INDETERMINATE, never proof of no geometric collision or printer readiness.
+
+The sphere radial diagnostic is an independent normalized shape/roundness research metric using a known project-original test fixture and never evaluates actual structural strength, physical unit dimensions or print material conditions. G3.8 evidence includes only sanitized, SHA-linked counts, ratio and scope-limited model hashes; original customer source/model and local operator/job UUID remain private and gitignored. CPU replay and fake-geometry negative tests use no GPU, no cloud and no printer.
+
+Original Python supply-chain advisory triage, OS network egress sandbox and future untrusted/multiuser hosting security are unchanged and still open. PrintApproved/printQualified always remain false.
+
 ## G3.7: orientation derivative evidence is NOT a manufacturing/security pass
 
 The only new G3.7 transformation was a COPY-ONLY, CPU Trimesh winding reversal on a previously generated real 01-orb-alpha TripoSR output. The source remained locally unchanged and SHA-pinned; the derivative is gitignored and strictly separate. An independently implemented audit demands exact vertex coordinates, exact reversed face indices, original vertex colors, opposite normals and volume-sign correction, and marks printQualified=false. All new CPU audit, synthetic negative tests and Chrome SwiftShader preview require no CUDA or internet.

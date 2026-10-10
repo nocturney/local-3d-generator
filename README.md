@@ -39,6 +39,14 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
 - Current v0.2.7 full regression: **68/68 Node**, **33/33 pinned Python** (7 G2, 26 G3 including 8 new CPU-only winding tests), **8/8 G1 Chrome** and **8/8 G2/G3 mock Chrome** phases. The earlier G3.6 Pillow shadow experiment independently covered the THEN-existing 23 Python tests, and is not automatically re-certified for new tests. The historical real CUDA chair and one newly authorized orb inference are separate manual observations. **Normal npm tests never run a neural model or allocate CUDA.**
 
+## G3.8 — real orb CPU-only contact risk and radial irregularity (v0.2.8)
+
+G3.8 screens the genuinely completed `01-orb-alpha` TripoSR GLB and the previous copy-only orientation derivative for possible **non-vertex-adjacent triangle surface contacts**, using strictly bounded local CPU computation. Both 40,352-triangle versions completed an examination of **43,025 eligible triangle pairs**, with **0 potential contacts flagged**. Crucial caveat: adjacent triangles (251,388 AABB candidate pairs in each) are excluded, and the floating-point screen cannot prove absence of all intersections; printing is **still blocked**.
+
+A second CPU-only diagnostic takes 4,096 area-weighted points from the procedural source sphere and from the previously generated TripoSR orb, fits each its own normalized best-fit sphere, then reports relative mean radial deviations of **0.0625% source vs 4.974% AI output**. This illustrates shape nonroundness, not any percentage of 3D-image accuracy, physical millimeter deviation, measured surface finish or an automatic smoothing pass. The previous winding correction makes no shape improvement.
+
+[**G3.8 engineering method and limits**](docs/G3_8_ORB_CPU_RISK_2026-10-10.md) · [G3.8 sanitized CPU proof](docs/evidence/g3/orb-01-g38-cpu-risk-screen.json). Private results are read-only reproducible from the completed local job; no GPU, new image, printer or cloud is involved. The private original/model-output ledger stays **2/9** (historic chair + real orb) with seven pending. New model GPU authorizations are still individual.
+
 ## G3.7 — true orb model, copy-only winding and local visual verification (v0.2.7)
 
 A genuinely generated TripoSR result now exists for the first project-original G3 fixture, **01-orb-alpha**. Its one-time authorized inference took 12.59s and produced a SHA-verified 808,092-byte GLB, 20,178 vertices and 40,352 triangles. Independent CPU QA found a **watertight but inward-facing** mesh, with negative signed volume.
