@@ -1,0 +1,35 @@
+{
+  "schema": "local3d.g3-6.npm-audit-summary.v1",
+  "applicationVersion": "0.2.6",
+  "observedAt": "2026-10-10T10:47:56.144Z",
+  "packageLockSha256": "f5012e1aa4df0c9c8c569982ad2a5d11371000821126cb708383003f5ab412ae",
+  "results": [
+    {
+      "scope": "production-only",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    },
+    {
+      "scope": "production-and-dev",
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    }
+  ],
+  "modelInferenceExecuted": false,
+  "dependenciesInstalled": false,
+  "noSecurityGuarantee": true,
+  "source": "npm audit --json [prod and all], pinned v0.2.6 npm lockfile",
+  "note": "Historical v0.2.5 audit remains unchanged. New Node audit has no bearing on the separate unresolved PyTorch, Transformers or Pillow production advisories."
+}

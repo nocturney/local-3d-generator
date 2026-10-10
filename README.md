@@ -37,7 +37,7 @@ Text-to-3D remains unavailable: text input in G1 is demonstration only, and note
 - G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
 - Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
 - End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
-- Current v0.2.5 regression: **64 Node** API/geometry/security tests on Windows, **23 Python** tests (5 G2 + 18 G3), 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
+- Current v0.2.6 regression: **67 Node** API/geometry/security/evidence tests on Windows, **23 original Python** tests (5 G2 + 18 G3), the same 23 Python CPU tests under shadow Pillow 12.3.0, 8 G1 Chrome phases and 8 G2/G3 mock-provider Chrome phases. The separate previously observed G2 actual CUDA chair run is historical; G3.4 verified its existing GLB in a CPU-only local API/Python proof. Normal npm tests **never run a neural model or allocate CUDA**.
 
 ## G3.4 — one-click CPU benchmark review after manual inference (v0.2.4)
 
@@ -93,3 +93,9 @@ Manual G2 jobs now fail closed **before** acquiring a GPU lease or saving a new 
 **Security limitation:** A read-only public OSV.dev screening of 34 pinned PyPI package versions found 104 advisory matches across Pillow, Transformers and PyTorch. This is NOT proof of exploitability in this pinned offline inference path, but it prevents a responsible production-security clearance without detailed triage and isolated dependency remediation. The manual G2 UI now explicitly warns to use **trusted image sources only**. npm audit of the pinned Node dependency tree returned 0 matches as of this checkpoint. No model packages were changed.
 
 Read [G3.5 resource/supply-chain screening](docs/G3_5_RESOURCE_SECURITY_2026-10-10.md). Public evidence contains only sanitized counts, package names/versions and advisory IDs, never customer images or job IDs.
+
+## G3.6 — verified Pillow shadow experiment (v0.2.6)
+
+The original G2 model still uses **Pillow 10.1.0**. For security evaluation only, a separately staged Windows Python3.11 Pillow **12.3.0** candidate had a verified official PyPI wheel SHA-256 and zero version-level OSV advisory matches at the test time (previous Pillow 10.1.0 had 32). The shadow code passed **9/9 pinned source image CPU preprocess checks**, four synthetic edge tests, **23/23 existing Python unit tests** and an **import-only** pinned TripoSR/Transformers/Torch smoke. **No model checkpoint loading, CUDA inference, package replacement, Office interaction, or printing occurred.** This does not prove full model or commercial security compatibility, and does not address Transformer/Torch advisory matches.
+
+More: [G3.6 detailed offline-shadow proof](docs/G3_6_PILLOW_SHADOW_2026-10-10.md), [sanitized SHA-locked result](docs/evidence/g3/g3-6-shadow-pillow-cpu-proof.json) and [v0.2.6 Node audit proof](docs/evidence/g3/g3-6-npm-audit-summary.json). GitHub Issue #4 remains OPEN for vulnerability-path triage and a separately approved fully isolated upgrade; the candidate is NOT enabled in normal LOCAL3D.

@@ -281,7 +281,7 @@ async function loadProviders() {
     el('triposrState').textContent = real?.canStart ? 'ידני · זמין' : 'כבוי';
     el('realProviderHealth').textContent = real?.canStart ? 'G2 · באישור בלבד' : 'כבוי (G1)';
     el('sessionBadge').textContent = real?.canStart ? 'G2 · MANUAL ONLY' : 'G1 · DEMO MODE';
-    el('noticeVersion').textContent = real?.canStart ? 'v0.2.5 / G2' : 'v0.2.5 / G1';
+    el('noticeVersion').textContent = real?.canStart ? 'v0.2.6 / G2' : 'v0.2.6 / G1';
     el('footerBuild').textContent = real?.canStart ? 'LOCAL3D / G2 MANUAL BUILD' : 'LOCAL3D / G1 DEVELOPMENT BUILD';
     if (real?.canStart) {
       el('noticeText').textContent = 'G2 ניסיוני בלבד: עבודה עם תמונות ממקור מהימן; תלויות Python ממתינות לבדיקת חולשות ושדרוג. נדרש אישור GPU נפרד לכל משימה, ללא תור אוטונומי. תוצאות DRAFT, לא להדפסה.';

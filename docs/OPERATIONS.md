@@ -150,3 +150,13 @@ This contacts the public OSV.dev service, saves timestamped matches to gitignore
 To avoid CPU contention, only one G3 CPU topology or shape review may run in one LOCAL3D Node process at a time. Others receive 409 G3_CPU_BUSY. There is no unattended CPU review queue. No automatic deletion or retention enforcement has been introduced.
 
 Detailed controls: docs/G3_5_RESOURCE_SECURITY_2026-10-10.md.
+
+## G3.6 reproducible Pillow shadow evaluation — not a runtime upgrade
+
+The original Windows TripoSR venv is still pinned to Pillow 10.1.0. A separate, ignored location under runtime/qa/g3/pillow-shadow holds a Pillow 12.3.0 CPython3.11 amd64 wheel (PyPI SHA256 8e95e1385e4998ae9694eeaa4730ba5457ff61185b3a55e2e7bea0880aef452a) and a target overlay. Do NOT set system-wide PYTHONPATH or mutate the currently working model venv.
+
+To investigate the candidate in a **new** isolated experiment folder, download the exact public wheel with pip --no-deps --only-binary, verify the official SHA256, then pip install --no-index --no-deps --target into the separate local overlay. The included scripts describe the pinned experiment. For an already staged overlay, the CPU-only verifier and importer can be launched in process-local CUDA_VISIBLE_DEVICES=-1 / PYTHONPATH mode. scripts/g3-6-shadow-python-regression.ps1 executes 5 G2 plus 18 G3 Python unit tests with temporary environment restoration and refuses to overwrite a previous proof.
+
+scripts/g3-6-pillow-candidate-screen.mjs explicitly queries only public PyPI/OSV package metadata (Internet required, never normal runtime). scripts/g3-6-assemble-shadow-proof.mjs checks existing ignored report hashes and produces a sanitized release proof offline. The version/code evidence is in docs/G3_6_PILLOW_SHADOW_2026-10-10.md.
+
+Do NOT activate this shadow in G2 startup, do not replace frozen requirements/model packages, and do not run additional GPU compatibility tests without new scoped permission plus current Office/VRAM checks. No automatic inference or printing is part of this workflow.

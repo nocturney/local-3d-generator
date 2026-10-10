@@ -1,0 +1,69 @@
+{
+  "schema": "local3d.g3-6.shadow-pillow-release-evidence.v1",
+  "observedDate": "2026-10-10",
+  "lane": "PUBLIC_WHEEL_CHECKSUM_AND_ISOLATED_CPU_COMPATIBILITY_ONLY",
+  "currentProductionPillow": "10.1.0",
+  "candidateShadowPillow": "12.3.0",
+  "productionDependencyManifestSha256": "887970cf973af2a619bfa6d09ab5a28bf6cd9cc3f24867eefaf35e73f72c21a7",
+  "sourceCatalogSha256": "763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a",
+  "publicPyPiWheel": {
+    "name": "pillow-12.3.0-cp311-cp311-win_amd64.whl",
+    "sha256": "8e95e1385e4998ae9694eeaa4730ba5457ff61185b3a55e2e7bea0880aef452a",
+    "officialPyPiAndDownloadedMatch": true,
+    "interpreterCompatibility": ">=3.10"
+  },
+  "osvVersionAdvisoryMatches": [
+    {
+      "version": "10.1.0",
+      "osvAdvisoryMatches": 32
+    },
+    {
+      "version": "12.3.0",
+      "osvAdvisoryMatches": 0
+    }
+  ],
+  "benchmarkInputCases": 9,
+  "benchmarkCaseIds": [
+    "01-orb-alpha",
+    "02-orb-opaque",
+    "03-hollow-vase",
+    "04-torus-hole",
+    "05-disconnected-pair",
+    "06-thin-chair",
+    "07-gear-opaque",
+    "08-arch-opaque",
+    "09-upstream-chair"
+  ],
+  "sourceSha256VerifiedForEachInput": true,
+  "preprocessingRegressionChecks": {
+    "alphaComposite": "PASS",
+    "exifRotation": "PASS",
+    "webpAlpha": "PASS",
+    "rejectCorruptedImage": "PASS"
+  },
+  "tripoSRSourceImportOnly": {
+    "importedPinnedSource": true,
+    "importedTokenizer": true,
+    "importedSystem": true,
+    "pinnedTransformersVersion": "4.35.0",
+    "pinnedTorchVersion": "2.5.1+cu121",
+    "modelWeightsLoaded": false,
+    "modelInferenceExecuted": false,
+    "cudaVisible": false
+  },
+  "cpuTestCounts": {
+    "g2": 5,
+    "g3": 18,
+    "total": 23
+  },
+  "productionVersionBefore": "10.1.0",
+  "productionVersionAfter": "10.1.0",
+  "productionVenvModified": false,
+  "customerSourceMediaUsed": false,
+  "modelInferenceExecuted": false,
+  "printerCommandsSent": false,
+  "outputPrintQualified": false,
+  "securityQualification": "NOT_GRANTED",
+  "nextGate": "Codepath triage and fully isolated model compatibility tests before an explicitly authorized GPU inference acceptance and/or production package change.",
+  "note": "OSV zero-match on a candidate version is not proof of safe parsing, no vulnerabilities, or model compatibility with real CUDA inference."
+}

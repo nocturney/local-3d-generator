@@ -70,3 +70,13 @@ STL/3MF export pipeline only with independent geometry report, repair recommenda
 - STILL OPEN: 8 real TripoSR model runs on G3 synthetic fixtures (each needs new per-run approval); second-model comparison, real-world dimensions, topology/printability, system egress sandbox, OS-backed quotas and production retention. G3 issue stays OPEN. No Office, printer or model changes.
 
 Evidence: docs/G3_5_RESOURCE_SECURITY_2026-10-10.md and docs/evidence/g3/g3-5-*.
+
+## G3.6 — Pillow shadow candidate, CPU-only sub-gate PASS
+
+- PASS: public official Pillow 12.3.0 Windows CPython3.11 wheel and SHA256 verified; OSV public version-query matches 0 versus 32 for working Pillow 10.1.0 at this test date. Zero OSV matches are not exploit-proof.
+- PASS: 9/9 pinned licensed benchmark input preprocessing checks via actual TripoSR worker CPU helper, four alpha/EXIF/WebP/corrupt-file controls, 23/23 original Python G2/G3 CPU unit tests and import-only TripoSR tokenizer/system compatibility; CUDA not used.
+- PASS: working production venv remains Pillow 10.1.0, frozen manifest/source/weights unchanged, shadow overlay stays gitignored. No new image→3D generation or OS configuration changes.
+- BLOCKED: Transformers 4.35.0 and Torch 2.5.1 version-level OSV matches, true reachable vulnerability assessment, entire patched model dependency compatibility, OS sandbox, public untrusted input security and actual CUDA reconstruction qualification.
+- G3 source benchmark still 1 historically real chair / 8 new source images without AI runs, no manufactured geometry release. New GPU attempts require separate authorization.
+
+Proof: docs/G3_6_PILLOW_SHADOW_2026-10-10.md and docs/evidence/g3/g3-6-shadow-pillow-cpu-proof.json. Issue #4 remains OPEN.

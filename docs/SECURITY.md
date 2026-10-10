@@ -89,3 +89,11 @@ A new process-local permit serializes G3 topology vs source-shape reviews across
 For now the G2 manual session is for trusted local images only; arbitrary untrusted images must not be treated as vetted. Upgrade candidates must be tested in a NEW isolated environment with pinned clean-room provenance and functionality regressions, not installed silently in the working engine. No OS network sandbox, antivirus exception, firewall change, new model weights, GPU run or printer release was performed during this phase.
 
 Detailed proof and remediation gate: G3_5_RESOURCE_SECURITY_2026-10-10.md.
+
+## G3.6 CPU-only Pillow patched-shadow investigation
+
+A candidate Pillow 12.3.0 (OSV version-level matches 0 on 2026-10-10) was installed only in a **gitignored target overlay**, without changing the live Python venv's Pillow 10.1.0. The official CPython3.11 Windows wheel SHA256 was checked byte-for-byte. With process-local PYTHONPATH and CUDA_VISIBLE_DEVICES=-1, all nine pinned input source images passed the real worker preprocessing function; four RGBA/EXIF/WebP/corruption checks and 23 Python unit tests passed. Importing the pinned TripoSR/Transformers/Torch symbols also succeeded, without loading a model/checkpoint or allocating CUDA.
+
+This is **not** an OS-isolated sandbox, proof that all vulnerabilities are gone, nor proof that the real CUDA model generates valid outputs with Pillow 12.3.0. Public OSV findings for pinned Transformers and Torch remain unresolved. The existing manual G2 engine is STILL on the older version; only trusted local source images should be used until actual advisory codepath triage, security hardening and explicit compatibility qualification are complete. No firewall/antivirus/UAC or OS permissions were changed in this milestone.
+
+See G3_6_PILLOW_SHADOW_2026-10-10.md and GitHub Issue #4.

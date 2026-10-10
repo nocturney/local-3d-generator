@@ -49,9 +49,11 @@ test('G3.5 PyPI advisory evidence matches exact frozen public dependency invento
 
 test('G3.5 npm advisory proof ties both scopes to the pinned lockfile; no silent install',async()=>{
   const report=await json('g3-5-npm-audit-summary.json');
-  const lock=await fs.readFile(path.join(root,'package-lock.json'));
+  // Immutable historical v0.2.5 evidence must NOT be rewritten when the
+  // current app version advances. G3.6 has a separate audit proof for v0.2.6.
+  const historicalLockSha='c270d641ecb43b65fc590abf66deb136f42898ed16be820d415af7522e8978da';
   assert.equal(report.schema,'local3d.g3-5.npm-audit-summary.v1');
-  assert.equal(report.npmPackageLockSha256,sha(lock));
+  assert.equal(report.npmPackageLockSha256,historicalLockSha);
   assert.equal(report.results.length,2);
   assert.equal(report.results[0].name,'npm-audit-prod');
   assert.equal(report.results[1].name,'npm-audit-all');

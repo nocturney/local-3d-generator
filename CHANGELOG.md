@@ -1,5 +1,13 @@
 # Release notes
 
+## v0.2.6 — 2026-10-10 — G3.6 isolated Pillow shadow compatibility research
+
+- Downloaded and cryptographically verified the **official PyPI Pillow 12.3.0 Windows CPython3.11 wheel** in private gitignored runtime only, SHA256 8e95e1385e4998ae9694eeaa4730ba5457ff61185b3a55e2e7bea0880aef452a. Public OSV version matches: **0 candidate vs 32 for Pillow 10.1.0**, not codepath safety certification.
+- Verified **9/9 license/SHA-locked source images**, 4 synthetic alpha/EXIF/WebP/corrupt-image input tests, 23/23 G2/G3 Python unit tests and an import-only TripoSR tokenizer/system check with pinned Transformers/Torch under shadow Pillow. No weights loaded, no CUDA inference.
+- **No upgrade to the live G2 Python runtime or frozen model requirements**. Production Pillow stayed 10.1.0 before and after. Candidate is not activated by the app or startup.
+- Added reproducible CPU-only shadow research scripts, public-only optional OSV/PyPI metadata screen, sanitized provenance-locked result, safety documentation and automated artifact assertions. Full regression: 67/67 Node, 23/23 pinned Python and 23/23 shadow-Pillow Python, 8 G1 and 8 G2/G3 mock Chrome phases. A separate v0.2.6 npm audit summary reports 0 Node advisory matches with its own lockfile SHA, preserving the historical G3.5 result. No new user-source images, model predictions, print commands, Office or system configuration changes.
+- Open security issue #4 still requires actionable advisory codepath triage, Transformers/Torch compatibility, an isolated complete patched environment and fresh approval for any real CUDA compatibility trial. G3 quality benchmark remains 1 historical model result / 8 unrun images.
+
 ## v0.2.5 — 2026-10-10 — G3.5 manual storage safety and Python dependency-advisory screen
 
 - Added fail-closed pre-GPU storage admission for each manually consented real TripoSR job: 8GiB maximum accounted G2 job storage, at least 3GiB remaining free after a prospective 128MiB reservation, 400-folder cap and unsafe/corrupt manifest rejection. No automatic deletion, quota reservation or behavior change for default G1 DEMO.

@@ -26,3 +26,11 @@ No model here is approved for printing or for manufacturing without further dime
 - g3-5-npm-audit-summary.json: sanitized npm audit metadata for both production-only and all pinned Node dependencies; each returned 0 matches for the current v0.2.5 package-lock SHA. Raw npm responses stay gitignored.
 
 Implementation and limitations: ../../G3_5_RESOURCE_SECURITY_2026-10-10.md.
+
+### G3.6 Pillow shadow CPU compatibility (no AI inference)
+
+- g3-6-shadow-pillow-cpu-proof.json: sanitized, SHA-verified record of one **private ignored target-overlay** experiment with official Pillow 12.3.0 CPython3.11 wheel, public old-vs-candidate OSV version matches, all nine pinned source-image CPU preprocessing checks, four synthetic edge checks, 23 G2/G3 Python CPU tests, import-only upstream TripoSR + Transformers/Torch and an unchanged production venv.
+- g3-6-npm-audit-summary.json: read-only npm audit of current v0.2.6 production and development Node dependency versions, linked to the **new** package-lock SHA, 0 matches at this timestamp. Historical G3.5 npm audit is preserved unmodified.
+- **Important:** All original G2 GPU source/weights/package pins remain unchanged; only CPU-level compatibility was established. No CUDA inference, new 3D predictions, remote customer images or printer actions. Zero candidate OSV version matches does NOT grant security qualification. Remaining Python dependency advisories need triage before any untrusted-media rollout.
+
+Detailed method: ../../G3_6_PILLOW_SHADOW_2026-10-10.md.
