@@ -1,5 +1,17 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.15: exact binary-float contact of every indexed shared-edge face-pair (no GPU)
+
+The standalone CPU module engines/quality/exact_indexed_edge_contact.py evaluates all 60,528 previously generated REAL TripoSR orb indexed shared-edge adjacency pairs, exactly distinguishing noncoplanar expected edge-only geometry, coplanar opposite-side expected edge-only geometry and coplanar same-side positive area overlap in already decoded GLB floating coordinates. No candidate same-side coplanar area overlap on this prior orb/copy/GT/chair. This is not a full self-intersection-free or physical/mm wall thickness/printing test.
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g315_exact_indexed_edge_contact.py
+
+Read-only four previously existing source SHA replay; the previously completed actual private job UUID must remain solely a local argument, never in the repository:
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-15-edge-replay.py --job-id <EXISTING_PREVIOUS_REAL_JOB_UUID>
+
+Private gitignored reports and sanitized public aggregate source-SHA data were already created; historical --prepare-private --write-public is a one-time immutable operation only. [Method](G3_15_EXACT_INDEXED_EDGE_CONTACT_CPU_2026-10-10.md), [proof](evidence/g3/orb-01-g315-exact-indexed-edge.json). No GPU inference permission has been given; 4178, Office, model weights and printers unchanged.
+
 ## G3.14: all conservative NUMERICAL AABB-overlapping face-pair census (CPU only)
 
 New engines/quality/aabb_pair_census.py enumerates all numerical AABB-overlap candidate face pairs with an independent bounding-BOX-sphere cKDTree; the source G3.8 uses a different, triangle-centroid-sphere prefilter. G3.14 includes indexed shared-edge/one-vertex adjacency in its pair COUNT, but only performs numerical SAT on no-index pairs, escalating any SAT-positive to bounded exact G3.13 pair predicates. It is NOT a global exact mesh intersection test, mm-size measurement or printer clearance.

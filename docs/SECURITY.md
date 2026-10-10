@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.15: exact-binary-float shared-edge result is NOT production or print clearance
+
+G3.15 classifies every indexed full shared-edge pair in the prior licensed GLB under exact rational arithmetic on previously decoded IEEE-754 coordinates; its zero positive-area same-side coplanar overlap result is narrow, geometric, and not physical CAD precision or proof that the whole mesh has no collisions. Indexed vertex-only additional intersections, no-index near-coplanar contact, quantization-sensitive features, multiple scene objects, real mm-scale, local wall thickness, supports, material strength and slicer/printer QA remain outside this exact shared-edge sub-gate.
+
+The local offline module enforces max 100k vertices, 75k faces, 120k adjacent pairs and 60s CPU; time/resource issues fail INDETERMINATE. Provenance crosschecks the already verified original generated output, exact-surface winding derivative, original procedural GT and historical chair. Immutable public evidence exposes no local private UUID, raw face indices, photo or user path. It runs no model/GPU, installs no packages, does not call Office/Fabrication Router or printer, and changes no OS security policy. User-untrusted native parser sandbox, egress and pinned Python advisories remain OPEN under Issue #4, manufacturing under Issue #3. printQualified=false for every output.
+
 ## G3.14: full conservative AABB candidate coverage is NOT global contact-free proof
 
 G3.14's independent bounded box-sphere CPU broadphase enumerates all AABB-overlapping face-pair CANDIDATES with a finite declared numerical tolerance relative to arbitrary GLB coordinates. This is a useful new count/provenance gate, NOT an exact test that surfaces do not penetrate. It counts indexed edge/vertex adjacency but does NOT classify their extra intersections globally. Non-indexed overlapping AABBs receive floating-point SAT risk screening only, exact G3.13 pair checks are limited to SAT-positive pairs; a numerical SAT negative can miss near-degenerate tiny features. True CAD mm-scale, minimum wall thickness and physical printer qualification remain BLOCKED.

@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.15 — exact shared-index-edge adjacency classification (CPU, DECODED GLB COORDINATES ONLY)
+
+- PASS: rational signed tetrahedral orientation and coplanar side-of-shared-edge classifies every indexed full-edge face pair, distinguishing expected edge-only contact from true coplanar same-side positive interior area overlap under exact IEEE-754-decoded GLB numeric geometry. Tests include positive synthetic coplanar same-side overlap, valid cube/flat seam, reversed winding and fail-closed unsafe/degenerate input.
+- PASS: actual prior real orb 60,528 edges, copy 60,528, project GT 1,920 and licensed chair 29,958 all classified, zero same-side coplanar positive-area overlap candidates. Four source SHA hashes, private job provenance, previous G3.14 AABB edge counts and immutable sanitized evidence verified. Zero new AI inference.
+- BLOCKED: indexed one-vertex-only extra contact remains numerical (G3.10), no-index pairs SAT floating (G3.14), original GLB float32/CAD tolerance, physical wall thickness, real-world scale and printer QA. This is NOT a full exact self-intersection clearance, all output DRAFT and printQualified=false. GitHub Issues #3/#4 remain OPEN.
+- [G3.15 details](G3_15_EXACT_INDEXED_EDGE_CONTACT_CPU_2026-10-10.md), [G3.15 aggregate SHA evidence](evidence/g3/orb-01-g315-exact-indexed-edge.json).
+
 ## G3.14 — independently exhaustive AABB numerical candidate and indexed adjacency census (CPU ONLY)
 
 - PASS: conservative bounding-box-sphere cKDTree broadphase independently accounts for every numerical AABB-overlapping face-pair candidate; explicit indexed partition into exactly-one-vertex, full-edge and no shared indexed vertices. The no-index category is fully screened by conservative numerical SAT; SAT-positive pairs would be routed to bounded G3.13 exact refinement. 12 synthetic/trusted Python controls including brute-force AABB comparisons and 3 Node public source/privacy checks pass.

@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.15 — 2026-10-10 — G3.15 exact binary-float every shared-index-edge pair classification
+
+- New bounded CPU exact rational geometry for ALL indexed full-edge-adjacent triangles: detects noncoplanar expected edge-only contact, coplanar opposite-side expected edge-only contact and coplanar same-side positive interior area overlap, with degenerate/time/resource cases fail-closed. Operates only on already decoded IEEE-754 GLB coordinates; no physical mm calibration or 3D printer clearance.
+- Verified 60,528 actual licensed TripoSR orb shared-edge pairs and identical G3.7 winding-only copy, plus all 1,920 original GT sphere and 29,958 historical chair shared-edge pairs. Every set completes with 0 exact coplanar positive-area same-side shared-edge overlap candidates; this does NOT establish global robust self-intersection absence. Distinct-index adjacency and no-index faces require other gates.
+- Added 14 adversarial Python tests (synthetic positive overlap, valid planar and sharp cube corners, winding invariance, tiny exact plane separation, malformed/time fail-closed) and 3 Node SHA/privacy/source-count assertions. Immutable private reports and sanitized SHA-linked public proof created from prior completed model. No inference, GPU, cloud, model or printer changes. Issues #3 and #4 remain OPEN.
+
 ## v0.2.14 — 2026-10-10 — G3.14 complete conservative numerical AABB candidate census
 
 - Independently enumerates every conservative decoded-coordinate AABB-overlapping unordered pair via bounding-BOX spheres (not prior G3.8 centroid/triangle spheres), including 0/1/2 indexed shared vertex pairs. Enforces exact partition counts and checks all no-index AABB pairs with previous numerical SAT; bounded G3.13 exact refinement only on SAT positives. Conservative numerical AABB coverage is not a robust global exact 3D self-intersection certificate.
