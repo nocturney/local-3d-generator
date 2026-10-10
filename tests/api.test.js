@@ -36,7 +36,7 @@ test('health stays local, only fixture provider can run', async () => {
   assert.equal(health.status, 200); assert.equal(health.value.inference, false);
   const providers = await req('/v1/providers');
   assert.equal(providers.value.providers.filter(x => x.canStart).length, 1);
-  assert.equal(providers.value.providers.find(x => x.id === 'triposr-local').status, 'CANDIDATE_G2');
+  assert.equal(providers.value.providers.find(x => x.id === 'triposr-local').status, 'STAGED_DISABLED');
 });
 test('valid image -> queued/running -> GLB + non-printable QA report', async () => {
   const created = await req('/v1/jobs', 'POST', {

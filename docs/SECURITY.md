@@ -1,28 +1,49 @@
-# Threat Model - G0/G1
+# LOCAL3D security/threat model — G1 and manual-only G2
+
+LOCAL3D is a **trusted single-OS-user, loopback development application**, NOT a remotely secure multi-tenant inference service. Controls here are implementation defenses and are not a penetration-test certification.
 
 ## Trust boundaries
-Browser on the same physical host -> loopback HTTP server -> local job folder -> deterministic GLB fixture. There is no network model provider, cloud backend, printer, G-code, workspace registry write, arbitrary client URL download or API key entry.
 
-## Protected assets
-Uploaded source photos, user text, generated demo GLB, audit log, local job IDs, host CPU/memory and filesystem integrity.
+G1: local browser → 127.0.0.1 Node API → UUID job folder → deterministic fixture GLB. No AI process.
 
-## Threats and defenses
-1. SSRF: no fetch/proxy endpoint and remote URLs, webhooks, commands and remotePath inputs are rejected. Output files are selected by known artifact IDs, not URLs.
-2. Traversal and cross-job read: UUID-only route, server-side job lookup, fixed asset-to-filename map. No user-supplied filesystem path reaches fs.readFile.
-3. DNS rebinding / exposure: bind 127.0.0.1 only; Host must be 127.0.0.1, localhost or [::1] with optional port. Cross-origin writes reject mismatched Origin. No CORS headers.
-4. Upload attacks: JSON size <=12 MiB; image <=8 MiB; strict allowed MIME and file signature; input filename never used as stored filename.
-5. Browser injection: prompt/name displayed via textContent, no HTML interpolation. CSP disables external resources and workers; frame embedding denied. Three.js modules served locally.
-6. Orphaned jobs: G1 has no subprocesses. Cancellation clears timer. Startup converts queued/running job records into interrupted state; no invented output.
-7. Cost, privacy, fabrication: no credentials, telemetry, cloud calls, payment or hardware operations. QA report is DRAFT, printQualified=false.
+G2: explicitly started Windows manual local session → browser per-job GPU consent + POST confirmGpu=true → Node API → single GPU permit → Office/GPU live checks → separate hidden Python venv worker → pinned local source+model → image-derived Y-up GLB → artifact SHA/provenance check → Three.js preview. No inference service on LAN/cloud; no printer, firmware or G-code service.
 
-## Known G1 limits
-- Designed for trusted single-user loopback use; NO authentication/authorization for multiple local OS users. Do not expose the port via reverse proxy or LAN binding.
-- Magic-byte checking does not validate full image structure or guarantee decompression safety. Real model adapters require independent sandboxing/limits for uploaded assets.
-- Queue limit 30 and 1000-record cap are basic DoS guards, not full quotas/GC.
-- Job directory security inherits local OS file permissions. Guard against malicious local processes and symlink swaps before multi-user release.
-- No signed binary installers or auto-update channel. npm dependency is pinned and installed with scripts disabled.
-- Browser GLB preview is a visual inspection aid, not manifold, dimension, watertightness, structural or wall-thickness proof.
-- Server has not been independently penetration-tested. Threat controls are implementation safeguards, not formal certification.
+## Baseline defenses
 
-## Future G2 hardening
-Isolate runtime per provider, enforce real timeout/CPU/VRAM quotas, structured logs with retention, security dependency review, model-weight provenance and checksum, local access control if sharing, cancellation of worker processes, engine crash recovery and repeatable adversarial tests.
+1. SSRF and command injection: no client-specified URLs, webhooks, remote paths, shell commands or generic proxy/download routes. Output access uses allowlisted artifact ID, never a client filesystem path.
+2. Traversal and cross-job access: UUID-only records, internal filenames input.png/jpg/webp, output.glb and qa-report.json. No client filename is used for a disk path.
+3. Local exposure / DNS rebinding: server binds 127.0.0.1 only; Host allowlisted for local names/IP; mutating browser requests reject mismatched Origin; no CORS headers. Never reverse proxy or bind to LAN without a separate authentication design.
+4. Uploaded bytes: JSON <=12 MiB, image <=8 MiB, signature/MIME checked, filename sanitized. G2 Python performs real Pillow image decode, EXIF orientation, >=64px width/height and <=16MP before CUDA. No server-side remote image fetching.
+5. UI injection: all prompt/filename strings use DOM textContent; Three.js is installed/served locally. CSP default-src none, scripts self+importmap hash, connect-src self, workers disabled, frames forbidden.
+6. Source/license integrity: locked clean Git TripoSR commit; checkpoint/model config/DINO config SHA-verified locally before G2 worker loads weights. Isolated Python 3.11/Torch CUDA 12.1; torch.load(weights_only=True). Model source and weights are never committed to GitHub.
+7. Confidentiality: job source images/prompts and internal manifests persist locally and must receive restrictive host OS permissions. No telemetry paid service or cloud model fallback is configured.
+
+## Manual-only GPU controls
+
+- G2 is disabled by default in npm start; no AI subprocess runs. Operator must deliberately start scripts/start-g2-manual.ps1 in a dedicated process/port/data folder; supports Windows only.
+- UI requires a fresh consent checkbox on **each** selected TripoSR image job. API requires confirmGpu=true. This is UX/contract confirmation, NOT strong authentication against other local processes with host access.
+- Single GPU permit is reserved synchronously before any awaited filesystem writes; second concurrent POST returns 409 and is not queued. This was regression-tested with concurrent requests.
+- Before GPU launch, 3 live snapshots must show one recognized GPU, >=10GB available, <=65% utilization and Office Accelerator Ollama /api/ps with no loaded models; missing service fails closed.
+- Runtime GPU monitor checks every ~1.5s for <2.5GB free, >8.5GB new VRAM use, Office model conflict, telemetry loss, or 240s timeout. It terminates the entire Windows child process tree. AbortController cancellation enters "cancelling" until worker exit; no premature "cancelled" state or false asset release.
+- On process failure/cancel/restart, incomplete output is never exposed as a downloadable artifact. GLB magic, version, size, embedded byte count, source/model SHA, Y_UP coordinate and DRAFT QA are independently checked before model assets are published.
+- Output is always printQualified=false, no printer, slicer or Fabrication Router write. Visual mesh preview and "watertight" single-image sample are not manufacturing approval.
+
+## Verified threat/negative tests
+
+- Concurrent GPU race and permit cleanup; POST without consent, text mode rejected, unknown URL/origin/job blocked.
+- Process-tree termination with a real, benign Node fake-worker process via AbortController.
+- GPU scarcity and Office busy fail closed before subprocess start; over-budget GPU mock triggers worker termination.
+- Error paths provide no model/QA asset; restart marks jobs interrupted rather than silently resuming.
+- Browser G1 and opt-in G2 mock tests have 0 page errors and no remote URL requests.
+- Single real G2 local GPU image → verified GLB and DRAFT report → real Chrome 3D preview on Windows; manual server and worker exited after acceptance.
+
+## Known limits and required hardening before productization
+
+- Single trusted user: there is no per-OS-user authentication, CSRF token or HTTP origin proof for command-line requests; any malicious local process with access to localhost may forge confirmation. Do not expose beyond localhost or run with untrusted local tenants.
+- The default Windows OS account's filesystem permissions protect job folders; no fully isolated Windows Sandbox/VM is used. Python libraries process complex media and model code, so dependency review, CVEs, sandboxing, cleanup and disk quotas remain relevant.
+- GPU free-memory telemetry and Ollama status are not an exclusive reservation against all other local applications. Monitor frequency is best-effort, not hardware-level preemption.
+- HF_HUB_OFFLINE and local pinned model interception stop known model fetch paths, but do not prove outbound network isolation against malicious code. No firewall change performed.
+- No per-user quotas, global job retention cleanup, audit log authentication or crash-safe cross-process GPU semaphore across multiple manually launched servers. The manual G2 script uses a dedicated port/data folder, but **do not start multiple G2 manual instances simultaneously**.
+- No formal independent penetration test, signed installers or secure auto-update, and no geometry/manufacturing certification. No business/customer production claims yet.
+
+Next gate: separate user authorization and hardening for multi-user use, broad content, true CAD/manufacturing output or unattended scheduling. Keep Office 2.0 P0 independent.

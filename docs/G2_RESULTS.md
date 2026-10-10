@@ -53,3 +53,7 @@ C) Preserve Y-up output and prove mesh geometry quality, not only screenshot aes
 D) Keep G1 fixture mode clearly separate until real-model backend integration and security/quality gates pass.
 
 Issue: https://github.com/nocturney/local-3d-generator/issues/2
+
+## Follow-up: G2 local application integration (2026-10-10)
+
+The above 2026-10-09 pilot remains valid as an isolated engine proof. On 2026-10-10 the LOCAL3D server/UI was additionally connected to an opt-in, per-image confirmed TripoSR provider, including fail-closed GPU/Office live guards, real process-tree cancellation, guarded job persistence and SHA-verified Y-up GLB. A separate manual true GPU API+Chrome run succeeded (25.51 s, 2,058 MiB torch CUDA reserved). Its new evidence is in docs/evidence/g2-app and engineering notes in docs/G2_APP_INTEGRATION.md. No unattended GPU worker, printer or Office integration was activated.

@@ -1,4 +1,4 @@
-"""Isolated, local-only TripoSR image-to-GLB pilot.
+"""Isolated, local-only TripoSR image-to-GLB worker for G2 manual jobs and original pilots.
 
 Never downloads weights or other remote assets at inference time.
 Does not import or execute native torchmcubes code; uses a bounded CPU
@@ -99,10 +99,33 @@ def install_local_import_barriers(torch, numpy):
     stub.remove = forbidden
     sys.modules["rembg"] = stub
 
+def prepare_image(image: Path):
+    """Validate pixels BEFORE allocating CUDA or loading large weights."""
+    from PIL import Image, ImageOps
+    Image.MAX_IMAGE_PIXELS = 16_000_000
+    with Image.open(image) as src:
+        width, height = src.size
+        if width < 64 or height < 64 or width * height > 16_000_000:
+            raise ValueError("Input dimensions must be >=64x64 and <=16 megapixels")
+        src.load()
+        oriented = ImageOps.exif_transpose(src)
+        if "A" in oriented.getbands() or "transparency" in oriented.info:
+            rgba = oriented.convert("RGBA")
+            gray = Image.new("RGBA", rgba.size, (128, 128, 128, 255))
+            picture = Image.alpha_composite(gray, rgba).convert("RGB")
+            preprocessing = "RGBA alpha-composited onto mid-gray RGB, no rembg"
+        else:
+            picture = oriented.convert("RGB")
+            preprocessing = "RGB original, no rembg"
+    return picture, preprocessing
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--image", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--job-dir", type=Path, default=None,
+                        help="Trusted LOCAL3D server job directory; no client paths are accepted")
     parser.add_argument("--resolution", type=int, default=128)
     parser.add_argument("--chunk-size", type=int, default=2048)
     args = parser.parse_args()
@@ -111,23 +134,38 @@ def main() -> None:
     if not (256 <= args.chunk_size <= 4096):
         parser.error("Chunk size must be 256..4096")
     image = args.image.resolve(strict=True)
-    # Require the bundled, licensed upstream example for initial trial only.
-    allowed_source = (SOURCE / "examples" / "chair.png").resolve(strict=True)
-    if image != allowed_source:
-        parser.error("First bounded pilot accepts only pinned MIT example chair.png")
+    if args.image.is_symlink() or not image.is_file():
+        parser.error("Untrusted image file")
+    app_job = args.job_dir is not None
+    if app_job:
+        job_dir = args.job_dir.resolve(strict=True)
+        if args.job_dir.is_symlink() or not job_dir.is_dir():
+            parser.error("Untrusted job directory")
+        if image.parent != job_dir or image.name not in ("input.png", "input.jpg", "input.webp"):
+            parser.error("App worker accepts only the fixed upload inside its job")
+        if not args.output_dir.is_absolute() or args.output_dir.resolve() != job_dir / "engine-output":
+            parser.error("Output must be the dedicated engine-output folder")
+    else:
+        # The original G2 pilot is intentionally pinned to an MIT-licensed example.
+        allowed_source = (SOURCE / "examples" / "chair.png").resolve(strict=True)
+        if image != allowed_source:
+            parser.error("Pilot accepts only pinned MIT example chair.png")
     output_dir = args.output_dir.resolve()
-    if not output_dir.is_relative_to((ROOT / "runtime" / "pilots").resolve()):
+    if not app_job and not output_dir.is_relative_to((ROOT / "runtime" / "pilots").resolve()):
         parser.error("Pilot output must be inside runtime/pilots")
-    output_dir.mkdir(parents=True, exist_ok=True)
-    if any(output_dir.iterdir()):
-        parser.error("Refuse to overwrite a non-empty pilot directory")
+    if args.output_dir.is_symlink() or output_dir.exists():
+        parser.error("Refuse to overwrite an existing output directory")
+    output_dir.mkdir(parents=True, exist_ok=False)
     progress(output_dir, "verify_sources")
     lock = check_materials()
     start = time.perf_counter()
+    progress(output_dir, "preprocess_image")
+    picture, preprocessing = prepare_image(image)
+    processed_path = output_dir / "preprocessed.png"
+    picture.save(processed_path)
 
     import numpy as np
     import torch
-    from PIL import Image
     install_local_import_barriers(torch, np)
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA unavailable in isolated environment")
@@ -168,19 +206,6 @@ def main() -> None:
     load_elapsed = time.perf_counter() - start
 
     progress(output_dir, "infer_image")
-    with Image.open(image) as src:
-        if "A" in src.getbands():
-            # The source example has transparent BLACK pixels. Plain convert(RGB)
-            # turns that into a dark background and hurts reconstruction quality.
-            rgba = src.convert("RGBA")
-            gray = Image.new("RGBA", rgba.size, (128, 128, 128, 255))
-            picture = Image.alpha_composite(gray, rgba).convert("RGB")
-            preprocessing = "RGBA alpha-composited onto mid-gray RGB, no rembg"
-        else:
-            picture = src.convert("RGB")
-            preprocessing = "RGB original, no rembg"
-    processed_path = output_dir / "preprocessed.png"
-    picture.save(processed_path)
     with torch.no_grad():
         code = model([picture], device="cuda:0")
     infer_elapsed = time.perf_counter() - start - load_elapsed
@@ -193,6 +218,11 @@ def main() -> None:
     mesh = meshes[0]
     if len(mesh.vertices) < 20 or len(mesh.faces) < 20:
         raise RuntimeError("Insufficient valid geometry generated")
+    if app_job:
+        # TripoSR yields Z-up; portable glTF viewers use Y-up.
+        import math
+        import trimesh
+        mesh.apply_transform(trimesh.transformations.rotation_matrix(-math.pi / 2, [1, 0, 0]))
     glb = output_dir / "model.glb"
     progress(output_dir, "export_glb")
     mesh.export(str(glb), file_type="glb")
@@ -211,6 +241,8 @@ def main() -> None:
         "weightsSha256": lock["weights"]["sha256"],
         "input": image.name, "inputSha256": hash_file(image),
         "preprocessing": preprocessing, "preprocessedSha256": hash_file(processed_path),
+        "coordinateSystem": "Y_UP" if app_job else "Z_UP",
+        "appJob": app_job, "imagePixels": picture.width * picture.height,
         "artifact": glb.name, "artifactSha256": hash_file(glb), "artifactBytes": glb.stat().st_size,
         "gpu": torch.cuda.get_device_name(0),
         "peakCudaReservedMiB": round(torch.cuda.max_memory_reserved() / 2**20, 1),
@@ -226,6 +258,7 @@ def main() -> None:
         "printQualified": False,
         "notes": [
             "No connection to cloud inference or printer",
+            "Offline image-only reconstruction; input is operator-provided" if app_job else
             "Offline image-only reconstruction; example is licensed upstream source",
             "Native torchmcubes replaced by CPU skimage marching cubes for Windows reproducibility",
             "No watertightness/manifold/wall-thickness/manufacturing guarantees"

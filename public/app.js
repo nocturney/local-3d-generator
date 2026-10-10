@@ -3,13 +3,18 @@ import { OrbitControls } from '/vendor/three/examples/jsm/controls/OrbitControls
 import { GLTFLoader } from '/vendor/three/examples/jsm/loaders/GLTFLoader.js';
 
 const el = id => document.getElementById(id);
-const state = { mode: 'image', image: null, imageUrl: null, jobs: [], selected: null, currentModel: null, lastModelUrl: null, viewer: null };
+const state = { mode: 'image', provider: 'fixture-demo', providers: [], image: null, imageUrl: null, jobs: [], selected: null, currentModel: null, lastModelUrl: null, viewer: null };
 const stageNames = {
   queued: 'ממתין בתור', demo_intake: 'הדמיה: קליטת קלט',
   demo_processing: 'הדמיה: עיבוד', demo_packaging: 'הדמיה: הכנת GLB',
-  fixture_ready: 'Fixture לדוגמה מוכן', cancelled: 'בוטלה', interrupted: 'הופסקה באתחול', error: 'נכשלה'
+  fixture_ready: 'Fixture לדוגמה מוכן', cancelled: 'בוטלה', interrupted: 'הופסקה באתחול', error: 'נכשלה',
+  g2_gpu_guard: 'אימות עומס GPU ו־Office', g2_verify_sources: 'אימות קוד ומודל מקומיים',
+  g2_preprocess_image: 'בדיקת קובץ התמונה לפני הפעלת GPU',
+  g2_loading_model: 'טעינת TripoSR לכרטיס המסך', g2_infer_image: 'יצירת מודל מתוך התמונה',
+  g2_extract_mesh: 'חילוץ רשת תלת־ממדית', g2_export_glb: 'יצוא GLB', g2_completed: 'אימות התוצר',
+  g2_ready_draft: 'תוצר AI מקומי מוכן · DRAFT', g2_stopping_worker: 'עצירת תהליך GPU'
 };
-const statusNames = {queued:'בתור',running:'מתבצעת',completed:'הושלמה',cancelled:'בוטלה',interrupted:'הופסקה',failed:'שגיאה'};
+const statusNames = {queued:'בתור',running:'מתבצעת',cancelling:'נעצרת',completed:'הושלמה',cancelled:'בוטלה',interrupted:'הופסקה',failed:'שגיאה'};
 let toastTimer;
 
 async function api(url, method = 'GET', body) {
@@ -64,7 +69,7 @@ function initViewer() {
       state.currentModel = null; render();
     }
     const loader = new GLTFLoader();
-    function show(url) {
+    function show(url, real = false) {
       if (url === state.lastModelUrl) return;
       state.lastModelUrl = url;
       disposeModel();
@@ -80,7 +85,8 @@ function initViewer() {
         scene.add(obj); state.currentModel = obj;
         el('emptyState').hidden = true;
         el('demoWatermark').hidden = false;
-        el('viewerStatus').textContent = 'DEMO GLB / READY';
+        el('demoWatermark').textContent = real ? 'REAL LOCAL AI · DRAFT / NOT PRINT QUALIFIED' : 'DEMO FIXTURE · NOT AI GENERATED';
+        el('viewerStatus').textContent = real ? 'REAL AI / DRAFT' : 'DEMO GLB / READY';
         reset();
       }, undefined, () => {
         el('viewerStatus').textContent = 'GLB / LOAD ERROR';
@@ -127,8 +133,10 @@ function renderSelected() {
   el('metricStatus').textContent = job ? statusNames[job.status] || job.status : 'אין משימה';
   el('metricProgress').textContent = job ? job.progress + '%' : '—';
   el('metricOutput').textContent = job?.status === 'completed' ? 'GLB' : '—';
+  el('metricProvider').textContent = job?.providerId === 'triposr-local' ? 'TripoSR Local' : 'Fixture Lab';
   el('selectedJobId').textContent = job ? job.id.slice(0, 13).toUpperCase() : 'NO JOB SELECTED';
-  el('detailMessage').textContent = job ? (stageNames[job.stage] || job.stage) + ' · תוצאה לדוגמה בלבד, לא רינדור AI' : 'לא נוצרה משימה עדיין.';
+  el('detailMessage').textContent = job ? (stageNames[job.stage] || job.stage) +
+    (job.simulation ? ' · תוצאת הדגמה ללא AI' : ' · הרצת AI מקומית ידנית · ללא אישור הדפסה') : 'לא נוצרה משימה עדיין.';
   el('progressFill').style.width = (job?.progress || 0) + '%';
   el('cancelJob').disabled = !(job && ['queued','running'].includes(job.status));
   el('copyManifest').disabled = !job;
@@ -144,9 +152,9 @@ function renderSelected() {
   if (!ready) {
     state.viewer?.show(null);
     el('emptyState').hidden = false; el('demoWatermark').hidden = true;
-    el('viewerStatus').textContent = job ? 'DEMO / ' + job.status.toUpperCase() : 'READY / NO MODEL';
+    el('viewerStatus').textContent = job ? (job.simulation ? 'DEMO / ' : 'LOCAL AI / ') + job.status.toUpperCase() : 'READY / NO MODEL';
   } else {
-    state.viewer?.show('/v1/jobs/' + encodeURIComponent(job.id) + '/assets/preview-glb');
+    state.viewer?.show('/v1/jobs/' + encodeURIComponent(job.id) + '/assets/preview-glb', !job.simulation);
   }
 }
 function render() { renderHistory(); renderSelected(); }
@@ -163,12 +171,57 @@ async function refresh() {
 }
 
 function setMode(mode) {
+  if (mode === 'text' && state.provider === 'triposr-local') {
+    setProvider('fixture-demo');
+    toast('TripoSR מקבל תמונה בלבד; תיאור טקסט אינו מנוע יצירה.');
+  }
   state.mode = mode;
   el('imageMode').classList.toggle('active', mode === 'image');
   el('textMode').classList.toggle('active', mode === 'text');
   el('imageControls').hidden = mode !== 'image';
   el('promptRequirement').textContent = mode === 'text' ? 'חובה' : 'אופציונלי';
   el('formError').textContent = '';
+}
+function setProvider(id) {
+  if (id === 'triposr-local' && !state.providers.some(p => p.id === id && p.canStart)) return;
+  if (!['fixture-demo','triposr-local'].includes(id)) return;
+  state.provider = id;
+  if (id === 'triposr-local' && state.mode === 'text') setMode('image');
+  el('providerFixture').classList.toggle('active-provider', id === 'fixture-demo');
+  el('providerTripo').classList.toggle('active-provider', id === 'triposr-local');
+  el('providerFixture').setAttribute('aria-pressed', id === 'fixture-demo' ? 'true' : 'false');
+  el('providerTripo').setAttribute('aria-pressed', id === 'triposr-local' ? 'true' : 'false');
+  el('gpuConsentWrap').hidden = id !== 'triposr-local';
+  el('gpuConsent').checked = false;
+  el('startJobLabel').textContent = id === 'triposr-local' ? 'צור מודל אמיתי (GPU)' : 'צור משימת DEMO';
+  el('promptHint').textContent = id === 'triposr-local'
+    ? 'TripoSR משתמש בתמונה בלבד. ההערות נשמרות במניפסט, אך אינן משפיעות על הגאומטריה.'
+    : 'ב־G1 הטקסט נשמר למשימה בלבד ואינו משפיע על הגאומטריה.';
+  el('formError').textContent = '';
+}
+async function loadProviders() {
+  try {
+    const data = await api('/v1/providers');
+    state.providers = data.providers || [];
+    const real = state.providers.find(p => p.id === 'triposr-local');
+    el('providerTripo').disabled = !real?.canStart;
+    el('providerTripo').classList.toggle('unavailable', !real?.canStart);
+    el('triposrState').textContent = real?.canStart ? 'ידני · זמין' : 'כבוי';
+    el('realProviderHealth').textContent = real?.canStart ? 'G2 · באישור בלבד' : 'כבוי (G1)';
+    el('sessionBadge').textContent = real?.canStart ? 'G2 · MANUAL ONLY' : 'G1 · DEMO MODE';
+    el('noticeVersion').textContent = real?.canStart ? 'v0.2.0 / G2' : 'v0.2.0 / G1';
+    el('footerBuild').textContent = real?.canStart ? 'LOCAL3D / G2 MANUAL BUILD' : 'LOCAL3D / G1 DEVELOPMENT BUILD';
+    if (real?.canStart) {
+      el('noticeText').textContent = 'G2 בהרשאה ידנית: TripoSR משתמש ב־GPU רק אחרי בחירה ואישור לכל משימה. אין תור AI אוטונומי. המודלים הם DRAFT ואינם מאושרים להדפסה.';
+    } else {
+      el('noticeText').textContent = 'מצב G1: מודל DEMO בלבד. TripoSR הותקן בנפרד אך אינו מופעל במשימות. אין פעילות GPU אוטומטית.';
+      setProvider('fixture-demo');
+    }
+  } catch {
+    state.providers = [];
+    el('providerTripo').disabled = true;
+    setProvider('fixture-demo');
+  }
 }
 function chooseImage(file) {
   if (!file) return;
@@ -203,14 +256,23 @@ async function startJob() {
   const b = el('startJob'); el('formError').textContent = '';
   if (state.mode === 'image' && !state.image) { el('formError').textContent = 'בחר תמונת מקור כדי להתחיל.'; return; }
   if (state.mode === 'text' && el('prompt').value.trim().length < 3) { el('formError').textContent = 'הזן תיאור של שלושה תווים לפחות.'; return; }
+  if (state.provider === 'triposr-local' && !el('gpuConsent').checked) {
+    el('formError').textContent = 'יש לאשר במפורש הפעלת GPU עבור משימה זו.';
+    return;
+  }
   b.disabled = true;
   try {
-    const payload = { providerId:'fixture-demo', mode:state.mode, prompt:el('prompt').value.trim() };
+    const payload = { providerId:state.provider, mode:state.mode, prompt:el('prompt').value.trim() };
+    if (state.provider === 'triposr-local') payload.confirmGpu = true;
     if (state.mode === 'image') payload.image = {
       filename:state.image.name, mime:state.image.type, base64:await toBase64(state.image)
     };
     const job = await api('/v1/jobs','POST',payload);
-    state.selected = job.id; toast('נוצרה משימת DEMO. היא אינה מריצה מודל AI.');
+    state.selected = job.id;
+    if (state.provider === 'triposr-local') {
+      el('gpuConsent').checked = false;
+      toast('המשימה נשלחה לבדיקת עומס GPU. אין תור רקע אוטומטי.');
+    } else toast('נוצרה משימת DEMO. היא אינה מריצה מודל AI.');
     await refresh();
   } catch (e) { el('formError').textContent = (e.code ? e.code + ': ' : '') + e.message; }
   finally { b.disabled = false; }
@@ -220,10 +282,14 @@ async function cancelJob() {
   if (!job || !['queued','running'].includes(job.status)) return;
   try {
     await api('/v1/jobs/' + encodeURIComponent(job.id) + '/cancel','POST');
-    toast('המשימה בוטלה. אין תהליך GPU שרץ ברקע.');
+    toast(job.providerId === 'triposr-local'
+      ? 'נשלחה בקשה לעצירת GPU. המשימה תסומן מבוטלת לאחר סיום התהליך.'
+      : 'משימת ה־DEMO בוטלה.');
     await refresh();
   } catch(e) { toast('לא ניתן לבטל: ' + e.message); }
 }
+el('providerFixture').addEventListener('click', () => setProvider('fixture-demo'));
+el('providerTripo').addEventListener('click', () => setProvider('triposr-local'));
 el('imageMode').addEventListener('click', () => setMode('image'));
 el('textMode').addEventListener('click', () => setMode('text'));
 el('imageInput').addEventListener('change', e => chooseImage(e.target.files?.[0]));
@@ -243,5 +309,6 @@ el('copyManifest').addEventListener('click', async () => {
   catch { toast('לא ניתן לגשת ללוח ההעתקה בדפדפן.'); }
 });
 initViewer();
+await loadProviders();
 await refresh();
 setInterval(refresh, 1000);

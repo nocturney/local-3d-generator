@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID, createHash } from 'node:crypto';
 import { ensureFixture } from './fixture.js';
+import { createTripoSRAdapter } from './triposr-adapter.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -23,7 +24,7 @@ const PROVIDERS = Object.freeze([
     canStart: true, canCancel: true, deterministicSeed: true
   },
   {
-    id: 'triposr-local', name: 'TripoSR Local', version: 'not-installed', status: 'CANDIDATE_G2',
+    id: 'triposr-local', name: 'TripoSR Local', version: 'source-107cefd', status: 'CANDIDATE_G2',
     inputTypes: ['image'], outputTypes: ['glb'], licenseLane: 'review-required',
     hardwareNeeds: 'GPU / validate locally', simulation: false, canStart: false, canCancel: false
   },
@@ -86,6 +87,9 @@ export async function createApp(options = {}) {
   const dataDir = path.resolve(options.dataDir || process.env.L3D_DATA_DIR || DEFAULT_DATA_DIR);
   const fixtureFile = path.resolve(options.fixtureFile || DEFAULT_FIXTURE);
   const stepMs = options.stepMs ?? 850;
+  // Default remains DEMO, including npm start. A REAL manual-only session
+  // requires explicit operator opt-in before process launch, and per-job consent.
+  const realAdapter = options.triposrAdapter || (process.platform === 'win32' && process.env.L3D_ENABLE_TRIPOSR === '1' ? createTripoSRAdapter() : null);
   const jobsDir = path.join(dataDir, 'jobs');
   const logsDir = path.join(dataDir, 'audit');
   await fs.mkdir(jobsDir, { recursive: true });
@@ -94,6 +98,7 @@ export async function createApp(options = {}) {
   const jobs = new Map();
   const pending = [];
   let activeId = null, activeTimer = null, saving = Promise.resolve(), closing = false;
+  let realRun = null; // real GPU permit, never queued or restarted unattended
   const jobFile = id => path.join(jobsDir, id, 'job.json');
   const jobFolder = id => path.join(jobsDir, id);
   async function audit(event, jobId, extra = {}) {
@@ -116,9 +121,9 @@ export async function createApp(options = {}) {
     try {
       const j = JSON.parse(await fs.readFile(jobFile(dir.name), 'utf8'));
       if (j.id !== dir.name) continue;
-      if (j.status === 'running' || j.status === 'queued') {
+      if (j.status === 'running' || j.status === 'queued' || j.status === 'cancelling') {
         j.status = 'interrupted'; j.progress = 0; j.stage = 'interrupted';
-        j.error = { code: 'RESTART_INTERRUPTED', message: 'Previous simulated job did not finish before restart' };
+        j.error = { code: 'RESTART_INTERRUPTED', message: 'Previous job did not finish before restart; no engine resumed' };
         j.updatedAt = now(); await persist(j); await audit('recovered_as_interrupted', j.id);
       }
       jobs.set(j.id, j);
@@ -127,6 +132,68 @@ export async function createApp(options = {}) {
 
   const publicJob = j => JSON.parse(JSON.stringify(j));
   const recordAsset = (id, kind, mime, bytes, label) => ({ id, kind, mime, bytes: bytes.length, sha256: sha(bytes), label });
+  const realStages = Object.freeze({ gpu_guard: 4, verify_sources: 9, preprocess_image: 13, loading_model: 20, infer_image: 46, extract_mesh: 70, export_glb: 88, completed: 95 });
+  async function runRealJob(job, controller) {
+    try {
+      if (job.status !== 'queued' || closing) throw new Error('Real job not queued');
+      job.status = 'running'; job.stage = 'g2_gpu_guard'; job.progress = 2;
+      job.updatedAt = now(); await persist(job); await audit('real_started', job.id);
+      const inputPath = path.join(jobFolder(job.id), 'input' + sniffMimeExt(job.source.mime));
+      const produced = await realAdapter.run({
+        jobDir: jobFolder(job.id), inputPath, signal: controller.signal,
+        onStage(stage) {
+          if (job.status !== 'running' || !Object.hasOwn(realStages, stage)) return;
+          job.stage = 'g2_' + stage; job.progress = realStages[stage]; job.updatedAt = now();
+          void persist(job).catch(error => console.error('G2 status persistence:', error.message));
+        }
+      });
+      if (job.status !== 'running' || controller.signal.aborted || closing) return;
+      const report = Buffer.from(JSON.stringify({
+        schema: 'local3d.qa.v1', jobId: job.id, mode: 'REAL_INFERENCE',
+        provider: 'TripoSR', source: 'user-supplied local image',
+        geometryStatus: 'DRAFT', manifoldCheck: produced.qa.watertight ? 'WATERTIGHT_SINGLE_SAMPLE' : 'NOT_WATERTIGHT',
+        wallThicknessCheck: 'NOT_RUN', dimensions: 'UNCALIBRATED',
+        printQualified: false, approvedForPrinter: false,
+        realInference: true, simulation: false,
+        provenance: {
+          sourceCommit: produced.qa.sourceCommit, weightsRevision: produced.qa.weightsRevision,
+          weightsSha256: produced.qa.weightsSha256, sourceSha256: produced.qa.inputSha256,
+          artifactSha256: produced.qa.artifactSha256, elapsedSeconds: produced.qa.elapsedSeconds,
+          gpu: produced.qa.gpu, peakCudaReservedMiB: produced.qa.peakCudaReservedMiB,
+          vertices: produced.qa.vertices, faces: produced.qa.faces,
+          coordinateSystem: produced.qa.coordinateSystem,
+          preprocessing: produced.qa.preprocessing
+        }
+      }, null, 2) + '\n');
+      // No partial GLB is made visible until the worker report, source SHA and
+      // GLB bytes have all passed the adapter's independent verification.
+      await fs.writeFile(path.join(jobFolder(job.id), 'output.glb'), produced.glb, { flag: 'wx' });
+      await fs.writeFile(path.join(jobFolder(job.id), 'qa-report.json'), report, { flag: 'wx' });
+      if (job.status !== 'running' || controller.signal.aborted || closing) return;
+      job.assets.push(recordAsset('preview-glb','model','model/gltf-binary',produced.glb,'TripoSR real model — DRAFT GLB'));
+      job.assets.push(recordAsset('qa-report','report','application/json',report,'Verified real inference — DRAFT report'));
+      job.status = 'completed'; job.stage = 'g2_ready_draft'; job.progress = 100;
+      job.updatedAt = now(); job.completedAt = now();
+      await persist(job); await audit('real_completed', job.id, { modelSha256: sha(produced.glb) });
+    } catch (error) {
+      const cancelled = job.status === 'cancelling' || controller.signal.aborted || closing || error.code === 'CANCELLED';
+      job.status = cancelled ? 'cancelled' : 'failed';
+      job.stage = cancelled ? 'cancelled' : 'error'; job.progress = 0;
+      job.updatedAt = now();
+      job.error = cancelled ? null : { code: error.code || 'G2_WORKER_FAILED', message: 'Real local inference did not complete; no output approved' };
+      await persist(job); await audit(cancelled ? 'real_cancelled' : 'real_failed', job.id, { code: error.code || 'G2_WORKER_FAILED' });
+    } finally {
+      if (realRun?.jobId === job.id) realRun = null;
+    }
+  }
+  function launchReal(job) {
+    const token = realRun;
+    if (!token || token.jobId !== job.id || token.promise) throw new Error('Missing reserved GPU permit');
+    token.promise = runRealJob(job, token.controller).catch(e => {
+      console.error('Unexpected G2 job runner persistence error:', e.message);
+    });
+    return token;
+  }
   async function finish(job) {
     if (job.status !== 'running' || activeId !== job.id) return;
     const glb = await fs.readFile(fixtureFile);
@@ -183,12 +250,19 @@ export async function createApp(options = {}) {
   }
   async function createJob(payload) {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) fail('BAD_REQUEST', 400, 'Expected job object');
-    if (payload.providerId !== 'fixture-demo') fail('PROVIDER_UNAVAILABLE', 422, 'Only fixture-demo is enabled in G1');
+    const isReal = payload.providerId === 'triposr-local';
+    if (payload.providerId !== 'fixture-demo' && (!isReal || !realAdapter)) {
+      fail('PROVIDER_UNAVAILABLE', 422, 'Real inference requires an explicitly enabled local operator session');
+    }
+    if (isReal && payload.confirmGpu !== true) fail('G2_CONFIRM_REQUIRED', 422, 'Explicit GPU consent is required for each image');
+    if (isReal && realRun) fail('G2_BUSY', 409, 'A real GPU job is already running; no background queue');
+    if (isReal && closing) fail('G2_SHUTDOWN', 503, 'Local service is stopping');
     if (!['image', 'text'].includes(payload.mode)) fail('BAD_MODE', 422, 'Expected mode image or text');
     if (jobs.size >= 1000 || pending.length >= MAX_QUEUE) fail('CAPACITY', 429, 'Local job limit reached');
     const prompt = typeof payload.prompt === 'string' ? payload.prompt.trim() : '';
     if (prompt.length > 1200) fail('PROMPT_TOO_LONG', 422, 'Maximum 1200 characters');
     if (payload.mode === 'text' && prompt.length < 3) fail('PROMPT_REQUIRED', 422, 'Enter a text description');
+    if (isReal && payload.mode !== 'image') fail('G2_IMAGE_ONLY', 422, 'TripoSR accepts images only, not text-to-3D');
     if (payload.url || payload.webhook || payload.remotePath || payload.command) fail('FORBIDDEN_REMOTE_INPUT', 422, 'Remote URLs and filesystem paths are not accepted');
     let image = null, imageInfo = null;
     if (payload.mode === 'image') {
@@ -199,26 +273,43 @@ export async function createApp(options = {}) {
       if (!imageInfo || image.length > MAX_IMAGE_BYTES || payload.image.mime !== imageInfo.mime) fail('BAD_IMAGE', 422, 'Image signature, MIME or size not supported');
     }
     const id = randomUUID();
+    // Reserve GPU lease BEFORE the first asynchronous disk operation.
+    // Otherwise concurrent POST requests could both pass the busy check.
+    if (isReal) realRun = { jobId: id, controller: new AbortController(), promise: null };
     const j = {
-      schema: 'local3d.job.v1', id, providerId: 'fixture-demo', mode: payload.mode, prompt,
-      simulation: true, seed: 12026, status: 'queued', stage: 'queued', progress: 0,
+      schema: 'local3d.job.v1', id, providerId: payload.providerId, mode: payload.mode, prompt,
+      simulation: !isReal, seed: isReal ? null : 12026, status: 'queued', stage: 'queued', progress: 0,
       createdAt: now(), updatedAt: now(), completedAt: null, error: null,
       source: image ? { name: sanitizeFileName(payload.image.filename), mime: imageInfo.mime, bytes: image.length } : null,
       assets: []
     };
     // No user-provided path or URL is used to construct a disk location.
-    await fs.mkdir(jobFolder(id), { recursive: true });
-    if (image) {
-      await fs.writeFile(path.join(jobFolder(id), 'input' + imageInfo.ext), image, { flag: 'wx' });
-      j.assets.push(recordAsset('source-image', 'source', imageInfo.mime, image, 'Original reference image'));
+    try {
+      await fs.mkdir(jobFolder(id), { recursive: true });
+      if (image) {
+        await fs.writeFile(path.join(jobFolder(id), 'input' + imageInfo.ext), image, { flag: 'wx' });
+        j.assets.push(recordAsset('source-image', 'source', imageInfo.mime, image, 'Original reference image'));
+      }
+      jobs.set(id, j);
+      await persist(j); await audit('job_created', id, { provider: j.providerId, mode: j.mode });
+      if (isReal) launchReal(j);
+      else { pending.push(id); queueNext(); }
+      return publicJob(j);
+    } catch (error) {
+      if (isReal && realRun?.jobId === id && !realRun.promise) realRun = null;
+      if (!j.assets.some(a => a.id === 'source-image')) jobs.delete(id);
+      throw error;
     }
-    jobs.set(id, j);
-    await persist(j); await audit('job_created', id, { provider: 'fixture-demo', mode: j.mode });
-    pending.push(id); queueNext();
-    return publicJob(j);
   }
   async function cancelJob(job) {
     if (!['queued', 'running'].includes(job.status)) fail('ALREADY_FINISHED', 409, 'Job is no longer cancellable');
+    if (job.providerId === 'triposr-local') {
+      // Remains in cancelling until child process-tree exit is confirmed.
+      job.status = 'cancelling'; job.stage = 'g2_stopping_worker'; job.progress = 0;
+      job.updatedAt = now(); await persist(job); await audit('real_cancel_requested', job.id);
+      realRun?.controller.abort();
+      return publicJob(job);
+    }
     const wasActive = job.id === activeId;
     if (wasActive && activeTimer) { clearTimeout(activeTimer); activeTimer = null; }
     job.status = 'cancelled'; job.stage = 'cancelled'; job.progress = 0;
@@ -269,8 +360,19 @@ export async function createApp(options = {}) {
         const origin = req.headers.origin;
         if (origin && origin !== 'http://' + host) fail('ORIGIN_DENIED', 403, 'Cross-origin mutation rejected');
       }
-      if (req.method === 'GET' && pathname === '/v1/health') return reply(res, 200, { schema: 'local3d.health.v1', service: 'ready', localOnly: true, inference: false, status: 'G1_DEMO', jobs: jobs.size });
-      if (req.method === 'GET' && pathname === '/v1/providers') return reply(res, 200, { schema: 'local3d.providers.v1', providers: PROVIDERS });
+      if (req.method === 'GET' && pathname === '/v1/health') return reply(res, 200, {
+        schema: 'local3d.health.v1', service: 'ready', localOnly: true,
+        inference: Boolean(realAdapter), status: realAdapter ? 'G2_MANUAL_OPT_IN' : 'G1_DEMO', jobs: jobs.size,
+        gpuBusy: Boolean(realRun), autoGpuQueue: false, printing: false
+      });
+      if (req.method === 'GET' && pathname === '/v1/providers') return reply(res, 200, {
+        schema: 'local3d.providers.v1',
+        providers: PROVIDERS.map(p => p.id === 'triposr-local' ? {
+          ...p, version: 'source-107cefd', licenseLane: 'MIT-source-weights+Apache-DINO',
+          status: realAdapter ? 'MANUAL_OPT_IN' : 'STAGED_DISABLED',
+          canStart: Boolean(realAdapter), canCancel: Boolean(realAdapter)
+        } : p)
+      });
       if (req.method === 'GET' && pathname === '/v1/jobs') {
         const all = [...jobs.values()].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).slice(0, 50);
         return reply(res, 200, { schema: 'local3d.jobs.v1', jobs: all.map(publicJob) });
@@ -303,12 +405,17 @@ export async function createApp(options = {}) {
   function sniffMimeExt(mime) { return mime === 'image/png' ? '.png' : mime === 'image/webp' ? '.webp' : '.jpg'; }
   const close = async () => {
     closing = true;
+    if (realRun) {
+      realRun.controller.abort();
+      // Adapter must kill its process tree before the HTTP server closes.
+      if (realRun.promise) await realRun.promise.catch(() => {});
+    }
     if (activeTimer) clearTimeout(activeTimer);
     for (const job of jobs.values()) {
-      if (job.status === 'running' || job.status === 'queued') {
+      if (job.status === 'running' || job.status === 'queued' || job.status === 'cancelling') {
         job.status = 'interrupted'; job.stage = 'interrupted'; job.progress = 0;
         job.updatedAt = now();
-        job.error = { code: 'SHUTDOWN', message: 'Simulation stopped before completion' };
+        job.error = { code: 'SHUTDOWN', message: 'Local job stopped before completion' };
         await persist(job);
       }
     }
@@ -322,6 +429,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const port = Number(process.env.L3D_PORT || 4177);
   if (!Number.isInteger(port) || port < 1024 || port > 65535) { console.error('Invalid local port'); process.exit(1); }
   const app = await createApp();
-  app.server.listen(port, host, () => console.log('LOCAL3D_READY http://' + host + ':' + port + '  G1 fixture-only, no AI inference'));
+  app.server.listen(port, host, () => console.log('LOCAL3D_READY http://' + host + ':' + port + (process.env.L3D_ENABLE_TRIPOSR === '1' ? '  G2 manual opt-in; no automatic GPU work' : '  G1 fixture-only, no AI inference')));
   for (const sig of ['SIGINT', 'SIGTERM']) process.once(sig, async () => { await app.close(); process.exit(0); });
 }

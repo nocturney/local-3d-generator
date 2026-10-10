@@ -1,53 +1,55 @@
-# LOCAL3D - Local 3D Model Generator
+# LOCAL3D — Local-first 3D Model Workbench
 
-Independent local-first workbench, clean-room implementation under HANDOFF 12 (2026-10-09).
+Independent clean-room project under HANDOFF 12 (2026-10-09). LOCAL3D includes a responsive Hebrew RTL workbench and a **real, locally verified TripoSR image-to-3D adapter** on Windows. No OpenAI/Codex engine, Rodin/Meshy/Tripo SaaS subscription, print service or Office 2.0 runtime dependency.
 
-**Web app G1 remains FIXTURE DEMO ONLY.** Browser-uploaded images/text still do NOT drive inference. Separately, **G2 isolated command-line TripoSR real image-to-3D pilots succeeded** on Windows with a single licensed sample. The GPU adapter is NOT enabled in the Web UI or job API. All outputs are DRAFT / NOT PRINT QUALIFIED.
+**Default is G1 DEMO, no GPU.** The real G2 engine is available ONLY in an explicitly started **manual local session** with confirmation for each image. It is not an unattended AI queue, not text-to-3D, and never automatically sends files to a printer. All generated geometry is **DRAFT / NOT PRINT QUALIFIED**.
 
-## Quick start
+## Quick start: safe G1 demonstration (no AI)
 
-Node.js 20+ and npm required. Installation contacts npm once for Three.js; normal operation is local.
+Windows Chris / Mac Mini with Node.js 20+:
 
     npm ci --ignore-scripts --no-audit --no-fund
     npm test
     npm run qa:browser
     npm start
 
-Open http://127.0.0.1:4177 in a browser on the same machine. QA script requires Chrome on Windows or Edge on macOS (or LOCAL3D_QA_BROWSER to explicitly choose another executable). No GPU, model download, admin access, cloud account or API key required.
+Open http://127.0.0.1:4177 on that host. G1 fixture jobs simulate progress; the output GLB is deterministic and independent of the uploaded image or text. It never executes Python/CUDA.
 
 Windows working directory: D:\Velvet\Projects\local-3d-generator
 
-## Implemented at G1
+## G2: real image-to-3D in an intentional manual session (Windows)
 
-- Hebrew RTL responsive workbench, PNG/JPEG/WebP upload and text inputs.
-- Single-job local demo simulation queue, cancellable status, persistence and audit log.
-- Real GLB preview using Three.js and OrbitControls; downloads and camera reset.
-- Local provider registry: fixture-demo enabled; TripoSR CANDIDATE G2 and Hunyuan RESEARCH G3 disabled.
-- SHA-256 manifest, source file access and truthful DRAFT QA report.
-- Loopback/Origin checks, allowlisted routes, UUID job separation, signature/size upload limits.
-- 12 Node automated tests + 7 browser QA phases on Windows Chrome and macOS Edge (desktop, mobile, source, camera, cancellation); no inference or printer integration.
+Model installed locally in an isolated Python 3.11 venv with pinned/verified TripoSR weights. On Windows Chris, manually start a separate session:
 
-## Deliberately NOT implemented
+    powershell -NoProfile -File scripts/start-g2-manual.ps1
 
-No Web/API real model inference, arbitrary customer-image inference, general GPU job queue, STL/3MF manufacturing qualification, cloud fallback, printing, Office runtime integration, paid services, or automatic engine installation. An isolated manually-authorized TripoSR GPU pilot succeeded; `npm run preflight:g2` is read-only and unattended inference remains BLOCKED.
+Then open **http://127.0.0.1:4179** on Chris. Select **TripoSR Local**, upload one PNG/JPEG/WebP image (max 8MiB; full decode <=16MP), explicitly check the GPU consent box and click **צור מודל אמיתי (GPU)**. When completed, rotate the Y-up GLB, inspect its DRAFT report and download it. Use Cancel to terminate a running subprocess; the UI says "נעצרת" until actual cleanup. Stop the manual session with Ctrl+C.
 
-## Local data
+G2 uses its own runtime/data-g2-manual directory and port, not G1 job records. Every job checks Office Accelerator idle status and GPU headroom before spawning an isolated Python process, enforces timeout/VRAM limits, and never queues another GPU task. The server remains on 127.0.0.1; there is no cloud fallback, local printer connection or scheduled inference. Models are not required or validated on macOS G2; only G1 was qualified there.
 
-Job manifest: runtime/data/jobs/<UUID>/job.json, optional input image, output GLB, QA report.
-Audit log: runtime/data/audit/events.jsonl.
-Runtime data is gitignored and persists across normal app restarts.
+Text-to-3D remains unavailable: text input in G1 is demonstration only, and notes attached to G2 image jobs do NOT change the shape.
 
-## Docs
+## Implemented
 
-- docs/API.md - API/provider contracts.
-- docs/SECURITY.md - threat model and mitigations.
-- docs/LICENSES.md - G0 rights and research.
-- docs/GATES.md - acceptance, fixtures and future benchmark.
-- docs/OPERATIONS.md - environment, backup and rollback.
-- docs/ENGINE_CANDIDATES.md - researched local engine options and licensing/hardware gates.
-- docs/G2_PREFLIGHT.md and TRIPOSR_SOURCE_LOCK.json - pinned source/weight/config evidence (locally verified).
-- docs/G2_RESULTS.md and G2_APPROVAL_2026-10-09.json - bounded real GPU pilot evidence and explicit scope.
-- docs/evidence/g2 - Y-up real GLB, input photo, screenshot and SHA-256 validation report.
-- docs/evidence/g1 - local Chrome screenshot and browser acceptance report (demo fixture only).
+- Hebrew RTL responsive input, drag-and-drop upload, history, progress, cancellation and Three.js/OrbitControls GLB viewer.
+- Persistent UUID jobs with source/model SHA256 manifests, DRAFT QA and local audit logs.
+- G1 CPU deterministic fixture demonstration, fully independent of the AI installation.
+- G2 manual-only guarded TripoSR image-to-3D via **start/status/cancel/result** APIs, Python worker isolation, Y-up GLB export, input validation, GPU/Office safety gates and process-tree cleanup.
+- Exact pinned MIT TripoSR source/weights, pinned Apache DINO configuration, Windows CUDA PyTorch stack; no upstream unpinned torchmcubes extension or network background-removal weights.
+- End-to-end G2 real CUDA proof through LOCAL3D API and Chrome UI (licensed chair example, 25.51 sec, 2058 MiB peak torch reserved); no running GPU worker left after validation.
+- Tests: 26 Node API/geometry/G2 security tests on Windows, 5 isolated Python tests, 7 G1 browser phases, 5 G2 mock-provider browser phases and one actual G2 end-to-end smoke. No GPU model is run by npm test/test:all.
 
-Independent from nocturney/velvetos-core. Its Issue #613 remains P2/PARKED and must not be activated by this project.
+## Not implemented / not claimed
+
+No unattended GPU worker, public/multi-user authentication, arbitrary text-to-3D, cloud inference, dimensionally accurate CAD, manufacturing qualification, wall-thickness and support checks, print-ready STL/3MF release, fabrication router, machine control, or integration into Office 2.0 P0. The input model quality is not guaranteed by a single sample; further licensed-image benchmarking is needed before production use.
+
+## Documentation and evidence
+
+- [G2 manual integration, security and operation](docs/G2_APP_INTEGRATION.md)
+- [Actual app/browser GPU proof](docs/evidence/g2-app/README.md) — real image-derived GLB, unedited Chrome screenshot, SHA and QA report
+- [Original isolated TripoSR pilot](docs/G2_RESULTS.md) and [pilot evidence](docs/evidence/g2/README.md)
+- [API contracts](docs/API.md) | [Security](docs/SECURITY.md) | [Operations](docs/OPERATIONS.md)
+- [Licensing](docs/LICENSES.md) | [Gates and benchmarks](docs/GATES.md) | [Engine comparisons](docs/ENGINE_CANDIDATES.md)
+- [G2 source lock](docs/TRIPOSR_SOURCE_LOCK.json) and [scoped original approval](docs/G2_APPROVAL_2026-10-09.json)
+
+This is independent from nocturney/velvetos-core. Its AI3D Issue #613 remains P2/PARKED and is not activated or modified by LOCAL3D.

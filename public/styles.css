@@ -38,3 +38,13 @@ footer{height:45px;display:flex;align-items:center;justify-content:space-between
 @media(max-width:1320px){.workspace{grid-template-columns:265px minmax(330px,1fr) 240px}.viewer-pane{padding:25px 17px}.control-pane,.activity-pane{padding:25px 14px}.topbar{padding:0 18px}}
 @media(max-width:1120px){.workspace{grid-template-columns:288px minmax(0,1fr)}.activity-pane{grid-column:1/-1;border-right:0;border-top:1px solid var(--line);min-height:270px}.activity-pane .history{max-height:240px;min-height:100px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.system-box{max-width:550px}.viewport{height:450px}.header-center{display:none}}
 @media(max-width:700px){.topbar{height:64px;padding:0 14px}.brand-title{font-size:18px}.brand-sub{font-size:8px}.connection,.head-divider,.notice-version{display:none}.notice{padding:10px 13px}.workspace{display:flex;flex-direction:column}.control-pane,.activity-pane{border:0;border-bottom:1px solid var(--line)}.control-pane{padding:23px 16px}.viewer-pane{padding:21px 13px}.viewport{height:420px;min-height:330px}.result-strip{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-left:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.empty-state{padding:20px}footer{height:auto;min-height:50px;gap:9px;padding:12px;flex-wrap:wrap;justify-content:center;text-align:center}.history{max-height:240px}}
+
+/* G2 operator-controlled manual provider; disabled by default. */
+.provider-select{width:100%;text-align:right;color:inherit;background:transparent;font:inherit;cursor:pointer}
+.provider-select:not(:disabled):hover{border-color:var(--accent)}
+.provider-select:disabled{cursor:not-allowed}
+.provider-select.active-provider{background:#1b3536;border-color:#3c7970}
+.gpu-consent{padding:12px;border:1px solid #887347;background:#2b291c;border-radius:8px;margin-bottom:12px}
+.gpu-consent label{font-size:12px;font-weight:700;line-height:1.7;display:flex;align-items:flex-start;gap:9px;color:#f3dea4;cursor:pointer}
+.gpu-consent input{accent-color:#78e6d1;width:16px;height:16px;flex:none;margin-top:3px}
+.gpu-consent p{margin-top:7px;color:#bcb8a7;font-size:10px;line-height:1.65}

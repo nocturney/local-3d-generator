@@ -1,0 +1,29 @@
+{
+  "schema": "local3d.qa.v1",
+  "jobId": "3fee3adf-010e-4c0a-8e69-323ba0bea70c",
+  "mode": "REAL_INFERENCE",
+  "provider": "TripoSR",
+  "source": "user-supplied local image",
+  "geometryStatus": "DRAFT",
+  "manifoldCheck": "WATERTIGHT_SINGLE_SAMPLE",
+  "wallThicknessCheck": "NOT_RUN",
+  "dimensions": "UNCALIBRATED",
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "realInference": true,
+  "simulation": false,
+  "provenance": {
+    "sourceCommit": "107cefdc244c39106fa830359024f6a2f1c78871",
+    "weightsRevision": "5b521936b01fbe1890f6f9baed0254ab6351c04a",
+    "weightsSha256": "429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee",
+    "sourceSha256": "2503c12a74419d91a4c6c9f1affc48fee6e2b8b9091956ca6211e91ada57b5bf",
+    "artifactSha256": "ed50855c7e2f6a3cd0ab884a41d44a13c2ea86a3d14f04c05b9e889160429416",
+    "elapsedSeconds": 25.51,
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+    "peakCudaReservedMiB": 2058,
+    "vertices": 9986,
+    "faces": 19972,
+    "coordinateSystem": "Y_UP",
+    "preprocessing": "RGBA alpha-composited onto mid-gray RGB, no rembg"
+  }
+}

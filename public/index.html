@@ -23,13 +23,13 @@
       <div class="top-flags">
         <span class="connection"><i></i> LOCALHOST</span>
         <span class="head-divider"></span>
-        <span class="badge demo">G1 · DEMO MODE</span>
+        <span class="badge demo" id="sessionBadge">G1 · DEMO MODE</span>
       </div>
     </header>
     <div class="notice">
       <span class="notice-icon">i</span>
-      <div><strong>סביבת פיתוח מקומית · הדמיה בלבד</strong> — הקובץ שיופק הוא GLB לדוגמה ואינו נוצר מהתמונה או מהתיאור. אין חיבור לענן, מנוע AI או מדפסת.</div>
-      <span class="notice-version" dir="ltr">v0.1.0 / G1</span>
+      <div id="noticeText"><strong>סביבת פיתוח מקומית · הדמיה בלבד</strong> — הקובץ שיופק הוא GLB לדוגמה ואינו נוצר מהתמונה או מהתיאור. אין חיבור לענן, מנוע AI או מדפסת.</div>
+      <span class="notice-version" id="noticeVersion" dir="ltr">v0.2.0 / G1</span>
     </div>
     <main class="workspace">
       <aside class="control-pane">
@@ -55,19 +55,26 @@
         <div class="control-block">
           <label class="field-title" for="prompt">תיאור והערות <span class="optional" id="promptRequirement">אופציונלי</span></label>
           <textarea id="prompt" rows="4" maxlength="1200" placeholder="לדוגמה: דגם מיניאטורי של גוף תאורה עם בסיס מעוגל..."></textarea>
-          <div class="hint">ב־G1 הטקסט נשמר למשימה בלבד ואינו משפיע על הגאומטריה.</div>
+          <div class="hint" id="promptHint">ב־G1 הטקסט נשמר למשימה בלבד ואינו משפיע על הגאומטריה.</div>
         </div>
         <div class="control-block">
           <label class="field-title">מנוע יצירה</label>
-          <div class="provider active-provider">
+          <button id="providerFixture" type="button" class="provider provider-select active-provider" aria-pressed="true">
             <div class="provider-icon">F</div><div class="provider-info"><strong>Fixture Lab</strong><span>CPU · ללא GPU · בדיקת ממשק</span></div>
             <span class="provider-status">זמין</span>
-          </div>
-          <div class="provider unavailable"><div class="provider-icon candidate">T</div><div class="provider-info"><strong>TripoSR Local</strong><span>ממתין לשלב G2</span></div><span class="provider-lock">נעול</span></div>
+          </button>
+          <button id="providerTripo" type="button" class="provider provider-select unavailable" aria-pressed="false" disabled>
+            <div class="provider-icon candidate">T</div><div class="provider-info"><strong>TripoSR Local</strong><span>תמונה למודל · GPU מקומי · ידני בלבד</span></div>
+            <span id="triposrState" class="provider-lock">נעול</span>
+          </button>
           <div class="provider unavailable"><div class="provider-icon candidate">H</div><div class="provider-info"><strong>Hunyuan Shape</strong><span>מחקר רישוי / G3</span></div><span class="provider-lock">נעול</span></div>
         </div>
         <div class="action-area">
-          <button class="primary-action" id="startJob" type="button"><span class="action-icon">✦</span><span>צור משימת DEMO</span><span class="action-arrow">↖</span></button>
+          <div id="gpuConsentWrap" class="gpu-consent" hidden>
+            <label><input id="gpuConsent" type="checkbox"> <span>אני מאשר הפעלת GPU לצורך המשימה הזו בלבד</span></label>
+            <p>TripoSR עובד מקומית על תמונה בודדת, ללא תור GPU אוטומטי. המערכת תבדוק עומס ומשאבי Office לפני ההרצה. התוצאות הן DRAFT בלבד ואינן מאושרות להדפסה.</p>
+          </div>
+          <button class="primary-action" id="startJob" type="button"><span class="action-icon">✦</span><span id="startJobLabel">צור משימת DEMO</span><span class="action-arrow">↖</span></button>
           <button class="secondary-action" id="cancelJob" type="button" disabled>ביטול המשימה הפעילה</button>
           <p class="action-caption" id="formError" role="alert" aria-live="polite"></p>
         </div>
@@ -110,13 +117,13 @@
         <div class="system-box">
           <div class="system-box-title"><span class="system-led"></span> SYSTEM HEALTH <span id="healthStatus">CHECKING</span></div>
           <div class="system-row"><span>חיבור שרת</span><strong id="hostStatus">LOCAL</strong></div>
-          <div class="system-row"><span>מנוע AI פעיל</span><strong>NONE</strong></div>
+          <div class="system-row"><span>מנוע AI מקומי</span><strong id="realProviderHealth">כבוי (G1)</strong></div>
           <div class="system-row"><span>צריכת ענן</span><strong>0</strong></div>
           <div class="system-row"><span>ניהול מדפסות</span><strong>DISABLED</strong></div>
         </div>
       </aside>
     </main>
-    <footer><span dir="ltr">LOCAL3D / G1 DEVELOPMENT BUILD</span><span>כל העיבוד והאחסון מתבצעים במחשב המקומי · אין שליטה בציוד</span><span dir="ltr">© 2026</span></footer>
+    <footer><span id="footerBuild" dir="ltr">LOCAL3D / G1 DEVELOPMENT BUILD</span><span>כל העיבוד והאחסון מתבצעים במחשב המקומי · אין שליטה בציוד</span><span dir="ltr">© 2026</span></footer>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>

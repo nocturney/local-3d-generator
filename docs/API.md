@@ -1,43 +1,55 @@
-# LOCAL3D Internal API v1 (G1)
+# LOCAL3D internal loopback API v1 — G1 plus opt-in G2
 
-Server binding: 127.0.0.1:4177, loopback only. JSON API; paths and MIME must match allowlists. API is not a printer service.
+Bind: **127.0.0.1 only**; default G1 4177, explicit G2 Windows manual session 4179. No CORS, no printer, remote URLs, paid providers or unattended GPU scheduling. JSON request and response formats are authoritative.
 
 ## Providers
 
-GET /v1/providers lists identity, version, inputTypes, outputTypes, hardwareNeeds, licenseLane, simulation and canStart/canCancel. Only fixture-demo is startable. Other adapters are registry candidates without execution.
+GET /v1/providers returns identity, version, inputTypes, outputTypes, hardwareNeeds, licenseLane, simulation, status and canStart/canCancel:
+- fixture-demo — G1 CPU demo, canStart=true on all supported hosts.
+- triposr-local — G2 real single-image engine. In default session: status STAGED_DISABLED, canStart=false. On explicitly opted-in Windows manual server: status MANUAL_OPT_IN, canStart=true, canCancel=true. This indicates eligible for a one-job request; live GPU/Office guard still must pass after POST.
+- hunyuan-shape — research only, canStart=false.
 
-Adapter design for future G2: start(input) -> job ID; status(job ID); cancel(job ID); result(job ID). No provider may receive arbitrary URL from client. License/hardware checks before provider activation. deterministicSeed optional where engine supports it.
+GET /v1/health: schema local3d.health.v1, service, localOnly=true, inference (whether a manual real provider is enabled), status=G1_DEMO or G2_MANUAL_OPT_IN, jobs, gpuBusy, autoGpuQueue=false, printing=false.
 
-## Jobs
+## Create job
 
-POST /v1/jobs
-Request fields:
-- providerId: fixture-demo
-- mode: image or text
-- prompt: optional on image, min 3 chars on text, max 1200
-- image for image mode: {filename, mime, base64}; max 8 MiB, PNG/JPEG/WebP, signature checked
-Response: 201 plus Job Manifest with simulation=true.
+POST /v1/jobs, application/json.
 
-GET /v1/jobs (last 50 ordered newest first)
-GET /v1/jobs/:uuid
-POST /v1/jobs/:uuid/cancel
-GET /v1/jobs/:uuid/assets/:artifactId
+For G1: providerId=fixture-demo; mode=image or text; prompt length <=1200 (min 3 for text); optional image for image mode. simulation=true. Real input and text do not alter the deterministic G1 fixture.
 
-Only these artifact IDs can exist:
-- source-image (original verified upload)
-- preview-glb (model/gltf-binary DEMO fixture)
-- qa-report (application/json DRAFT report)
+For opted-in G2: providerId=triposr-local; **mode=image only**; image={filename,mime,base64} with PNG/JPEG/WebP, up to 8 MiB, valid image MIME/magic signature. Browser's GPU checkbox maps to **confirmGpu=true for each POST**. If not present, 422 G2_CONFIRM_REQUIRED; text requests are rejected G2_IMAGE_ONLY. Prompt is saved only as a label and is not a text-to-3D model instruction. Real worker performs additional pixel validation, EXIF orientation handling, alpha compositing and GPU/Office verification.
 
-Jobs have id, providerId, mode, prompt, simulation, seed, status, stage, progress, createdAt, updatedAt, completedAt, source, assets and error. Each asset has ID, kind, MIME, byte count, SHA256 and label. Never return filesystem paths or model API tokens.
+Response 201: a Job Manifest. Fields: schema, id (UUID), providerId, mode, prompt, simulation (true G1, false G2), seed, status, stage, progress, createdAt, updatedAt, completedAt, error, source and assets. G2 job initially queued then runs manually immediately; **no GPU queue**. If another real job is still reserving GPU, 409 G2_BUSY; it will never be queued to run later.
 
-Statuses: queued -> running -> completed; can branch to cancelled, failed, interrupted. Every restart records unfinished jobs as interrupted rather than fabricating success. Progress stages explicitly say DEMO; percentages are simulated and NOT engine telemetry.
+## Read job, cancel and assets
 
-## Responses and safety
+- GET /v1/jobs — last 50 newest
+- GET /v1/jobs/:uuid — live details (poll ~1 sec)
+- POST /v1/jobs/:uuid/cancel — G1 marks cancelled immediately; G2 marks cancelling and signals the process tree to stop. Status changes to cancelled only after worker exits and GPU permit is released; do not claim process stopped while cancelling
+- GET /v1/jobs/:uuid/assets/:artifactId
+- GET /v1/health for gpuBusy status
 
-Typical error: {error:{code,message}}. Distinct codes include BAD_JSON, BAD_IMAGE, PROMPT_REQUIRED, PROVIDER_UNAVAILABLE, ALREADY_FINISHED, HOST_DENIED, ORIGIN_DENIED, NOT_FOUND, INVALID_JOB_ID and CAPACITY. Unknown paths return 404. Remote URL/webhook/remotePath/command inputs are rejected. Filename is display-only and never used as a server filesystem path.
+Allowlisted assets:
+- source-image — verified original uploaded local photo
+- preview-glb — G1 deterministic fixture OR G2 SHA-verified local real Y-up GLB, MIME model/gltf-binary
+- qa-report — JSON DRAFT geometry provenance, never print approved
 
-GET /v1/health: readiness, localOnly, inference=false, G1_DEMO, job count.
+No arbitrary asset path, URL, filename or command is accepted. Source filename is display-only and never used as a local path. Every asset has MIME, length, SHA256 and label in manifest. No model/API token or filesystem path is returned to the browser.
 
-## Extension rules
+Statuses: queued, running, cancelling (G2 only), completed, cancelled, failed, interrupted. On restart queued/running/cancelling jobs are recovered as interrupted — **no real model resumes automatically**.
 
-A future engine adapter is isolated from the core scheduler. It must include license record, reproducible environment, hardware budget, cancellation/timeout, evidence-grade provenance and benchmark fixtures. STL/3MF export must remain draft until independent geometry qualification; never send files directly to printers.
+G1 stages: demo_intake, demo_processing, demo_packaging, fixture_ready (simulated percentages).
+
+G2 stages: g2_gpu_guard, g2_verify_sources, g2_preprocess_image, g2_loading_model, g2_infer_image, g2_extract_mesh, g2_export_glb, g2_ready_draft; stage percentages are coarse progress milestones, NOT token or network telemetry.
+
+## Safety and errors
+
+Typical errors: {error:{code,message}}. Codes include BAD_JSON, BAD_IMAGE, PROMPT_REQUIRED, PROVIDER_UNAVAILABLE, G2_CONFIRM_REQUIRED, G2_IMAGE_ONLY, G2_BUSY, ALREADY_FINISHED, HOST_DENIED, ORIGIN_DENIED, INVALID_JOB_ID, NOT_FOUND, CAPACITY. Engine failures are reflected in persisted job status/error (codes such as G2_GPU_BUSY, G2_OFFICE_BUSY, G2_GPU_LIMIT, G2_TIMEOUT, G2_WORKER_FAILED) without exposing sensitive stdout/stderr or local paths.
+
+Network fallback, external model URLs, webhooks, remote paths and arbitrary shell commands are forbidden. G2 requires trusted single-user Windows loopback plus a manually launched opt-in session; it does not provide authentication for remote or multiple local OS users.
+
+## Qualification
+
+Every G2 report includes geometryStatus=DRAFT, printQualified=false and approvedForPrinter=false. A watertight sample is not proof of wall thickness, dimensions, strength, supports or printer safety. Real geometry generation is **image-to-3D only**, not semantic text-to-3D or CAD repair.
+
+Full security/operational notes: G2_APP_INTEGRATION.md, SECURITY.md and OPERATIONS.md.

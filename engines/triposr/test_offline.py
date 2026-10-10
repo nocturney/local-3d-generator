@@ -35,5 +35,36 @@ class OfflineContractTests(unittest.TestCase):
             rembg.new_session()
 
 
+    def test_image_preflight_rejects_tiny_or_corrupted_image(self):
+        import tempfile
+        from pathlib import Path
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            small = root / "small.png"
+            Image.new("RGB", (32, 32), (255, 255, 255)).save(small)
+            with self.assertRaisesRegex(ValueError, ">=64x64"):
+                worker.prepare_image(small)
+            corrupt = root / "corrupt.png"
+            corrupt.write_bytes(b"\x89PNG\r\n\x1a\nINVALID")
+            with self.assertRaises(Exception):
+                worker.prepare_image(corrupt)
+
+    def test_image_preflight_rgba_preserves_gray_background(self):
+        import tempfile
+        from pathlib import Path
+        from PIL import Image
+        with tempfile.TemporaryDirectory() as tmp:
+            image = Path(tmp) / "alpha.png"
+            src = Image.new("RGBA", (64, 64), (0, 0, 0, 0))
+            src.putpixel((32, 32), (250, 100, 30, 255))
+            src.save(image)
+            rgb, description = worker.prepare_image(image)
+            self.assertEqual(rgb.mode, "RGB")
+            self.assertEqual(rgb.getpixel((0, 0)), (128, 128, 128))
+            self.assertEqual(rgb.getpixel((32, 32)), (250, 100, 30))
+            self.assertIn("mid-gray", description)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,64 +1,71 @@
-# Operations: environment, Windows/macOS, backup, rollback
+# Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
-## Machine inventory (read-only, 2026-10-09)
-Windows Chris: Microsoft Windows NT 10.0.26300, Node 24.19.0, npm 11.17.0, Git 2.55.0, Python 3.11.9; nvidia-smi reports NVIDIA RTX 4080 SUPER / 16376 MiB. G1 does not use GPU.
-MacMiniOffice.local: Darwin arm64, 16 GiB unified memory, Node 24.21.0, npm 11.19.0. Clean macOS G1 test copy passed 12 Node tests and 7 browser QA phases using Microsoft Edge 154 headless. Chromium Chrome headless failed to launch in the remote session, but Edge worked. Do not equate unified memory with discrete VRAM or infer G2 inference compatibility.
+## Hardware and environment (checked 2026-10-09–10)
 
-## Start (Windows)
-1. Open PowerShell on Chris.
-2. Set-Location 'D:\Velvet\Projects\local-3d-generator'
-3. npm ci --ignore-scripts --no-audit --no-fund (first setup)
-4. npm test (Node API/security and preflight tests); npm run qa:browser (requires locally installed Google Chrome; creates runtime/qa screenshots in a temporary localhost server)
-5. npm start
-6. Open http://127.0.0.1:4177 locally.
-7. Press Ctrl+C to stop. No auto-start installed.
+Windows Chris: NVIDIA GeForce RTX 4080 SUPER 16GB, Intel i9-14900K, Node 24.19, Python 3.11.9, Torch 2.5.1+cu121 **inside isolated G2 venv only**. nvidia-smi observed Office/GUI GPU use; production resource reservations are not guaranteed.
 
-If port 4177 is in use, set L3D_PORT to a free local port between 1024 and 65535. Binding always remains 127.0.0.1.
+MacMiniOffice.local: arm64, 16 GiB unified memory, Node 24.21. G1 Node API and Edge browser tests previously passed. Real G2 CUDA inference is NOT qualified on macOS and deliberately remains disabled even if L3D_ENABLE_TRIPOSR is set there.
 
-## Start (macOS - procedure only, not validated)
-Copy or git-clone the independent repository to a separate directory. Install Node 20+; run npm ci --ignore-scripts, npm test, npm run qa:browser (uses installed Microsoft Edge on macOS), and npm start; open local loopback URL. Verified on temporary Mac test copy; 12/12 Node + 7/7 Edge browser PASS. Do not copy live Windows runtime records by default. No real model was installed or executed.
+## Start G1 — default, no AI/GPU
 
-## Runtime data
-runtime/data/jobs contains immutable original images, job manifests and output fixtures. runtime/data/audit/events.jsonl contains events. User prompts/source images may contain confidential information: keep backups private and apply host filesystem permissions.
+From Chris, Windows PowerShell:
+    Set-Location 'D:\Velvet\Projects\local-3d-generator'
+    npm ci --ignore-scripts --no-audit --no-fund
+    npm test
+    npm start
 
-## Backup
-1. Stop server cleanly (Ctrl+C).
-2. Copy runtime/data to a dated, access-controlled backup location.
-3. Record git commit SHA, package-lock SHA256 and app version alongside backup.
-4. Verify backup files and hash before treating it as safe to restore.
+Open http://127.0.0.1:4177 on Chris. Stop with Ctrl+C. Default G1 data is runtime/data/jobs + runtime/data/audit/events.jsonl; every completion is DEMO. G1 does not need installed model weights.
 
-## Rollback
-1. Stop the server.
-2. Retain a copy of runtime/data; do not delete job records.
-3. Checkout the prior known-good git commit and npm ci with the corresponding lockfile.
-4. Run npm test; start server, GET /v1/health and inspect history.
-5. If data schema changes in a later version, restore only from schema-compatible backup or use a reviewed migration. G1 has no migration.
+## Start G2 manually — Windows Chris ONLY
 
-## Operational limits
-Loopback single-user development only; no internet service, printer, scheduler, Hunyuan weight download, Python model environment, payment, user telemetry, remote writable endpoint or unattended process setup.
+Prerequisite: separate runtime/engines/triposr/src, /venv, /weights installed and SHA-verified, and an operator intentionally decides to enable local manual image-to-3D. It is not an automated or persistent background service.
+
+From project root:
+    powershell -NoProfile -File scripts/start-g2-manual.ps1
+
+This launches **http://127.0.0.1:4179**, stores jobs under **runtime/data-g2-manual** and temporarily sets L3D_ENABLE_TRIPOSR=1 for this local process. It will never occupy the default G1 port/data directory. It refuses to kill a process on a busy port. In browser, choose TripoSR Local, upload image, check the one-job GPU approval and press Create Real Model. A text prompt is an annotation only. No job begins without POST confirmGpu=true, and no GPU queue can remain unattended.
+
+Close the terminal with Ctrl+C to stop; automatic restart and OS boot start are NOT configured. The model worker uses an isolated Python process; if the worker is cancelled the UI displays "נעצרת" until its process tree exits. No cloud inference/print output.
+
+## Local model files
+
+- Source: runtime/engines/triposr/src — pinned detached, clean MIT upstream checkout.
+- Model/config: runtime/engines/triposr/weights — SHA-verified 1.68GB model.ckpt, config.yaml and DINO tokenizer config.
+- Runtime: runtime/engines/triposr/venv/Scripts/python.exe, Torch 2.5.1+cu121, dependency freeze in engines/triposr/requirements-resolved-win-py311.txt.
+- App engine worker: engines/triposr/worker.py; manual per-run GPU guard: server/triposr-adapter.js; G1 fixture is independent.
+- Model stage/source/GLB evidence: runtime/data-g2-manual/jobs/<UUID>/... + local audit log (private; do NOT publish customer photos). GPU smoke evidence lives in runtime/qa, with a sanitized MIT sample in docs/evidence/g2-app.
+- Original isolated standalone pilot remains at runtime/pilots and runtime/pilot-logs; do not overwrite it.
+- Source and weights never committed. Do not copy proprietary images, downloaded model checkpoint or executable venv into GitHub.
+
+## Tests — no AI model execution
+
+    npm test
+    npm run qa:browser
+    npm run qa:browser-g2-mock
+    npm run test:all
+
+On Chris: 26/26 Node tests (including independent G2 process tests with NO GPU), 7 G1 browser phases and 5 mock G2 manual UI phases. Separately, the isolated Python interpreter runs:
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\triposr -p test_offline.py -v
+
+Python tests validate weights hash/input/CPU marching cubes and do not allocate GPU. Tests using mock real-provider injection are marked TEST_MOCK; they must never be presented as a fresh AI result.
+
+Real one-time G2 smoke exists as scripts/g2-one-time-app-smoke.mjs and is **not** included in npm test/test:all. It requires an explicit process-only manual authorization environment variable and an Office idle/GPU capacity check. Do NOT schedule or automatically replay it.
+
+## Data, backup and rollback
+
+Stop servers first, then copy runtime/data and runtime/data-g2-manual to an access-controlled dated backup. Store Git source SHA, package-lock SHA256, model/checkpoint SHA and job manifests separately. Verify backup integrity before attempting restoration. Preserve original job directories (source images may be confidential).
+
+Rollback code: stop servers, preserve both G1/G2 data and runtime/engines, checkout last tested Git commit, npm ci for that lockfile, npm test and verify localhost health. Never overwrite/delete weights or job records automatically. Future JSON schema migrations must be separately reviewed. A G2 interrupted job is not resumed automatically after restart.
 
 ## Troubleshooting
-- Missing vendor module: run npm ci, verify installed three version 0.180.0.
-- GLB download works but canvas blank: browser may lack WebGL; verify WebGL enabled and inspect browser Console. Download and local reports remain functional.
-- Interrupted job after restart: deliberate truth-in-status behavior; re-submit as a new job.
-- HTTP 403: request Host/Origin must be local; never remove safeguards to allow network exposure.
 
-## Isolated G2 TripoSR GPU pilot (one-time authorization was granted 2026-10-09)
+- Port 4177/4179 busy: stop only your own known LOCAL3D instance or choose an explicitly supported free port; do not kill unknown processes.
+- G2 engine disabled: normal on default G1. Start intentional manual script; do not set persistent system-wide env flags.
+- G2_NOT_INSTALLED: confirm isolated Python, model source and pinned weights, verify hashes; do not silently download remote model.
+- G2_OFFICE_BUSY / G2_OFFICE_UNVERIFIED / G2_GPU_BUSY: a guard is blocking a collision; do not bypass for speed.
+- G2_IMAGE_ONLY / BAD_IMAGE: TripoSR needs image input, 64x64 to 16MP, PNG/JPEG/WebP within 8MiB. Transparent background is automatically composited on gray, not removed with rembg.
+- Browser WebGL missing: verify local Three.js and graphics support, inspect console; GLB downloads remain available.
+- G2 cancelled/failed: only manifests with fully verified GLB and DRAFT report expose output links. Do not infer printability from a watertight flag.
+- HTTP 403: localhost Host/Origin guard; no LAN exposure. Do not disable security to resolve access problems.
 
-G1 browser/app always remains fixture-only. The user approved an isolated source/weights/venv install and bounded pilots after Office GPU no-conflict checks. That past limited approval does not authorize starting an unattended worker or arbitrary new inference jobs.
-
-- Source checkout: runtime/engines/triposr/src (detached pinned commit, clean).
-- Model and DINO config: runtime/engines/triposr/weights (local checksum verified).
-- Python venv: runtime/engines/triposr/venv; ONLY this environment has torch 2.5.1+cu121. Global Python and CUDA toolkit not changed.
-- Dependency manifests: engines/triposr/requirements-win-py311.txt and requirements-resolved-win-py311.txt.
-- GPU staging scripts: scripts/download-triposr-windows.ps1 and scripts/pilot-triposr-windows.ps1.
-- Local worker: engines/triposr/worker.py, with offline hard barriers; accepts only upstream MIT chair example for first pilot, not arbitrary customer input.
-- CPU correction: engines/triposr/reorient.py (Z-up -> Y-up); standalone 3D validation: scripts/verify-triposr-pilot.mjs --upright.
-- Approved pilot output and guard logs: runtime/pilots and runtime/pilot-logs. Do NOT delete customer or developer files as part of cleanup; preserve provenance.
-- Portable, small sample: docs/evidence/g2/chair-yup.glb, source-chair.png, chair-preview.png, QA and browser validation JSON. It is a real image-derived reconstruction but only DRAFT; no printer instructions.
-
-Read-only status: npm run preflight:g2. It remains BLOCKED_FOR_UNATTENDED_INFERENCE, even after limited pilot approval. The real GPU pilot launch is never invoked by npm start, npm test or the API; future operator must reverify explicit scope and available GPU resources, not blindly replay a script.
-
-To reproduce checks without a new model run: run npm test, and use the isolated Python executable for Python unittest discovery in engines/triposr (trusted local environment; no CUDA inference). Browser-only revalidation of an EXISTING pilot: node scripts/verify-triposr-pilot.mjs tripo-20261009T210159110-e62b9a20 --upright on Windows with installed Chrome. This reads an already generated GLB and requires no GPU model execution.
-
-No auto-start, global package install, firewall/UAC change, Office modification, restart, cloud provider or printer attachment was performed.
+Never modify Office 2.0 / VelvetOS core / Fabrication Router, UAC/firewall/system CUDA or printer services as part of LOCAL3D operation.

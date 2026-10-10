@@ -1,7 +1,7 @@
 # G2 preflight and reproducibility notes (updated 2026-10-09)
 
 ## Current gate
-**Isolated TripoSR installation and two bounded real GPU pilots: PASS.** Source, 1.68GB checkpoint, TripoSR config and auxiliary DINO config have exact pinned versions and verified local SHA256 hashes. The G1 web app still produces FIXTURE outputs; real inference is NOT available through its API. General background workers, arbitrary customer image processing and print qualification remain unapproved. See G2_RESULTS.md and G2_APPROVAL_2026-10-09.json for exact user approval, resource caps and proof.
+**Isolated model installation and two original bounded GPU pilots: PASS; later G2 manual application integration and real API/Chrome end-to-end acceptance: PASS.** Source, 1.68GB checkpoint, TripoSR config and DINO config remain pinned and locally SHA256 verified. G1 default Web app remains FIXTURE-only; real inference is available ONLY in explicitly launched, single-user Windows manual G2 session with per-image GPU confirmation. No unattended queue, arbitrary customer-image quality guarantee, print qualification, Office core or printer integration. See G2_APP_INTEGRATION.md, G2_RESULTS.md and G2_APPROVAL_2026-10-09.json.
 
 ## Why the initial read-only preflight originally said BLOCKED
 Original environment on Windows Chris had no isolated torch, unverified model bytes, nvcc CUDA 13.2 and ~39% GPU utilization. We created a separate Python 3.11 venv and installed official torch 2.5.1+cu121 wheels without touching global Python/CUDA. Windows GPU graphics workloads still occupy the device, so a generic preflight marks the GPU shared; the approved pilots used a stricter live Office conflict check and bounded VRAM/time guard at the exact time of execution.
@@ -26,7 +26,7 @@ See machine-readable TRIPOSR_SOURCE_LOCK.json:
 - Python pip check: no broken requirements.
 - Runtime imports: torch, transformers, NumPy, OmegaConf, skimage, Trimesh, imageio all passed.
 - SHA256 verification of model and config, source commit/clean tree, GLB binary parser and real Chrome viewport all passed.
-- Two GPU runs completed in 13.48 s and 14.15 s respectively; peak torch CUDA reserved ~2,058 MiB. Guard checked >=10,000 MiB free, Office Ollama loaded-model count 0, time <=240 s and VRAM hard stops. Returned to observed baseline GPU memory after exit.
+- Two ORIGINAL isolated GPU runs completed in 13.48 s and 14.15 s respectively; later MANUAL-API end-to-end real run completed in 25.51 s. Peak torch CUDA reserved ~2,058 MiB in each. Guard checked >=10,000 MiB free, Office Ollama loaded-model count 0, time <=240 s and VRAM hard stops. GPU memory returned to baseline after each worker exit.
 - Improved output has mesh report watertight TRUE and consistent winding TRUE, but remains DRAFT and NOT PRINT QUALIFIED.
 - Raw model is Z-up; independently verified Y-up derivative is in docs/evidence/g2/chair-yup.glb.
 
