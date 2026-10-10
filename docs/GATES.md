@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.22 — pinned Python advisory snapshot and static codepath controls (NOT SECURITY CLEARED)
+
+- PASS static: read-only G3.5 OSV evidence SHA/34 exact installed dependency pins/source Git HEAD, 63 first-party + 2 selected upstream AST files. Previous OSV 104 version matches **50 Transformers, 32 Pillow, 22 torch**, but only 36 sampled advisory IDs persisted and **68 missing IDs** require new full inventory; zero evidence supports individually clearing 104.
+- Direct image decoder Pillow Image.open/exif import reaches input-image bytes; expected local pinned ViTModel.config_class.from_pretrained and TSR torch.load code discovered. Worker weights_only=True temporary wrapper, SHA source/weights, DINO local override and offline env literal checks pass; no OS egress/network filesystem confinement.
+- Three sample advisories checked against official GHSA trigger API descriptions: no literal targeted ImageMath.eval, AutoModelForCausalLM.from_pretrained or torch.mkldnn_max_pool2d calls in audited Python source; this is NOT transitive/no-exploit proof. Other advisories conditional and UNRESOLVED; production Pillow 10.1.0 remains unchanged.
+- Security Issue #4 OPEN, no untrusted/customer image clearance, no package upgrade, no OS/firewall mutation or GPU; manufacturing Issue #3 and print release still OPEN. [Method](G3_22_PYTHON_ADVISORY_STATIC_REACHABILITY_CPU_2026-10-10.md), [public SHA evidence](evidence/g3/g3-22-pinned-python-static-triage.json).
+
 ## G3.21 — physical source-reference attestation is BLOCKED without independently verified evidence (CPU)
 
 - PASS: strict SHA-bound schema for hypothetical external caliper/ruler physical measurement and two original decoded mesh vertex landmarks. Enforces positive finite claimed mm, source/time/hashes, valid indexed landmark pair and no unauthorized fields; fake approvedForPrinter flags, declared GLB meter metadata, untrusted image estimates, arbitrary PII and malformed evidence are REJECTED. Even valid structure is ONLY PENDING HUMAN REVIEW, not unit conversion or print approval.

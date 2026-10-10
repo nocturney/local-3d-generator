@@ -1,0 +1,432 @@
+{
+  "advisoryIdsActuallyRetainedInPreviousSnapshot": 36,
+  "advisoryIdsOmittedByPreviousSnapshot": 68,
+  "all104AdvisoriesResolvedOrExploitProof": false,
+  "allAdvisoriesIndividuallyTriaged": false,
+  "directSourceCallSites": {
+    "localPinnedTorchWeightDeserializer": {
+      "file": "PINNED_TRIPOSR/tsr/system.py",
+      "lines": [
+        69
+      ],
+      "symbol": "torch.load"
+    },
+    "pillowImageExif": {
+      "file": "engines/triposr/worker.py",
+      "lines": [
+        134
+      ],
+      "symbol": "ImageOps.exif_transpose"
+    },
+    "pillowRealImageDecode": {
+      "file": "engines/triposr/worker.py",
+      "lines": [
+        129
+      ],
+      "symbol": "Image.open"
+    },
+    "pinnedTsRLoaded": {
+      "file": "engines/triposr/worker.py",
+      "lines": [
+        224
+      ],
+      "symbol": "TSR.from_pretrained"
+    },
+    "pinnedVITModelConfigLoader": {
+      "file": "PINNED_TRIPOSR/tsr/models/tokenizers/image.py",
+      "lines": [
+        22
+      ],
+      "symbol": "ViTModel.config_class.from_pretrained"
+    }
+  },
+  "firstPartyPythonFilesASTInspected": 63,
+  "historicalPackagesWithMatches": 3,
+  "historicalVersionLevelMatches": 104,
+  "liveAdvisoryQueryPerformed": false,
+  "localInstalledDistributionCountVerified": 34,
+  "newAiInference": false,
+  "newUntrustedImagesApproved": false,
+  "noPackageImportsOrModelWeightsLoadedDuringStaticInspection": true,
+  "observedSourceGuardCode": {
+    "literalDirectImageOpen": true,
+    "literalPillowExifTranspose": true,
+    "offlineEnvironmentLiteralCodePresent": true,
+    "osEnforcedNetworkEgressProven": false,
+    "pinnedDinoDownloadOverrideCodePresent": true,
+    "pinnedWeightSourceValidatedInMain": true,
+    "untrustedImageParsingSandboxProven": false,
+    "weightsOnlyMonkeypatchCodePresent": true
+  },
+  "osEnforcedEgressOrNativeParserSandboxImplemented": false,
+  "packagesEnumerated": 34,
+  "pillowImageParsingDirectInputPathPresent": true,
+  "pillowShadow12_3_0OnlyPreviouslyCPUPreprocessingSmokeTested": true,
+  "pinnedTripoSRSourceCommit": "107cefdc244c39106fa830359024f6a2f1c78871",
+  "pinnedUpstreamSourceGitCleanVerified": true,
+  "previousFrozenPythonManifestSha256": "887970cf973af2a619bfa6d09ab5a28bf6cd9cc3f24867eefaf35e73f72c21a7",
+  "previousOsVPublicSnapshotSha256": "f1803008bd72c182c4b1fe69bd8390da257c66506f78c1929af0006f4756b9cf",
+  "previousShadowPillowProofSha256": "8f4f3b45e69cab90ebaa852d547f364bd798f1d1ea6bd5d613fec1c0718a8441",
+  "printQualified": false,
+  "priorSnapshotRows": [
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "antlr4-python3-runtime",
+      "pinnedVersion": "4.9.3",
+      "publicVersionQueried": "4.9.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "certifi",
+      "pinnedVersion": "2026.7.22",
+      "publicVersionQueried": "2026.7.22",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "charset-normalizer",
+      "pinnedVersion": "3.5.2",
+      "publicVersionQueried": "3.5.2",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "colorama",
+      "pinnedVersion": "0.4.6",
+      "publicVersionQueried": "0.4.6",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "einops",
+      "pinnedVersion": "0.7.0",
+      "publicVersionQueried": "0.7.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "filelock",
+      "pinnedVersion": "3.32.3",
+      "publicVersionQueried": "3.32.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "fsspec",
+      "pinnedVersion": "2026.7.0",
+      "publicVersionQueried": "2026.7.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "huggingface-hub",
+      "pinnedVersion": "0.17.3",
+      "publicVersionQueried": "0.17.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "idna",
+      "pinnedVersion": "3.20",
+      "publicVersionQueried": "3.20",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "imageio",
+      "pinnedVersion": "2.34.1",
+      "publicVersionQueried": "2.34.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "Jinja2",
+      "pinnedVersion": "3.1.6",
+      "publicVersionQueried": "3.1.6",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "lazy-loader",
+      "pinnedVersion": "0.6",
+      "publicVersionQueried": "0.6",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "MarkupSafe",
+      "pinnedVersion": "3.0.3",
+      "publicVersionQueried": "3.0.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "mpmath",
+      "pinnedVersion": "1.3.0",
+      "publicVersionQueried": "1.3.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "networkx",
+      "pinnedVersion": "3.6.1",
+      "publicVersionQueried": "3.6.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "numpy",
+      "pinnedVersion": "1.26.4",
+      "publicVersionQueried": "1.26.4",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "omegaconf",
+      "pinnedVersion": "2.3.0",
+      "publicVersionQueried": "2.3.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "packaging",
+      "pinnedVersion": "26.3",
+      "publicVersionQueried": "26.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 20,
+      "packageName": "Pillow",
+      "pinnedVersion": "10.1.0",
+      "publicVersionQueried": "10.1.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 12,
+      "snapshotVersionMatches": 32
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "PyYAML",
+      "pinnedVersion": "6.0.3",
+      "publicVersionQueried": "6.0.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "regex",
+      "pinnedVersion": "2026.9.29",
+      "publicVersionQueried": "2026.9.29",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "requests",
+      "pinnedVersion": "2.34.2",
+      "publicVersionQueried": "2.34.2",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "safetensors",
+      "pinnedVersion": "0.8.0",
+      "publicVersionQueried": "0.8.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "scikit-image",
+      "pinnedVersion": "0.22.0",
+      "publicVersionQueried": "0.22.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "scipy",
+      "pinnedVersion": "1.13.1",
+      "publicVersionQueried": "1.13.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "sympy",
+      "pinnedVersion": "1.13.1",
+      "publicVersionQueried": "1.13.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "tifffile",
+      "pinnedVersion": "2026.3.3",
+      "publicVersionQueried": "2026.3.3",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "tokenizers",
+      "pinnedVersion": "0.14.1",
+      "publicVersionQueried": "0.14.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 10,
+      "packageName": "torch",
+      "pinnedVersion": "2.5.1+cu121",
+      "publicVersionQueried": "2.5.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 12,
+      "snapshotVersionMatches": 22
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "tqdm",
+      "pinnedVersion": "4.70.1",
+      "publicVersionQueried": "4.70.1",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 38,
+      "packageName": "transformers",
+      "pinnedVersion": "4.35.0",
+      "publicVersionQueried": "4.35.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 12,
+      "snapshotVersionMatches": 50
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "trimesh",
+      "pinnedVersion": "4.0.5",
+      "publicVersionQueried": "4.0.5",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "typing_extensions",
+      "pinnedVersion": "4.16.0",
+      "publicVersionQueried": "4.16.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    },
+    {
+      "advisoryIdsNotRetainedInOldSnapshot": 0,
+      "packageName": "urllib3",
+      "pinnedVersion": "2.8.0",
+      "publicVersionQueried": "2.8.0",
+      "reachabilityOfAllAlerts": "UNASSESSED_INDIVIDUALLY",
+      "sampledAdvisoryIdsAvailable": 0,
+      "snapshotVersionMatches": 0
+    }
+  ],
+  "productionDependencyOrOStoolsChanged": false,
+  "productionPillowStillPinned10_1_0": true,
+  "representativeAdvisoriesReviewedForTriggerOnly": [
+    {
+      "advisoryId": "GHSA-3f63-hfp8-52jq",
+      "allPackageAdvisoriesProvenNotAffected": false,
+      "allSampledPackageAdvisoriesReviewedIndividually": false,
+      "documentedRepresentativeTrigger": "PIL.ImageMath.eval with attacker-influenced environment",
+      "firstPatchedVersionFromAdvisory": "10.2.0",
+      "historicalPinnedVersion": "10.1.0",
+      "limitedStaticDisposition": "PRIORITY_FIX_INPUT_DECODING_DEPENDENCY; SPECIFIC_IMAGEMATH_API_NOT_DIRECTLY_CALLED_IN_AUDIT",
+      "literallyNamedAffectedAPICallFoundInScannedSources": false,
+      "officialAdvisoryUrl": "https://github.com/advisories/GHSA-3f63-hfp8-52jq",
+      "package": "Pillow",
+      "realSourceSurface": "DIRECT_IMAGE_DECODE_PATH_PRESENT",
+      "sourceScanIsNotTransitiveResolutionOrExploitTest": true
+    },
+    {
+      "advisoryId": "GHSA-29pf-2h5f-8g72",
+      "allPackageAdvisoriesProvenNotAffected": false,
+      "allSampledPackageAdvisoriesReviewedIndividually": false,
+      "documentedRepresentativeTrigger": "AutoModelForCausalLM.from_pretrained with malicious config attention kernel external fetch",
+      "firstPatchedVersionFromAdvisory": "5.3.0",
+      "historicalPinnedVersion": "4.35.0",
+      "limitedStaticDisposition": "TRIGGER_API_NOT_DIRECTLY_USED_BUT_TRANSITIVE_MODEL_CONFIG_REACHABILITY_NOT_PROVEN",
+      "literallyNamedAffectedAPICallFoundInScannedSources": false,
+      "officialAdvisoryUrl": "https://github.com/advisories/GHSA-29pf-2h5f-8g72",
+      "package": "transformers",
+      "realSourceSurface": "PINNED_LOCAL_VIT_MODEL_CONFIG_TRANSITIVE_IMPORT",
+      "sourceScanIsNotTransitiveResolutionOrExploitTest": true
+    },
+    {
+      "advisoryId": "GHSA-3749-ghw9-m3mg",
+      "allPackageAdvisoriesProvenNotAffected": false,
+      "allSampledPackageAdvisoriesReviewedIndividually": false,
+      "documentedRepresentativeTrigger": "torch.mkldnn_max_pool2d local denial of service",
+      "firstPatchedVersionFromAdvisory": "2.7.1-rc1",
+      "historicalPinnedVersion": "2.5.1+cu121",
+      "limitedStaticDisposition": "TRIGGER_API_NOT_DIRECTLY_USED_BUT_TRANSITIVE_TORCH_OP_REACHABILITY_NOT_PROVEN",
+      "literallyNamedAffectedAPICallFoundInScannedSources": false,
+      "officialAdvisoryUrl": "https://github.com/advisories/GHSA-3749-ghw9-m3mg",
+      "package": "torch",
+      "realSourceSurface": "PINNED_WEIGHT_LOAD_AND_TENSOR_INFERENCE_LANE",
+      "sourceScanIsNotTransitiveResolutionOrExploitTest": true
+    }
+  ],
+  "schema": "local3d.g3.22.pinned-python-sampled-advisory-codepath-static.v1",
+  "securityGateResolved": false,
+  "selectedPinnedUpstreamPythonFilesASTInspected": 2,
+  "snapshotDate": "2026-10-10T10:27:21.392Z",
+  "snapshotIsHistoricalNotLive": true,
+  "sourceInspectionIsOnlyStaticAndCannotProveFullReachability": true,
+  "torchTransformersTransitiveRuntimeReachabilityUnknown": true
+}

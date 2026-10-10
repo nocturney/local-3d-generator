@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.22: OSV historical version matches do NOT prove advisories reachable or fixed
+
+G3.22 offline static source analysis verifies 34 pinned installed Windows Python dist versions, prior G3.5 public OSV proof, G3.6 Pillow shadow proof, pinned clean TSR source. Historical OSV returns 104 version matches (Transformers 50, Pillow 32, Torch 22) but only 36 actual IDs were saved; other 68 are NOT reviewed or individually known. Targeted examples from official advisories include ImageMath.eval, AutoModelForCausalLM.from_pretrained and torch.mkldnn_max_pool2d, which were not directly called in selected audited Python sources; THAT IS NOT A TRANSITIVE exploitability proof and DOES NOT clear those packages.
+
+Real image input passes through Pillow Image.open; prioritize native-code parser risks. Worker source/weights SHA locks, fixed local DINO hub override, offline env literals, weights_only checkpoint wrapper and manual loopback GPU are existing mitigations, NOT OS network/file sandbox. Production still uses vulnerable-version Pillow 10.1.0; the prior Pillow 12.3.0 shadow CPU/import result does not qualify full TripoSR GPU compatibility. No packaged model/source code or dependency upgrade performed in G3.22.
+
+Issue #4 pinned advisories, untrusted parser OS isolation, network egress and user-data retention OPEN. Do not enable untrusted/multi-user/commercial inputs based on static non-use of a named function. Issue #3 physical print/wall/manufacturing OPEN. All models DRAFT and printQualified=false. [Method](G3_22_PYTHON_ADVISORY_STATIC_REACHABILITY_CPU_2026-10-10.md), [public SHA evidence](evidence/g3/g3-22-pinned-python-static-triage.json).
+
 ## G3.21: typed operator physical measurements and hash strings cannot self-authorize physical scale
 
 A future local evidence JSON with SHA-looking image/measurement/operator record handles, date, ruler/caliper claimed mm number and source mesh vertex indices is ONLY a structural review candidate. The strict allowlist rejects unrecognized or extra fields, fake approvedForPrinter, mmPerGLBUnit values, invalid model source SHA, PII fields, unverifiable image estimates, invalid/date/future/NaN/degenerate landmarks and symlinked/oversized JSON. Even apparently valid records remain PENDING_INDEPENDENT_HUMAN_CALIBRATION_REVIEW with sourceVerifiedUnits UNKNOWN_UNCALIBRATED, millimetersPerGLBUnit=null, physicalMinimumWallThicknessMm=null and printQualified=false. No code path approves physical mm or fabrication.

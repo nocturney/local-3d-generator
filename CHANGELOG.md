@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.22 — 2026-10-10 — G3.22 pinned Python security static call-path triage
+
+- Read-only CPU/AST research matches previous frozen 34-package G2 manifest and installed distribution metadata exactly (34/34), source SHA/clean pinned TSR checkout, G3.5 OSV snapshot and G3.6 Pillow shadow SHA proof. Prior 104 public OSV VERSION matches are only recorded with 36 sample advisory IDs, 68 IDs omitted; those missing details remain UNKNOWN, not cleared.
+- Verified direct Pillow Image.open source-image parsing and selected pinned ViT config / torch.load paths, worker checks for SHA-locked config/model source, restricted DINO Hub override, offline environment literals and weights_only=True checkpoint loading wrapper. Three official representative GHSA trigger APIs not directly observed in reviewed Python AST; indirect and native package execution CANNOT be excluded, no security certification or real untrusted input acceptance.
+- Added bounded static report and adversarial guard-drift/source/provenance/partial-OSV checks plus source SHA/privacy tests. Live Pillow/Torch/Transformers pins unchanged, no GPU inference, package installation, Office or OS config changes. Issue #4 remains OPEN (34/34 frozen versions are not a security guarantee).
+
 ## v0.2.21 — 2026-10-10 — G3.21 physical reference attestation review contract (never print release)
 
 - Added CPU-only strict physical caliper/ruler dimensional submission schema tied to a trusted GLB SHA, dated independently claimed physical measurement, evidence/operator record SHA handles, and two trusted mesh vertex indices. Validate syntax, plausible geometry and finite positive claims; NEVER treat a sidecar, exporter units, hash-looking handle or a typed approval flag as independent calibration or authority.

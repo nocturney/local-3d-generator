@@ -1,5 +1,16 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.22: offline Python advisory static reachability — read-only ONLY
+
+No Python install, model loading or live OSV query. G3.22 parses existing historical G3.5 OSV JSON, verifies original pinned 34-dependency freeze hash and local importlib.metadata exact 34 installed versions, pinned upstream clean Git checkout and G3.6 Pillow 12.3 shadow evidence SHA. Reviews 63 first-party Python + 2 upstream relevant pinned files using AST. 104 previous OSV version matches are NOT 104 established vulnerabilities; only 36 actual IDs retained and 68 remain unsampled/UNKNOWN. Pillow directly decodes image bytes; Transformers/Torch have pinned source/model calls but no transitive absence proof. Worker SHA/weights_only/offline app guards are code checks, not OS sandbox guarantees. Package pins unmodified.
+
+CPU-only adversarial tests and previously generated public immutable read-only replay:
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g322_static_security.py
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-22-security-static-proof.py
+
+First public SHA aggregate created with --write-public; subsequent no-flag replay fails closed if source/installed snapshot changes. [G3.22 full method](G3_22_PYTHON_ADVISORY_STATIC_REACHABILITY_CPU_2026-10-10.md); [immutable sanitized proof](evidence/g3/g3-22-pinned-python-static-triage.json). No production Pillow upgrade or OS isolation; security Issue #4 and print/geometry Issue #3 OPEN. No Office, GPU, printer or unrelated 4178 changes.
+
 ## G3.21: future manual physical measurement schema — verification REQUIRED, zero auto-calibration
 
 Use engines/quality/manual_scale_reference_contract.py only for CPU strict syntactic check of a FUTURE operator-submitted independent physical reference. Evidence requires previous SHA-pinned model, claimed caliper/ruler measurement in mm with date/evidence SHA/operator record SHA and TWO valid original indexed mesh landmarks. A typed record does NOT establish a real physical measurement, source landmark correspondence, identity or printer authorization. Missing reference remains BLOCKED_MISSING_EXTERNAL_REFERENCE; a structurally plausible record remains PENDING_INDEPENDENT_HUMAN_CALIBRATION_REVIEW. Never emit millimetersPerGLBUnit or any absolute mm wall-thickness from this contract. Unrecognized metadata, misleading Trimesh exporter units and forged flags are refused.
