@@ -1,5 +1,13 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.21: typed operator physical measurements and hash strings cannot self-authorize physical scale
+
+A future local evidence JSON with SHA-looking image/measurement/operator record handles, date, ruler/caliper claimed mm number and source mesh vertex indices is ONLY a structural review candidate. The strict allowlist rejects unrecognized or extra fields, fake approvedForPrinter, mmPerGLBUnit values, invalid model source SHA, PII fields, unverifiable image estimates, invalid/date/future/NaN/degenerate landmarks and symlinked/oversized JSON. Even apparently valid records remain PENDING_INDEPENDENT_HUMAN_CALIBRATION_REVIEW with sourceVerifiedUnits UNKNOWN_UNCALIBRATED, millimetersPerGLBUnit=null, physicalMinimumWallThicknessMm=null and printQualified=false. No code path approves physical mm or fabrication.
+
+The only published G3.21 evidence uses previously sanitized public G3.20 SHA JSON (never private job/image/GLB bytes), verifies model hash ancestry and returns BLOCKED_MISSING_EXTERNAL_REFERENCE for all four old sources, as no independent physical measurement was supplied. Public proof includes SHA256 of the previous public proof bytes and excludes operator names, images, job IDs and coordinates. G3.20 extra private four-source read-only retry remains blocked by execution tool safety and MUST NOT be claimed completed.
+
+Security Issue #4 OSV dependency reachability, OS-enforced native parser isolation and firewall egress remain OPEN. Issue #3 physical minimum-wall and print QA OPEN, 2/9 real AI benchmarks only. No installs, inference/GPU, cloud, printer, Office, 4178, Windows security changes or physical calibration inference.
+
 ## G3.20: exporter unit metadata and normal-ray chords cannot authorize production
 
 G3.20 adds a strict physical unit provenance FAIL-CLOSED gate. Untrusted/reported mesh extras.units from a glTF/Trimesh exporter (including "meters" or "millimeters") does NOT authorize converting single-image generated model coordinates to real-world mm; only separately sourced, verified physical measurements plus transforms/landmark correspondence could do so in a future milestone. Current four existing SHA-pinned models all return physicalMillimeterScale=UNKNOWN_UNCALIBRATED, mmPerGLBUnit=null, minimumPhysicalWallThicknessMm=null and printQualified=false. No guessed prices/material tolerances or physical size claims.

@@ -1,5 +1,16 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.21: future manual physical measurement schema — verification REQUIRED, zero auto-calibration
+
+Use engines/quality/manual_scale_reference_contract.py only for CPU strict syntactic check of a FUTURE operator-submitted independent physical reference. Evidence requires previous SHA-pinned model, claimed caliper/ruler measurement in mm with date/evidence SHA/operator record SHA and TWO valid original indexed mesh landmarks. A typed record does NOT establish a real physical measurement, source landmark correspondence, identity or printer authorization. Missing reference remains BLOCKED_MISSING_EXTERNAL_REFERENCE; a structurally plausible record remains PENDING_INDEPENDENT_HUMAN_CALIBRATION_REVIEW. Never emit millimetersPerGLBUnit or any absolute mm wall-thickness from this contract. Unrecognized metadata, misleading Trimesh exporter units and forged flags are refused.
+
+Local CPU-only tests and READ-ONLY proof from previous PUBLIC G3.20 SHA JSON (NO private historic G2 job access):
+
+    runtime\engines\triposr\venv\Scripts\python.exe -m unittest discover -s engines\quality -p test_g321_manual_reference_contract.py
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-21-calibration-contract-proof.py
+
+Initial one-time immutable public proof created with --write-public; no-flag replay verified without private source reads or GPU inference. [G3.21 policy](G3_21_MANUAL_MM_REFERENCE_CONTRACT_CPU_2026-10-10.md), [four-source blocked evidence](evidence/g3/orb-01-g321-physical-calibration-missing.json). Do not treat proof SHA as independent physical measurement. No printer, OS security, Office, 4178 or model actions.
+
 ## G3.20: do NOT trust exporter units; sampled GLB-unit normal-ray chord diagnostics only
 
 Source worker engine and pinned G2 real assets contain no independently measured subject dimension. Trimesh-generated glTF extras.units="meters" found in previously licensed G3.7 winding derivative and chair does NOT establish actual meters, mm calibration or print sizing; physicalMillimeterScale remains UNKNOWN_UNCALIBRATED, mmPerGLBUnit null. The new CPU-only engines/quality/unit_scale_and_chord_screen.py samples up to 128 deterministic face barycenters on POSITIVE signed-volume closed manifolds and reports inward normal ray first-hit chords plus triangulation edge lengths IN GLB COORDINATE UNITS ONLY. A sphere full-solid chord demonstrates these are NOT wall thickness. Original previously generated TripoSR orb has NONPOSITIVE signed volume and inward ray probing is DISABLED instead of silently treating wrong normals as safe. No source mutation or physical calibration.

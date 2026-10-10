@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.21 — 2026-10-10 — G3.21 physical reference attestation review contract (never print release)
+
+- Added CPU-only strict physical caliper/ruler dimensional submission schema tied to a trusted GLB SHA, dated independently claimed physical measurement, evidence/operator record SHA handles, and two trusted mesh vertex indices. Validate syntax, plausible geometry and finite positive claims; NEVER treat a sidecar, exporter units, hash-looking handle or a typed approval flag as independent calibration or authority.
+- Missing evidence -> BLOCKED_MISSING_EXTERNAL_REFERENCE; structurally good but unaudited submission -> PENDING_TRUSTED_MESH_MAPPING_REVIEW or PENDING_INDEPENDENT_HUMAN_CALIBRATION_REVIEW. In ALL cases mmPerGLBUnit and physical wall dimension outputs remain null; printQualified=false.
+- Four prior historical licensed GLB SHA entries remain blocked in an immutable public-only report cryptographically linked to original G3.20 public proof SHA256. No private historic model/job reread or GPU computation (G3.20 attempted second read-only replay remains blocked and is NOT claimed completed). Added adversarial CPU Python and Node source SHA/privacy tests; Issues #3/#4 open.
+
 ## v0.2.20 — 2026-10-10 — G3.20 calibrated-units fail-closed and CPU normal-ray chord proxies
 
 - Audited original G2 TripoSR image-to-GLB worker, Y-up derivative, physical dimension/scale handling and glTF JSON mesh extras. Historical derivative/derivative chair show self-claimed units="meters" from exporter but NO independently measured real subject size; real-world mm coordinate conversion is explicitly null/UNKNOWN_UNCALIBRATED despite exporter hint.

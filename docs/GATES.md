@@ -1,5 +1,12 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.21 — physical source-reference attestation is BLOCKED without independently verified evidence (CPU)
+
+- PASS: strict SHA-bound schema for hypothetical external caliper/ruler physical measurement and two original decoded mesh vertex landmarks. Enforces positive finite claimed mm, source/time/hashes, valid indexed landmark pair and no unauthorized fields; fake approvedForPrinter flags, declared GLB meter metadata, untrusted image estimates, arbitrary PII and malformed evidence are REJECTED. Even valid structure is ONLY PENDING HUMAN REVIEW, not unit conversion or print approval.
+- PASS: public-only SHA-256 linked proof over G3.20 sanitized report, four old trusted model SHAs all BLOCKED_MISSING_EXTERNAL_REFERENCE, zero independently supplied physical measurements, zero verified mm scale/physical thickness. No G2 private job/raw model access, no inference/GPU.
+- OPEN: real independent calibrated reference measurement, signed reviewer/legal/source proof, matching physical landmarks and transform chain, true local minimum wall/material/slicer/printer QA and Issue #4 OSV advisory/OS sandbox/egress. All draft outputs printQualified=false, Issue #3 OPEN.
+- [Method, contract and exact safety status](G3_21_MANUAL_MM_REFERENCE_CONTRACT_CPU_2026-10-10.md), [four-model public-only blocked SHA proof](evidence/g3/orb-01-g321-physical-calibration-missing.json).
+
 ## G3.20 — trusted source physical unit provenance and bounded CPU chord probes
 
 - PASS: four historical licensed/source SHA models retain realPhysicalMillimeterScale UNKNOWN_UNCALIBRATED and mmPerGLBUnit NULL. glTF mesh extras.units="meters" exists in old G3.7 positive winding and licensed chair but is explicitly an UNVERIFIED exporter metadata claim, not independent subject physical scale calibration. Existing image-to-mesh worker/export has no physical mm reference or certified scaling transform.
