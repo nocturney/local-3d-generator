@@ -1,0 +1,123 @@
+{
+  "schema": "local3d.g333.pillow-12-3-existing-overlay-cpu-only-preprocessor-compatibility.v1",
+  "observedDate": "2026-10-11",
+  "parentG332PublicSha256": "091a1f8a98eb03332888209a0d07f10f36dccf651518df3657cedf0a28a65d6e",
+  "sourceManifestSha256": "763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a",
+  "originalSyntheticInputsSha256": "171c9b8cc010cd8f05620a70617122a5c97ec074c951cc0ef27ad35ccf1cdbdb",
+  "pinnedProductionWorkerUnchangedSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "laneCodeNormalizedSha256": "8fed3b337eda1466d28311c92c82ab3bb03381dd623581e5980c7594509d1727",
+  "productionPrivateCpuLaneRecordSha256": "211a6e86369a26fd4da2e3f0e695efe135f6d85a83486317a2bea0bd0f72184d",
+  "shadowPrivateCpuLaneRecordSha256": "d555b7a278bed7f79e7aaeccbd8914e08280bd50336f7de6dbd317a0fc200e51",
+  "versions": {
+    "production": "10.1.0",
+    "shadow": "12.3.0"
+  },
+  "totalPreviouslyLicensedOrOriginalInputs": 12,
+  "projectGeneratedOrSyntheticInputs": 11,
+  "upstreamMitLicensedSampleInputs": 1,
+  "allTwelveInputsDecodedToRgbCpu": true,
+  "sameDimensionsCount": 12,
+  "pixelShaIdenticalCount": 12,
+  "alphaCompositionLaneSameCount": 12,
+  "caseComparison": [
+    {
+      "sourceId": "01-orb-alpha",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "02-orb-opaque",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "03-hollow-vase",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "04-torus-hole",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "05-disconnected-pair",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "06-thin-chair",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "07-gear-opaque",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "08-arch-opaque",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "09-upstream-chair",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "trusted-synthetic-PNG",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "trusted-synthetic-JPEG",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    },
+    {
+      "sourceId": "trusted-synthetic-WEBP",
+      "licensedOrProjectOriginal": true,
+      "sameWidthAndHeight": true,
+      "sameRgbOutputBytesSha256": true,
+      "sameAlphaCompositionLane": true
+    }
+  ],
+  "historicalFullGpuModelCompatibilityDemonstrated": false,
+  "compatibilityOfAllOtherPackageModulesDemonstrated": false,
+  "productionPillowUpgraded": false,
+  "productionVenvOrWeightsChanged": false,
+  "packagesInstalledOrDownloaded": false,
+  "hostOSNetworkOrSecurityChanged": false,
+  "sandboxGuestLaunched": false,
+  "untrustedImagesProcessed": false,
+  "modelOrGpuRuns": 0,
+  "nativeParserSecurityOrUntrustedUploadClearance": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

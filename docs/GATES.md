@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.33 — Pillow12.3.0 shadow CPU image-processing parity, NOT G2 GPU safety
+
+- PASS: Two CPU-only process-local pinned Pillow lanes (production10.1 and separate shadow12.3) preprocessed nine rights-checked G3 source images plus three original previously pinned synthetic images, with source SHA verification. For all 12 inputs, raw RGB output byte SHA, dimensions and alpha processing flags exactly agree. Existing 7 G2 offline Python unit tests pass with the shadow overlay.
+- PASS: Immutable public G3.33 SHA proof verifies prior G3.32 public parent, source manifest and synthetic inputs, production Python worker, privately stored lane receipt hashes, rights and no new GPU/OS/customer uploads.
+- OPEN: 12 known-good images and seven CPU unit tests are NOT full CUDA/weights/Transformers compatibility, safe untrusted native decoder execution, dependency remediation or production upgrade approval. Security Issue #4 OPEN; physical geometry/min-wall/slicer/print Issue #3 OPEN. [Method](G3_33_PILLOW_12_3_SHADOW_CPU_COMPARISON_2026-10-11.md), [source-linked public proof](evidence/g3/g3-33-pillow-12-3-shadow-cpu-compatibility.json).
+
 ## G3.32 — offline Sandbox XML candidate verification
 
 A new candidate file uses Microsoft's documented VGpu tag spelling; all other values match the historical G3.29 candidate. The trusted file passed read-only .NET XML parsing and strict Node tests. This demonstrates document structure only, not OS-enforced isolation. No guest, store installation, model inference or printing was performed. Security Issue #4 and manufacturing Issue #3 remain OPEN. [Method](G3_32_CANONICAL_WSB_XML_CPU_2026-10-11.md); [immutable report](evidence/g3/g3-32-canonical-wsb-xml-static-review.json).

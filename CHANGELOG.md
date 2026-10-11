@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.33 — 2026-10-11 — G3.33 original/trusted CPU preprocessing Pillow12.3 shadow parity
+
+- Compared pinned Pillow 10.1.0 production import with already available SHA-locked Pillow 12.3.0 shadow overlay on nine existing SHA/license-verified G3 benchmark images and three earlier trusted generated synthetic format fixtures. Real worker prepare_image used for all nine project fixtures, with no worker.main, model or GPU invocation.
+- Result: 12/12 exact raw decoded RGB SHA matches, dimensions 12/12, alpha handling 12/12. Seven existing G2 Python offline unit tests also passed with the shadow overlay, without changing production venv. No dependency installed or downloaded.
+- Added deterministic per-lane private runtime CPU receipts, source/rights/public-proof SHA linked G3.33 report, adversarial Node/Python tests and documentation; previous G3.25–G3.32 evidence untouched. Does NOT prove compatible CUDA/GPU TripoSR model or security clearance. Issue #4 and #3 OPEN.
+
 ## v0.2.32 — 2026-10-11 — G3.32 align static Windows Sandbox VGpu XML with Microsoft example
 
 - Produced a NEW conservative .wsb candidate using the Microsoft sample's case-exact VGpu tag, with all G3.29 protections unchanged (no networking/vGPU, clipboard/audio/video/printer, ProtectedClient, no host shares/commands). Byte-for-byte historical G3.29 candidate and G3.31 historical proof remain unmodified.

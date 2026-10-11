@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.33 — production-pinned versus existing shadow Pillow CPU comparison
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-33-cpu-pillow-lane.py --lane production
+    node scripts/g3-33-assemble-pillow-shadow-comparison.mjs
+    node --test tests/g333-pillow-shadow-compatibility.test.js
+
+To reproduce the shadow lane, set process-local PYTHONPATH to the existing runtime/qa/g3/pillow-shadow/overlay plus repo root, call the same pinned Python interpreter with --lane shadow, and UNSET that process-local variable immediately afterward. Both lane JSONs are in ignored runtime/qa/g3/g333-pillow-lanes and are immutable for matching input/source SHAs. No pip install, PYTHONPATH environment persistence, model/GPU or OS isolation. [Details](G3_33_PILLOW_12_3_SHADOW_CPU_COMPARISON_2026-10-11.md), [public report](evidence/g3/g3-33-pillow-12-3-shadow-cpu-compatibility.json).
+
 ## G3.32 — read-only, canonical Windows Sandbox configuration validation
 
     node scripts/g3-32-assemble-canonical-wsb-proof.mjs
