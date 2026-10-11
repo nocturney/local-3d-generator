@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.34 — CPU-only safe EXIF/alpha/corrupt sample parity
+
+- PASS: 4 pre-existing original, SHA-pinned harmless G3.6 samples decoded/handled under Pillow10.1 and existing shadow12.3; 3 valid sources match exact RGB pixel hashes, dimensions and alpha/orientation handling, 1 invalid tiny PNG rejected with same Pillow error class in both.
+- PASS: immutable public SHA report verifies previous G3.33 proof, historical original G3.6 generator source, G2 worker source and ignored private lane receipts. No raw image payloads, customer paths or GPU.
+- OPEN: native parser sandbox, hostile-image testing and security fixes, full GPU model stack compatibility and production shadow upgrade approval; Issue #4 OPEN. Fabrication release #3 OPEN. [Method](G3_34_PILLOW_SAFE_EDGE_CASES_CPU_2026-10-11.md), [proof](evidence/g3/g3-34-pillow-edge-cases-cpu-parity.json).
+
 ## G3.33 — Pillow12.3.0 shadow CPU image-processing parity, NOT G2 GPU safety
 
 - PASS: Two CPU-only process-local pinned Pillow lanes (production10.1 and separate shadow12.3) preprocessed nine rights-checked G3 source images plus three original previously pinned synthetic images, with source SHA verification. For all 12 inputs, raw RGB output byte SHA, dimensions and alpha processing flags exactly agree. Existing 7 G2 offline Python unit tests pass with the shadow overlay.

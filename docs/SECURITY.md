@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.34: negative malformed PNG in two Pillow versions is NOT hostile parser security certification
+
+The pinned source/original SHA/byte-size of four safe G3.6 generated images were rechecked before CPU-only workers prepared them with production Pillow10.1.0 and existing separate Pillow12.3.0 shadow. Exact RGB equality on transparent PNG, EXIF JPEG and transparent WebP, and rejection of a deliberately short harmless bad PNG, demonstrate narrow preprocessing behavioral parity ONLY. They cannot establish safe native parsing of arbitrary hostile input, eliminate version-matched advisory findings, establish actual Windows Sandbox file/network isolation or qualify CUDA/GPU inference/print. No model/weights, packages, OS security or Office/4178 actions. [G3.34 proof](evidence/g3/g3-34-pillow-edge-cases-cpu-parity.json), [method](G3_34_PILLOW_SAFE_EDGE_CASES_CPU_2026-10-11.md). Security #4 OPEN, manufacturing #3 OPEN.
+
+## G3.33: exact 12/12 trusted Pillow preprocessing compatibility is NOT native decoder sandboxing
+
 ## G3.33: exact 12/12 trusted Pillow preprocessing compatibility is NOT native decoder sandboxing
 
 Existing Pillow12.3 shadow overlay and pinned production Pillow10.1 were tested on 12 previously known-good SHA/rights-approved source inputs; RGB pixel hashes, dimensions and alpha path match 12/12, and 7 G2 offline unit tests passed under the shadow process-local PYTHONPATH. Production image decoder has not been upgraded; no GPU/TripoSR full model inference, new packages, network or OS security policy changes occurred. Actual hostile/untrusted media parsing by either pinned native library remains an **unverified safety risk** until genuine OS confinement and upstream advisory remediation. A successful CPU-only compatibility shadow is not proof that old native decoder bugs are fixed, nor approval to deploy Pillow12.3 production without independent GPU/complete dependency tests. Security Issue #4 OPEN, manufacturing Issue #3 OPEN. [G3.33 method](G3_33_PILLOW_12_3_SHADOW_CPU_COMPARISON_2026-10-11.md), [SHA proof](evidence/g3/g3-33-pillow-12-3-shadow-cpu-compatibility.json).

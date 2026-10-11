@@ -1,0 +1,62 @@
+{
+  "schema": "local3d.g334.original-safe-image-edge-parity-not-security-clearance.v1",
+  "date": "2026-10-11",
+  "previousG333PublicSha256": "4b7e90c7a5e8b9ed7c627aba66efe422425991668d3cb46238fcd272853c7f50",
+  "originalG36SafeFixtureGeneratorSha256": "a612a09d93db09ec4b6b9f56a351fb2afead6797abe1b3d6fd66a9005e41c05e",
+  "currentCpuLaneCodeNormalizedSha256": "9e5c3ee0d6b7b5182bc254ae7fc4bfdf3467e87f5a271427da18487f39073569",
+  "productionG2WorkerStillUnmodifiedSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "pinnedProductionLanePrivateSha256": "a8a614618124efd8aa356678651482c6c040eb97a8e9d00c05da442e6e7dea48",
+  "pinnedShadowLanePrivateSha256": "9bb41335ffd574b8c9c41aa090a40f6e34afd32e8569ebf3cff3042dfd171ac5",
+  "comparedVersions": [
+    "10.1.0",
+    "12.3.0"
+  ],
+  "trustedOriginalSafeSourceCount": 4,
+  "validAlphaOrExifSourcesCompared": 3,
+  "corruptImageRejectionClassAgreementCount": 1,
+  "identicalPixelShaValidSources": 3,
+  "comparisons": [
+    {
+      "case": "alpha",
+      "sourceSha256": "d7c52161972333112d95d374c8477257d536ae437d1103cc5b2799d50b184a56",
+      "matchedAcceptanceOrRejection": true,
+      "sameRgbPixelsOrSameRejectedErrorClass": true,
+      "noUnexpectedMetadataOrUnsafeInput": true
+    },
+    {
+      "case": "exif-rotation",
+      "sourceSha256": "55c343c1f17b7991a58171eac5029b7367804a0b3969aa5a6d1466ed86404bb3",
+      "matchedAcceptanceOrRejection": true,
+      "sameRgbPixelsOrSameRejectedErrorClass": true,
+      "noUnexpectedMetadataOrUnsafeInput": true
+    },
+    {
+      "case": "webp-alpha",
+      "sourceSha256": "e865cf82125ac46bc94e7a88be934bf611b11042285e0ff51a9d53111e1c289a",
+      "matchedAcceptanceOrRejection": true,
+      "sameRgbPixelsOrSameRejectedErrorClass": true,
+      "noUnexpectedMetadataOrUnsafeInput": true
+    },
+    {
+      "case": "corrupted",
+      "sourceSha256": "35bbe6e0f47476fd614b7825eebce1477b7a479445768c6a43c9a43a24d28d17",
+      "matchedAcceptanceOrRejection": true,
+      "sameRgbPixelsOrSameRejectedErrorClass": true,
+      "noUnexpectedMetadataOrUnsafeInput": true
+    }
+  ],
+  "noImagePayloadsPublished": true,
+  "onlyExistingTrustedGeneratedSafeCases": true,
+  "actualModelInferenceOrGpuRuns": 0,
+  "dependenciesInstalledOrUpgraded": false,
+  "hostSettingsOrOfficeChanged": false,
+  "WindowsSandboxGuestLaunched": false,
+  "externalUntrustedImagesProcessed": false,
+  "nativeParserSandboxCertified": false,
+  "fullModelCudaCompatibilityCertified": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

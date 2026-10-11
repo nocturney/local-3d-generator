@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.34 — 2026-10-11 — G3.34 known-safe EXIF, alpha and corrupted-image Pillow CPU parity
+
+- Pinned exact SHA/size identity of four pre-existing project-generated G3.6 samples (transparent PNG, EXIF-rotated JPEG, transparent WebP and harmless deliberately malformed short PNG). Processed in production Pillow10.1.0 and existing Pillow12.3.0 CPU-only shadow process against worker.prepare_image; no new files sourced or model/GPU run.
+- Three valid originals produced byte-identical RGB SHA/dimensions and matched alpha/orientation behavior in both versions. Bad PNG was rejected by both with matching UnidentifiedImageError class. No internal error details included in public evidence.
+- Recorded private immutable per-lane CPU observations under gitignored runtime and published sanitized SHA-chain G3.34 public proof linked to G3.33 and historical G3.6 source. Tests/documentation added. This is not native parser OS isolation, dependency security clearance, production package upgrade or G2 CUDA qualification; #4/#3 OPEN.
+
 ## v0.2.33 — 2026-10-11 — G3.33 original/trusted CPU preprocessing Pillow12.3 shadow parity
 
 - Compared pinned Pillow 10.1.0 production import with already available SHA-locked Pillow 12.3.0 shadow overlay on nine existing SHA/license-verified G3 benchmark images and three earlier trusted generated synthetic format fixtures. Real worker prepare_image used for all nine project fixtures, with no worker.main, model or GPU invocation.

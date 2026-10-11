@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.34 — CPU shadow safe image EXIF/alpha/corrupted parsing checks
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-34-safe-edge-lane.py --lane production
+    node scripts/g3-34-assemble-safe-edge-proof.mjs
+    node --test tests/g334-pillow-trusted-edge-parity.test.js
+
+For --lane shadow use the existing Pillow12.3 overlay in a CHILD PROCESS ONLY via process-local PYTHONPATH and unset it afterward. These test cases were generated during G3.6; checks use exact SHA and byte size. Ignored private lane JSON is never part of public Git; public reports hold only IDs, hashes, flags. No production Python change, Sandbox or GPU. [G3.34 QA](G3_34_PILLOW_SAFE_EDGE_CASES_CPU_2026-10-11.md), [public SHA proof](evidence/g3/g3-34-pillow-edge-cases-cpu-parity.json).
+
 ## G3.33 — production-pinned versus existing shadow Pillow CPU comparison
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-33-cpu-pillow-lane.py --lane production
