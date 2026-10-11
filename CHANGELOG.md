@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.44 — 2026-10-11 — G3.44 real unattended Windows G1 principal preflight; task remains uninstalled
+
+- READ-ONLY Windows Chris survey: 372 Scheduled Tasks including non-Exec action types, 344 Win32_Service entries including PathName, 29 startup commands; 0 recognizable LOCAL3D launch matches under bounded signature search. Office/4178 stays loopback ACTIVE, G1/4177 DOWN, manual G2/4179 DOWN. Node24 current process and machine PATH, binary hash, original source SHA and current-user read-only ACL metadata verified. No future intended service account, noninteractive filesystem rights or no-login boot proven.
+- Source-hash-linked strict CPU gate, original private ignored host observation, sanitized immutable public SHA proof, 10 new adversarial tests. Denies fake principal grants, task installation, ACL equivalence, post-reboot health or Office/GPU changes. NO task XML registered or run, no service/OS/ACL/Defender/Firewall/BitLocker changes and no reboot, data copy, GPU or print.
+- Decision BLOCKED_UNATTESTED_NONINTERACTIVE_PRINCIPAL. Full Chris QA PASS: 254/254 Node, 262/262 pinned G3 quality + 7/7 G2 offline Python CPU (269/269), 8/8 G1 Chrome + 8/8 G2/G3 mock Chrome (16/16). G3.39 draft remains disabled, unregistered and NONINSTALLABLE. G3.43 off-host encrypted backup also remains blocked; #5/#4/#3 still OPEN.
+
 ## v0.2.43 — 2026-10-11 — G3.43 real read-only physical-disk/BitLocker destination preflight; no replication
 
 - Independently observed on Chris that original private Python package backup/manifest still exist; verified private manifest SHA and historical G3.42 evidence. D: and C: are separate physical NVMe disks and C: has adequate capacity, but BOTH disks have BitLocker protection OFF. Scoped SMB/USB inventory observed no connected destination; a different disk inside the SAME PC is never independent off-host disaster recovery.

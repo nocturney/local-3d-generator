@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.44 — ACTUAL Windows G1 unattended-startup host inventory, principal rights remain BLOCKED
+
+- PASS actual scoped read-only Windows Chris survey across **372 TaskScheduler tasks**, **344 Win32_Service** records and **29 startup commands**; zero explicitly matched LOCAL3D task/action/service/startup signatures. Node24 SHA computed, Node directory on Machine PATH, original G1 source SHA unchanged, ACL metadata for project/data/jobs/audit readable only for the *probe account* and no direct reparse points. G1/4177 DOWN, Office/4178 loopback active and untouched, manual G2/4179 DOWN. No task installed or service activated.
+- PASS ten adversarial CPU tests reject imaginary service principal rights, noninteractive boot, Task registration, non-loopback Office or G1 collision, node tampering, task-action ambiguity and source ancestry changes. Full Chris QA PASS: 254/254 Node, 262/262 G3 Python quality + 7/7 G2 offline Python, 8/8 G1 Chrome and 8/8 G2/G3 MOCK Chrome. [Real host method](G3_44_REAL_UNATTENDED_G1_READONLY_ACCOUNT_GATES_2026-10-11.md), [immutable public proof](evidence/g3/g3-44-actual-readonly-unattended-g1-account-not-proven.json).
+- BLOCKED: no operator-approved least-privilege Windows principal, no real noninteractive logon/effective ACL or after-reboot fixture G1 health/422/stop/rollback test, no authorized Task deployment. G3.39 draft stays disabled and noninstallable. No security/native-parser/print release. Issue #5 and #4/#3 remain OPEN.
+
 ## G3.43 — actual read-only host backup-target audit, fails closed on missing encryption/off-host replication
 
 - PASS Windows Chris factual storage observation: private G3.41 backup folder + manifest present, original manifest SHA matches the frozen G3.42 source. C: is a physically different NVMe disk than D: with enough free capacity; both BitLocker protection OFF. No connected SMB/USB backup target was found in the limited scope. No bytes copied or public private-file listing.
