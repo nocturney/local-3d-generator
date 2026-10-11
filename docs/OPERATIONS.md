@@ -1,5 +1,9 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.43 — intentionally READ-ONLY backup destination preflight
+
+On authorized Chris, `.\scripts\g3-43-readonly-backup-targets.ps1` observes volume, physical-disk, BitLocker, scoped connected share and USB availability only. The first capture was privately saved under ignored runtime QA. `node scripts/g3-43-assemble-independent-backup-proof.mjs` verifies that frozen receipt, private backup-manifest digest, original G3.42 recovery proof, original G3.39 disabled G1 task proof and source-code SHA. It does NOT probe Windows again or copy data. `node --test tests/g343-independent-backup-preflight.test.js` exercises eight fail-closed security cases. C:/D: separate physical disks are still the same host, and both protections were OFF at the verified observation. No off-host encrypted recovery copy is qualified. [Runbook](G3_43_ENCRYPTED_OFFHOST_BACKUP_PREFLIGHT_CPU_2026-10-11.md) / [proof](evidence/g3/g3-43-independent-encrypted-backup-readiness-not-replicated.json). No Task, service, G1/4177, Office/4178, OS settings, GPU or printer action is allowed or implied. #3/#4/#5 OPEN.
+
 ## G3.42 — real same-host full Python venv restore from immutable private backup
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-42-readonly-snapshot-drift.py

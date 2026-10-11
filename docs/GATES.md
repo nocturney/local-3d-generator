@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.43 — actual read-only host backup-target audit, fails closed on missing encryption/off-host replication
+
+- PASS Windows Chris factual storage observation: private G3.41 backup folder + manifest present, original manifest SHA matches the frozen G3.42 source. C: is a physically different NVMe disk than D: with enough free capacity; both BitLocker protection OFF. No connected SMB/USB backup target was found in the limited scope. No bytes copied or public private-file listing.
+- PASS eight strict Node negative controls for forged transfer, encryption/approval, contradictory disk identity, unknown inventory, tampered parent G3.42/G3.39, G1/Office/GPU scope and immutable privacy-linked SHA evidence. Full QA on Chris: 244/244 Node, 262/262 G3 quality + 7/7 G2 Python offline, 8/8 G1 browser + 8/8 G2/G3 mock browser. [Detailed runbook](G3_43_ENCRYPTED_OFFHOST_BACKUP_PREFLIGHT_CPU_2026-10-11.md) and [sanitized public proof](evidence/g3/g3-43-independent-encrypted-backup-readiness-not-replicated.json).
+- BLOCKED: no operator-authorized encrypted OFF-HOST backup, independently verified destination SHA/restore, base OS/Python/CUDA/weights recovery, persistent G1 service, native decoder OS confinement or physical print qualification. Security #4, G1 #5, printer #3 OPEN. All GLBs DRAFT.
+
 ## G3.42 — actually RESTORED entire 34-package private backup to distinct disposable same-machine venv
 
 - PASS SHA for EVERY one of original backup's 27,966 files / 5,086,619,721 bytes, a second independent restored venv with all restored file SHA matches, 34/34 pinned cloned versions + Pillow10.1 native trusted PNG/JPEG/WebP CPU decodes. Independently PASS full 262 G3 quality and 7 G2 offline tests from new restored interpreter; post-test every file SHA checked again and disposable restore removed. Production/source backup not changed.

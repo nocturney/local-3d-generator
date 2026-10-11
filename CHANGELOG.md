@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.43 — 2026-10-11 — G3.43 real read-only physical-disk/BitLocker destination preflight; no replication
+
+- Independently observed on Chris that original private Python package backup/manifest still exist; verified private manifest SHA and historical G3.42 evidence. D: and C: are separate physical NVMe disks and C: has adequate capacity, but BOTH disks have BitLocker protection OFF. Scoped SMB/USB inventory observed no connected destination; a different disk inside the SAME PC is never independent off-host disaster recovery.
+- Added an explicit no-side-effects read-only Windows inventory probe, strict fail-closed source-SHA-linked JavaScript contract, private ignored observation, immutable public sanitized report and eight adversarial CPU tests. No transfer, credential, key, encryption, Task Scheduler, OS, GPU, Office or printer changes.
+- Decision BLOCKED_NO_APPROVED_ENCRYPTED_OFFHOST_RECOVERY. Off-machine copy, key custody, authorized all-file SHA destination readback and an actual independent restore remain FUTURE gates. Full Chris QA 244/244 Node, 269/269 pinned Python CPU and 16/16 Chrome PASS. G1/4177 boot #5, security #4 and manufacturing #3 stay OPEN.
+
 ## v0.2.42 — 2026-10-11 — G3.42 real full 34-package Python restore from private backup to new disposable venv
 
 - Revalidated every byte of the G3.41 SHA manifest's **27,966 files / 5,086,619,721 bytes** in private original backup; copied the entire full venv from backup to a SECOND independent disposable QA path, not from live production.
