@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.37 — safe actual CPU-only Pillow12.3 shadow Python quality subset
+
+    .\scripts\g3-37-run-shadow-quality.ps1
+    npm run audit:g3:pillow-shadow-quality
+    node --test tests/g337-shadow-pillow-quality-isolation.test.js
+
+The PowerShell wrapper restores all prior PYTHONPATH/CUDA_VISIBLE_DEVICES/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE/L3D_ENABLE_TRIPOSR environment variables after a process-local shadow run. It requires Pillow12.3.0 from the already installed verified wheel overlay, disables GPU and external dependency fetching, and executes only the **242** shadow-compatible tests after exact identity checks. Do NOT claim all 262 pass in shadow: the unfiltered run had 5 intentional old Pillow10.1 historical-version assertion errors, and **20 test methods are explicitly not run under 12.3**. The audit command is a deterministic frozen report SHA replay, not a new test run. No production package install, Windows Sandbox VM or G1/4177 activation. [Details](G3_37_PILLOW_SHADOW_QUALITY_CLASSIFICATION_CPU_2026-10-11.md), [public proof](evidence/g3/g3-37-shadow-pillow-historical-test-isolation.json).
+
 ## G3.36 — real fixture-only G1 on disposable loopback port, NO 4177 service restoration
 
     npm run smoke:g3:g1-recovery

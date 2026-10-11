@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.37 — Pillow12.3 shadow CPU quality partition, NOT full historical-suite pass
+
+- The **UNFILTERED** 12.3 shadow Python suite failed with 5 errors caused by exact Pillow10.1 production metadata and pinned old fixture generation: G3.22 class setup (16 test methods excluded from execution), 3 G3.26 methods and 1 G3.30 method. Do not relabel this as a 262/262 shadow success.
+- The dedicated safe shadow QA runner discovers all 262 quality methods, explicitly excludes exactly the 20 old-version-specific methods, verifies actual isolated Pillow12.3 wheel/version/PYTHONPATH, offline dependency mode and disabled CUDA, and passes **242/242 remaining tests**. Production Pillow10.1 full QA suite was verified separately in G3.36 (262/262 quality). No historical tests/source evidence altered.
+- New immutable evidence links G3.36/G3.35 and original historical test source SHAs, plus the curated run result; outcome remains Pillow production gate BLOCKED_SHADOW_ONLY, Security #4 OPEN, G1 #5 OPEN, Print #3 OPEN. [Method](G3_37_PILLOW_SHADOW_QUALITY_CLASSIFICATION_CPU_2026-10-11.md) / [proof](evidence/g3/g3-37-shadow-pillow-historical-test-isolation.json).
+
 ## G3.36 — G1 recovery readiness proven on temporary fixture-only loopback, persistent 4177 STILL OFF
 
 - PASS: Real fresh G1 from production source with isolated temporary fixture+data, bound to test 127.0.0.1 only on a safe ephemeral reserved test range (not 4177/4178/4179). G1 health inference=false, printing=false, G2 staged disabled. 9/9 deliberately truncated original PNG/JPEG/WebP HTTP422 BAD_IMAGE_STRUCTURE before any jobs. 3/3 complete original SHA-pinned formats HTTP201 simulation-only.

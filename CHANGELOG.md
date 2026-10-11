@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.37 — 2026-10-11 — G3.37 truthful Pillow12.3 full-quality shadow compatibility classification
+
+- Real CPU-only **unfiltered** Pillow12.3 shadow Python quality suite raised 5 errors from four historical Pillow10.1 immutable fixture tests and the original G3.22 dependency inventory class setup, which prevented 16 historical class methods from running. The historical 10.1 tests were intentionally NOT rewritten, disabled in production or misrepresented as passing under shadow.
+- A strict shadow runner, protected by process-local GPU-offline state and exact source/installed wheel SHA/actual PIL import-path checks, discovers 262 quality methods, explicitly excludes only 20 documented historical version-lock methods and verifies **242/242 genuinely shadow-compatible tests PASS**.
+- Added a safe PowerShell shadow test wrapper (restores original env values), source SHA-bound sanitized proof and four Node negative/provenance tests; historical G3.25–G3.36 proof bytes preserved. Does not attest full 262 shadow pass, production Pillow upgrade, native OS decoder isolation, G2 GPU compatibility or printer release. Security #4, G1 autostart #5 and physical print #3 remain OPEN.
+
 ## v0.2.36 — 2026-10-11 — G3.36 real ephemeral G1-only recovery smoke after Windows reboot
 
 - Following missing permanent G1 4177 after Windows reboot, exercised the ACTUAL current LOCAL3D G1 source in a disposable owned temp directory on a safe 127.0.0.1:20000..29999 test port only. Safe probe of dedicated localhost4177 returned NOT_LISTENING. Never contacted, rebound or modified independent Office-related port 4178.
