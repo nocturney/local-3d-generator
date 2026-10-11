@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.35 — 2026-10-11 — G3.35 Pillow compatibility matrix with production-upgrade refusal
+
+- Added 16-row deterministic, SHA-linked comparison matrix from previous G3.33 and G3.34 CPU-only image-processing evidence: 15 compatible raw RGB positive cases and 1 matched invalid PNG rejection between pinned Pillow10.1.0 and isolated Pillow12.3.0. No new native decoding, models/GPU or packages required.
+- Strict pure JavaScript evaluator refuses changed formats, rights, source identities, Python worker SHA, false guest/GPU/customer/security claims, and returns BLOCKED_SHADOW_ONLY with seven explicit unmet release gates despite all CPU sample matches.
+- Immutable public SHA report binds both older historical reports, sample catalogs, all FOUR gitignored private lane receipts and new source; npm audit:g3:pillow-upgrade replays read-only. Prior G3.25–G3.34 proofs untouched. Security #4, print #3, G1/4177 #5 remain OPEN.
+
 ## v0.2.34 — 2026-10-11 — G3.34 known-safe EXIF, alpha and corrupted-image Pillow CPU parity
 
 - Pinned exact SHA/size identity of four pre-existing project-generated G3.6 samples (transparent PNG, EXIF-rotated JPEG, transparent WebP and harmless deliberately malformed short PNG). Processed in production Pillow10.1.0 and existing Pillow12.3.0 CPU-only shadow process against worker.prepare_image; no new files sourced or model/GPU run.

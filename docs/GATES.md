@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.35 — Pillow 10.1/12.3 compatibility matrix and explicit production upgrade block
+
+- PASS CPU evidence: 12 earlier G3.33 source/licensed original image cases + 4 G3.34 original safe alpha/EXIF/malformed cases = 16 distinct identified inputs. 15 accepted cases match raw RGB byte SHA, dimensions and expected format lanes; 1 short corrupt PNG is rejected by both versions with same error type. Source/input/pinned worker/private receipt SHA ancestry and rights are checked.
+- DECISION: `BLOCKED_SHADOW_ONLY` despite CPU PASS. **No real G2 CUDA full-model regression under Pillow12.3, no authorized production Python change/rollback, no native parser guest OS confinement, no effective guest egress/host-share attestation, no advisory/Stack compatibility remediation, no customer upload permission, and no physically measured 3D print qualification.**
+- Replay: `npm run audit:g3:pillow-upgrade`; evidence [G3.35 matrix](evidence/g3/g3-35-pillow-cpu-compatibility-and-upgrade-blockers.json), method [G3.35 QA](G3_35_PILLOW_CPU_COMPATIBILITY_AND_UPGRADE_GATES_2026-10-11.md). Issues #4/#3/#5 remain OPEN.
+
 ## G3.34 — CPU-only safe EXIF/alpha/corrupt sample parity
 
 - PASS: 4 pre-existing original, SHA-pinned harmless G3.6 samples decoded/handled under Pillow10.1 and existing shadow12.3; 3 valid sources match exact RGB pixel hashes, dimensions and alpha/orientation handling, 1 invalid tiny PNG rejected with same Pillow error class in both.

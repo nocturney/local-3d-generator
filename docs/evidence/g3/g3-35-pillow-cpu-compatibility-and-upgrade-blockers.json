@@ -1,0 +1,191 @@
+{
+  "schema": "local3d.g335.pillow-version-compatibility-matrix-not-upgrade-authorization.v1",
+  "date": "2026-10-11",
+  "historicalG333Sha256": "4b7e90c7a5e8b9ed7c627aba66efe422425991668d3cb46238fcd272853c7f50",
+  "historicalG334Sha256": "5f2b19d1e8f616fe0bd31e9245ac7950a4a3aa35fedbde24da2006f8e442dbeb",
+  "trustedBenchmarkCatalogSha256": "763ba54272b2b09f89346521e786c1a698423c4c07b64b554e389ac964bc1d0a",
+  "originalSyntheticSetSha256": "171c9b8cc010cd8f05620a70617122a5c97ec074c951cc0ef27ad35ccf1cdbdb",
+  "unchangedProductionG2WorkerSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "privateCpuComparisonReceiptsSHA256": {
+    "g333Production": "211a6e86369a26fd4da2e3f0e695efe135f6d85a83486317a2bea0bd0f72184d",
+    "g333Shadow": "d555b7a278bed7f79e7aaeccbd8914e08280bd50336f7de6dbd317a0fc200e51",
+    "g334Production": "a8a614618124efd8aa356678651482c6c040eb97a8e9d00c05da442e6e7dea48",
+    "g334Shadow": "9bb41335ffd574b8c9c41aa090a40f6e34afd32e8569ebf3cff3042dfd171ac5"
+  },
+  "cpuMatrixEvaluatorNormalizedSha256": "1c5f80c74d1b9b0323a546a82715896a436b6b459cb1f16314357ae9a1830e00",
+  "releaseDecision": {
+    "schema": "local3d.g335.pillow-cpu-matrix-with-explicit-upgrade-denial.v1",
+    "baselinePillow": "10.1.0",
+    "shadowCandidatePillow": "12.3.0",
+    "previousG333BaseCount": 12,
+    "previousG334EdgeCount": 4,
+    "uniqueKnownOriginalOrMitInputs": 16,
+    "validDecodedRgbParityCount": 15,
+    "malformedOriginalMatchedRejectionCount": 1,
+    "cpuKnownGoodPreprocessingParity": "PASS_15_ACCEPTED_1_REJECTED",
+    "productionUpgradeReadiness": "BLOCKED_SHADOW_ONLY",
+    "osIsolatedNativeDecoderVerified": false,
+    "realGpuModelWithCandidateVerified": false,
+    "userUntrustedImageAdmissionApproved": false,
+    "productionPackageChangesAuthorized": false,
+    "canUpgradeProductionPillowAutomatically": false,
+    "canEnableG2Automatically": false,
+    "canCloseSecurityIssue4": false,
+    "canApprovePhysicalPrint": false,
+    "releaseBlockers": [
+      "FULL_G2_REAL_MODEL_CUDA_AND_TORCH_TRANSFORMERS_VERSION_COMPATIBILITY_NOT_VERIFIED",
+      "PRODUCTION_PILLOW_UPGRADE_AND_ROLLBACK_NOT_AUTHORIZED",
+      "INDEPENDENT_NATIVE_IMAGE_DECODER_OS_CONFINEMENT_NOT_ATTESTED",
+      "HOST_GUEST_NETWORK_FILE_CLIPBOARD_EGRESS_NOT_ATTESTED",
+      "DEPENDENCY_SECURITY_ADVISORY_REVIEW_AND_FIXES_NOT_COMPLETED",
+      "UNTRUSTED_CUSTOMER_MEDIA_NOT_APPROVED",
+      "PHYSICAL_MM_WALL_SLICER_PRINTER_QA_NOT_VERIFIED"
+    ],
+    "matrix": [
+      {
+        "sourceId": "01-orb-alpha",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "02-orb-opaque",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "03-hollow-vase",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "04-torus-hole",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "05-disconnected-pair",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "06-thin-chair",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "07-gear-opaque",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "08-arch-opaque",
+        "lane": "PROJECT_ORIGINAL_RENDER",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "09-upstream-chair",
+        "lane": "UPSTREAM_MIT_TRUSTED_SAMPLE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "trusted-synthetic-PNG",
+        "lane": "GENERATED_FORMAT_SAMPLE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "trusted-synthetic-JPEG",
+        "lane": "GENERATED_FORMAT_SAMPLE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "trusted-synthetic-WEBP",
+        "lane": "GENERATED_FORMAT_SAMPLE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "g36-original-alpha",
+        "lane": "PROJECT_GENERATED_SAFE_EDGE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "g36-original-exif-rotation",
+        "lane": "PROJECT_GENERATED_SAFE_EDGE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "g36-original-webp-alpha",
+        "lane": "PROJECT_GENERATED_SAFE_EDGE",
+        "expected": "ACCEPT_CPU",
+        "outputRgbParity": "EXACT_SHA_MATCH",
+        "dimensionParity": "MATCH",
+        "sourceRightsVerified": true
+      },
+      {
+        "sourceId": "g36-original-corrupted",
+        "lane": "PROJECT_GENERATED_SAFE_EDGE",
+        "expected": "REJECT_BAD_IMAGE",
+        "outputRgbParity": "SAME_REJECTION_CLASS",
+        "dimensionParity": "NOT_APPLICABLE",
+        "sourceRightsVerified": true
+      }
+    ]
+  },
+  "onlyHistoricalOriginalOrLicensedTrustedImagesUsed": true,
+  "currentLiveSystemRecheckedByThisAssembler": false,
+  "G1Port4177LiveAvailabilityProven": false,
+  "osNativeImageDecoderSandboxCertified": false,
+  "cudaModelCandidateCompatibilityCertified": false,
+  "runtimeGpuInferenceRuns": 0,
+  "newPackagesOrWindowsFeaturesInstalled": false,
+  "productionPythonChanged": false,
+  "customerUntrustedImagesProcessed": false,
+  "windowsSandboxGuestStarted": false,
+  "office4178Changed": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE"
+}

@@ -1,5 +1,12 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.35 — production Pillow upgrade remains BLOCKED even with 16 trusted CPU passes
+
+    npm run audit:g3:pillow-upgrade
+    node --test tests/g335-pillow-release-gate.test.js
+
+Read-only, no image decode/model/GPU/OS or private data publication: verifies SHA and structural lineage of existing G3.33/G3.34 immutable reports, both old fixture manifests, original G2 Python worker and four private ignored lane receipts. Produces a 16-input matrix (15 accepted exact RGB parity +1 matched corrupted image rejection). Version compatibility is limited to **CPU preprocessing of trusted/licensed sources**. Gate is BLOCKED_SHADOW_ONLY and does not authorize pip upgrade, VM, live G1/4177 restart, customer uploads, Office/4178 or 3D print. [Guide](G3_35_PILLOW_CPU_COMPATIBILITY_AND_UPGRADE_GATES_2026-10-11.md), [proof](evidence/g3/g3-35-pillow-cpu-compatibility-and-upgrade-blockers.json).
+
 ## G3.34 — CPU shadow safe image EXIF/alpha/corrupted parsing checks
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-34-safe-edge-lane.py --lane production
