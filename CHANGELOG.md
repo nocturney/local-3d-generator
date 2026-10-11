@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.31 — 2026-10-11 — G3.31 Windows Sandbox CLI and app registration inventory (READ-ONLY)
+
+- Verified the missing Windows Sandbox launch surface on Chris via read-only direct service-session inspection: Windows feature Enabled and hypervisor present, WindowsSandbox.exe and Microsoft's `wsb` CLI absent in PATH; none of current/all-user AppX, provisioned AppX, StartApps, SystemApps registered Sandbox in the **observed Session 0 scope**. No unverified claim about an interactive user's installed apps.
+- Added strict, privacy-limited source-linked launcher-readiness contract: unknown/unavailable registration state never grants isolation; even discovered CLI remains NOT runtime attestation or customer-upload/GPU release. Frozen only the already-observed successful direct remote probe because a subsequent nested PowerShell re-probe timed out, without claiming fresh observation. Previous G3.25–G3.30 public historical reports unchanged.
+- Added source-bound immutable public G3.31 snapshot and adversarial Node tests. No VM launched, no Store install, no Windows optional feature/security/Defender/UAC/Firewall changes, no Office/4178/4177 restart or real model/GPU/printer actions. Issue #4 OS sandbox and Issue #3 physical-print release remain OPEN.
+
 ## v0.2.30 — 2026-10-10 — G3.30 original trusted synthetic-only ingress/output candidate
 
 - Added a zero-side-effect CPU-only proposed ingress, deterministic host-generated canonical RGB PNG output and strict host-only simulated receipt for EXACTLY three previously SHA-locked synthetic 64x64 PNG/JPEG/WebP images. Unknown or altered sources, malformed/truncated data, MIME/size/hash changes, secret paths or forged Sandbox/G2 safety attestations fail closed.

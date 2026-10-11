@@ -1,6 +1,6 @@
 {
   "name": "local-3d-generator",
-  "version": "0.2.30",
+  "version": "0.2.31",
   "private": true,
   "type": "module",
   "description": "Independent local-first 3D workbench; G1 demo plus opt-in G2 guarded TripoSR adapter",

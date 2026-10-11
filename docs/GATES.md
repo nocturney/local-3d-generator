@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.31 — Windows Sandbox launcher availability NOT proven (no guest runtime)
+
+- Chris Windows 11 Pro build 26300, remote Session 0: Sandbox optional feature Enabled, VMP Enabled, HypervisorPresent true; Hyper-V Hypervisor *optional feature* separately Disabled (do not conflate with HypervisorPresent). Microsoft's documented new CLI `wsb`, legacy WindowsSandbox.exe, aliases and registered Store AppX/StartApps/SystemApps all not found in this probe context. All AppX lookup statuses OK; counts zero. This is **not** proof about interactive logged-in user.
+- FAIL-CLOSED launch contract: NOT_FOUND_IN_CURRENT_READ_ONLY_PROBE_SCOPE; no native decoder/guest OS attestation, no customer media or GPU/print clearance even if a CLI or AppX becomes visible. Source code explicitly does not run start/list/exec/share or change OS.
+- Public SHA evidence linked to unchanged G3.29/G3.30 history, strict host observation record, current production worker/server SHA. Separate follow-up interactive-session discovery and approved synthetic-only guest attestation needed; Issue #4 and #3 OPEN. [Details](G3_31_WINDOWS_SANDBOX_CLIENT_DISCOVERY_CPU_2026-10-11.md) / [immutable evidence](evidence/g3/g3-31-windows-sandbox-launch-discovery-only.json).
+
 ## G3.30 — data envelope / simulated host-only receipt, NOT a guest security attestation
 
 - PASS: Exactly 3 SHA-pinned original 64x64 generated PNG/JPEG/WebP source bytes accepted; host pinned Pillow 10.1.0 trusted-only converted them to RGB PNG, exact output SHA/format/mode/dimensions tested. Unknown, altered, mislabeled and truncated original bytes rejected. Output limit 64KiB.

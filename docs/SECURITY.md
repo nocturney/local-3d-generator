@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.31: optional feature Enabled does NOT mean Store Sandbox CLI is registered or confinement proven
+
+A new read-only Windows Sandbox inventory checks both Microsoft's newer `wsb` CLI and legacy WindowsSandbox.exe, AppX current/all-users, provisioned AppX, StartApps and SystemApps. The authorized Chris remote Session 0 observation returned no registered app or launcher visible, despite feature Enabled and HypervisorPresent true. This classification applies **only to the observed remote service context**, not the desktop user's possible Sandbox availability. No VM was launched; no containment or egress proof. Exact-key contract fails closed and cannot grant a guest image decoder, G2 GPU, untrusted customer images or print approval based on mere launcher presence. Source-linked immutable public proof uses the frozen direct scan output after later nested PowerShell timed out. [Full evidence](G3_31_WINDOWS_SANDBOX_CLIENT_DISCOVERY_CPU_2026-10-11.md) / [public SHA report](evidence/g3/g3-31-windows-sandbox-launch-discovery-only.json). Security Issue #4 and physical print Issue #3 OPEN. No OS/Office/4178 changes.
+
+## G3.30: trusted synthetic-only host CPU input/output protocol, NOT an isolated decoder
+
 ## G3.30: trusted synthetic-only host CPU input/output protocol, NOT an isolated decoder
 
 Pure Node source pinning accepts precisely the three known prior 64x64 generated SHA-locked PNG/JPEG/WebP fixture bytes and checks deterministic trusted host CPU Pillow 10.1.0 converted RGB PNG outputs. It binds source+output SHA/size/type, candidate Windows Sandbox profile SHA, explicit fake host-only processing receipt, no guest/egress/file confinement and ALWAYS releaseToRealGPUWorker=false. Forged guest/network evidence, arbitrary paths, unknown media or altered receipts fail closed. This is a *contract simulation*, not an actual guest process or separate verified Windows sandbox. Existing production G2 worker still calls Pillow on Windows host without native OS isolation, and old dependency advisories remain unresolved.

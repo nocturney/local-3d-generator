@@ -1,0 +1,87 @@
+{
+  "schema": "local3d.g331.sandbox-launch-route-discovery-only.v1",
+  "observedDate": "2026-10-11",
+  "parentG330Sha256": "29e33c6a1370a806701f20a10ada52f1e98c2fd966b4eeae56c196901b149b67",
+  "parentG329Sha256": "4c49eacb0527cb5403e58bc6a456a3dc8c8f9147e392c5ca82c6c71fdf9eb1a2",
+  "probeSourceNormalizedSha256": "11c7ffafe67eb02c1e4e7d8b1677498b211cfc4ae4caff45da3710afbc05a8c0",
+  "recordedReadOnlyObservationSha256": "abcb5d115f0a146c731d5ff0d489d59d537dc7995a3c0ce41aab9321777bad49",
+  "evidenceCaptureMethod": "FROZEN_VERIFIED_DIRECT_READONLY_REMOTE_COMMAND_OBSERVATION_NOT_OS_ATTESTATION",
+  "decisionSourceNormalizedSha256": "7a6fe9cca73897033aa601d7ef9f3eaddf8aa34ce9403ffa6bac3ac523fcd34a",
+  "workerSourceSha256": "cb2e1360fad78c84e7e86d0bc0b88d64d3d8d9d1ccd4ab75e33e092cee05a016",
+  "serverSourceSha256": "b60e8f088a6846de9f6003333c55fad963efbfbc3752885eb9358cfeb9b57759",
+  "hostReadOnlySnapshot": {
+    "schema": "local3d.g331.launch-route-inventory-readonly.v1",
+    "probeReadOnly": true,
+    "windowsHost": true,
+    "osBuild": 26300,
+    "sandboxOptionalFeatureEnabled": true,
+    "virtualMachinePlatformEnabled": true,
+    "hyperVHypervisorFeatureEnabled": false,
+    "hypervisorPresent": true,
+    "wsbCliCommandResolvable": false,
+    "legacyWindowsSandboxCommandResolvable": false,
+    "legacySystem32LauncherFileFound": false,
+    "currentUserWsbAliasFileFound": false,
+    "currentUserAppx": {
+      "status": "OK",
+      "matches": 0
+    },
+    "allUsersAppx": {
+      "status": "OK",
+      "matches": 0
+    },
+    "provisionedAppx": {
+      "status": "OK",
+      "matches": 0
+    },
+    "startMenuApps": {
+      "status": "OK",
+      "matches": 0
+    },
+    "systemAppDirectories": {
+      "status": "OK",
+      "matches": 0
+    },
+    "probeRunningInSessionZero": true
+  },
+  "readiness": {
+    "schema": "local3d.g331.sandbox-launch-route-readiness-not-runtime-clearance.v1",
+    "documentedWindowsSandbox24H2CliName": "wsb",
+    "osFeatureAndHypervisorObserved": true,
+    "anyLauncherOrAliasVisibleToProbe": false,
+    "anyRegisteredAppVisibleToProbe": false,
+    "someRegistrationQueriesUnavailable": false,
+    "probeSessionZero": true,
+    "classification": "NOT_FOUND_IN_CURRENT_READ_ONLY_PROBE_SCOPE",
+    "osSandboxLaunchActuallyAttempted": false,
+    "interactiveClientAvailabilityProven": false,
+    "osIsolationAttested": false,
+    "canUseGuestForTrustedSyntheticCPU": false,
+    "canAcceptUntrustedCustomerImages": false,
+    "canActivateG2OrGPU": false,
+    "securityIssue4Resolved": false,
+    "printQualified": false,
+    "nextAction": "INSPECT_WSB_OR_WINDOWS_SANDBOX_STORE_CLIENT_REGISTRATION_IN_INTERACTIVE_USER_SESSION_WITHOUT_LAUNCH",
+    "blockers": [
+      "NO_SANDBOX_LAUNCH_COMMAND_OR_ALIAS_RESOLVED_IN_THIS_PROBE_CONTEXT",
+      "NO_SANDBOX_APP_REGISTRATION_VISIBLE_IN_THIS_PROBE_CONTEXT",
+      "SESSION_ZERO_DOES_NOT_PROVE_INTERACTIVE_USER_APP_REGISTRATION",
+      "MICROSOFT_STORE_CLIENT_VERSION_AND_INTERACTIVE_LAUNCH_UNVERIFIED",
+      "LIVE_SANDBOX_GUEST_LAUNCH_TEARDOWN_UNVERIFIED",
+      "EFFECTIVE_NETWORK_EGRESS_FILE_AND_CLIPBOARD_BOUNDARIES_UNVERIFIED",
+      "SAFE_ONE_WAY_IMAGE_TRANSFER_AND_GUEST_PROVENANCE_UNVERIFIED",
+      "NATIVE_PILLOW_DECODER_HARDENING_AND_DEPENDENCY_FIXES_UNRESOLVED"
+    ]
+  },
+  "officialCliDocumentation": "https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-cli",
+  "officialVersionDocumentation": "https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-versions",
+  "VMActuallyLaunched": false,
+  "appsOrOSSettingsChanged": false,
+  "externalMediaProcessed": false,
+  "modelOrGpuRuns": 0,
+  "realSandboxIsolationProven": false,
+  "securityIssue4Resolved": false,
+  "manufacturingIssue3Resolved": false,
+  "printQualified": false,
+  "fabricationAction": "NONE"
+}

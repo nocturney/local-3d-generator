@@ -1,5 +1,12 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.31 — safe Windows Sandbox CLI and app availability check
+
+    node scripts/g3-31-assemble-launch-route-evidence.mjs
+    node --test tests/g331-sandbox-launch-route.test.js
+
+The proof replay uses a frozen sanitized record from a successful direct read-only Remote Desktop Commander Session 0 command. Separately, scripts/g3-31-readonly-launcher-inventory.mjs offers fresh, bounded read-only CIM/AppX/Get-Command detection, but nested PowerShell under the current remote service sometimes times out; a fresh probe MUST NOT be claimed from replay alone. Windows Sandbox optional feature is Enabled but neither legacy exe nor the new `wsb` command or app registration was observed **in this service context**. No VM launch or interactive-user app state qualified. Do not auto-install, toggle Windows features, restart, change firewall or run Windows Sandbox default networking settings. [Audit](G3_31_WINDOWS_SANDBOX_CLIENT_DISCOVERY_CPU_2026-10-11.md), [immutable snapshot](evidence/g3/g3-31-windows-sandbox-launch-discovery-only.json).
+
 ## G3.30 — trusted-only host CPU data-envelope simulation
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-30-build-trusted-canonical-fixtures.py

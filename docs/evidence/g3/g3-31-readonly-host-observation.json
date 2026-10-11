@@ -1,0 +1,35 @@
+{
+  "schema": "local3d.g331.launch-route-inventory-readonly.v1",
+  "probeReadOnly": true,
+  "windowsHost": true,
+  "osBuild": 26300,
+  "sandboxOptionalFeatureEnabled": true,
+  "virtualMachinePlatformEnabled": true,
+  "hyperVHypervisorFeatureEnabled": false,
+  "hypervisorPresent": true,
+  "wsbCliCommandResolvable": false,
+  "legacyWindowsSandboxCommandResolvable": false,
+  "legacySystem32LauncherFileFound": false,
+  "currentUserWsbAliasFileFound": false,
+  "currentUserAppx": {
+    "status": "OK",
+    "matches": 0
+  },
+  "allUsersAppx": {
+    "status": "OK",
+    "matches": 0
+  },
+  "provisionedAppx": {
+    "status": "OK",
+    "matches": 0
+  },
+  "startMenuApps": {
+    "status": "OK",
+    "matches": 0
+  },
+  "systemAppDirectories": {
+    "status": "OK",
+    "matches": 0
+  },
+  "probeRunningInSessionZero": true
+}
