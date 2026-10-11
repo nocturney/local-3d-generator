@@ -7,6 +7,7 @@ import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 import {readHistoricalServerBytes,HISTORICAL_SERVER_SHA} from './g3-28-historical-server-source.mjs';
 import {preflightImageStructure,ImageStructureError} from '../server/image-structure-preflight.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -22,6 +23,7 @@ const files={
 };
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 async function safe(name){
+ if(name==='currentServer')return readFrozenG346Server();
  const stat=await fs.lstat(files[name]);
  if(!stat.isFile()||stat.isSymbolicLink()||stat.size<40||stat.size>700000)
   throw new Error('G3.28 FAIL CLOSED: missing/oversize/symlink tracked input '+name);

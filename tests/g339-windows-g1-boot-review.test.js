@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {readFrozenG346Server} from './fixtures/g347-frozen-g346-server.mjs';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {BootReviewError,reviewDisabledBootCandidate} from '../server/g339-g1-autostart-review-contract.js';
@@ -78,10 +79,10 @@ test('G3.39 read-only proof SHA binds previous G3.38, G3.36, original G3.28 and 
  ];
  for(const [key,name] of inputs)assert.equal(x[key],sha(await read(name)),key);
  for(const [key,name] of [
- ['sourceCurrentG1NormalizedSha256','server/index.js'],
  ['readonlyWindowsBootProbeNormalizedSourceSha256','scripts/g3-39-readonly-g1-boot-probe.ps1'],
  ['offlineFailClosedReviewSourceNormalizedSha256','server/g339-g1-autostart-review-contract.js']
  ])assert.equal(x[key],norm(await read(name)),key);
+ assert.equal(x.sourceCurrentG1NormalizedSha256,norm(readFrozenG346Server()),'frozen historic G3.39 source');
  assert.deepEqual(x.review,reviewDisabledBootCandidate(...await fixtures()));
 });
 test('G3.39 evidence discloses offline review only and does not publish machine identity or credentials',async()=>{

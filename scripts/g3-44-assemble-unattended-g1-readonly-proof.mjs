@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 import {assessUnattendedG1Observation} from '../server/g344-unattended-g1-gate.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const p={
@@ -20,6 +21,7 @@ const p={
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const norm=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8');
 async function read(k){
+ if(k==='source')return readFrozenG346Server();
  const dest=path.join(root,p[k]),stat=await fs.lstat(dest);
  if(!stat.isFile()||stat.isSymbolicLink()||stat.size<10||stat.size>600000)
   throw Error('G344 source absent, link or oversized: '+k);

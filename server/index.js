@@ -12,6 +12,7 @@ import { getBenchmarkSource, FixtureSourceError } from './benchmark-sources.js';
 import { createBenchmarkReviewer } from './benchmark-review.js';
 import { admitRealJobStorage, StorageAdmissionError } from './storage-admission.js';
 import {preflightImageStructure, ImageStructureError} from './image-structure-preflight.js';
+import {readShaVerifiedJobAsset} from './g347-http-asset-integrity.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -546,6 +547,17 @@ export async function createApp(options = {}) {
     stream.on('error', () => res.destroy());
     stream.pipe(res);
   }
+  async function serveVerifiedJobAsset(res,jobDir,asset,method) {
+    let bytes;
+    try {bytes=await readShaVerifiedJobAsset({jobDir,asset});}
+    catch {fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');}
+    res.writeHead(200,{
+      'Content-Type':asset.mime,'Content-Length':bytes.length,
+      'Content-Disposition':'inline','Cache-Control':'no-store',
+      'X-Content-Type-Options':'nosniff'
+    });
+    res.end(method==='HEAD'?undefined:bytes);
+  }
   const staticPaths = new Map([
     ['/', [path.join(ROOT, 'public', 'index.html'), 'text/html; charset=utf-8']],
     ['/app.js', [path.join(ROOT, 'public', 'app.js'), 'text/javascript; charset=utf-8']],
@@ -622,13 +634,7 @@ export async function createApp(options = {}) {
         if (['GET', 'HEAD'].includes(req.method) && match[3]) {
           const asset = job.assets.find(x => x.id === match[3]);
           if (!asset) fail('NOT_FOUND', 404, 'Asset not found');
-          const leaf = asset.id === 'preview-glb' ? 'output.glb' :
-            asset.id === 'qa-report' ? 'qa-report.json' :
-            asset.id === 'geometry-qa' ? 'geometry-qa.json' :
-            asset.id === 'benchmark-shape' ? 'benchmark-shape.json' :
-            asset.id === 'source-image' && job.source ? 'input' + sniffMimeExt(job.source.mime) : null;
-          if (!leaf) fail('NOT_FOUND', 404, 'Asset not found');
-          return await serveFile(res, path.join(jobFolder(id), leaf), asset.mime, req.method);
+          return await serveVerifiedJobAsset(res,jobFolder(id),asset,req.method);
         }
       }
       if (['GET', 'HEAD'].includes(req.method) && staticPaths.has(pathname)) {

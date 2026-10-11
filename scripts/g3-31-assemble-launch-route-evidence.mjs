@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 import {assessWindowsSandboxLaunchRouteInventory} from '../server/g331-sandbox-launch-route-contract.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const rel={
@@ -17,6 +18,7 @@ const rel={
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const normalized=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'));
 async function file(k){
+ if(k==='server')return readFrozenG346Server();
  const p=path.join(root,rel[k]),s=await fs.lstat(p);
  if(s.isSymbolicLink()||!s.isFile()||s.size<12||s.size>150000)
   throw new Error('G331 invalid source '+k);

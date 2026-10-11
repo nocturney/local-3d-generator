@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.47 — ACTUAL persisted HTTP GET/HEAD SHA/file-handle security checks
+
+- Production G1/G2/G3 asset route uses `readShaVerifiedJobAsset` before 200/headers/body: job record alone is never treated as proof disk bytes remain valid. Only allowlisted model/source/QA entries; strict path/ancestor check, `nlink=1`, opened `fstat` identity, bounded bytes, SHA256 comparison with recorded asset digest and post-read identity before returning bytes. Both GET and HEAD reject modified GLB/source/QA/Junction with 409.
+- PASS Chris 11 new native NTFS tests + 4 new ephemeral real HTTP integration tests; nine frozen previous SHA evidence reports replayed byte-identical against pinned historical source. Full 298/298 Node, 269/269 Python CPU, 16/16 Chrome regression. [Runbook](G3_47_REAL_LOCAL_HTTP_JOB_ASSET_SHA_READBACK_CPU_2026-10-11.md), [sanitized immutable proof](evidence/g3/g3-47-actual-persisted-http-asset-sha-filehandle-cpu.json).
+- STILL BLOCKED: independently authenticated manifests, race-free Windows native directory handles, OS native-decoder sandbox/egress, untrusted customer images, encrypted off-host disaster recovery, unattended G1 install/boot and physical manufacturing. #4, #5, #3 OPEN, all GLBs DRAFT.
+
 ## G3.46 — ACTUAL G2 worker result file-handle integrity, native Windows CPU tests
 
 - Functional G2 adapter fix (G1 server source unchanged): freeze accepted input SHA before worker, recheck before/after; verify `model.glb`, `qa-report.json` and input only via allowlisted single handle, lstat/fstat identity and bounded bytes, deny hardlinks, junctioned parent and swaps. G3.45 original preworker storage path admission remains intact.

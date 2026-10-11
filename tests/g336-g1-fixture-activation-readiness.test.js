@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {readFrozenG346Server} from './fixtures/g347-frozen-g346-server.mjs';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {runTrustedFixtureOnlySmoke} from '../scripts/g3-36-g1-fixture-recovery-smoke.mjs';
@@ -46,7 +47,7 @@ test('G3.36 frozen observation has source and current server strictly pinned',as
  assert.equal(p.schema,'local3d.g336.fixture-only-g1-post-reboot-smoke-not-service-restoration.v1');
  assert.equal(p.previousG335PublicProofSha256,sha(await read('docs/evidence/g3/g3-35-pillow-cpu-compatibility-and-upgrade-blockers.json')));
  assert.equal(p.previousG328OriginalImageAdmissionProofSha256,sha(await read('docs/evidence/g3/g3-28-integrated-structural-image-admission.json')));
- assert.equal(p.localServerSourceNormalizedSha256,sha(normalized(await read('server/index.js'))));
+ assert.equal(p.localServerSourceNormalizedSha256,sha(normalized(readFrozenG346Server())));
  assert.equal(p.nativeImageHeaderParserSourceSha256,sha(await read('server/image-structure-preflight.js')));
  assert.equal(p.originalSyntheticThreeImageCatalogSha256,sha(await read('tests/fixtures/g327-synthetic-images.json')));
  assert.equal(p.executableEphemeralSmokeSourceNormalizedSha256,sha(normalized(await read('scripts/g3-36-g1-fixture-recovery-smoke.mjs'))));

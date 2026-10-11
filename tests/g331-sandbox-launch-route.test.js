@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {readFrozenG346Server} from './fixtures/g347-frozen-g346-server.mjs';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {
@@ -125,7 +126,7 @@ test('G3.31 immutable report binds exact previous G3.30/G3.29 and current source
  assert.equal(report.evidenceCaptureMethod,'FROZEN_VERIFIED_DIRECT_READONLY_REMOTE_COMMAND_OBSERVATION_NOT_OS_ATTESTATION');
  assert.equal(report.decisionSourceNormalizedSha256,normalized(await fs.readFile(source('server/g331-sandbox-launch-route-contract.js'))));
  assert.equal(report.workerSourceSha256,hash(await fs.readFile(source('engines/triposr/worker.py'))));
- assert.equal(report.serverSourceSha256,hash(await fs.readFile(source('server/index.js'))));
+ assert.equal(report.serverSourceSha256,hash(readFrozenG346Server()));
  assert.deepEqual(report.hostReadOnlySnapshot,inventory());
  assert.equal(report.readiness.classification,'NOT_FOUND_IN_CURRENT_READ_ONLY_PROBE_SCOPE');
  assert.equal(report.VMActuallyLaunched,false);

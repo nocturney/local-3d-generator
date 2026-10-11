@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {readFrozenG346Server} from './fixtures/g347-frozen-g346-server.mjs';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -28,7 +29,7 @@ test('G3.30 immutable public proof SHA-links to prior G3.29 and exact candidate 
  assert.equal(proof.pinnedPillowGeneratorSourceNormalizedSHA256,normalized(await fs.readFile(files.generator)));
  assert.equal(proof.candidateWsbProfileNormalizedSHA256,normalized(await fs.readFile(files.wsb)));
  assert.equal(proof.currentProductionServerUnmodifiedSinceG329NormalizedSHA256,
-  normalized(await fs.readFile(files.server)));
+  normalized(readFrozenG346Server()));
  assert.equal(proof.productionG2PythonWorkerSha256,hash(await fs.readFile(files.worker)));
  assert.deepEqual(proof.trustedHostCpuSimulationResults.map(x=>x.originalFormat),
   ['PNG','JPEG','WEBP']);

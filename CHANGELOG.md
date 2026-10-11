@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.47 — 2026-10-11 — G3.47 SHA-verified HTTP job asset serving, real Windows synthetic tests
+
+- Active `server/index.js` `/v1/jobs/:id/assets/:asset` route now verifies the actual persisted GLB, QA reports and source-image against the stored SHA256 and bounded byte count from one checked native FileHandle **before any HTTP GET/HEAD 200 or unverified bytes**. Rejects linked/renamed/inode-swapped, multiply-hardlinked, or same-size modified files, and Windows Junction parent paths; errors use `409 G347_ASSET_UNVERIFIED`. Legitimate 200 GET and HEAD preserve correct Content-Type and Length, with no-store/nosniff. No startup, model, job submission or static web-file route changes.
+- Real Windows Chris 11 new native filesystem cases and 4 new real temporary loopback HTTP cases passed. Nine immutable G3.28/G3.30/G3.31/G3.36/G3.39/G3.44/G3.45 native+HTTP/G3.46 reports replayed unchanged via pinned G3.46 Git source for historical proofs; original evidence never rewritten. Current source SHA intentionally new and separately pinned. Full regression PASS 298/298 Node, 269/269 pinned Python CPU and 16/16 Chrome.
+- Security limitations unchanged: no independent manifest authentication from compromised host, race-free Windows job-dir confinement or OS-backed native Pillow sandbox, no untrusted customer media clearance, and no independent encrypted off-host restore. G1/4177 autostart remains off, Office/4178 untouched, manual G2/4179 off; no GPU/TripoSR/print. #4 security, #5 startup, #3 manufacturing OPEN. Proposed coordinated roadmap with AI Development Studio only, NOT a deployed integration.
+
 ## v0.2.46 — 2026-10-11 — G3.46 real post-worker G2 artifact file-handle boundary and source SHA freeze
 
 - Functional hardening of existing MANUAL G2 `server/triposr-adapter.js` and new `server/g346-worker-artifact-readback.js`: use allowlisted bounded single-handle `lstat/fstat/open/readFile/fstat` identity checks for actual worker GLB/QA/source rather than following disk aliases; reject hardlinks, Windows Junctions, swaps between lstat/open and after read, changed source SHA during safety preflight or after mock worker. Reject a pre-existing output Junction before subprocess. G1 `server/index.js` untouched and old immutable G3.45 evidence frozen.

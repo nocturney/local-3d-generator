@@ -4,9 +4,11 @@
  * A replay validates the frozen observation; it is NOT a fresh port check.
  */
 import fs from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const locations={
  parent:'docs/evidence/g3/g3-35-pillow-cpu-compatibility-and-upgrade-blockers.json',
@@ -24,6 +26,10 @@ const locations={
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const lf=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'));
 async function read(k){
+ if(k==='server')return readFrozenG346Server();
+ if(k==='package')return execFileSync('git',['-C',root,'show',
+  'a4e18ebe9c8c2ba3c03d56e3d1602a8430dd6211:package.json'],
+  {maxBuffer:60000,windowsHide:true});
  const p=path.join(root,locations[k]),stat=await fs.lstat(p);
  if(!stat.isFile()||stat.isSymbolicLink()||stat.size<12||stat.size>190000)
   throw Error('G336 invalid source '+k);

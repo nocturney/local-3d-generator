@@ -7,6 +7,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const files={
  parent:'docs/evidence/g3/g3-45-g2-storage-junction-hardlink-native-cpu.json',
@@ -19,6 +20,7 @@ const files={
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const normalized=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'));
 async function load(k){
+ if(k==='source')return readFrozenG346Server();
  const location=path.join(ROOT,files[k]),s=await fs.lstat(location);
  if(!s.isFile()||s.isSymbolicLink()||s.size<40||s.size>400000)
   throw Error('G345 HTTP proof linked or invalid file '+k);

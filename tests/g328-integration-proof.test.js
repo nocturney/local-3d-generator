@@ -5,6 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {readHistoricalServerBytes,HISTORICAL_SERVER_SHA} from '../scripts/g3-28-historical-server-source.mjs';
+import {readFrozenG346Server} from './fixtures/g347-frozen-g346-server.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const ev=path.join(root,'docs/evidence/g3');
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
@@ -22,7 +23,7 @@ test('G3.28 code SHA identifies NEW admission and preserves exact three historic
  for(let i=0;i<files.length;i++)
   assert.equal(p.historicalPublicProofSha256[oldNames[i]],
     sha(await fs.readFile(path.join(ev,files[i]))));
- const current=await fs.readFile(path.join(root,'server/index.js'));
+ const current=readFrozenG346Server(); // Historical G3.28 proof source, not current G3.47 HTTP route.
  assert.equal(p.currentIntegratedWindowsServerSha256,sha(current));
  assert.notEqual(sha(current),HISTORICAL_SERVER_SHA);
  assert.equal(p.currentImageStructureModuleSha256,

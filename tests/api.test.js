@@ -98,6 +98,71 @@ test('valid image -> queued/running -> GLB + non-printable QA report', async () 
   const source = await req('/v1/jobs/' + job.id + '/assets/source-image');
   assert.equal(source.status, 200);
 });
+test('G3.47 fixture HTTP GET/HEAD verify immutable SHA before emitting asset bytes',async()=>{
+ const made=await req('/v1/jobs','POST',{providerId:'fixture-demo',mode:'image',
+  prompt:'owned synthetic HTTP asset',
+  image:{mime:'image/png',filename:'sample.png',base64:tinyPng.toString('base64')}});
+ assert.equal(made.status,201);
+ const done=await waitFor(made.value.id,'completed');
+ for(const asset of done.assets){
+  const u='/v1/jobs/'+done.id+'/assets/'+asset.id;
+  const get=await fetch(base+u),head=await fetch(base+u,{method:'HEAD'});
+  assert.equal(get.status,200);
+  assert.equal(head.status,200);
+  const got=Buffer.from(await get.arrayBuffer());
+  assert.equal(got.length,asset.bytes);
+  assert.equal((await import('node:crypto')).createHash('sha256').update(got).digest('hex'),asset.sha256);
+  assert.equal(Number(get.headers.get('content-length')),asset.bytes);
+  assert.equal(Number(head.headers.get('content-length')),asset.bytes);
+  assert.equal((await head.arrayBuffer()).byteLength,0);
+ }
+});
+test('G3.47 HTTP same-size on-disk GLB tamper must deny GET and HEAD',async()=>{
+ const made=await req('/v1/jobs','POST',{providerId:'fixture-demo',mode:'text',
+  prompt:'synthetic non-printable GLB'});
+ assert.equal(made.status,201);
+ const job=await waitFor(made.value.id,'completed');
+ const model=path.join(tmp,'data','jobs',job.id,'output.glb');
+ const old=await fs.readFile(model);
+ await fs.writeFile(model,Buffer.alloc(old.length,5));
+ const route='/v1/jobs/'+job.id+'/assets/preview-glb';
+ const denied=await fetch(base+route);
+ assert.equal(denied.status,409);
+ assert.equal((await denied.json()).error.code,'G347_ASSET_UNVERIFIED');
+ const head=await fetch(base+route,{method:'HEAD'});
+ assert.equal(head.status,409);
+ assert.equal((await head.arrayBuffer()).byteLength,0);
+ assert.equal((await req('/v1/jobs/'+job.id+'/assets/qa-report')).status,200);
+});
+test('G3.47 HTTP hardlinked QA refuses GET+HEAD, source remains valid',async()=>{
+ const created=await req('/v1/jobs','POST',{providerId:'fixture-demo',mode:'image',
+  prompt:'owned synthetic QA file',image:{mime:'image/png',base64:tinyPng.toString('base64')}});
+ assert.equal(created.status,201);
+ const j=await waitFor(created.value.id,'completed');
+ const file=path.join(tmp,'data','jobs',j.id,'qa-report.json');
+ await fs.link(file,path.join(tmp,'owned-qa-hardlink'));
+ const url='/v1/jobs/'+j.id+'/assets/qa-report';
+ const deny=await fetch(base+url),head=await fetch(base+url,{method:'HEAD'});
+ assert.equal(deny.status,409);
+ assert.equal((await deny.json()).error.code,'G347_ASSET_UNVERIFIED');
+ assert.equal(head.status,409);
+ assert.equal((await head.arrayBuffer()).byteLength,0);
+ assert.equal((await req('/v1/jobs/'+j.id+'/assets/source-image')).status,200);
+});
+test('G3.47 HTTP parent Windows Junction may not serve any job asset',async()=>{
+ const created=await req('/v1/jobs','POST',{providerId:'fixture-demo',mode:'text',
+  prompt:'owned synthetic redirected job'});
+ assert.equal(created.status,201);
+ const j=await waitFor(created.value.id,'completed');
+ const folder=path.join(tmp,'data','jobs',j.id),other=path.join(tmp,'owned-relocated-job');
+ await fs.rename(folder,other);
+ await fs.symlink(other,folder,process.platform==='win32'?'junction':'dir');
+ for(const asset of j.assets){
+  const u='/v1/jobs/'+j.id+'/assets/'+asset.id;
+  assert.equal((await fetch(base+u)).status,409);
+  assert.equal((await fetch(base+u,{method:'HEAD'})).status,409);
+ }
+});
 test('bad inputs and remote providers fail closed', async () => {
   const candidate = await req('/v1/jobs','POST',{providerId:'triposr-local',mode:'text',prompt:'something'});
   assert.equal(candidate.status,422); assert.equal(candidate.value.error.code,'PROVIDER_UNAVAILABLE');

@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 import {reviewDisabledBootCandidate} from '../server/g339-g1-autostart-review-contract.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const p={
@@ -23,6 +24,7 @@ const p={
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const lf=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'));
 async function read(k){
+ if(k==='server')return readFrozenG346Server();
  const path_=path.join(root,p[k]),stat=await fs.lstat(path_);
  if(!stat.isFile()||stat.isSymbolicLink()||stat.size<12||stat.size>200000)
   throw Error('G339 invalid read-only input '+k);

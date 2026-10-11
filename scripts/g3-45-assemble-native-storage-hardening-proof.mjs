@@ -7,6 +7,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const files={
@@ -22,6 +23,7 @@ const files={
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const norm=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8');
 async function load(key){
+ if(key==='g1')return readFrozenG346Server();
  const file=path.join(ROOT,files[key]),s=await fs.lstat(file);
  if(!s.isFile()||s.isSymbolicLink()||s.size<40||s.size>450000)
   throw Error('G345 missing, replaced, linked or oversized source: '+key);

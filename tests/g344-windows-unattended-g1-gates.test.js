@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {readFrozenG346Server} from './fixtures/g347-frozen-g346-server.mjs';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {assessUnattendedG1Observation,UnattendedG1ReviewError}
@@ -164,10 +165,10 @@ test('G3.44 public report links unchanged G3.39/G3.43/draft/source/probe and cod
   ['frozenDisabledG1DraftSha256','docs/security/g339-g1-disabled-autostart-review.json']
  ])assert.equal(proof[field],sha(await read(file)),field);
  for(const [field,file] of [
- ['frozenServerIndexNormalizedSha256','server/index.js'],
  ['readOnlyHostInventoryProbeNormalizedSha256','scripts/g3-44-readonly-unattended-g1-host.ps1'],
  ['failClosedGateSourceNormalizedSha256','server/g344-unattended-g1-gate.js']
  ])assert.equal(proof[field],norm(await read(file)),field);
+ assert.equal(proof.frozenServerIndexNormalizedSha256,norm(readFrozenG346Server()),'historical frozen G3.44 code');
  assert.equal(proof.decision.decision,'BLOCKED_UNATTESTED_NONINTERACTIVE_PRINCIPAL');
  assert.equal(proof.privateHostObservationReceiptSha256.length,64);
 });

@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {readFrozenG346Server} from '../tests/fixtures/g347-frozen-g346-server.mjs';
 import {
  TRUSTED_G330_FORMATS,createSyntheticIngressCandidate,
  createSyntheticHostOnlyReceipt,verifySyntheticHostOnlyExchange
@@ -25,6 +26,7 @@ const files={
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const norm=b=>Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8');
 async function read(k){
+ if(k==='parentServer')return readFrozenG346Server();
  const st=await fs.lstat(files[k]);
  if(st.isSymbolicLink()||!st.isFile()||st.size<12||st.size>120000)
   throw new Error('G3.30 missing or unsuitable public/source input '+k);

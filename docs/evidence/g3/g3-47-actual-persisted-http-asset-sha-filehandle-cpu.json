@@ -1,0 +1,82 @@
+{
+  "schema": "local3d.g347.actual-local-http-persisted-job-asset-sha-and-filehandle-cpu.v1",
+  "date": "2026-10-11",
+  "parentFrozenG346PublicSha256": "2f13915977b31994e46666bfaca8983d7366429165076d1ebf8a7eb4f20e34e0",
+  "parentFrozenG346ServerNormalizedSha256": "8d96742aa45c6e815673156cbbfd12d80dc98573676563fa7d1c63d147cc908d",
+  "latestRealServerNormalizedSha256": "9a0a173945073de96a79ea7a3ba8cc5aafe968ba8bc7139b3addeb0d71b5832f",
+  "realHttpAssetGuardNormalizedSha256": "72283c91f5453ee44fb9ba382a22f44e3fc0d754f88984ce95f0ab2fcef2e860",
+  "actualHttpApiTestNormalizedSha256": "e4d396236e1ce3b0b989604863ff625f8fd89788f1bd66c66ca77777c4b9a97a",
+  "actualNativeReadbackTestNormalizedSha256": "3f6e733503cc513ae25e9003ace2834504b149d17dd2106c803bf6bc48f33432",
+  "historicalSourceReaderNormalizedSha256": "6c5b9d8530b3b7808fbc2fd64c43e1bf316e6f36bf57c8101288fd1f230f50d1",
+  "frozenHistoricalProofs": {
+    "g328": {
+      "sha256": "a3916622d813c7ab4a79b98dce46b4c1803e74c9cf3fc6ed54923c63ed0d8b27",
+      "replaySourceSha256": "79596f9bb282c3a847c7c96aa8775a63c3059d4a14e1e39a6278815e6fad6a3e"
+    },
+    "g330": {
+      "sha256": "29e33c6a1370a806701f20a10ada52f1e98c2fd966b4eeae56c196901b149b67",
+      "replaySourceSha256": "cfbec479e297490b59902ca88e70cb419cb7634237b7783f47ba3e28ac0ae6a0"
+    },
+    "g331": {
+      "sha256": "26de70fa48e9e76cf834aabe04a291ca52a4d177a3784492f9b44569e00a9331",
+      "replaySourceSha256": "ceb14900008169e7bd539be7b9cfb66e4c31c16680af4cc8b1db2347c6eb5b33"
+    },
+    "g336": {
+      "sha256": "e8965f104a2593a934543392eb531c25e8353304444bfcceaf4e864640e6afff",
+      "replaySourceSha256": "dfab933afdff7cc7745eebb1710ad17d545501c026df30932839635aedaf4d3d"
+    },
+    "g339": {
+      "sha256": "87205d068435937e2c55c0fdd5da55daa93dd155e2f91baf37213667ba68561c",
+      "replaySourceSha256": "5bf15adbe5b8594436d00b082bc2c44c66574f6dff80d7ff62196ecb8948fabf"
+    },
+    "g344": {
+      "sha256": "9cccf5bbab5c2dd7dd820e8836e1c27fa2c2ec72c175fa2de2de6d63ecfecff0",
+      "replaySourceSha256": "c208fec0083a8173e72990b8cd8dd63fada92e37fa04d0b30e855de30705d937"
+    },
+    "g345native": {
+      "sha256": "c1349fe585a4697f17dc8b5d09af6d321e84989a287389a8df8f77901a845331",
+      "replaySourceSha256": "1c3fc29fd95eb46a30b680dcd85c4a811f1061f92efdb4391554482f112523e2"
+    },
+    "g345http": {
+      "sha256": "4031e200ad345b8d5a352ffbe7ebbb2a7c06082136f91c2c0fe57fff33823986",
+      "replaySourceSha256": "edb7a569bce1f4a184cc733fbf398a35188a6b08d31d5610a9ec292f0e0ab4ff"
+    },
+    "g346": {
+      "sha256": "2f13915977b31994e46666bfaca8983d7366429165076d1ebf8a7eb4f20e34e0",
+      "replaySourceSha256": "c647403f10ff74972a61e898a360faa0715cabf257233f2632d2ed3475adb602"
+    }
+  },
+  "historicalProofsRerunAndByteIdentical": 9,
+  "nativeWindowsSyntheticAndLoopbackHttpTests": 25,
+  "nativeUnitTestsAdded": 11,
+  "httpIntegrationCasesAdded": 4,
+  "allNodeTestsPassedInThisProof": 25,
+  "failed": 0,
+  "skipped": 0,
+  "actualGetAndHeadShaVerifiedBeforeHeaders": true,
+  "legitimateModelSourceAndQaStillServed": true,
+  "sameLengthHashTamperDeniedBothMethods": true,
+  "hardlinkedJobReportDeniedBothMethods": true,
+  "junctionedParentJobDirectoryDeniedBothMethods": true,
+  "pathSwapBeforeOpenOrAfterReadDenied": true,
+  "noAssetByteSentBeforeManifestShaVerification": true,
+  "verifiedAssetOnlyAfterManifestShaAndBoundedSize": true,
+  "manifestIntegrityIndependentlyAttested": false,
+  "assetBytesStrictlyComparedWithRecordedManifestSha": true,
+  "actualOsNativeRaceFreeContainmentProved": false,
+  "nativeDecoderGuestSandboxProved": false,
+  "untrustedCustomerMediaAllowed": false,
+  "noRealG2CudaOrTripoSRModelExecution": true,
+  "noPermanentG1Port4177OrG2Port4179Started": true,
+  "independentOffice4178Unaffected": true,
+  "noWindowsTaskAclBitLockerOrRebootChanges": true,
+  "noIndependentEncryptedOffhostRestore": true,
+  "newReal3dOutputs": 0,
+  "printQualified": false,
+  "approvedForPrinter": false,
+  "fabricationAction": "NONE",
+  "issue3Open": true,
+  "issue4Open": true,
+  "issue5Open": true,
+  "decision": "ACTUAL_G1_G2_G3_HTTP_ASSET_BYTES_CHECKED_SHA_BEFORE_DELIVERY_NOT_OS_SANDBOX"
+}
