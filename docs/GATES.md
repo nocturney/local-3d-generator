@@ -1,5 +1,10 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.42 — actually RESTORED entire 34-package private backup to distinct disposable same-machine venv
+
+- PASS SHA for EVERY one of original backup's 27,966 files / 5,086,619,721 bytes, a second independent restored venv with all restored file SHA matches, 34/34 pinned cloned versions + Pillow10.1 native trusted PNG/JPEG/WebP CPU decodes. Independently PASS full 262 G3 quality and 7 G2 offline tests from new restored interpreter; post-test every file SHA checked again and disposable restore removed. Production/source backup not changed.
+- Remaining limits: entire OS/C:\Python311 base, GPU/driver, TripoSR model weights, off-host recovery still UNTESTED. This restores Python venv package files on same authorized Chris Windows, not approved Pillow12.3/real CUDA/unsafe customer uploads/printer. [Runbook](G3_42_REAL_FULL_VENV_RESTORE_269_CPU_2026-10-11.md), [source evidence](evidence/g3/g3-42-full-venv-same-host-real-offline-restore.json). Security #4, G1 boot #5, print #3 OPEN.
+
 ## G3.41 — FULL original 34-package Python venv copied to private SHA-audited local backup
 
 - PASS actual source-to-backup content comparison of **27,966/27,966 regular files, 5,086,619,721 bytes**, in gitignored local QA. Private SHA manifest covers all files; real copied Python3.11 executable and importlib.metadata/Pillow imports proved **34/34** pinned distributions load from snapshot; 3/3 original tiny PNG/JPEG/WebP RGB decodes successful.

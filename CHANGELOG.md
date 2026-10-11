@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.42 — 2026-10-11 — G3.42 real full 34-package Python restore from private backup to new disposable venv
+
+- Revalidated every byte of the G3.41 SHA manifest's **27,966 files / 5,086,619,721 bytes** in private original backup; copied the entire full venv from backup to a SECOND independent disposable QA path, not from live production.
+- Revalidated ALL restored file SHA and 34/34 pinned installed distribution metadata and native Pillow10.1 original PNG/JPEG/WebP RGB outputs using the restored Python executable, ran 262 G3 quality + 7 G2 offline CPU tests from the restored path; then checked every restored file SHA again post-test with PYTHONDONTWRITEBYTECODE=1 and deleted only temporary restored copy. Original permanent backup and production venv remain untouched.
+- Added private deterministic receipt, sanitized immutable public source SHA chain to G3.41, strict gate and six adversarial Node tests. Demonstrates real same-host full-venv package recovery ONLY, not cross-machine OS/base Python/CUDA/model weights disaster recovery or hostile image parser containment. Security #4, G1 #5, printer #3 OPEN.
+
 ## v0.2.41 — 2026-10-11 — G3.41 actual private SHA-verified full Python venv snapshot
 
 - Copied **all 27,966 regular files / 5,086,619,721 bytes** from the original Windows LOCAL3D Python3.11 environment to a completely distinct private ignored QA destination (approx 4.74 GiB, source read-only). Checked per-file SHA256 against every original, no symlinks/reparse points or recognized sensitive configuration files, recorded a private whole-file SHA manifest.

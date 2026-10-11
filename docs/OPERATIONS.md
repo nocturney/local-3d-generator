@@ -1,5 +1,14 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.42 — real same-host full Python venv restore from immutable private backup
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-42-readonly-snapshot-drift.py
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-42-restore-complete-venv-offline-cpu.py
+    node scripts/g3-42-assemble-full-venv-restore-proof.mjs
+    node --test tests/g342-full-venv-real-offline-restore.test.js
+
+Unlike G3.41 (creating one private original full-file snapshot), G3.42 constructs a SEPARATE disposable restored venv from the existing ignored/private backup, SHA-checks all 27,966 source+restored bytes, runs full 269 pinned Python CPU tests from that independent restored interpreter and SHA-checks the restored files again posttests. It removes only the disposable restore. No installs into production, downloads, GPU inference, Windows Task/service changes or Office/4178 traffic. Historical Node proof is a frozen SHA replay only, not a current backup verification. Must not conflate same-machine package recovery with OS/base Python/GPU/weights disaster recovery or native decoder security clearance. [G3.42](G3_42_REAL_FULL_VENV_RESTORE_269_CPU_2026-10-11.md), [proof](evidence/g3/g3-42-full-venv-same-host-real-offline-restore.json).
+
 ## G3.41 — actual copied full 34-package Python backup, read-only recheck
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-41-private-full-venv-backup.py
