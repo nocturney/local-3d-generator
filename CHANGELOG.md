@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.45 — 2026-10-11 — G3.45 real manual G2 path/junction/hardlink rejection (CPU-only)
+
+- **Functional security hardening** in existing G2 manual storage-admission and storage-audit code, not another host report: refuse symlink/junction *ancestors* of the jobs root and nested folders; detect NTFS files with multiple hard links even when regular filename looks legitimate. `job.json` now has same-open-file fstat and lstat identity/link-count/size checks before parsing. Link/manifest/path integrity failure blocks G2 storage admission before GPU lease/Python; ordinary owned directories still pass.
+- On Chris, 9/9 Windows-native synthetic filesystem cases passed (including actual Windows junction and hardlinks, zero skips) **PLUS 2/2 ephemeral HTTP integration tests** returning 503 G3_STORAGE_UNVERIFIED on a junctioned parent or a hard-linked manifest before any GPU lease or model worker. Original storage tests pass. Complete QA: 265/265 Node, 269/269 pinned Python CPU, 16/16 Chrome. Two separate immutable source-linked evidence reports, one for native filesystems and one for real HTTP denial. Actual manual G2 job-store ancestor path was inspected with **metadata only** and unlinked; no real job content was enumerated or read. Immutable sanitized public SHA-linked evidence chains prior G3.43/G3.44 without altering old proofs or G1 server source. No Windows/Office/GPU/cloud/customer media/print changes.
+- Explicit limitation: point-in-time Node filesystem checks do NOT attest race-free native OS confinement or native image-parser security. #4 security, #5 G1 unattended autostart and #3 print quality remain OPEN.
+
 ## v0.2.44 — 2026-10-11 — G3.44 real unattended Windows G1 principal preflight; task remains uninstalled
 
 - READ-ONLY Windows Chris survey: 372 Scheduled Tasks including non-Exec action types, 344 Win32_Service entries including PathName, 29 startup commands; 0 recognizable LOCAL3D launch matches under bounded signature search. Office/4178 stays loopback ACTIVE, G1/4177 DOWN, manual G2/4179 DOWN. Node24 current process and machine PATH, binary hash, original source SHA and current-user read-only ACL metadata verified. No future intended service account, noninteractive filesystem rights or no-login boot proven.

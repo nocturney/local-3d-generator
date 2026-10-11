@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.45 — ACTUAL Windows G2 runtime storage safety improvements, no GPU or printing
+
+- PASS 9/9 native Windows synthetic G2 filesystem tests on Chris with zero skips, **and 2/2 ephemeral real HTTP G2 integration tests** with actual 503 before GPU lease or Python. Full QA 265/265 Node, 269/269 pinned CPU Python and 16/16 Chrome. Two immutable SHA-linked evidence files: [native Windows](evidence/g3/g3-45-g2-storage-junction-hardlink-native-cpu.json) and [HTTP before GPU](evidence/g3/g3-45-g2-http-storage-denial-before-gpu.json). All test paths are disposable owned QA. A linked PARENT folder, a direct jobs-directory link, a hard-linked `job.json`, hard-linked GLB and engine-output file are rejected. Ordinary-owned job folders and ordinary model outputs still account correctly. Original G3.5 admission/audit tests pass. G2 actual production job store parent checked with read-only ancestor metadata only, no media read.
+- `server/storage-admission.js` and `server/storage-audit.js` hardened with [G3.45 guard](../server/g345-storage-path-integrity.js); [QA method](G3_45_REAL_G2_STORAGE_NATIVE_JUNCTION_HARDLINK_HARDENING_2026-10-11.md) / [immutable SHA proof](evidence/g3/g3-45-g2-storage-junction-hardlink-native-cpu.json) link G3.43/G3.44, no prior proof mutation. Filesystem violations remain G3_STORAGE_UNVERIFIED before GPU lease or Python worker, not silently repaired.
+- STILL NOT PROVEN: race-free Windows file handle confinement, real native decoder sandbox/egress, untrusted customer image approval, off-host encrypted backup, G1 startup or physical print. Security #4, operations #5 and manufacturing #3 OPEN. All GLBs DRAFT.
+
 ## G3.44 — ACTUAL Windows G1 unattended-startup host inventory, principal rights remain BLOCKED
 
 - PASS actual scoped read-only Windows Chris survey across **372 TaskScheduler tasks**, **344 Win32_Service** records and **29 startup commands**; zero explicitly matched LOCAL3D task/action/service/startup signatures. Node24 SHA computed, Node directory on Machine PATH, original G1 source SHA unchanged, ACL metadata for project/data/jobs/audit readable only for the *probe account* and no direct reparse points. G1/4177 DOWN, Office/4178 loopback active and untouched, manual G2/4179 DOWN. No task installed or service activated.

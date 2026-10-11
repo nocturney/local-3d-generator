@@ -6,6 +6,7 @@
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {verifyUnlinkedDirectoryAncestors,isExclusiveOrdinaryStoredFile} from './g345-storage-path-integrity.js';
 
 const MAX_JOBS=1000;
 const MAX_FILES_PER_JOB=128;
@@ -18,6 +19,7 @@ async function safeLstat(file){
   catch(error){if(error.code==='ENOENT')return null;throw error;}
 }
 async function safeList(dir){
+  await verifyUnlinkedDirectoryAncestors(dir,{allowMissingLeaf:true});
   const stat=await safeLstat(dir);
   if(!stat)return [];
   if(!stat.isDirectory()||stat.isSymbolicLink())
@@ -32,6 +34,9 @@ export async function auditJobStorage({jobsDir,now=new Date()}){
     throw new TypeError('Expected an explicit absolute jobs directory');
   const when=new Date(now).getTime();
   if(!Number.isFinite(when))throw new TypeError('Invalid audit time');
+  // Reject a linked parent, junction, or redirected jobs root before any
+  // job metadata is read; missing FINAL leaf retains historical empty audit.
+  await verifyUnlinkedDirectoryAncestors(jobsDir,{allowMissingLeaf:true});
   const entries=await fs.readdir(jobsDir,{withFileTypes:true}).catch(error=>{
     if(error.code==='ENOENT')return [];throw error;
   });
@@ -52,18 +57,31 @@ export async function auditJobStorage({jobsDir,now=new Date()}){
       const full=path.join(folder,entry.name);
       if(entry.isFile()){
         const stat=await safeLstat(full);
-        if(!stat||stat.isSymbolicLink()||!stat.isFile()){unsafeEntries++;continue;}
+        if(!isExclusiveOrdinaryStoredFile(stat)){unsafeEntries++;continue;}
         currentBytes+=stat.size;
         if(entry.name==='job.json'&&stat.size<=128*1024) {
-          try{manifest=JSON.parse(await fs.readFile(full,'utf8'));}
-          catch { /* malformed JSON is treated as unknown */ }
+          // Open once and inspect the ACTUAL opened file. lstat then readFile
+          // would follow a symlink swapped into place between those calls.
+          let fh;
+          try{
+            fh=await fs.open(full,'r');
+            const opened=await fh.stat();
+            if(!isExclusiveOrdinaryStoredFile(opened)||
+               opened.dev!==stat.dev||opened.ino!==stat.ino||opened.size!==stat.size){
+              unsafeEntries++;continue;
+            }
+            const raw=await fh.readFile();
+            if(raw.length!==stat.size){unsafeEntries++;continue;}
+            manifest=JSON.parse(raw.toString('utf8'));
+          }catch { /* unreadable or malformed JSON remains unknown */ }
+          finally{await fh?.close();}
         }
       }else if(entry.isDirectory()&&entry.name==='engine-output'){
         const outChildren=await safeList(full);
         for(const out of outChildren){
           if(!out.isFile()||out.isSymbolicLink()){unsafeEntries++;continue;}
           const stat=await safeLstat(path.join(full,out.name));
-          if(!stat||!stat.isFile()||stat.isSymbolicLink()){unsafeEntries++;continue;}
+          if(!isExclusiveOrdinaryStoredFile(stat)){unsafeEntries++;continue;}
           currentBytes+=stat.size;
         }
       }else unsafeEntries++;

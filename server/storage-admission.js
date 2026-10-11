@@ -8,6 +8,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { auditJobStorage } from './storage-audit.js';
+import {verifyUnlinkedDirectoryAncestors} from './g345-storage-path-integrity.js';
 
 const GiB=1024**3;
 const MiB=1024**2;
@@ -51,6 +52,9 @@ export async function admitRealJobStorage({
   }
   const root=path.resolve(jobsDir);
   try{
+    // Reject symlink/junction parents, not just a directly linked jobs leaf.
+    // Point-in-time metadata check; it does not attest race-free OS isolation.
+    await verifyUnlinkedDirectoryAncestors(root);
     const lst=await fs.lstat(root);
     if(!lst.isDirectory()||lst.isSymbolicLink()) {
       rejected('G3_STORAGE_UNVERIFIED','Untrusted manual job storage directory');
