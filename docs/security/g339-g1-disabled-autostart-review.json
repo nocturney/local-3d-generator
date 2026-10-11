@@ -1,0 +1,42 @@
+{
+  "schema": "local3d.g339.g1-windows-startup-proposed-disabled.v1",
+  "date": "2026-10-11",
+  "description": "LOCAL3D G1 fixture-only loopback autostart review, no registration or launch",
+  "desiredTrigger": "AT_SYSTEM_STARTUP",
+  "registrationState": "NOT_REGISTERED_DRAFT_ONLY",
+  "enabled": false,
+  "taskNameCandidate": "LOCAL3D-G1-fixture-only",
+  "taskSchedulerPrincipal": "UNRESOLVED_STANDARD_USER_OR_APPROVED_LOW_PRIVILEGE_SERVICE_ACCOUNT",
+  "logonType": "UNRESOLVED_REQUIRES_NONINTERACTIVE_RUNTIME_PROOF",
+  "runLevel": "LIMITED",
+  "executableCandidate": "node.exe",
+  "argvCandidate": [
+    "server/index.js"
+  ],
+  "workingDirectory": "RESOLVE_CANONICAL_REPO_BY_AUTHORIZED_OPERATOR",
+  "environmentRules": {
+    "L3D_ENABLE_TRIPOSR": "0",
+    "L3D_PORT": "4177"
+  },
+  "bindHost": "127.0.0.1",
+  "gpuEngine": "DISABLED",
+  "modelInference": false,
+  "simulatorOnly": true,
+  "storageAclUnderIntendedPrincipalVerified": false,
+  "independentPort4178MustRemainUntouched": true,
+  "executableAndRepositorySourceSHARequired": true,
+  "freshCheck4177BeforeStartupRequired": true,
+  "healthMustReturn": "G1_DEMO",
+  "providerG2MustReport": "STAGED_DISABLED",
+  "rejectTruncatedImageWith": "422 BAD_IMAGE_STRUCTURE",
+  "startupWithoutLoggedInUserVerified": false,
+  "restartPersistenceVerified": false,
+  "safeRollbackAndStopApproved": false,
+  "humanOperatorActivationApproved": false,
+  "taskXmlCanBeRegisteredAsIs": false,
+  "taskInstallExecutionActions": "NONE",
+  "physicalPrinterRelease": false,
+  "securityIssue4Open": true,
+  "operationalIssue5Open": true,
+  "manufacturingIssue3Open": true
+}

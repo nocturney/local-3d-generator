@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.39 — actual read-only G1 boot context; disabled noninstallable candidate
+
+- PASS read-only Chris Windows observation: Node v24.19.0, original G3.28 G1 server SHA, no 4177/4179 listener, one localhost Office/4178 listener, root and G1 persistent-data ACL readable. Scans of TaskScheduler action+name, named Windows services, startup commands completed and found zero explicitly named LOCAL3D matches (generic launchers NOT excluded).
+- BLOCKED: operator-selected least-privileged principal and **runtime permissions for that principal** not established, real Task Scheduler noninteractive logon/boot persistence untested. Candidate JSON is DISABLED, UNREGISTERED and NOT TASK XML, so cannot be installed as-is. G1/4177 STILL DOWN. No OS security settings or Office/4178 changes.
+- Proof binds frozen host observation to G3.28 server, G3.36 temporary fixture G1, G3.38 pinned Python baseline and strict boot contract. [Method](G3_39_G1_BOOT_STARTUP_DISABLED_REVIEW_2026-10-11.md), [public report](evidence/g3/g3-39-disabled-g1-boot-review-no-task-installed.json). Operational #5, security #4, print #3 OPEN.
+
 ## G3.38 — Python 34/34 baseline vs real rollback availability
 
 - PASS read-only installed package inventory 34/34 matches pinned requirements and exact SHA on Chris. Existing isolated Pillow12.3.0 candidate wheel checksum verified. No actual production Python site-packages write, pip network/install/uninstall or GPU.

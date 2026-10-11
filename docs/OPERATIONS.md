@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.39 — read-only G1 Windows Task Scheduler review; NO task registered
+
+    .\scripts\g3-39-readonly-g1-boot-probe.ps1
+    node scripts/g3-39-assemble-disabled-boot-review.mjs
+    node --test tests/g339-windows-g1-boot-review.test.js
+
+The PowerShell command inspects bound local ports 4177/4178/4179, Node availability, G1 source SHA, root/data ACL readability and **scoped** Task Scheduler action+name, Windows Services and StartupCommand inventory; outputs only sanitized data, no passwords, user SID or private job data. The Node command replays the **frozen previous read-only observation**, not a fresh host check. Candidate docs/security/g339-g1-disabled-autostart-review.json is deliberately DISABLED and NONINSTALLABLE, lacking an approved least-privilege principal and no-login boot proof; never auto-register or launch it. [Runbook](G3_39_G1_BOOT_STARTUP_DISABLED_REVIEW_2026-10-11.md), [historical proof](evidence/g3/g3-39-disabled-g1-boot-review-no-task-installed.json). Independent Office/4178 remains untouched, G1/4177 off, G2/4179 off; issue #5 OPEN.
+
 ## G3.38 — read-only pinned Python rollback prerequisites, NOT a real production rollback
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-38-prod-rollback-readonly.py

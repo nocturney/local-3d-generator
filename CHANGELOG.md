@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.39 — 2026-10-11 — G3.39 G1 reboot read-only inventory and disabled noninstallable boot candidate
+
+- Read-only Windows Chris port, Node, source-SHA, G1 repo/data ACL readability, Task Scheduler action+name, Windows services and startup-command inspection. Result 4177 no listener, independent localhost Office/4178 one listener, G2 4179 off, no explicitly matching autostart. Readable ACLs do not prove access as a future unattended service account.
+- Published **disabled and deliberately NONINSTALLABLE** candidate startup JSON, preserving localhost4177 G1 fixture only, G2 opt-in=0 and no privileges or OS changes. Strict reviewer refuses SYSTEM/elevated principal, G2/GPU, 0.0.0.0, port4178, assertions of human approval, registered task or successful no-login boot.
+- Immutable public SHA source and sanitized host observation link actual Windows read-only PowerShell inspection, G3.28 unchanged server and prior G3.36/G3.38 reports. Six new adversarial Node tests. No Windows Task/service/autostart installed or G1/4177 activation. Issues #3/#4/#5 OPEN.
+
 ## v0.2.38 — 2026-10-11 — G3.38 read-only 34-package Python rollback prerequisite and manifest-only dry-run
 
 - Audited actual Windows Chris production Python3.11 interpreter with importlib.metadata, confirming 34/34 installed distributions match the pinned requirements source SHA and original Pillow10.1.0, Torch2.5.1+cu121 and Transformers4.35.0.
