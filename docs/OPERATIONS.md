@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.36 — real fixture-only G1 on disposable loopback port, NO 4177 service restoration
+
+    npm run smoke:g3:g1-recovery
+    npm run proof:g3:g1-recovery
+    node --test tests/g336-g1-fixture-activation-readiness.test.js
+
+The smoke launches a NEW CPU-only G1 test instance within temp data on safe loopback test ports 20000..29999, verifies G1_DEMO/G2 disabled and nine BAD_IMAGE_STRUCTURE 422 rejections plus three synthetic fixture 201 accepts, closes test listener and removes temporary files. It has an explicit pre-app guard if environment L3D_ENABLE_TRIPOSR=1. It performs only a short TCP connection test to the dedicated 4177; it does NOT contact Office-owned 4178, launch persistent 4177, G2, GPU, Sandbox or printer. The proof replay reads a frozen historical observation and hashes; replay is NOT a current port assessment. Current G1/4177 after reboot is OFF; see GitHub #5, and [scoped operator runbook](G3_36_G1_EPHEMERAL_RECOVERY_READINESS_CPU_2026-10-11.md), [historical evidence](evidence/g3/g3-36-g1-ephemeral-recovery-readiness-not-live-activation.json).
+
 ## G3.35 — production Pillow upgrade remains BLOCKED even with 16 trusted CPU passes
 
     npm run audit:g3:pillow-upgrade

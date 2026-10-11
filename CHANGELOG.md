@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.36 — 2026-10-11 — G3.36 real ephemeral G1-only recovery smoke after Windows reboot
+
+- Following missing permanent G1 4177 after Windows reboot, exercised the ACTUAL current LOCAL3D G1 source in a disposable owned temp directory on a safe 127.0.0.1:20000..29999 test port only. Safe probe of dedicated localhost4177 returned NOT_LISTENING. Never contacted, rebound or modified independent Office-related port 4178.
+- Health verified G1_DEMO inference=false, printing=false; G2 TripoSR provider remained STAGED_DISABLED. All 9 original SHA-pinned truncated synthetic image samples returned HTTP422 BAD_IMAGE_STRUCTURE before a job; all 3 original complete PNG/JPEG/WebP samples returned HTTP201 simulation-only. Temporary listener closed and temp job files deleted in cleanup.
+- Added strict G2-opt-in environment refusal and 5 Node tests, source-SHA-linked immutable public proof against G3.35, G3.28 original server/parser/fixture source, and historical sanitized observation. The actual persistent G1 4177 service was NOT started or repaired, Windows autostart NOT installed; Security Issue #4, manufacturing Issue #3 and operational Issue #5 all OPEN.
+
 ## v0.2.35 — 2026-10-11 — G3.35 Pillow compatibility matrix with production-upgrade refusal
 
 - Added 16-row deterministic, SHA-linked comparison matrix from previous G3.33 and G3.34 CPU-only image-processing evidence: 15 compatible raw RGB positive cases and 1 matched invalid PNG rejection between pinned Pillow10.1.0 and isolated Pillow12.3.0. No new native decoding, models/GPU or packages required.

@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.36 — G1 recovery readiness proven on temporary fixture-only loopback, persistent 4177 STILL OFF
+
+- PASS: Real fresh G1 from production source with isolated temporary fixture+data, bound to test 127.0.0.1 only on a safe ephemeral reserved test range (not 4177/4178/4179). G1 health inference=false, printing=false, G2 staged disabled. 9/9 deliberately truncated original PNG/JPEG/WebP HTTP422 BAD_IMAGE_STRUCTURE before any jobs. 3/3 complete original SHA-pinned formats HTTP201 simulation-only.
+- PROVEN LIMIT: historical direct lightweight TCP probe on localhost4177 showed NOT_LISTENING. G1 fixture-only ephemeral pass does NOT prove the actual 4177 service has been restored, nor provide Windows autostart. Exactly 0 model/GPU, no Office port4178 contact, no OS policy/Task Scheduler/service changes.
+- Source proof links actual server/index.js SHA to original G3.28 admission, test+parser+original G3.27 fixture source, prior G3.35 report and safe frozen observation. [G3.36 method](G3_36_G1_EPHEMERAL_RECOVERY_READINESS_CPU_2026-10-11.md), [public proof](evidence/g3/g3-36-g1-ephemeral-recovery-readiness-not-live-activation.json). Issues #5, #4, #3 remain OPEN.
+
 ## G3.35 — Pillow 10.1/12.3 compatibility matrix and explicit production upgrade block
 
 - PASS CPU evidence: 12 earlier G3.33 source/licensed original image cases + 4 G3.34 original safe alpha/EXIF/malformed cases = 16 distinct identified inputs. 15 accepted cases match raw RGB byte SHA, dimensions and expected format lanes; 1 short corrupt PNG is rejected by both versions with same error type. Source/input/pinned worker/private receipt SHA ancestry and rights are checked.

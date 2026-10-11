@@ -1,6 +1,6 @@
 {
   "name": "local-3d-generator",
-  "version": "0.2.35",
+  "version": "0.2.36",
   "private": true,
   "type": "module",
   "description": "Independent local-first 3D workbench; G1 demo plus opt-in G2 guarded TripoSR adapter",
@@ -16,6 +16,8 @@
     "audit:g3:storage": "node scripts/g3-storage-audit.mjs",
     "audit:g3:gpu-lock": "node scripts/g3-inspect-gpu-lease.mjs",
     "audit:g3:pillow-upgrade": "node scripts/g3-35-assemble-pillow-upgrade-gate.mjs",
+    "smoke:g3:g1-recovery": "node scripts/g3-36-g1-fixture-recovery-smoke.mjs",
+    "proof:g3:g1-recovery": "node scripts/g3-36-assemble-fixture-recovery-readiness.mjs",
     "benchmark:g3": "node scripts/g3-collect-benchmark.mjs",
     "score:g3": "node scripts/g3-score-existing-job.mjs",
     "proof:g3:cpu": "node scripts/g3-4-actual-cpu-review-proof.mjs",
