@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.46 — 2026-10-11 — G3.46 real post-worker G2 artifact file-handle boundary and source SHA freeze
+
+- Functional hardening of existing MANUAL G2 `server/triposr-adapter.js` and new `server/g346-worker-artifact-readback.js`: use allowlisted bounded single-handle `lstat/fstat/open/readFile/fstat` identity checks for actual worker GLB/QA/source rather than following disk aliases; reject hardlinks, Windows Junctions, swaps between lstat/open and after read, changed source SHA during safety preflight or after mock worker. Reject a pre-existing output Junction before subprocess. G1 `server/index.js` untouched and old immutable G3.45 evidence frozen.
+- Native Windows synthetic CPU verification on Chris: 9 new adversarial artifact read tests + 9 true adapter subprocess MOCK integration cases + 6 earlier native worker tests = 24/24, 0 skips. Real G2 model/CUDA was NOT launched. Source-SHA-linked privacy-bounded immutable public evidence SHA256 2f13915977b31994e46666bfaca8983d7366429165076d1ebf8a7eb4f20e34e0.
+- Complete Chris QA PASS: 283/283 Node, 262 G3 pinned Python quality + 7 G2 offline (269/269), 8 G1 Chrome + 8 G2/G3 mock Chrome (16/16). Still not OS-guaranteed filehandle/path race freedom, image decoder isolation, customer-untrusted-input release, off-host encrypted disaster recovery, unattended G1 boot or physical print. GitHub #4/#5/#3 remain OPEN.
+
 ## v0.2.45 — 2026-10-11 — G3.45 real manual G2 path/junction/hardlink rejection (CPU-only)
 
 - **Functional security hardening** in existing G2 manual storage-admission and storage-audit code, not another host report: refuse symlink/junction *ancestors* of the jobs root and nested folders; detect NTFS files with multiple hard links even when regular filename looks legitimate. `job.json` now has same-open-file fstat and lstat identity/link-count/size checks before parsing. Link/manifest/path integrity failure blocks G2 storage admission before GPU lease/Python; ordinary owned directories still pass.

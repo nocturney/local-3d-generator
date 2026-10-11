@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.46 — ACTUAL G2 worker result file-handle integrity, native Windows CPU tests
+
+- Functional G2 adapter fix (G1 server source unchanged): freeze accepted input SHA before worker, recheck before/after; verify `model.glb`, `qa-report.json` and input only via allowlisted single handle, lstat/fstat identity and bounded bytes, deny hardlinks, junctioned parent and swaps. G3.45 original preworker storage path admission remains intact.
+- PASS Chris 24/24 Windows native owned synthetic tests: 9 standalone file readback/hardlink/Junction/deterministic-swap, 9 real G2 adapter with Node test worker and injected GPU/Office stubs, 6 earlier G2 worker mock tests. Complete regression 283/283 Node, 269/269 pinned Python CPU, 16/16 Chrome. [G3.46 runbook](G3_46_REAL_G2_FILEHANDLE_ARTIFACT_READBACK_CPU_2026-10-11.md) and [immutable SHA evidence](evidence/g3/g3-46-actual-g2-result-file-handle-integrity-cpu.json) link frozen G3.45 native + HTTP reports without mutating them.
+- STILL BLOCKED: Windows native race-free OS containment, Pillow parser guest isolation/egress, full untrusted media approval, real GPU/QA print qualification, independently encrypted off-host recovery and G1 unattended Windows boot. Security #4, startup #5 and manufacturing #3 remain OPEN.
+
 ## G3.45 — ACTUAL Windows G2 runtime storage safety improvements, no GPU or printing
 
 - PASS 9/9 native Windows synthetic G2 filesystem tests on Chris with zero skips, **and 2/2 ephemeral real HTTP G2 integration tests** with actual 503 before GPU lease or Python. Full QA 265/265 Node, 269/269 pinned CPU Python and 16/16 Chrome. Two immutable SHA-linked evidence files: [native Windows](evidence/g3/g3-45-g2-storage-junction-hardlink-native-cpu.json) and [HTTP before GPU](evidence/g3/g3-45-g2-http-storage-denial-before-gpu.json). All test paths are disposable owned QA. A linked PARENT folder, a direct jobs-directory link, a hard-linked `job.json`, hard-linked GLB and engine-output file are rejected. Ordinary-owned job folders and ordinary model outputs still account correctly. Original G3.5 admission/audit tests pass. G2 actual production job store parent checked with read-only ancestor metadata only, no media read.

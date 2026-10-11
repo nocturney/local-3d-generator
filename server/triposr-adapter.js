@@ -14,6 +14,7 @@ import { createHash } from 'node:crypto';
 import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 import { setTimeout as delay } from 'node:timers/promises';
+import {readExclusiveG2JobArtifact} from './g346-worker-artifact-readback.js';
 
 const execAsync = promisify(execFile);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -102,18 +103,16 @@ async function stopTree(child) {
   }
 }
 
-async function verifyResult(jobDir, inputPath) {
-  const out = path.join(jobDir, 'engine-output');
-  const modelPath = path.join(out, 'model.glb');
-  const reportPath = path.join(out, 'qa-report.json');
-  const [glbStat, qaStat] = await Promise.all([fs.stat(modelPath), fs.stat(reportPath)]);
-  if (!glbStat.isFile() || glbStat.size < 1024 || glbStat.size > 100 * 1024 * 1024 ||
-      !qaStat.isFile() || qaStat.size > 128 * 1024) {
-    throw new EngineError('G2_INVALID_ARTIFACT', 'Untrusted engine artifact size');
-  }
-  const [glb, qaRaw, source] = await Promise.all([
-    fs.readFile(modelPath), fs.readFile(reportPath, 'utf8'), fs.readFile(inputPath)
+async function verifyResult(jobDir, inputPath, admittedInputSha256) {
+  // Every file is read through one checked native file handle. In particular,
+  // fs.stat + fs.readFile would follow symlinks/hardlinks placed AFTER worker
+  // exit, potentially reading content OUTSIDE this job folder.
+  const [glb, qaBytes, source] = await Promise.all([
+    readExclusiveG2JobArtifact({jobDir,filename:'model.glb'}),
+    readExclusiveG2JobArtifact({jobDir,filename:'qa-report.json'}),
+    readExclusiveG2JobArtifact({jobDir,filename:path.basename(inputPath)})
   ]);
+  const qaRaw=qaBytes.toString('utf8');
   if (glb.length < 1024 || glb.length > 100 * 1024 * 1024 ||
       glb.toString('ascii', 0, 4) !== 'glTF' || glb.readUInt32LE(4) !== 2 ||
       glb.readUInt32LE(8) !== glb.length) {
@@ -124,7 +123,8 @@ async function verifyResult(jobDir, inputPath) {
   catch { throw new EngineError('G2_INVALID_REPORT', 'Engine returned invalid QA report'); }
   if (qa.simulation !== false || qa.mode !== 'LOCAL_REAL_INFERENCE' ||
       qa.printQualified !== false || qa.status !== 'DRAFT' ||
-      qa.inputSha256 !== hash(source) || qa.artifactSha256 !== hash(glb) ||
+      qa.inputSha256 !== hash(source) || hash(source)!==admittedInputSha256 ||
+      qa.artifactSha256 !== hash(glb) ||
       qa.artifactBytes !== glb.length || !(qa.faces > 0) || !(qa.vertices > 0) ||
       qa.coordinateSystem !== 'Y_UP') {
     throw new EngineError('G2_INVALID_REPORT', 'Engine provenance or geometry failed verification');
@@ -151,10 +151,16 @@ export function createTripoSRAdapter(overrides = {}) {
           !/^input\.(png|jpg|webp)$/.test(path.basename(resolvedInput))) {
         throw new EngineError('G2_INVALID_PATH', 'Untrusted input path');
       }
-      const stat = await fs.lstat(resolvedInput);
-      const folderStat = await fs.lstat(resolvedDir);
-      if (!stat.isFile() || stat.isSymbolicLink() || !folderStat.isDirectory() || folderStat.isSymbolicLink()) {
-        throw new EngineError('G2_INVALID_PATH', 'Untrusted job directory');
+      // Verify directory ANCESTORS, not merely the immediate parent. Read
+      // the approved original input from a bounded single file handle and
+      // remember its SHA before any live Office/GPU checks or worker spawn.
+      let admittedInputSha256;
+      try {
+        admittedInputSha256 = hash(await readExclusiveG2JobArtifact({
+          jobDir:resolvedDir,filename:path.basename(resolvedInput)
+        }));
+      } catch {
+        throw new EngineError('G2_INVALID_PATH', 'Untrusted job directory or source image');
       }
       for (const file of [python, worker, weightsFile]) {
         try { await fs.access(file); }
@@ -182,8 +188,28 @@ export function createTripoSRAdapter(overrides = {}) {
         hostGpuTelemetry.peakObservedUtilizationPercent = Math.max(hostGpuTelemetry.peakObservedUtilizationPercent,snapshot.util);
       };
       const out = path.join(resolvedDir, 'engine-output');
-      if (await fs.stat(out).then(() => true, () => false)) {
+      // fs.stat follows a dangling symlink and wrongly reports "not exists".
+      // A symlink/junction occupying this destination must block execution.
+      try {
+        await fs.lstat(out);
         throw new EngineError('G2_OUTPUT_EXISTS', 'Job output path was already used');
+      } catch(error) {
+        if(error?.code!=='ENOENT') {
+          if(error instanceof EngineError)throw error;
+          throw new EngineError('G2_INVALID_PATH','Cannot safely inspect worker output path');
+        }
+      }
+      // Recheck immediately before the worker starts; not a replacement for
+      // race-free Windows directory handles or a sandbox.
+      try {
+        const beforeSpawn=await readExclusiveG2JobArtifact({
+          jobDir:resolvedDir,filename:path.basename(resolvedInput)
+        });
+        if(hash(beforeSpawn)!==admittedInputSha256) {
+          throw new Error('Original input changed during safety preflight');
+        }
+      } catch {
+        throw new EngineError('G2_INVALID_PATH','Job source changed before worker startup');
       }
       const args = [worker, '--job-dir', resolvedDir, '--image', resolvedInput,
         '--output-dir', out, '--resolution', '128', '--chunk-size', '2048'];
@@ -256,7 +282,7 @@ export function createTripoSRAdapter(overrides = {}) {
         if (code !== 0 || !collected.includes('TRIPOSR_PILOT_SUCCESS ')) {
           throw new EngineError('G2_WORKER_FAILED', 'Local inference worker did not complete');
         }
-        const produced = await verifyResult(resolvedDir, resolvedInput);
+        const produced = await verifyResult(resolvedDir, resolvedInput, admittedInputSha256);
         // These are observations from the shared GPU, NOT exclusive model VRAM
         // and NOT proof that LOCAL3D caused every observed change.
         produced.qa.hostGpuTelemetry = hostGpuTelemetry;
