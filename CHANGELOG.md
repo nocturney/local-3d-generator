@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.41 — 2026-10-11 — G3.41 actual private SHA-verified full Python venv snapshot
+
+- Copied **all 27,966 regular files / 5,086,619,721 bytes** from the original Windows LOCAL3D Python3.11 environment to a completely distinct private ignored QA destination (approx 4.74 GiB, source read-only). Checked per-file SHA256 against every original, no symlinks/reparse points or recognized sensitive configuration files, recorded a private whole-file SHA manifest.
+- Executed actual Python from the **cloned interpreter**, verified clone sys.prefix/PIL path are NOT production, all 34 installed pinned metadata packages match original requirements and three original synthetic PNG/JPEG/WebP native Pillow10.1.0 RGB hash outputs decode. **Actual 262/262 cloned Python quality and 7/7 G2 offline CPU tests also passed.** Public immutable proof links private SHA manifest hash, source code, prior official Pillow10.1 wheel and production worker. Six new fail-closed Node tests.
+- This is a real same-machine local full Python package directory backup, **not** an off-machine disaster-recovery restore: original base CPython/OS, GPU driver, model weights and other user data are not backed up. Live Python remains unchanged; G2/GPU/Office/security/Sandbox/Printer never activated. Issues #4, #5 and #3 remain OPEN.
+
 ## v0.2.40 — 2026-10-11 — G3.40 actual verified offline Pillow original wheel recovery and isolated reinstall
 
 - Scanned 2,513 pip HTTP cached bodies read-only and found no proper Windows CPython3.11 Pillow10.1 original wheel. Fetched **only** the exact official pinned Pillow-10.1.0-cp311-cp311-win_amd64.whl from published PyPI metadata, verified SHA256=0f7c276c05a9767e877a0b4c5050c8bee6a6d960d7f0c11ebda6b99746068c2a and exact 2,609,067-byte package metadata. Stored privately in ignored LOCAL3D rollback wheelhouse; no install into production and no wheel committed to GitHub.

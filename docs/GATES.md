@@ -1,5 +1,10 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.41 — FULL original 34-package Python venv copied to private SHA-audited local backup
+
+- PASS actual source-to-backup content comparison of **27,966/27,966 regular files, 5,086,619,721 bytes**, in gitignored local QA. Private SHA manifest covers all files; real copied Python3.11 executable and importlib.metadata/Pillow imports proved **34/34** pinned distributions load from snapshot; 3/3 original tiny PNG/JPEG/WebP RGB decodes successful.
+- Not proven: independent transfer to other PC, full OS/driver/CUDA compatibility, separate Python3.11 base installation, model weights or customers' data, actual separate restore from backup into new path (next milestone), physical calibrated printer output, native-decoder Sandbox guest security. No production package writes, G2 or Office changes. [G3.41 method](G3_41_REAL_PRIVATE_FULL_VENV_SNAPSHOT_CPU_2026-10-11.md), [public SHA evidence](evidence/g3/g3-41-real-private-full-python-venv-snapshot-cpu-readback.json). Issues #4/#5/#3 remain OPEN.
+
 ## G3.40 — real official Pillow10.1 offline wheel and isolated native-package rollback
 
 - PASS original, official, Windows Python3.11 x64 Pillow10.1 wheel acquired into ignored/private QA. PyPI-published exact SHA256 0f7c276c05a9767e877a0b4c5050c8bee6a6d960d7f0c11ebda6b99746068c2a and wheel size 2609067 bytes verified twice; no production installation. Read-only pip cache had 2513 response body files, none contained this wheel.

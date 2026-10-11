@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.41 — actual copied full 34-package Python backup, read-only recheck
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-41-private-full-venv-backup.py
+    node scripts/g3-41-assemble-private-full-venv-proof.mjs
+    node --test tests/g341-full-python-venv-snapshot.test.js
+
+On first use, the Python script validated disk budget and source types, copied ALL production Python3.11 venv files into ignored private runtime/qa/g3/venv-recovery, compared original/copy SHA for every file, saved a private per-file manifest and actually launched copied Python for all 34 package metadata + trusted Pillow PNG/JPEG/WebP CPU checks. On subsequent use it is a **read-only snapshot verifier** and will NEVER replace the private backup. The public Node proof replay hashes only historical private manifest/receipts and representative unchanged binaries, not a new Windows installation. This is NOT a validated cross-host system image or an approved Pillow12.3 production upgrade. [Method](G3_41_REAL_PRIVATE_FULL_VENV_SNAPSHOT_CPU_2026-10-11.md), [public proof](evidence/g3/g3-41-real-private-full-python-venv-snapshot-cpu-readback.json).
+
 ## G3.40 — verified original offline Pillow wheel, real disposable Pillow-only restore
 
     runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-40-verified-official-pillow-wheel.py
