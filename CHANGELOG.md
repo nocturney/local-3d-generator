@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.40 — 2026-10-11 — G3.40 actual verified offline Pillow original wheel recovery and isolated reinstall
+
+- Scanned 2,513 pip HTTP cached bodies read-only and found no proper Windows CPython3.11 Pillow10.1 original wheel. Fetched **only** the exact official pinned Pillow-10.1.0-cp311-cp311-win_amd64.whl from published PyPI metadata, verified SHA256=0f7c276c05a9767e877a0b4c5050c8bee6a6d960d7f0c11ebda6b99746068c2a and exact 2,609,067-byte package metadata. Stored privately in ignored LOCAL3D rollback wheelhouse; no install into production and no wheel committed to GitHub.
+- Executed a **real offline binary package install -> candidate replacement -> original wheel reinstall** for Pillow10.1.0 -> 12.3.0 -> 10.1.0 in a freshly created empty disposable CPython3.11 venv. At each stage, native decoding of all 3 SHA-pinned original tiny PNG/JPEG/WebP inputs and raw RGB pixel hashes matched; production Pillow and Image.py SHA remained unchanged. All temporary installed packages removed.
+- Added strict source/receipt SHA public proof and six fail-closed tests. Does NOT claim restored entire 34-package TripoSR production venv, GPU model compatibility, OS image parser sandbox, untrusted media or print approval. Security #4, G1 #5, print #3 OPEN.
+
 ## v0.2.39 — 2026-10-11 — G3.39 G1 reboot read-only inventory and disabled noninstallable boot candidate
 
 - Read-only Windows Chris port, Node, source-SHA, G1 repo/data ACL readability, Task Scheduler action+name, Windows services and startup-command inspection. Result 4177 no listener, independent localhost Office/4178 one listener, G2 4179 off, no explicitly matching autostart. Readable ACLs do not prove access as a future unattended service account.

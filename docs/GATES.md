@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.40 — real official Pillow10.1 offline wheel and isolated native-package rollback
+
+- PASS original, official, Windows Python3.11 x64 Pillow10.1 wheel acquired into ignored/private QA. PyPI-published exact SHA256 0f7c276c05a9767e877a0b4c5050c8bee6a6d960d7f0c11ebda6b99746068c2a and wheel size 2609067 bytes verified twice; no production installation. Read-only pip cache had 2513 response body files, none contained this wheel.
+- PASS **actual native Pillow binary install offline into a disposable CLEAN venv target**: 10.1 -> 12.3 -> RESTORED10.1 from the new wheel, all 3 original 64x64 PNG/JPEG/WebP media pixel RGB SHA identical across all 3 stages. Original production 10.1 version and source SHA re-verified unchanged.
+- NOT TESTED: complete 34-package TripoSR env restore, licensed GPU model/Torch+Transformers compatibility, OS-native image decoder isolation, 7 further separately approved benchmark model runs, physically verified print geometry. [Full method](G3_40_OFFICIAL_PILLOW_WHEEL_REAL_OFFLINE_ISOLATED_ROLLBACK_2026-10-11.md), [public SHA proof](evidence/g3/g3-40-verified-official-wheel-and-real-isolated-rollback.json). Issues #4/#5/#3 OPEN.
+
 ## G3.39 — actual read-only G1 boot context; disabled noninstallable candidate
 
 - PASS read-only Chris Windows observation: Node v24.19.0, original G3.28 G1 server SHA, no 4177/4179 listener, one localhost Office/4178 listener, root and G1 persistent-data ACL readable. Scans of TaskScheduler action+name, named Windows services, startup commands completed and found zero explicitly named LOCAL3D matches (generic launchers NOT excluded).

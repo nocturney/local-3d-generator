@@ -1,5 +1,14 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.40 — verified original offline Pillow wheel, real disposable Pillow-only restore
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-40-verified-official-pillow-wheel.py
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-40-offline-isolated-pillow-rollback.py
+    node scripts/g3-40-assemble-real-isolated-pillow-proof.mjs
+    node --test tests/g340-offline-isolated-pillow-rollback.test.js
+
+Official Pillow10.1 Windows cp311 rollback wheel stored in ignored/private QA, SHA checked against PyPI. The FIRST script only downloads if original wheel not present, and then only from PyPI official release + files.pythonhosted.org with SHA-bound URL metadata. The second creates a NEW clean disposable venv and installs ORIGINAL10.1 -> CANDIDATE12.3 -> ORIGINAL10.1 offline via pip --target, verifying native decode SHA on three trusted original tiny images each time. Production Python site-packages/version unchanged, ephemeral target removed. The third is read-only immutable historical proof replay. **Do not treat this Pillow-only restore as a complete 34-package/GPU/security backup or authority to upgrade production.** [Method](G3_40_OFFICIAL_PILLOW_WHEEL_REAL_OFFLINE_ISOLATED_ROLLBACK_2026-10-11.md), [public proof](evidence/g3/g3-40-verified-official-wheel-and-real-isolated-rollback.json).
+
 ## G3.39 — read-only G1 Windows Task Scheduler review; NO task registered
 
     .\scripts\g3-39-readonly-g1-boot-probe.ps1
