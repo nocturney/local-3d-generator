@@ -1,5 +1,11 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.38 — Python 34/34 baseline vs real rollback availability
+
+- PASS read-only installed package inventory 34/34 matches pinned requirements and exact SHA on Chris. Existing isolated Pillow12.3.0 candidate wheel checksum verified. No actual production Python site-packages write, pip network/install/uninstall or GPU.
+- PASS **synthetic-only manifest control**: simulated version change and tamper detection both restored baseline text manifest SHA in a fresh temporary QA directory. This does NOT back up or restore any actual Python modules or native DLLs.
+- OPEN: no verified offline Pillow10.1.0 rollback wheel in the one existing checked local wheel store (other stores/machine/pip cache not inventoried); no complete wheelhouse, full venv clone restore rehearsal, permission to change production, Torch/Transformers CUDA compatibility or OS native decode sandbox attestation. Decision BLOCKED_SCOPE_LIMITED_READONLY_PREPARATION. Security #4, G1 #5, physical print #3 OPEN. [Runbook](G3_38_PYTHON_ROLLBACK_PREFLIGHT_CPU_2026-10-11.md), [SHA proof](evidence/g3/g3-38-python-upgrade-readiness-and-synthetic-rollback.json).
+
 ## G3.37 — Pillow12.3 shadow CPU quality partition, NOT full historical-suite pass
 
 - The **UNFILTERED** 12.3 shadow Python suite failed with 5 errors caused by exact Pillow10.1 production metadata and pinned old fixture generation: G3.22 class setup (16 test methods excluded from execution), 3 G3.26 methods and 1 G3.30 method. Do not relabel this as a 262/262 shadow success.

@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.38 — read-only pinned Python rollback prerequisites, NOT a real production rollback
+
+    runtime\engines\triposr\venv\Scripts\python.exe scripts\g3-38-prod-rollback-readonly.py
+    node scripts/g3-38-assemble-rollback-readiness.mjs
+    node --test tests/g338-python-rollback-readiness.test.js
+
+The Python script inspects the 34 pinned production metadata distributions without importing Torch, Pillow or a GPU model; checks the SHA of the pre-existing isolated Pillow12.3 wheel and a deliberately limited list of project-local wheel stores. It runs two synthetic **text-manifest-only** restoration scenarios in fresh owned TEMP QA, not a venv backup/reinstall/rollback. The Node proof command only replays a historical immutable source-linked receipt. No authority to pip install/uninstall, alter G1/4177, Task Scheduler, Windows OS features, Office/4178 or G2/4179. [G3.38 checklist](G3_38_PYTHON_ROLLBACK_PREFLIGHT_CPU_2026-10-11.md), [evidence](evidence/g3/g3-38-python-upgrade-readiness-and-synthetic-rollback.json).
+
 ## G3.37 — safe actual CPU-only Pillow12.3 shadow Python quality subset
 
     .\scripts\g3-37-run-shadow-quality.ps1

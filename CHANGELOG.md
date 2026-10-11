@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.38 — 2026-10-11 — G3.38 read-only 34-package Python rollback prerequisite and manifest-only dry-run
+
+- Audited actual Windows Chris production Python3.11 interpreter with importlib.metadata, confirming 34/34 installed distributions match the pinned requirements source SHA and original Pillow10.1.0, Torch2.5.1+cu121 and Transformers4.35.0.
+- Existing official SHA-pinned Pillow12.3.0 shadow wheel verified. Four candidate project-local wheel stores inspected; only one exists and none contained a pinned Pillow10.1.0 offline wheel. This limited search is NOT a global missing-wheel assertion.
+- Two disposable MANIFEST-ONLY rollback simulations restored an exact SHA after a version change and after intentional tampering, with production venv/package files never modified or copied. Added fail-closed transaction checklist, immutable SHA proof and six negative tests. Release gate BLOCKED_SCOPE_LIMITED_READONLY_PREPARATION pending real offline backups, proven full-venv rollback, independently authorized GPU/OS/security testing. Security #4, G1 startup #5 and print #3 OPEN.
+
 ## v0.2.37 — 2026-10-11 — G3.37 truthful Pillow12.3 full-quality shadow compatibility classification
 
 - Real CPU-only **unfiltered** Pillow12.3 shadow Python quality suite raised 5 errors from four historical Pillow10.1 immutable fixture tests and the original G3.22 dependency inventory class setup, which prevented 16 historical class methods from running. The historical 10.1 tests were intentionally NOT rewritten, disabled in production or misrepresented as passing under shadow.
