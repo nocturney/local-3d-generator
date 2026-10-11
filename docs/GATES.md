@@ -1,5 +1,9 @@
 # Evidence, golden fixtures, acceptance gates, benchmark plan
 
+## G3.32 — offline Sandbox XML candidate verification
+
+A new candidate file uses Microsoft's documented VGpu tag spelling; all other values match the historical G3.29 candidate. The trusted file passed read-only .NET XML parsing and strict Node tests. This demonstrates document structure only, not OS-enforced isolation. No guest, store installation, model inference or printing was performed. Security Issue #4 and manufacturing Issue #3 remain OPEN. [Method](G3_32_CANONICAL_WSB_XML_CPU_2026-10-11.md); [immutable report](evidence/g3/g3-32-canonical-wsb-xml-static-review.json).
+
 ## G3.31 — Windows Sandbox launcher availability NOT proven (no guest runtime)
 
 - Chris Windows 11 Pro build 26300, remote Session 0: Sandbox optional feature Enabled, VMP Enabled, HypervisorPresent true; Hyper-V Hypervisor *optional feature* separately Disabled (do not conflate with HypervisorPresent). Microsoft's documented new CLI `wsb`, legacy WindowsSandbox.exe, aliases and registered Store AppX/StartApps/SystemApps all not found in this probe context. All AppX lookup statuses OK; counts zero. This is **not** proof about interactive logged-in user.

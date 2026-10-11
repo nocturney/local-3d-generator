@@ -1,5 +1,13 @@
 # Operations — LOCAL3D G1/G2 on Windows, G1 on macOS
 
+## G3.32 — read-only, canonical Windows Sandbox configuration validation
+
+    node scripts/g3-32-assemble-canonical-wsb-proof.mjs
+    node --test tests/g332-canonical-wsb-xml.test.js
+    .\scripts\g3-32-verify-wsb-xml-readonly.ps1
+
+The new candidate docs/security/g332-canonical-networkless-nohost-share.wsb matches Microsoft's sample casing for VGpu. Windows .NET XmlReader tests well-formedness/tree only; DO NOT launch the .wsb or infer guest networking/host data isolation from a parser pass. The original G3.29 WSB profile remains unchanged and both variants' runtime acceptance is still untested. No host folders or guest commands. G3.31 launcher discovery from remote Session 0 remains no client visible, not definitive about interactive users. [G3.32 details](G3_32_CANONICAL_WSB_XML_CPU_2026-10-11.md), [immutable proof](evidence/g3/g3-32-canonical-wsb-xml-static-review.json).
+
 ## G3.31 — safe Windows Sandbox CLI and app availability check
 
     node scripts/g3-31-assemble-launch-route-evidence.mjs

@@ -1,5 +1,11 @@
 # Release notes
 
+## v0.2.32 — 2026-10-11 — G3.32 align static Windows Sandbox VGpu XML with Microsoft example
+
+- Produced a NEW conservative .wsb candidate using the Microsoft sample's case-exact VGpu tag, with all G3.29 protections unchanged (no networking/vGPU, clipboard/audio/video/printer, ProtectedClient, no host shares/commands). Byte-for-byte historical G3.29 candidate and G3.31 historical proof remain unmodified.
+- Executed a real read-only Windows .NET XmlReader syntax/tree verification with DTD processing prohibited and entity resolution disabled; no guest launch. New strict zero-dependency Node contract, adversarial tests and public source-SHA proof link both candidates, XML-check script and prior G3.31 report.
+- Sandbox service-context client still not discoverable, and correct XML bytes DO NOT imply effective OS isolation, safe untrusted image decoding or printer/GPU release. No AppX install, OS feature/policy changes, Office/4178, G1 restart, G2 inference/cloud/weights or printing.
+
 ## v0.2.31 — 2026-10-11 — G3.31 Windows Sandbox CLI and app registration inventory (READ-ONLY)
 
 - Verified the missing Windows Sandbox launch surface on Chris via read-only direct service-session inspection: Windows feature Enabled and hypervisor present, WindowsSandbox.exe and Microsoft's `wsb` CLI absent in PATH; none of current/all-user AppX, provisioned AppX, StartApps, SystemApps registered Sandbox in the **observed Session 0 scope**. No unverified claim about an interactive user's installed apps.

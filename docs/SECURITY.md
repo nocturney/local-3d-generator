@@ -1,5 +1,11 @@
 # LOCAL3D security/threat model — G1 and manual-only G2
 
+## G3.32: canonical Microsoft .wsb tag and .NET XML structure pass are NOT effective OS sandbox proof
+
+The static G3.29 no-network/no-host-share candidate used the vGPU tag spelling; Microsoft's sample uses VGpu. G3.32 creates a NEW exact-casing candidate with this difference only, preserving all intended explicit deny settings and prior SHA evidence. A read-only .NET parser with prohibited DTD/entity resolution verified the XML document tree, and negative tests prevent unsafe profile drift. **Neither original nor new candidate has been launched.** There is no verified guest, isolation/egress/file boundary, signed guest output, patched native Pillow 10.1.0 worker or permission for untrusted image/GPU/print. Issue #4 and #3 remain OPEN. [Details](G3_32_CANONICAL_WSB_XML_CPU_2026-10-11.md) / [public proof](evidence/g3/g3-32-canonical-wsb-xml-static-review.json). No OS/Office/4178/4177 restart or downloads/weights/printer actions.
+
+## G3.31: optional feature Enabled does NOT mean Store Sandbox CLI is registered or confinement proven
+
 ## G3.31: optional feature Enabled does NOT mean Store Sandbox CLI is registered or confinement proven
 
 A new read-only Windows Sandbox inventory checks both Microsoft's newer `wsb` CLI and legacy WindowsSandbox.exe, AppX current/all-users, provisioned AppX, StartApps and SystemApps. The authorized Chris remote Session 0 observation returned no registered app or launcher visible, despite feature Enabled and HypervisorPresent true. This classification applies **only to the observed remote service context**, not the desktop user's possible Sandbox availability. No VM was launched; no containment or egress proof. Exact-key contract fails closed and cannot grant a guest image decoder, G2 GPU, untrusted customer images or print approval based on mere launcher presence. Source-linked immutable public proof uses the frozen direct scan output after later nested PowerShell timed out. [Full evidence](G3_31_WINDOWS_SANDBOX_CLIENT_DISCOVERY_CPU_2026-10-11.md) / [public SHA report](evidence/g3/g3-31-windows-sandbox-launch-discovery-only.json). Security Issue #4 and physical print Issue #3 OPEN. No OS/Office/4178 changes.
