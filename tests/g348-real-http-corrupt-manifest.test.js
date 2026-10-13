@@ -40,10 +40,25 @@ for(const [description, corrupt] of [
    const done=await completed(live.base,record.id);
    assert.equal(done.simulation,true);
    assert.ok(done.assets.some(x=>x.id==="preview-glb"));
-   await live.app.close();live=null;
+   // Completion appears in the in-memory HTTP projection before the final
+   // durable job.json write can finish under concurrent test-worker pressure.
+   // Wait for actual persisted DRAFT asset metadata, not only HTTP status.
    const file=path.join(root,"data","jobs",record.id,"job.json");
+   let persisted=null;
+   for(let i=0;i<200;i++){
+    try{
+     const candidate=JSON.parse(await fs.readFile(file,"utf8"));
+     if(candidate.status==="completed" && candidate.assets?.some(x=>x.id==="preview-glb")){
+      persisted=candidate;break;
+     }
+    }catch{}
+    await new Promise(resolve=>setTimeout(resolve,10));
+   }
+   assert.ok(persisted,"completed GLB metadata must be durably visible on disk");
+   await live.app.close();live=null;
    const manifest=JSON.parse(await fs.readFile(file,"utf8"));
    const asset=manifest.assets.find(x=>x.id==="preview-glb");
+   assert.ok(asset,"saved GLB metadata must survive close");
    asset.bytes=corrupt;
    await fs.writeFile(file,JSON.stringify(manifest));
    live=await start(root);
