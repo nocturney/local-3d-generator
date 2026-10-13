@@ -551,6 +551,13 @@ export async function createApp(options = {}) {
     stream.pipe(res);
   }
   async function serveVerifiedJobAsset(res,jobDir,asset,method) {
+    // Keep G3.47's malformed-manifest HTTP 409 semantics. Reservation must happen
+    // before allocating asset bytes, but the budget rejects invalid sizes as TypeError.
+    // Do not turn an untrusted persisted size into an internal 500 response.
+    if (!Number.isSafeInteger(asset?.bytes) || asset.bytes < 1 ||
+        asset.bytes > 100 * 1024 * 1024) {
+      fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');
+    }
     try {
       await deliverBudgetedVerifiedAsset({
         res,jobDir,asset,method,readVerified:readShaVerifiedJobAsset,budget:assetDeliveryBudget
