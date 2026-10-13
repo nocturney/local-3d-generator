@@ -12,7 +12,8 @@ import { getBenchmarkSource, FixtureSourceError } from './benchmark-sources.js';
 import { createBenchmarkReviewer } from './benchmark-review.js';
 import { admitRealJobStorage, StorageAdmissionError } from './storage-admission.js';
 import {preflightImageStructure, ImageStructureError} from './image-structure-preflight.js';
-import {readShaVerifiedJobAsset} from './g347-http-asset-integrity.js';
+import {readShaVerifiedJobAsset,G347JobAssetIntegrityError} from './g347-http-asset-integrity.js';
+import {createAssetDeliveryBudget,deliverBudgetedVerifiedAsset,G348AssetDeliveryBusy} from './g348-asset-delivery-budget.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -108,6 +109,8 @@ export async function createApp(options = {}) {
   await fs.mkdir(logsDir, { recursive: true });
   await ensureFixture(fixtureFile);
   const jobs = new Map();
+  // One fail-fast verified HTTP asset read budget per app instance (not a process-wide RSS cap).
+  const assetDeliveryBudget = createAssetDeliveryBudget();
   const pending = [];
   const reviews = new Map(); // one CPU-only topology review per completed G2 job
   const benchmarkReviews = new Map(); // one bounded local CPU benchmark per G2 job
@@ -548,15 +551,20 @@ export async function createApp(options = {}) {
     stream.pipe(res);
   }
   async function serveVerifiedJobAsset(res,jobDir,asset,method) {
-    let bytes;
-    try {bytes=await readShaVerifiedJobAsset({jobDir,asset});}
-    catch {fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');}
-    res.writeHead(200,{
-      'Content-Type':asset.mime,'Content-Length':bytes.length,
-      'Content-Disposition':'inline','Cache-Control':'no-store',
-      'X-Content-Type-Options':'nosniff'
-    });
-    res.end(method==='HEAD'?undefined:bytes);
+    try {
+      await deliverBudgetedVerifiedAsset({
+        res,jobDir,asset,method,readVerified:readShaVerifiedJobAsset,budget:assetDeliveryBudget
+      });
+    } catch (error) {
+      if (error instanceof G348AssetDeliveryBusy) {
+        fail('G348_ASSET_BUSY',503,'Concurrent verified asset delivery capacity exhausted');
+      }
+      if (error instanceof G347JobAssetIntegrityError) {
+        fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');
+      }
+      // Unexpected response/IO contract failures are internal errors, never a success or a permit.
+      throw error;
+    }
   }
   const staticPaths = new Map([
     ['/', [path.join(ROOT, 'public', 'index.html'), 'text/html; charset=utf-8']],
