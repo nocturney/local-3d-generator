@@ -29,7 +29,8 @@ for(const [description, corrupt] of [
  ["not an integer", 3.5]
 ]) {
  test("G348 API invalid persisted "+description+" asset length retains 409 for GET and HEAD",async()=>{
-  const root=await fs.mkdtemp(path.join(os.tmpdir(),"l3d-g348-http-corrupt-"));
+  // Select physical temp root so a 409 actually tests the corrupted manifest.
+  const root=await fs.mkdtemp(path.join(await fs.realpath(os.tmpdir()),"l3d-g348-http-corrupt-"));
   let live=null;
   try{
    live=await start(root);
@@ -55,6 +56,16 @@ for(const [description, corrupt] of [
     await new Promise(resolve=>setTimeout(resolve,10));
    }
    assert.ok(persisted,"completed GLB metadata must be durably visible on disk");
+   // Positive control: this exact physical fixture must serve a valid asset
+   // before mutation, otherwise both expected 409s could be false positives.
+   const baselineUrl=live.base+"/v1/jobs/"+record.id+"/assets/preview-glb";
+   const baselineGet=await fetch(baselineUrl,{method:"GET"});
+   assert.equal(baselineGet.status,200,"original asset must be readable before corruption");
+   const baselineBytes=(await baselineGet.arrayBuffer()).byteLength;
+   assert.ok(baselineBytes>=12,"original GLB must have nonempty verified bytes");
+   const baselineHead=await fetch(baselineUrl,{method:"HEAD"});
+   assert.equal(baselineHead.status,200,"original asset HEAD must verify");
+   assert.equal(Number(baselineHead.headers.get("content-length")),baselineBytes);
    await live.app.close();live=null;
    const manifest=JSON.parse(await fs.readFile(file,"utf8"));
    const asset=manifest.assets.find(x=>x.id==="preview-glb");

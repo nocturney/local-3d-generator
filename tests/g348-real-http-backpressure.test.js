@@ -63,7 +63,8 @@ async function holdResponse(url){
  });
 }
 test("G348 actual createApp HTTP GET/HEAD: paused 64MiB+ socket forces 503 then recovers",async()=>{
- const root=await fs.mkdtemp(path.join(os.tmpdir(),"l3d-g348-backpressure-"));
+ // macOS /var is a symlink; G3.45 forbids symlinked storage ancestors.
+ const root=await fs.mkdtemp(path.join(await fs.realpath(os.tmpdir()),"l3d-g348-backpressure-"));
  let live=null,first=null;
  try{
   live=await start(root);
