@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 import trimesh
@@ -67,6 +68,23 @@ class GeometryTests(unittest.TestCase):
         self.assertFalse(qa["printQualified"])
         self.assertEqual(qa["notEvaluated"]["wallThickness"], "NOT_TESTED")
         self.assertEqual(qa["notEvaluated"]["realWorldScaleAndUnits"], "UNKNOWN_UNCALIBRATED")
+
+    def test_two_disconnected_solids_are_not_collapsed_to_one_component(self):
+        left = trimesh.creation.box(extents=[1, 1, 1])
+        right = trimesh.creation.box(extents=[1, 1, 1])
+        right.apply_translation([4, 0, 0])
+        joined = trimesh.util.concatenate([left, right])
+        qa = geometry_qa.inspect_mesh(joined)
+        self.assertEqual(qa["connectedComponents"], 2)
+        self.assertEqual(qa["componentTriangles"], [12, 12])
+
+    def test_missing_component_graph_engine_fails_closed(self):
+        mesh = trimesh.creation.box(extents=[1, 1, 1])
+        with patch.object(trimesh.Trimesh, "split",
+                          side_effect=ImportError("no graph engines available!")):
+            with self.assertRaisesRegex(
+                    geometry_qa.QAError, "Connected-component analysis unavailable"):
+                geometry_qa.inspect_mesh(mesh)
 
     def test_invalid_glb_fails_before_decode(self):
         with tempfile.TemporaryDirectory() as temp:
