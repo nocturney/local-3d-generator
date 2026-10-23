@@ -9,9 +9,10 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import tempfile
 import trimesh
 
-from geometry_qa import QAError, inspect_glb, digest
+from geometry_qa import QAError, MAX_BYTES, inspect_glb, digest
 
 
 def correct_negative_winding(source: Path, target: Path, report_path: Path):
@@ -24,7 +25,20 @@ def correct_negative_winding(source: Path, target: Path, report_path: Path):
         raise QAError("Expected .glb output and .json report")
     if target.is_symlink() or report_path.is_symlink() or target.exists() or report_path.exists():
         raise QAError("Refusing to overwrite existing derivative/report")
-    before=inspect_glb(source)
+    # Analyze and convert exactly the same bounded, private GLB byte snapshot.
+    # Otherwise a replaced source between QA and conversion can yield a
+    # derivative whose reported source SHA belongs to a different mesh.
+    with tempfile.TemporaryDirectory(prefix="local3d-orientation-") as temp:
+        snapshot = Path(temp) / "source.glb"
+        with source.open("rb") as handle:
+            source_bytes = handle.read(MAX_BYTES + 1)
+        if len(source_bytes) > MAX_BYTES:
+            raise QAError("Source GLB exceeds byte budget")
+        snapshot.write_bytes(source_bytes)
+        before = inspect_glb(snapshot)
+        scene = trimesh.load(snapshot, file_type="glb", force="scene", process=False)
+    if digest(source) != before["modelSha256"]:
+        raise QAError("Source changed during orientation conversion")
     if before["geometryObjectCount"]!=1 or before["topology"]["componentCount"]!=1:
         raise QAError("Requires one closed connected mesh")
     part=before["parts"][0]
@@ -33,7 +47,6 @@ def correct_negative_winding(source: Path, target: Path, report_path: Path):
        part["signedVolumeArbitraryUnitsCubed"]>=0 or \
        part["boundaryEdges"] or part["nonManifoldEdges"] or part["zeroAreaFacesScaleRelative"]:
         raise QAError("Requires closed, consistently inward-wound negative-volume model")
-    scene=trimesh.load(source,file_type="glb",force="scene",process=False)
     meshes=scene.dump(concatenate=False)
     if hasattr(meshes,"faces"):
         meshes=[meshes]
