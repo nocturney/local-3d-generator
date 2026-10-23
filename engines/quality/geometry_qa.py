@@ -56,8 +56,10 @@ def inspect_mesh(mesh):
             [int(len(m.faces)) for m in mesh.split(only_watertight=False, repair=False)],
             reverse=True
         )
-    except Exception:
-        component_sizes = None
+    except Exception as exc:
+        raise QAError("Connected-component analysis unavailable") from exc
+    if not component_sizes or sum(component_sizes) != len(f):
+        raise QAError("Connected-component analysis incomplete")
     watertight = bool(mesh.is_watertight)
     winding = bool(mesh.is_winding_consistent)
     volume = float(mesh.volume) if watertight and winding else None
@@ -78,7 +80,7 @@ def inspect_mesh(mesh):
             (f[:, 0] == f[:, 1]) | (f[:, 1] == f[:, 2]) | (f[:, 0] == f[:, 2])
         )),
         "duplicateFaceIndexTriples": int(np.sum(np.maximum(duplicates - 1, 0))),
-        "connectedComponents": len(component_sizes) if component_sizes is not None else None,
+        "connectedComponents": len(component_sizes),
         "componentTriangles": component_sizes
     }
 
@@ -123,7 +125,6 @@ def inspect_glb(file: Path) -> dict:
         "zeroAreaFaces": sum(p["zeroAreaFacesScaleRelative"] for p in parts),
         "duplicateFaceTriples": sum(p["duplicateFaceIndexTriples"] for p in parts),
         "componentCount": sum(p["connectedComponents"] for p in parts)
-            if all(p["connectedComponents"] is not None for p in parts) else None
     }
     return {
         "schema": "local3d.g3.geometry-qa.v1",
