@@ -13,6 +13,7 @@ import { createBenchmarkReviewer } from './benchmark-review.js';
 import { admitRealJobStorage, StorageAdmissionError } from './storage-admission.js';
 import {preflightImageStructure, ImageStructureError} from './image-structure-preflight.js';
 import {readShaVerifiedJobAsset} from './g347-http-asset-integrity.js';
+import {createAssetReadBudget} from './g348-asset-read-budget.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_DATA_DIR = path.join(ROOT, 'runtime', 'data');
@@ -108,6 +109,11 @@ export async function createApp(options = {}) {
   await fs.mkdir(logsDir, { recursive: true });
   await ensureFixture(fixtureFile);
   const jobs = new Map();
+  // Verify full persisted assets before sending bytes, but do not let many
+  // concurrent callers retain unbounded 100 MiB response buffers.
+  const assetReadBudget = createAssetReadBudget();
+  // Injectable only from trusted createApp callers in isolated HTTP tests.
+  const verifiedAssetReader = options.verifiedAssetReader || readShaVerifiedJobAsset;
   const pending = [];
   const reviews = new Map(); // one CPU-only topology review per completed G2 job
   const benchmarkReviews = new Map(); // one bounded local CPU benchmark per G2 job
@@ -548,15 +554,44 @@ export async function createApp(options = {}) {
     stream.pipe(res);
   }
   async function serveVerifiedJobAsset(res,jobDir,asset,method) {
+    // G3.47 verifies the entire file into memory before any response headers.
+    // Reserve the declared maximum BEFORE doing I/O, including for HEAD.
+    let release;
+    try { release=assetReadBudget.reserve(asset?.bytes); }
+    catch { fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification'); }
+    if (!release) {
+      res.setHeader('Retry-After','1');
+      fail('G348_ASSET_BUSY',503,'Local asset verification capacity busy; retry shortly');
+    }
+    let reading=true, responseCompleted=false;
+    const complete=()=>{ responseCompleted=true; if (!reading) release(); };
+    // A disconnected caller must NOT free its reservation while verification
+    // still allocates/reads; once the read settles it can safely be released.
+    res.once('finish',complete);
+    res.once('close',complete);
     let bytes;
-    try {bytes=await readShaVerifiedJobAsset({jobDir,asset});}
-    catch {fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');}
-    res.writeHead(200,{
-      'Content-Type':asset.mime,'Content-Length':bytes.length,
-      'Content-Disposition':'inline','Cache-Control':'no-store',
-      'X-Content-Type-Options':'nosniff'
-    });
-    res.end(method==='HEAD'?undefined:bytes);
+    try { bytes=await verifiedAssetReader({jobDir,asset}); }
+    catch {
+      reading=false;
+      release();
+      if (responseCompleted || res.destroyed) return;
+      fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');
+    }
+    reading=false;
+    if (!Buffer.isBuffer(bytes) || bytes.length!==asset.bytes) {
+      release();
+      if (responseCompleted || res.destroyed) return;
+      fail('G347_ASSET_UNVERIFIED',409,'Stored job asset failed integrity verification');
+    }
+    if (responseCompleted || res.destroyed) { release(); return; }
+    try {
+      res.writeHead(200,{
+        'Content-Type':asset.mime,'Content-Length':bytes.length,
+        'Content-Disposition':'inline','Cache-Control':'no-store',
+        'X-Content-Type-Options':'nosniff'
+      });
+      res.end(method==='HEAD'?undefined:bytes);
+    } catch (error) { release(); throw error; }
   }
   const staticPaths = new Map([
     ['/', [path.join(ROOT, 'public', 'index.html'), 'text/html; charset=utf-8']],
