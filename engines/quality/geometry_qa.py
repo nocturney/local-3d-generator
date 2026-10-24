@@ -86,19 +86,24 @@ def inspect_mesh(mesh):
 
 
 def inspect_glb(file: Path) -> dict:
+    import io
     import trimesh
     file = file.resolve(strict=True)
-    length = file.stat().st_size
+    # One bounded snapshot: validation, decode and digest all use these bytes,
+    # so a path replaced mid-inspection cannot change the attributed source.
+    with file.open("rb") as stream:
+        data = stream.read(MAX_BYTES + 1)
+    length = len(data)
     if length < 100 or length > MAX_BYTES:
         raise QAError("GLB outside configured byte budget")
-    with file.open("rb") as stream:
-        header = stream.read(12)
+    header = data[:12]
     if len(header) != 12 or header[:4] != b"glTF" or \
        int.from_bytes(header[4:8], "little") != 2 or \
        int.from_bytes(header[8:12], "little") != length:
         raise QAError("Invalid GLB version or declared length")
+    model_sha256 = hashlib.sha256(data).hexdigest()
     try:
-        scene = trimesh.load(file, file_type="glb", force="scene", process=False)
+        scene = trimesh.load(io.BytesIO(data), file_type="glb", force="scene", process=False)
         meshes = scene.dump(concatenate=False)
     except Exception as exc:
         raise QAError("Failed to decode GLB geometry") from exc
@@ -128,7 +133,7 @@ def inspect_glb(file: Path) -> dict:
     }
     return {
         "schema": "local3d.g3.geometry-qa.v1",
-        "model": file.name, "modelSha256": digest(file), "modelBytes": length,
+        "model": file.name, "modelSha256": model_sha256, "modelBytes": length,
         "classification": "DRAFT_REQUIRES_HUMAN_REVIEW",
         "geometryObjectCount": len(parts),
         "totalVertices": sum(p["vertices"] for p in parts),
